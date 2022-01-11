@@ -45,11 +45,13 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
-    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.7'
     implementation 'androidx.recyclerview:recyclerview:1.2.0'
+
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.7'
     implementation 'io.coil-kt:coil:1.4.0' //加载网图
-    implementation  'io.github.scwang90:refresh-layout-kernel:2.0.5'    //核心必须依赖
-    implementation  'io.github.scwang90:refresh-header-classics:2.0.5'  //经典刷新头
+    implementation 'io.github.scwang90:refresh-layout-kernel:2.0.5'    //SmartRefreshLayout核心必须依赖
+    implementation 'io.github.scwang90:refresh-header-classics:2.0.5'  //SmartRefreshLayout经典刷新头
+
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'

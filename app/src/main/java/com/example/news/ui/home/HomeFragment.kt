@@ -24,12 +24,9 @@ class HomeFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-        recyclerView = binding.recyclerView
-        refreshLayout = binding.refreshLayout
 
         initView()
-        return root
+        return binding.root
     }
 
     override fun onDestroyView() {
@@ -38,13 +35,18 @@ class HomeFragment : Fragment() {
     }
 
     private fun initView() {
+        recyclerView = binding.recyclerView
+        refreshLayout = binding.refreshLayout
+
+        firstPageList()
+        //下拉刷新
         refreshLayout.setRefreshHeader(ClassicsHeader(this.context))
         refreshLayout.setOnRefreshListener { layout ->
             run {
                 getPageList(true, layout)
             }
         }
-        refreshLayout.autoRefresh()
+        //设置recyclerView的layoutManager和adapter
         recyclerView.layoutManager = LinearLayoutManager(this.context)
         adapter.addChildClickViewIds(R.id.home_recycle_list_item)
         adapter.setOnItemClickListener{ _, view, position ->
@@ -52,6 +54,8 @@ class HomeFragment : Fragment() {
                 Toast.makeText(this.context, dataList[position].name, Toast.LENGTH_SHORT).show()
             }
         }
+        recyclerView.adapter = adapter
+        //上拉加载更多
         refreshLayout.setRefreshFooter(ClassicsFooter(this.context))
         refreshLayout.setOnLoadMoreListener { layout ->
             run {
@@ -59,9 +63,20 @@ class HomeFragment : Fragment() {
             }
         }
         refreshLayout.setEnableAutoLoadMore(true)
-        recyclerView.adapter = adapter
     }
 
+    private fun firstPageList() {
+        var goodsModel: GoodsModel
+        for (i in 0..10) {
+            goodsModel = GoodsModel(
+                "https://oss.suning.com/sffe/sffe/default_goods.png",
+                "苹果（Apple）iPhone 13 Pro max ${i}",
+                "89999"
+            )
+            dataList.add(goodsModel)
+        }
+        adapter.setList(dataList)
+    }
 
     private fun getPageList(isRefresh: Boolean, layout: RefreshLayout) {
         if (isRefresh) {
