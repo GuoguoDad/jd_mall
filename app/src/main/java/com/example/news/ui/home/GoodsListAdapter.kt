@@ -6,8 +6,8 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.example.news.R
 
-class GoodsListAdapter(layoutResId: Int, data: MutableList<GoodsModel>) : BaseQuickAdapter<GoodsModel, BaseViewHolder>(layoutResId, data) {
-    override fun convert(holder: BaseViewHolder, item: GoodsModel) {
+class GoodsListAdapter(layoutResId: Int, data: MutableList<GoodsBean>) : BaseQuickAdapter<GoodsBean, BaseViewHolder>(layoutResId, data) {
+    override fun convert(holder: BaseViewHolder, item: GoodsBean) {
         holder.setText(R.id.tv_title, item.name)
               .setText(R.id.tv_price, item.price)
 

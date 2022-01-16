@@ -19,7 +19,7 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var recyclerView: RecyclerView
     private lateinit var refreshLayout: RefreshLayout
-    private var dataList: MutableList<GoodsModel> = arrayListOf()
+    private var dataList: MutableList<GoodsBean> = arrayListOf()
     var adapter = GoodsListAdapter(R.layout.fragment_home_recyclerview_item, dataList)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -66,9 +66,9 @@ class HomeFragment : Fragment() {
     }
 
     private fun firstPageList() {
-        var goodsModel: GoodsModel
+        var goodsModel: GoodsBean
         for (i in 0..10) {
-            goodsModel = GoodsModel(
+            goodsModel = GoodsBean(
                 "https://oss.suning.com/sffe/sffe/default_goods.png",
                 "苹果（Apple）iPhone 13 Pro max ${i}",
                 "89999"
@@ -82,9 +82,9 @@ class HomeFragment : Fragment() {
         if (isRefresh) {
             dataList = arrayListOf()
         }
-        var goodsModel: GoodsModel
+        var goodsModel: GoodsBean
         for (i in 0..10) {
-            goodsModel = GoodsModel(
+            goodsModel = GoodsBean(
                 "https://oss.suning.com/sffe/sffe/default_goods.png",
                 "苹果（Apple）iPhone 13 Pro max ${i}",
                 "89999"
