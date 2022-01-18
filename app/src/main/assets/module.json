@@ -7,7 +7,7 @@
     {"moduleName":"更多","name":"更多","code":"000","showType": 0}
   ],
   "data": [
-      {"moduleName":"模块1","name":"功能1","code":"001","showType": 1},
+      {"moduleName":"模块1","name":"瀑布流","code":"001","showType": 1},
       {"moduleName":"模块1","name":"功能2","code":"002","showType": 1},
       {"moduleName":"模块1","name":"功能4","code":"003","showType": 1},
       {"moduleName":"模块1","name":"功能5","code":"004","showType": 1},

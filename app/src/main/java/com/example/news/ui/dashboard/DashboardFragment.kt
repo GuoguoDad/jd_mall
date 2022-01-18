@@ -1,5 +1,6 @@
 package com.example.news.ui.dashboard
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +17,7 @@ import com.example.news.ui.dashboard.adapter.ModuleSelectionAdapter
 import com.example.news.ui.dashboard.bean.ModuleBean
 import com.example.news.ui.dashboard.bean.ModuleBeanWrapper
 import com.example.news.ui.dashboard.decor.ItemOffsetDecoration
+import com.example.news.ui.waterfall.WaterfallListActivity
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStream
@@ -32,17 +34,20 @@ class DashboardFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-        recyclerView = binding.rvModule
 
+        initView()
         initData()
 
-        return root
+        return binding.root
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun initView() {
+        recyclerView = binding.rvModule
     }
 
     private fun initData() {
@@ -52,9 +57,21 @@ class DashboardFragment : Fragment() {
             moduleSelectionAdapter = ModuleSelectionAdapter(wrapper)
             moduleSelectionAdapter!!.setOnItemClickListener(object : ModuleSelectionAdapter.OnItemClickListener {
                 override fun onClick(view: View?, bean: ModuleBean?) {
-                    Toast.makeText(localThis.context ,bean?.name, Toast.LENGTH_SHORT).show()
+                    if (bean != null) {
+                        when(bean.code) {
+                            "001" -> {
+                                val to = Intent(localThis.context, WaterfallListActivity::class.java)
+                                startActivity(to)
+                            }
+                            else -> {
+                                Toast.makeText(localThis.context ,bean?.name, Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                    }
                 }
             })
+            recyclerView!!.adapter = moduleSelectionAdapter
+
             val manager = GridLayoutManager(this.context, 6, GridLayoutManager.VERTICAL, false)
             manager.spanSizeLookup = object : SpanSizeLookup() {
                 override fun getSpanSize(position: Int): Int {
@@ -65,7 +82,6 @@ class DashboardFragment : Fragment() {
                     }
                 }
             }
-            recyclerView!!.adapter = moduleSelectionAdapter
             recyclerView!!.layoutManager = manager
             val space = resources.getDimension(R.dimen.space)
             recyclerView!!.addItemDecoration(ItemOffsetDecoration(space.toInt()))

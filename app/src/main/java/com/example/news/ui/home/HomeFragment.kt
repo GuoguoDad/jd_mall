@@ -65,6 +65,9 @@ class HomeFragment : Fragment() {
         refreshLayout.setEnableAutoLoadMore(true)
     }
 
+    /**
+     * 加载第一页数据
+     */
     private fun firstPageList() {
         var goodsModel: GoodsBean
         for (i in 0..10) {
@@ -78,6 +81,9 @@ class HomeFragment : Fragment() {
         adapter.setList(dataList)
     }
 
+    /**
+     * 分页加载数据
+     */
     private fun getPageList(isRefresh: Boolean, layout: RefreshLayout) {
         if (isRefresh) {
             dataList = arrayListOf()

@@ -22,8 +22,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".adv.AdvertiseActivity" />
         <activity android:name=".MainActivity" />
+        <activity android:name=".adv.AdvertiseActivity" />
+        <activity android:name=".ui.waterfall.WaterfallListActivity" />
     </application>
 
 </manifest>
