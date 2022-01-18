@@ -1,8 +1,8 @@
 package com.example.news.ui.waterfall
 
-import android.app.Activity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.news.R
 import com.scwang.smart.refresh.footer.ClassicsFooter
@@ -10,7 +10,7 @@ import com.scwang.smart.refresh.header.ClassicsHeader
 import com.scwang.smart.refresh.layout.api.RefreshLayout
 import kotlinx.android.synthetic.main.layout_waterfall.*
 
-class WaterfallListActivity: Activity() {
+class WaterfallListActivity: AppCompatActivity() {
     private var dataList: MutableList<ProductBean> = arrayListOf()
     private val adapter = WaterfallListAdapter(R.layout.layout_waterfall_item, dataList)
 
