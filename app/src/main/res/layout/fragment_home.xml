@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/refreshLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    app:srlEnablePreviewInEditMode="true"
+    app:srlEnableLoadMoreWhenContentNotFull="false">
 
     <com.scwang.smart.refresh.header.ClassicsHeader
         android:layout_width="match_parent"
@@ -21,7 +23,8 @@
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#fff"/>
+        android:overScrollMode="never"
+        android:background="@color/white"/>
 
     <com.scwang.smart.refresh.footer.ClassicsFooter
         android:layout_width="match_parent"
