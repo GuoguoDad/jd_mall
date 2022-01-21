@@ -3,6 +3,7 @@ package com.example.news.ui.waterfall
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.news.R
 import com.scwang.smart.refresh.footer.ClassicsFooter
@@ -13,6 +14,7 @@ import kotlinx.android.synthetic.main.layout_waterfall.*
 class WaterfallListActivity: AppCompatActivity() {
     private var dataList: MutableList<ProductBean> = arrayListOf()
     private val adapter = WaterfallListAdapter(R.layout.layout_waterfall_item, dataList)
+    private val staggeredGridLayoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
 
     private var imgList: ArrayList<Int> = arrayListOf(
         R.drawable.waterfall01,R.drawable.swaterfall02, R.drawable.waterfall03, R.drawable.waterfall05,
@@ -39,7 +41,15 @@ class WaterfallListActivity: AppCompatActivity() {
             }
         }
         //瀑布列表
-        waterfall_recycler_view.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+        staggeredGridLayoutManager.gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_NONE
+        waterfall_recycler_view.layoutManager = staggeredGridLayoutManager
+        //解决加载下一页后重新排列的问题
+        waterfall_recycler_view.addOnScrollListener(object: RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+                staggeredGridLayoutManager.invalidateSpanAssignments()
+            }
+        })
         adapter.setOnItemClickListener{_, view, position ->
             if (view.id == R.id.waterfallItemLayout) {
                 Toast.makeText(this, dataList[position].title, Toast.LENGTH_SHORT).show()
