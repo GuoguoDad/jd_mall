@@ -1,0 +1,17 @@
+{
+  "code": "000000",
+  "data": {
+    "dataList|0-10": [
+      {
+        "associateName": "鸿星尔克旗下的一家专卖鞋服",
+        "associationCode": "@id",
+        "associateUserName": "刘二能",
+        "associatePhoneNo": "18888888888",
+        "commissionRate": "2.13%"
+      }
+    ],
+    "totalCount": "30",
+    "totalPageCount": "3"
+  },
+  "msg": null
+}

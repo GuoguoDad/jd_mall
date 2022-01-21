@@ -1,0 +1,75 @@
+{
+  "code": null,
+  "msg": null,
+  "data": {
+    "sellStatus": null,
+    "noSellDesc": null,
+    "agingDesc": null,
+    "fullCutDesc": null,
+    "merchantType": null,
+    "goodsMarkText": null,
+    "basePriceUnitDesc": null,
+    "savingEnviDesc": null,
+    "freightDescList": [
+      {}
+    ],
+    "goodsInfo": {
+      "goodsCode": null,
+      "goodsName": null,
+      "specDesc": null,
+      "distributorName": null,
+      "isNewGods": null,
+      "productNum": null,
+      "basicUnitDesc": null,
+      "unitName": null,
+      "o2oFlag": null,
+      "bosSpec": null,
+      "saleCount": null,
+      "monSaleNum": null,
+      "itemDesc": null,
+      "buyMinMultipleDesc": null,
+      "buyMinMultiple": null,
+      "imgList": [
+        {
+          "imgUrl": null
+        }
+      ]
+    },
+    "sourcePrice": {
+      "commonPrice": null,
+      "sellingPrice": null,
+      "isCoupon": null,
+      "deliveryTypeDesc": null,
+      "deliveryType": null,
+      "supplyMode": null,
+      "locatCode": null,
+      "plantCode": null,
+      "channelType": null,
+      "townCode": null,
+      "specialType": null,
+      "uid": null,
+      "availableDate": null,
+      "availableTime": null,
+      "supplierCode": null,
+      "msrpDesc": null,
+      "msrpPrice": null,
+      "newSupplierCode": null
+    },
+    "storeInfoVO": {
+      "storeName": null,
+      "detailAddress": null
+    },
+    "agingType": null,
+    "couponList": [
+      {
+        "couponNo": null,
+        "couponDesc": null,
+        "couponType": null,
+        "couponStartTime": null,
+        "couponEndTime": null,
+        "couponAmount": null,
+        "couponDiscount": null
+      }
+    ]
+  }
+}

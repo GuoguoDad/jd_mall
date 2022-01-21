@@ -3,6 +3,7 @@
     package="com.example.news">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -13,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
         <activity
-            android:name=".splash.StartPageActivity"
+            android:name="com.example.news.ui.splash.StartPageActivity"
             android:theme="@style/SplashActivityTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,7 +24,7 @@
         </activity>
 
         <activity android:name=".MainActivity" />
-        <activity android:name=".adv.AdvertiseActivity" />
+        <activity android:name=".ui.adv.AdvertiseActivity" />
         <activity android:name=".ui.waterfall.WaterfallListActivity" />
     </application>
 

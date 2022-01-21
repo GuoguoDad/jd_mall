@@ -1,0 +1,40 @@
+{
+  "code": "000000",
+  "msg": "处理成功",
+  "data": {
+    "dataList": [
+      {
+        "orderConsumer": "158 6888 9886",
+        "orderTime": "2021-07-30 10:36:13",
+        "orderNo": "8000023657896789",
+        "payAmount": "700.00",
+        "ratio": "2%",
+        "commissionTime": "2021-07-28 19:22:38",
+        "commissionAmount": "14.00",
+        "orderStatus": "2"
+      },
+      {
+        "orderConsumer": "158 6888 9886",
+        "orderTime": "2021-07-26 10:36:13",
+        "orderNo": "765342314253647",
+        "payAmount": "7000.00",
+        "ratio": "3%",
+        "commissionTime": "2021-07-28 22:11:32",
+        "commissionAmount": "210.00",
+        "orderStatus": "2"
+      },
+      {
+        "orderConsumer": "158 6888 9886",
+        "orderTime": "2021-07-26 10:36:13",
+        "orderNo": "456789876545678",
+        "payAmount": "9000.00",
+        "ratio": "3%",
+        "commissionTime": "2021-07-28 22:11:32",
+        "commissionAmount": "180.00",
+        "orderStatus": "5"
+      }
+    ],
+    "totalCount": "24",
+    "totalPageCount": "3"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "code": null,
+  "msg": null,
+  "data": {
+    "errorGoodsList": [
+      {
+        "itemNo": null,
+        "errorCode": null,
+        "errorMsg": null
+      }
+    ]
+  }
+}

@@ -1,10 +1,9 @@
-package com.example.news.splash
+package com.example.news.ui.splash
 
 import android.content.Intent
 import android.os.Bundle
 import com.example.news.MainActivity
-import com.example.news.adv.AdvertiseActivity
-import com.example.news.base.BaseActivity
+import com.example.news.ui.base.BaseActivity
 
 class StartPageActivity: BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

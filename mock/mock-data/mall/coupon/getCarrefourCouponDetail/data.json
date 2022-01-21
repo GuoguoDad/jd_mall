@@ -1,0 +1,16 @@
+{
+  "code": "000000",
+  "msg": null,
+  "data": {
+    "couponName": "满1000减500",
+    "couponAmount": "500",
+    "couponNo": "@id",
+    "couponStartTime": "2021.07.02 14:23:00",
+    "couponEndTime": "2021.07.02 23:59:00",
+    "couponUseRules": "满1000用500，单笔订单使用1张",
+    "useClient": "家乐福商城App",
+    "couponType": "2",
+    "couponStartTime2": "2021.07.02 14:23",
+    "couponEndTime2": "2021.07.02 23:59"
+  }
+}

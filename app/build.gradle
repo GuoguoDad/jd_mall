@@ -45,13 +45,16 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
     implementation 'androidx.recyclerview:recyclerview:1.2.0'
-    //引入 kotlin-reflect 解决调用fastjson JSON.parseObject报“default constructor not found”错误
-    implementation 'org.jetbrains.kotlin:kotlin-reflect:1.6.10'
+    implementation 'org.jetbrains.kotlin:kotlin-reflect:1.6.10'//引入 kotlin-reflect 解决调用fastjson JSON.parseObject报“default constructor not found”错误
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.7'
     implementation 'io.coil-kt:coil:1.4.0' //加载网图
     implementation 'io.github.scwang90:refresh-layout-kernel:2.0.5'    //SmartRefreshLayout核心必须依赖
     implementation 'io.github.scwang90:refresh-header-classics:2.0.5'  //SmartRefreshLayout经典刷新头
     implementation 'com.google.code.gson:gson:2.8.9'
+    implementation 'com.squareup.okhttp3:okhttp:4.9.3'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.3'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0' //Retrofit 是一个 RESTful 的 HTTP 网络请求框架的封装,基于okhttp
     implementation 'com.squareup.leakcanary:leakcanary-android:2.8.1' //a memory leak detection library
 
     testImplementation 'junit:junit:4.+'

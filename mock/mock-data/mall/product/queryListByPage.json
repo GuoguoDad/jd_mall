@@ -1,0 +1,14 @@
+{
+  "code": 0,
+  "msg": null,
+  "data": {
+    "dataList|10" :[
+      {
+        "goodsCode": "@id",
+        "goodsName": "光明优加礼盒250ml*12盒（原味）"
+      }
+    ],
+    "totalCount": 20,
+    "totalPageCount": 2
+  }
+}

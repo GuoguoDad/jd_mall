@@ -1,0 +1,34 @@
+{
+    "code": "000000",
+    "data": {
+        "dataList|0-10": [
+            {
+                "associatedCode": null,
+                "barcodes": "@number|13",
+                "createTime": "@Date",
+                "createUser": null,
+                "id": "@id",
+                "measureUnit": null,
+                "pluCode": null,
+                "retailPrice": null,
+                "storeFlag": "1",
+                "updateTime": null,
+                "updateUser": null,
+                "weightCode": null,
+                "goodsCode": "@id",
+                "goodsLabels": [
+                    "新品",
+                    "促"
+                ],
+                "goodsName": "光明优加礼盒250ml*12盒（原味）",
+                "goodsType": "",
+                "imageList": [
+                    "https://imgservice.suning.cn/uimg1/b2c/image/3cR8YBTTMhCgrIwS_qMqqQ.jpg_400w_400h_4e"
+                ]
+            }
+        ],
+        "totalCount": "30",
+        "totalPageCount": "3"
+    },
+    "msg": null
+}

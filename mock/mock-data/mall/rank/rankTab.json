@@ -1,0 +1,17 @@
+{
+  "code": 0,
+  "msg": null,
+  "data": {
+    "ruleType": "1",
+    "tabList" :[
+      { "tabId": "1", "tabName": "汇总", "sort": "0", "tabType": "1" },
+      { "tabId": "2", "tabName": "销售目录", "sort": "0", "tabType": "1" },
+      { "tabId": "3", "tabName": "销售目录", "sort": "0", "tabType": "1" },
+      { "tabId": "4", "tabName": "销售目录", "sort": "0", "tabType": "1" },
+      { "tabId": "5", "tabName": "销售目录", "sort": "0", "tabType": "1" },
+      { "tabId": "6", "tabName": "销售目录", "sort": "0", "tabType": "1" },
+      { "tabId": "7", "tabName": "销售目录", "sort": "0", "tabType": "1" }
+    ]
+  }
+}
+

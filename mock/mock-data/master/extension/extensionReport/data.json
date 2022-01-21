@@ -1,0 +1,10 @@
+{
+  "code": "000000",
+  "msg": "处理成功",
+  "data": {
+    "commissionTotalAmount": "3846.90",
+    "commissionAmount": "6183.00",
+    "orderCount": "65",
+    "payAmount": "43120"
+  }
+}

@@ -10,6 +10,7 @@
 .DS_Store
 /build
 /captures
+/mock/node_modules
 .externalNativeBuild
 .cxx
 local.properties

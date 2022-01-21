@@ -11,14 +11,13 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.GridLayoutManager.SpanSizeLookup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.news.R
-import com.example.news.common.util.GsonUtil
+import com.example.news.kit.util.GsonUtil
 import com.example.news.databinding.FragmentDashboardBinding
 import com.example.news.ui.dashboard.adapter.ModuleSelectionAdapter
 import com.example.news.ui.dashboard.bean.ModuleBean
 import com.example.news.ui.dashboard.bean.ModuleBeanWrapper
 import com.example.news.ui.dashboard.decor.ItemOffsetDecoration
 import com.example.news.ui.waterfall.WaterfallListActivity
-import com.google.gson.Gson
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStream
@@ -98,7 +97,7 @@ class DashboardFragment : Fragment() {
             while (bufferedReader.readLine().also { str = it } != null) {
                 stringBuilder.append(str)
             }
-            return GsonUtil.instance?.fromJson(stringBuilder.toString(),  ModuleBeanWrapper::class.java)
+            return GsonUtil.instance.fromJson(stringBuilder.toString(),  ModuleBeanWrapper::class.java)
         } catch (e: IOException) {
             e.printStackTrace()
         }

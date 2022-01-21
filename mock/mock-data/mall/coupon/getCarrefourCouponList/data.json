@@ -1,0 +1,24 @@
+{
+  "code": 0,
+  "msg": null,
+  "data": {
+    "dataList|10" :[
+      {
+        "couponNo": "@id",
+        "couponRulesId": "@id",
+        "couponAmount": "999",
+        "remainValue": "999",
+        "couponStartTime": "2018.06.06",
+        "couponEndTime": "2018.06.16",
+        "couponUseRules": "满300元可用",
+        "couponLimited": "限平台商户全部品类商品",
+        "couponType": "1",
+        "couponTypeMsg": "满减券",
+        "couponStatus": "2",
+        "couponDiscount": "8.8"
+      }
+    ],
+    "totalCount": 40,
+    "totalPageCount": 4
+  }
+}

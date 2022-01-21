@@ -1,0 +1,34 @@
+{
+  "code": null,
+  "msg": null,
+  "data": {
+    "invalidGoodsList": [
+      {
+        "itemNo": null,
+        "goodsCode": null,
+        "goodsName": null,
+        "price": null,
+        "quantity": null,
+        "freight": null,
+        "unitName": null,
+        "ctnName": null,
+        "ctnQuantity": null,
+        "tipMsg": null,
+        "stockQuantity": null,
+        "imgUrl": null,
+        "distributorCode": null,
+        "distributorName": null,
+        "shippingTime": null,
+        "shippingTimeMsg": null,
+        "shippingTimeGroupId": null,
+        "selectFlag": null
+      }
+    ],
+    "payData": {
+      "payMode": null,
+      "payName": null,
+      "paySign": null
+    },
+    "orderNoList": []
+  }
+}

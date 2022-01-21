@@ -1,4 +1,4 @@
-package com.example.news.adv
+package com.example.news.ui.adv
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,7 +7,7 @@ import android.os.Looper
 import android.os.Message
 import com.example.news.MainActivity
 import com.example.news.R
-import com.example.news.base.BaseActivity
+import com.example.news.ui.base.BaseActivity
 import kotlinx.android.synthetic.main.layout_advertisement.*
 
 class AdvertiseActivity: BaseActivity() {

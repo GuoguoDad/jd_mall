@@ -1,17 +1,26 @@
 package com.example.news.ui.waterfall
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.news.R
+import com.example.news.kit.util.HttpUtil
+import com.example.news.ui.base.BaseResponse
 import com.scwang.smart.refresh.footer.ClassicsFooter
 import com.scwang.smart.refresh.header.ClassicsHeader
 import com.scwang.smart.refresh.layout.api.RefreshLayout
 import kotlinx.android.synthetic.main.layout_waterfall.*
+import okhttp3.internal.wait
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
 
 class WaterfallListActivity: AppCompatActivity() {
+    private val tag = "WaterfallListActivity"
     private var dataList: MutableList<ProductBean> = arrayListOf()
     private val adapter = WaterfallListAdapter(R.layout.layout_waterfall_item, dataList)
     private val staggeredGridLayoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
@@ -27,6 +36,8 @@ class WaterfallListActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.layout_waterfall)
+
+        fetchData()
 
         getFirstPageList()
         initView()
@@ -95,5 +106,21 @@ class WaterfallListActivity: AppCompatActivity() {
         } else {
             layout.finishLoadMoreWithNoMoreData()
         }
+    }
+
+    private fun fetchData() {
+        val instance = HttpUtil.instance.service(ApiService::class.java)
+        instance.queryProductListByPage().enqueue(object : Callback<BaseResponse<ProductListRes>> {
+            override fun onResponse(
+                call: Call<BaseResponse<ProductListRes>>,
+                response: Response<BaseResponse<ProductListRes>>,
+            ) {
+                Log.i(tag, response.toString())
+            }
+
+            override fun onFailure(call: Call<BaseResponse<ProductListRes>>, t: Throwable) {
+                Log.i(tag, call.toString())
+            }
+        })
     }
 }

@@ -1,0 +1,56 @@
+{
+  "code": 0,
+  "msg": null,
+  "data": {
+    "dataList|10" :[
+      {
+        "goodsCode": "@id",
+        "goodsName": "光明优加礼盒250ml*12盒（原味）",
+        "distributorCode": "@id",
+        "distributorName": "太古可口可乐食品有限公司",
+        "goodsRank": "@id",
+        "recommendStarts": "90",
+        "buyMinMultiple": "12",
+        "buyMinMultipleText": "12倍购买",
+        "merchantType": "苏宁自营",
+        "imageUrl": "http://oss.suning.com/sffe/sffe/goods.png",
+        "boxSpec": "18件/箱",
+        "retailPrice|48-89.1-2": 1,
+        "retailPriceStyle": "",
+        "promotionPrice|48-89.1-2": 1,
+        "eStatusMsg": "",
+        "unitName": "箱",
+        "basicUnitDesc": "件",
+        "saleCount": "月成交10W+箱",
+        "productNum": "12",
+        "eStatus": "",
+        "showStyle": "",
+        "supplyMode": "",
+        "goodsLabels": [
+          {
+            "labelType": "2",
+            "labelValue": "新品"
+          },
+          {
+            "labelType": "1",
+            "labelValue": "苏宁配送"
+          },
+          {
+            "labelType": "3",
+            "labelValue": "满50.00元减20.00元,满80.00元减40.00元,满100.00元减50.00元"
+          },
+          {
+            "labelType": "3",
+            "labelValue": "满50.00元减20.00元,满80.00元减40.00元,满100.00元减50.00元"
+          },
+          {
+            "labelType": "3",
+            "labelValue": "满50.00元减20.00元,满80.00元减40.00元,满100.00元减50.00元"
+          }
+        ]
+      }
+    ],
+    "totalCount": 40,
+    "totalPageCount": 4
+  }
+}
