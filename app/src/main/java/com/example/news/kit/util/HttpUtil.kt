@@ -1,21 +1,29 @@
 package com.example.news.kit.util
 
 import android.os.Build
+import android.util.Log
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonDeserializer
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.net.SocketTimeoutException
 import java.time.Instant
 import java.time.LocalDateTime
 import java.time.ZoneId
 import java.util.concurrent.TimeUnit
+import okhttp3.CacheControl
+import java.lang.Exception
+
 
 open class HttpUtil {
     private var retrofit: Retrofit
+    private var tag = "HttpUtil"
 
     init {
         retrofit = buildRetrofit("http://localhost:8090")
@@ -28,6 +36,7 @@ open class HttpUtil {
 
         val instance: HttpUtil by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) { HttpUtil() }
     }
+
 
     /**
      * 获取API服务
@@ -51,8 +60,40 @@ open class HttpUtil {
             .readTimeout(TIME_OUT_READ, TimeUnit.MILLISECONDS)
             .writeTimeout(TIME_OUT_WRITE, TimeUnit.MILLISECONDS)
             .addInterceptor(loggingInterceptor)
+            .addInterceptor(errorInterceptor())
             .addNetworkInterceptor(baseInterceptor())
         return builder.build()
+    }
+
+    /**
+     * 错误处理
+     */
+    private fun errorInterceptor(): Interceptor {
+        return Interceptor { chain ->
+            val request: Request = chain.request()
+            var response: Response? = null
+
+            try {
+                response = chain.proceed(request)
+                if (response.isSuccessful) {
+                    response
+                }
+                when (response.code) {
+                    400 -> Log.e(tag, "BadRequest")
+                    401 -> Log.e(tag, "Unauthorized")
+                    403 -> Log.e(tag, "Forbidden")
+                    404 -> Log.e(tag, "NotFound")
+                    405 -> Log.e(tag, "MethodNotAllowed")
+                    409 -> Log.e(tag, "Conflict")
+                    500 -> Log.e(tag, "InternalServerError")
+                    502 -> Log.e(tag, "BadGateway")
+                    503 -> Log.e(tag, "ServiceUnavailable")
+                }
+            } catch (e: SocketTimeoutException) {
+                Log.e(tag, "网络超时")
+            } catch (e: Exception) {}
+            response!!
+        }
     }
 
     /**

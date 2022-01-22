@@ -55,6 +55,7 @@ dependencies {
     implementation 'com.squareup.okhttp3:logging-interceptor:4.9.3'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.squareup.retrofit2:retrofit:2.9.0' //Retrofit 是一个 RESTful 的 HTTP 网络请求框架的封装,基于okhttp
+    implementation 'ru.gildor.coroutines:kotlin-coroutines-retrofit:1.1.0'
     implementation 'com.squareup.leakcanary:leakcanary-android:2.8.1' //a memory leak detection library
 
     testImplementation 'junit:junit:4.+'

@@ -1,54 +1,43 @@
 package com.example.news.ui.waterfall
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.news.R
 import com.example.news.kit.util.HttpUtil
-import com.example.news.ui.base.BaseResponse
 import com.scwang.smart.refresh.footer.ClassicsFooter
 import com.scwang.smart.refresh.header.ClassicsHeader
 import com.scwang.smart.refresh.layout.api.RefreshLayout
 import kotlinx.android.synthetic.main.layout_waterfall.*
-import okhttp3.internal.wait
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import retrofit2.*
 
 class WaterfallListActivity: AppCompatActivity() {
     private val tag = "WaterfallListActivity"
-    private var dataList: MutableList<ProductBean> = arrayListOf()
+    private var currentPage: Int = 1
+    private var pageSize: Int = 11
+    private var dataList: MutableList<GoodsBean> = arrayListOf()
     private val adapter = WaterfallListAdapter(R.layout.layout_waterfall_item, dataList)
     private val staggeredGridLayoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-
-    private var imgList: ArrayList<Int> = arrayListOf(
-        R.drawable.waterfall01,R.drawable.swaterfall02, R.drawable.waterfall03, R.drawable.waterfall05,
-        R.drawable.waterfall06, R.drawable.waterfall07, R.drawable.waterfall08, R.drawable.waterfall09,
-        R.drawable.waterfall10, R.drawable.waterfall11, R.drawable.waterfall12, R.drawable.waterfall13,
-        R.drawable.waterfall14, R.drawable.waterfall15, R.drawable.waterfall16, R.drawable.waterfall17,
-        R.drawable.waterfall18, R.drawable.waterfall19, R.drawable.waterfall20, R.drawable.waterfall21,
-        R.drawable.waterfall22)
+    private val apiInstance = HttpUtil.instance.service(ApiService::class.java)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.layout_waterfall)
 
-        fetchData()
-
-        getFirstPageList()
         initView()
     }
 
     private fun initView() {
+        getPageList(true,1, null)
         //下拉刷新
         waterfallLayout.setRefreshHeader(ClassicsHeader(this))
         waterfallLayout.setOnRefreshListener { layout ->
             run {
-                getPageList(true, layout)
+                getPageList(true,1, layout)
             }
         }
         //瀑布列表
@@ -63,7 +52,7 @@ class WaterfallListActivity: AppCompatActivity() {
         })
         adapter.setOnItemClickListener{_, view, position ->
             if (view.id == R.id.waterfallItemLayout) {
-                Toast.makeText(this, dataList[position].title, Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, dataList[position].name, Toast.LENGTH_SHORT).show()
             }
         }
         waterfall_recycler_view.adapter = adapter
@@ -74,53 +63,39 @@ class WaterfallListActivity: AppCompatActivity() {
         waterfallLayout.setRefreshFooter(ClassicsFooter(this))
         waterfallLayout.setOnLoadMoreListener { layout ->
             run {
-                getPageList(false, layout)
+                getPageList(false, currentPage + 1, layout)
             }
         }
         waterfallLayout.setEnableAutoLoadMore(true)
     }
 
     /**
-     * 加载第一页数据
-     */
-    private fun getFirstPageList() {
-        for(img in imgList) {
-            dataList.add(ProductBean(img, R.string.waterfall_item_name))
-        }
-        adapter.setList(dataList)
-    }
-
-    /**
      * 分页加载数据
      */
-    private fun getPageList(isRefresh: Boolean, layout: RefreshLayout) {
+    private fun getPageList(isRefresh: Boolean, pageNo: Int, layout: RefreshLayout?) {
         if (isRefresh) {
             dataList = arrayListOf()
         }
-        for(img in imgList) {
-            dataList.add(ProductBean(img, R.string.waterfall_item_name))
-        }
-        adapter.setList(dataList)
-        if (isRefresh) {
-            layout.finishRefresh()
-        } else {
-            layout.finishLoadMoreWithNoMoreData()
-        }
-    }
-
-    private fun fetchData() {
-        val instance = HttpUtil.instance.service(ApiService::class.java)
-        instance.queryProductListByPage().enqueue(object : Callback<BaseResponse<ProductListRes>> {
-            override fun onResponse(
-                call: Call<BaseResponse<ProductListRes>>,
-                response: Response<BaseResponse<ProductListRes>>,
-            ) {
-                Log.i(tag, response.toString())
+        GlobalScope.launch {
+            val result = apiInstance.queryProductListByPage(QueryProductListParams(pageNo, pageSize)).await()
+            for (bean in result.data.dataList) {
+                dataList.add(bean)
             }
+            runOnUiThread {
+                adapter.setList(dataList)
+                if (isRefresh) {
+                    currentPage = 1
+                    layout?.finishRefresh()
+                } else {
+                    currentPage = pageNo
+                    if (pageNo < result.data.totalPageCount ) {
+                        layout?.finishLoadMore()
+                    }else{
+                        layout?.finishLoadMoreWithNoMoreData()
+                    }
 
-            override fun onFailure(call: Call<BaseResponse<ProductListRes>>, t: Throwable) {
-                Log.i(tag, call.toString())
+                }
             }
-        })
+        }
     }
 }
