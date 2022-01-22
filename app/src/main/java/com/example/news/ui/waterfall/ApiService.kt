@@ -14,7 +14,6 @@ data class ProductListRes(var dataList: MutableList<GoodsBean>, var totalCount: 
 
 open interface ApiService {
 
-    @Headers("Content-Type: application/json","Accept: application/json")
-    @POST("http://172.20.10.4:8090/mall/product/queryListByPage")
+    @POST("api/mall/product/queryListByPage")
     fun queryProductListByPage(@Body body: QueryProductListParams): Call<BaseResponse<ProductListRes>>
 }

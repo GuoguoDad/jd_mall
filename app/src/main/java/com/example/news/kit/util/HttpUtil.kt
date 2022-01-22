@@ -1,12 +1,14 @@
 package com.example.news.kit.util
 
+import android.content.Context
 import android.os.Build
 import android.util.Log
+import com.example.news.kit.provider.AssetsStreamProvider
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonDeserializer
-import okhttp3.Interceptor
 import okhttp3.OkHttpClient
+import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
@@ -17,17 +19,13 @@ import java.time.Instant
 import java.time.LocalDateTime
 import java.time.ZoneId
 import java.util.concurrent.TimeUnit
-import okhttp3.CacheControl
 import java.lang.Exception
-
+import ir.mirrajabi.okhttpjsonmock.OkHttpMockInterceptor
 
 open class HttpUtil {
-    private var retrofit: Retrofit
+    private lateinit var retrofit: Retrofit
     private var tag = "HttpUtil"
-
-    init {
-        retrofit = buildRetrofit("http://localhost:8090")
-    }
+    private var context: Context? = null
 
     companion object {
         const val TIME_OUT_CONNECT = 5000L
@@ -35,6 +33,12 @@ open class HttpUtil {
         const val TIME_OUT_WRITE = 20000L
 
         val instance: HttpUtil by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) { HttpUtil() }
+    }
+
+    fun create(context: Context): HttpUtil {
+        this.context = context
+        retrofit = buildRetrofit("http://localhost:8090")
+        return this
     }
 
 
@@ -51,7 +55,6 @@ open class HttpUtil {
         .baseUrl(baseUrl)
         .build()
 
-
     private fun okClient(): OkHttpClient {
         val loggingInterceptor = HttpLoggingInterceptor()
         loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
@@ -59,11 +62,13 @@ open class HttpUtil {
         val builder = OkHttpClient.Builder().connectTimeout(TIME_OUT_CONNECT, TimeUnit.MILLISECONDS)
             .readTimeout(TIME_OUT_READ, TimeUnit.MILLISECONDS)
             .writeTimeout(TIME_OUT_WRITE, TimeUnit.MILLISECONDS)
+            .addInterceptor(OkHttpMockInterceptor(AssetsStreamProvider(context!!),5))
             .addInterceptor(loggingInterceptor)
             .addInterceptor(errorInterceptor())
             .addNetworkInterceptor(baseInterceptor())
         return builder.build()
     }
+
 
     /**
      * 错误处理
@@ -103,6 +108,7 @@ open class HttpUtil {
         return Interceptor { chain ->
             val originalRequest = chain.request()
             val requestBuilder = originalRequest.newBuilder()
+                .addHeader("Content-Type", "application/json")
                 .addHeader("Accept", "application/json")
                 .addHeader("platform", "android")
                 .method(originalRequest.method, originalRequest.body)

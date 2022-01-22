@@ -22,7 +22,7 @@ class WaterfallListActivity: AppCompatActivity() {
     private var dataList: MutableList<GoodsBean> = arrayListOf()
     private val adapter = WaterfallListAdapter(R.layout.layout_waterfall_item, dataList)
     private val staggeredGridLayoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-    private val apiInstance = HttpUtil.instance.service(ApiService::class.java)
+    private val apiInstance = HttpUtil.instance.create(this).service(ApiService::class.java)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
