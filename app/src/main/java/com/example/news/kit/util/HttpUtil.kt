@@ -62,7 +62,7 @@ open class HttpUtil {
         val builder = OkHttpClient.Builder().connectTimeout(TIME_OUT_CONNECT, TimeUnit.MILLISECONDS)
             .readTimeout(TIME_OUT_READ, TimeUnit.MILLISECONDS)
             .writeTimeout(TIME_OUT_WRITE, TimeUnit.MILLISECONDS)
-            .addInterceptor(OkHttpMockInterceptor(AssetsStreamProvider(context!!),5))
+            .addInterceptor(OkHttpMockInterceptor(AssetsStreamProvider(context!!),0))
             .addInterceptor(loggingInterceptor)
             .addInterceptor(errorInterceptor())
             .addNetworkInterceptor(baseInterceptor())

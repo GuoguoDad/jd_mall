@@ -6,6 +6,6 @@ import java.io.InputStream
 
 class AssetsStreamProvider(var context: Context): InputStreamProvider {
     override fun provide(path: String): InputStream? {
-        return context.assets.open(path)
+        return context.assets.open("api/$path")
     }
 }
