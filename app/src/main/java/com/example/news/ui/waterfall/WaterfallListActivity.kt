@@ -11,12 +11,12 @@ import com.scwang.smart.refresh.footer.ClassicsFooter
 import com.scwang.smart.refresh.header.ClassicsHeader
 import com.scwang.smart.refresh.layout.api.RefreshLayout
 import kotlinx.android.synthetic.main.layout_waterfall.*
-import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.*
 
 class WaterfallListActivity: AppCompatActivity() {
-    private val tag = "WaterfallListActivity"
     private var currentPage: Int = 1
     private var pageSize: Int = 11
     private var dataList: MutableList<GoodsBean> = arrayListOf()
@@ -76,24 +76,18 @@ class WaterfallListActivity: AppCompatActivity() {
         if (isRefresh) {
             dataList = arrayListOf()
         }
-        GlobalScope.launch {
+        CoroutineScope(Dispatchers.IO).launch {
             val result = apiInstance.queryProductListByPage(QueryProductListParams(pageNo, pageSize)).await()
             for (bean in result.data.dataList) {
                 dataList.add(bean)
             }
             runOnUiThread {
                 adapter.setList(dataList)
-                if (isRefresh) {
-                    currentPage = 1
-                    layout?.finishRefresh()
-                } else {
-                    currentPage = pageNo
-                    if (pageNo < result.data.totalPageCount ) {
-                        layout?.finishLoadMore()
-                    }else{
-                        layout?.finishLoadMoreWithNoMoreData()
-                    }
-
+                currentPage = if (isRefresh) 1 else pageNo
+                if (pageNo < result.data.totalPageCount ) {
+                    layout?.finishLoadMore()
+                }else{
+                    layout?.finishLoadMoreWithNoMoreData()
                 }
             }
         }

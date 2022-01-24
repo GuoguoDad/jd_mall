@@ -18,7 +18,7 @@ open class WaterfallListAdapter(layoutResId: Int, data: MutableList<GoodsBean>):
 
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
         super.onAttachedToRecyclerView(recyclerView)
-        imageWidth = ScreenUtil.getWindowWidth(context) / 2
+        imageWidth = ScreenUtil.getWindowWidth(context) / 2 - 4
         imageLoader = ImageLoader.Builder(context)
             .okHttpClient {
                 OkHttpClient.Builder()
@@ -29,9 +29,9 @@ open class WaterfallListAdapter(layoutResId: Int, data: MutableList<GoodsBean>):
     }
 
     override fun convert(holder: BaseViewHolder, item: GoodsBean) {
-        var h = item.height * imageWidth / item.width
+        var height = item.height * imageWidth / item.width
 
-        holder.getView<ImageView>(R.id.waterfall_item_img).layoutParams = LinearLayout.LayoutParams(imageWidth, h)
+        holder.getView<ImageView>(R.id.waterfall_item_img).layoutParams = LinearLayout.LayoutParams(imageWidth, height)
         holder.getView<ImageView>(R.id.waterfall_item_img).load(item.thumb, imageLoader) {
             crossfade(true)
             placeholder(R.drawable.placeholder)
