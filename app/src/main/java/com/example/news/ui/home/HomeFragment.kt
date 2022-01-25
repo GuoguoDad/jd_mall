@@ -17,53 +17,51 @@ import com.scwang.smart.refresh.layout.api.RefreshLayout
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var refreshLayout: RefreshLayout
     private var dataList: MutableList<GoodsBean> = arrayListOf()
     private lateinit var adapter: GoodsListAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        val root: View = binding.root
 
         initView()
-        return binding.root
+        return root
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
+        binding.refreshLayout.removeAllViews()
         _binding = null
     }
 
     private fun initView() {
-        refreshLayout = binding.refreshLayout
-        recyclerView = binding.recyclerView
         adapter = GoodsListAdapter(R.layout.fragment_home_recyclerview_item, dataList)
 
         firstPageList()
         //下拉刷新
-        refreshLayout.setRefreshHeader(ClassicsHeader(this.context))
-        refreshLayout.setOnRefreshListener { layout ->
+        binding.refreshLayout.setRefreshHeader(ClassicsHeader(this.context))
+        binding.refreshLayout.setOnRefreshListener { layout ->
             run {
                 getPageList(true, layout)
             }
         }
         //设置recyclerView的layoutManager和adapter
-        recyclerView.layoutManager = LinearLayoutManager(this.context)
+        binding.recyclerView.layoutManager = LinearLayoutManager(this.context)
         adapter.addChildClickViewIds(R.id.home_recycle_list_item)
         adapter.setOnItemClickListener{ _, view, position ->
             if (view.id == R.id.home_recycle_list_item) {
                 Toast.makeText(this.context, dataList[position].name, Toast.LENGTH_SHORT).show()
             }
         }
-        recyclerView.adapter = adapter
+        binding.recyclerView.adapter = adapter
         //上拉加载更多
-        refreshLayout.setRefreshFooter(ClassicsFooter(this.context))
-        refreshLayout.setOnLoadMoreListener { layout ->
+        binding.refreshLayout.setRefreshFooter(ClassicsFooter(this.context))
+        binding.refreshLayout.setOnLoadMoreListener { layout ->
             run {
                 getPageList(false, layout)
             }
         }
-        refreshLayout.setEnableAutoLoadMore(true)
+        binding.refreshLayout.setEnableAutoLoadMore(true)
     }
 
     /**
