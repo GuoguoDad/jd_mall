@@ -3,6 +3,7 @@ package com.example.news.ui.waterfall
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.RecyclerView
+import coil.Coil
 import coil.ImageLoader
 import coil.load
 import coil.util.CoilUtils
@@ -19,22 +20,16 @@ open class WaterfallListAdapter(layoutResId: Int, data: MutableList<GoodsBean>):
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
         super.onAttachedToRecyclerView(recyclerView)
         imageWidth = ScreenUtil.getWindowWidth(context) / 2 - 4
-        imageLoader = ImageLoader.Builder(context)
-            .okHttpClient {
-                OkHttpClient.Builder()
-                    .cache(CoilUtils.createDefaultCache(context))
-                    .build()
-            }
-            .build()
+        imageLoader = Coil.imageLoader(context)
     }
 
     override fun convert(holder: BaseViewHolder, item: GoodsBean) {
         var height = item.height * imageWidth / item.width
-
         holder.getView<ImageView>(R.id.waterfall_item_img).layoutParams = LinearLayout.LayoutParams(imageWidth, height)
-        holder.getView<ImageView>(R.id.waterfall_item_img).load(item.thumb, imageLoader) {
+        holder.getView<ImageView>(R.id.waterfall_item_img).load(item.thumb, imageLoader ) {
             crossfade(true)
             placeholder(R.drawable.placeholder)
+            error(R.drawable.placeholder)
         }
         holder.setText(R.id.waterfall_item_title, item.name)
     }

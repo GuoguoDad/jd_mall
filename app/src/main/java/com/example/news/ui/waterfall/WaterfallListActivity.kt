@@ -15,10 +15,13 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.*
+import java.lang.reflect.Method
 
 class WaterfallListActivity: AppCompatActivity() {
     private var currentPage: Int = 1
     private var pageSize: Int = 11
+    private lateinit var mCheckForGapMethod: Method
+    private lateinit var mMarkItemDecorInsetsDirtyMethod: Method
     private var dataList: MutableList<GoodsBean> = arrayListOf()
     private val adapter = WaterfallListAdapter(R.layout.layout_waterfall_item, dataList)
     private val staggeredGridLayoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
@@ -40,14 +43,24 @@ class WaterfallListActivity: AppCompatActivity() {
                 getPageList(true,1, layout)
             }
         }
+
         //瀑布列表
-        staggeredGridLayoutManager.gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_NONE
+        staggeredGridLayoutManager.gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_NONE //解决加载下一页后重新排列的问题
         waterfall_recycler_view.layoutManager = staggeredGridLayoutManager
-        //解决加载下一页后重新排列的问题
+        waterfall_recycler_view.itemAnimator = null
+
+        mCheckForGapMethod = StaggeredGridLayoutManager::class.java.getDeclaredMethod("checkForGaps")
+        mMarkItemDecorInsetsDirtyMethod = RecyclerView::class.java.getDeclaredMethod("markItemDecorInsetsDirty")
+        mCheckForGapMethod.isAccessible = true
+        mMarkItemDecorInsetsDirtyMethod.isAccessible = true
+
         waterfall_recycler_view.addOnScrollListener(object: RecyclerView.OnScrollListener() {
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                super.onScrollStateChanged(recyclerView, newState)
-                staggeredGridLayoutManager.invalidateSpanAssignments()
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                val result = mCheckForGapMethod.invoke(waterfall_recycler_view.layoutManager) as Boolean
+                if(result) {
+                    mMarkItemDecorInsetsDirtyMethod.invoke(waterfall_recycler_view)
+                }
             }
         })
         adapter.setOnItemClickListener{_, view, position ->
@@ -78,16 +91,22 @@ class WaterfallListActivity: AppCompatActivity() {
         }
         CoroutineScope(Dispatchers.IO).launch {
             val result = apiInstance.queryProductListByPage(QueryProductListParams(pageNo, pageSize)).await()
-            for (bean in result.data.dataList) {
-                dataList.add(bean)
-            }
+            val list = result.data.dataList
+            val lastIndex = dataList.size
+            dataList.addAll(list)
+
             runOnUiThread {
-                adapter.setList(dataList)
                 currentPage = if (isRefresh) 1 else pageNo
-                if (pageNo < result.data.totalPageCount ) {
-                    layout?.finishLoadMore()
-                }else{
-                    layout?.finishLoadMoreWithNoMoreData()
+                if (isRefresh) {
+                    adapter.setList(dataList)
+                    layout?.finishRefresh()
+                } else {
+                    adapter.addData(lastIndex, list)
+                    if (pageNo < result.data.totalPageCount ) {
+                        layout?.finishLoadMore()
+                    }else{
+                        layout?.finishLoadMoreWithNoMoreData()
+                    }
                 }
             }
         }
