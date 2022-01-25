@@ -20,7 +20,7 @@ class HomeFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var refreshLayout: RefreshLayout
     private var dataList: MutableList<GoodsBean> = arrayListOf()
-    var adapter = GoodsListAdapter(R.layout.fragment_home_recyclerview_item, dataList)
+    private lateinit var adapter: GoodsListAdapter
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
@@ -35,8 +35,9 @@ class HomeFragment : Fragment() {
     }
 
     private fun initView() {
-        recyclerView = binding.recyclerView
         refreshLayout = binding.refreshLayout
+        recyclerView = binding.recyclerView
+        adapter = GoodsListAdapter(R.layout.fragment_home_recyclerview_item, dataList)
 
         firstPageList()
         //下拉刷新
@@ -78,7 +79,7 @@ class HomeFragment : Fragment() {
             )
             dataList.add(goodsModel)
         }
-        adapter.setList(dataList)
+        adapter.addData(dataList)
     }
 
     /**
@@ -86,7 +87,7 @@ class HomeFragment : Fragment() {
      */
     private fun getPageList(isRefresh: Boolean, layout: RefreshLayout) {
         if (isRefresh) {
-            dataList = arrayListOf()
+            dataList.clear()
         }
         var goodsModel: GoodsBean
         for (i in 0..10) {
@@ -97,7 +98,7 @@ class HomeFragment : Fragment() {
             )
             dataList.add(goodsModel)
         }
-        adapter.setList(dataList)
+        adapter.addData(dataList)
         if (isRefresh) {
             layout.finishRefresh()
         } else {

@@ -23,9 +23,9 @@ class WaterfallListActivity: AppCompatActivity() {
     private lateinit var mCheckForGapMethod: Method
     private lateinit var mMarkItemDecorInsetsDirtyMethod: Method
     private var dataList: MutableList<GoodsBean> = arrayListOf()
-    private val adapter = WaterfallListAdapter(R.layout.layout_waterfall_item, dataList)
-    private val staggeredGridLayoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-    private val apiInstance = HttpUtil.instance.create(this).service(ApiService::class.java)
+    private lateinit var adapter: WaterfallListAdapter
+    private lateinit var staggeredGridLayoutManager: StaggeredGridLayoutManager
+    private lateinit var apiInstance: ApiService
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +35,8 @@ class WaterfallListActivity: AppCompatActivity() {
     }
 
     private fun initView() {
+        apiInstance = HttpUtil.instance.create(applicationContext).service(ApiService::class.java)
+
         getPageList(true,1, null)
         //下拉刷新
         waterfallLayout.setRefreshHeader(ClassicsHeader(this))
@@ -45,6 +47,7 @@ class WaterfallListActivity: AppCompatActivity() {
         }
 
         //瀑布列表
+        staggeredGridLayoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         staggeredGridLayoutManager.gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_NONE //解决加载下一页后重新排列的问题
         waterfall_recycler_view.layoutManager = staggeredGridLayoutManager
         waterfall_recycler_view.itemAnimator = null
@@ -64,6 +67,8 @@ class WaterfallListActivity: AppCompatActivity() {
                 }
             }
         })
+
+        adapter = WaterfallListAdapter(R.layout.layout_waterfall_item, dataList)
         adapter.setOnItemClickListener{_, view, position ->
             if (view.id == R.id.waterfallItemLayout) {
                 Toast.makeText(this, dataList[position].name, Toast.LENGTH_SHORT).show()
@@ -88,7 +93,7 @@ class WaterfallListActivity: AppCompatActivity() {
      */
     private fun getPageList(isRefresh: Boolean, pageNo: Int, layout: RefreshLayout?) {
         if (isRefresh) {
-            dataList = arrayListOf()
+            dataList.clear()
         }
         CoroutineScope(Dispatchers.IO).launch {
             val result = apiInstance.queryProductListByPage(QueryProductListParams(pageNo, pageSize)).await()
