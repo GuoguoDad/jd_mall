@@ -58,6 +58,7 @@ class WaterfallListActivity: AppCompatActivity() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
                 val result = mCheckForGapMethod.invoke(waterfall_recycler_view.layoutManager) as Boolean
+                //如果发生了重新排序，刷新itemDecoration
                 if(result) {
                     mMarkItemDecorInsetsDirtyMethod.invoke(waterfall_recycler_view)
                 }
