@@ -37,8 +37,8 @@ class WaterfallListActivity: AppCompatActivity() {
     }
 
     private fun initView() {
-        loadingDialog = LoadingDialog(this)
         apiInstance = HttpUtil.instance.create(applicationContext).service(ApiService::class.java)
+        loadingDialog = LoadingDialog(this)
 
         getPageList(true,1, null)
         //下拉刷新
