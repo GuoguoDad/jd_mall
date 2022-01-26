@@ -4,4 +4,5 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="space">8dp</dimen>
     <dimen name="waterfall_space">2dp</dimen>
+    <dimen name="loading_size">28dp</dimen>
 </resources>

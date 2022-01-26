@@ -9,6 +9,7 @@
     <color name="font_6">#666666</color>
     <color name="F5">#F5F5F5</color>
     <color name="black">#FF000000</color>
+    <color name="transparent">#00000000</color>
+    <color name="loading">#BFBFBF</color>
     <color name="white">#FFFFFFFF</color>
-
 </resources>

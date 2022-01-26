@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.news.R
 import com.example.news.kit.util.HttpUtil
+import com.example.news.kit.util.LoadingDialog
 import com.scwang.smart.refresh.footer.ClassicsFooter
 import com.scwang.smart.refresh.header.ClassicsHeader
 import com.scwang.smart.refresh.layout.api.RefreshLayout
@@ -26,6 +27,7 @@ class WaterfallListActivity: AppCompatActivity() {
     private lateinit var adapter: WaterfallListAdapter
     private lateinit var staggeredGridLayoutManager: StaggeredGridLayoutManager
     private lateinit var apiInstance: ApiService
+    private lateinit var loadingDialog: LoadingDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +37,7 @@ class WaterfallListActivity: AppCompatActivity() {
     }
 
     private fun initView() {
+        loadingDialog = LoadingDialog(this)
         apiInstance = HttpUtil.instance.create(applicationContext).service(ApiService::class.java)
 
         getPageList(true,1, null)
@@ -92,11 +95,14 @@ class WaterfallListActivity: AppCompatActivity() {
      * 分页加载数据
      */
     private fun getPageList(isRefresh: Boolean, pageNo: Int, layout: RefreshLayout?) {
+        loadingDialog.show()
         if (isRefresh) {
             dataList.clear()
         }
         CoroutineScope(Dispatchers.IO).launch {
             val result = apiInstance.queryProductListByPage(QueryProductListParams(pageNo, pageSize)).await()
+            loadingDialog.dismiss()
+
             val list = result.data.dataList
             val lastIndex = dataList.size
             dataList.addAll(list)
