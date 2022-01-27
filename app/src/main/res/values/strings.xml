@@ -1,8 +1,9 @@
 <resources>
-    <string name="app_name">news</string>
+    <string name="app_name">android_demo</string>
     <string name="title_home">首页</string>
     <string name="title_dashboard">面板</string>
-    <string name="title_notifications">通知</string>
+    <string name="title_category">分类</string>
+    <string name="title_setting">设置</string>
 
     <string name="srl_header_pulling">下拉可以刷新</string>
     <string name="srl_header_refreshing">正在刷新…</string>

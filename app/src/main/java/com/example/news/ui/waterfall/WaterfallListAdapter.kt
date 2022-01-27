@@ -28,8 +28,8 @@ open class WaterfallListAdapter(layoutResId: Int, data: MutableList<GoodsBean>):
         holder.getView<ImageView>(R.id.waterfall_item_img).layoutParams = LinearLayout.LayoutParams(imageWidth, height)
         holder.getView<ImageView>(R.id.waterfall_item_img).load(item.thumb, imageLoader ) {
             crossfade(true)
-            placeholder(R.drawable.placeholder)
-            error(R.drawable.placeholder)
+            placeholder(R.drawable.default_img)
+            error(R.drawable.default_img)
         }
         holder.setText(R.id.waterfall_item_title, item.name)
     }
