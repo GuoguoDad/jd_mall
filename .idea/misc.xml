@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.39739583333333334" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.39739583333333334" />
+        <entry key="app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.39739583333333334" />
         <entry key="app/src/main/res/drawable/round_corner_bg.xml" value="0.3671875" />
         <entry key="app/src/main/res/drawable/round_corner_btn_bg.xml" value="0.3671875" />
         <entry key="app/src/main/res/drawable/selector_tab_color.xml" value="0.3828125" />
@@ -14,7 +17,10 @@
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.2346014492753623" />
         <entry key="app/src/main/res/layout/fragment_home_recyclerview_item.xml" value="0.24094202898550723" />
         <entry key="app/src/main/res/layout/fragment_notifications.xml" value="0.2509057971014493" />
+        <entry key="app/src/main/res/layout/header.xml" value="0.23324275362318841" />
         <entry key="app/src/main/res/layout/layout_advertisement.xml" value="0.2346014492753623" />
+        <entry key="app/src/main/res/layout/layout_header.xml" value="0.23324275362318841" />
+        <entry key="app/src/main/res/layout/layout_loading.xml" value="0.23324275362318841" />
         <entry key="app/src/main/res/layout/layout_waterfall.xml" value="0.22056159420289856" />
         <entry key="app/src/main/res/layout/layout_waterfall_item.xml" value="0.22056159420289856" />
         <entry key="app/src/main/res/layout/loading.xml" value="0.2441123188405797" />

@@ -11,6 +11,7 @@ import com.example.news.kit.util.LoadingDialog
 import com.scwang.smart.refresh.footer.ClassicsFooter
 import com.scwang.smart.refresh.header.ClassicsHeader
 import com.scwang.smart.refresh.layout.api.RefreshLayout
+import kotlinx.android.synthetic.main.layout_header.*
 import kotlinx.android.synthetic.main.layout_waterfall.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -39,6 +40,11 @@ class WaterfallListActivity: AppCompatActivity() {
     private fun initView() {
         apiInstance = HttpUtil.instance.create(applicationContext).service(ApiService::class.java)
         loadingDialog = LoadingDialog(this)
+
+        //返回
+        leftText.setOnClickListener {
+            finish()
+        }
 
         getPageList(true,1, null)
         //下拉刷新
@@ -96,15 +102,15 @@ class WaterfallListActivity: AppCompatActivity() {
      */
     private fun getPageList(isRefresh: Boolean, pageNo: Int, layout: RefreshLayout?) {
         loadingDialog.show()
-        if (isRefresh) {
-            dataList.clear()
-        }
         CoroutineScope(Dispatchers.IO).launch {
             val result = apiInstance.queryProductListByPage(QueryProductListParams(pageNo, pageSize)).await()
             loadingDialog.dismiss()
 
             val list = result.data.dataList
             val lastIndex = dataList.size
+            if (isRefresh) {
+                dataList.clear()
+            }
             dataList.addAll(list)
 
             runOnUiThread {

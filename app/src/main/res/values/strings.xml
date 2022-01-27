@@ -22,4 +22,7 @@
     <string name="srl_footer_nothing">没有更多数据了</string>
 
     <string name="waterfall_item_name">明星</string>
+
+
+    <string name="waterfall">瀑布流</string>
 </resources>
