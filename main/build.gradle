@@ -36,6 +36,8 @@ android {
 
 dependencies {
     implementation project(path: ':mock')
+    implementation project(path: ':common')
+    implementation project(path: ':home')
 
     implementation deps.androidx.core_ktx
     implementation deps.androidx.appcompat
@@ -66,7 +68,7 @@ dependencies {
     implementation deps.squareup.leakcanary
 
     implementation deps.kotlin_coroutines_retrofit
-    implementation project(path: ':common')
+
 
     testImplementation deps.test.junit
     androidTestImplementation deps.test.test_ext

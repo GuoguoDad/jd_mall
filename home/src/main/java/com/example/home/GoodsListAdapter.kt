@@ -1,10 +1,10 @@
-package com.example.main.ui.home
+package com.example.home
 
 import android.widget.ImageView
 import coil.load
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
-import com.example.main.R
+import com.example.home.R
 
 class GoodsListAdapter(layoutResId: Int, data: MutableList<GoodsBean>) : BaseQuickAdapter<GoodsBean, BaseViewHolder>(layoutResId, data) {
     override fun convert(holder: BaseViewHolder, item: GoodsBean) {

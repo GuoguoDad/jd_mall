@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.scwang.smart.refresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/refreshLayout"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragmentHome"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:srlEnablePreviewInEditMode="true"
-    app:srlEnableLoadMoreWhenContentNotFull="false">
+    app:srlEnableLoadMoreWhenContentNotFull="false"
+    tools:ignore="MissingDefaultResource">
 
     <com.scwang.smart.refresh.header.ClassicsHeader
         android:layout_width="match_parent"
@@ -20,7 +22,7 @@
         app:srlTextRefreshing="@string/srl_header_refreshing"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
+        android:id="@+id/fragmentHomeRecycleView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:overScrollMode="never"
