@@ -1,0 +1,60 @@
+ext {
+    compileSdk = 30
+
+    defalutConfigApplicationId = "com.example.news"
+    defaultConfigMinSdk = 21
+    defaultConfigTargetSdk = 30
+    defaultConfigVersionCode = 1
+    defaultConfigVersionName = "1.0"
+
+    compileOptionsSourceCompatibility = JavaVersion.VERSION_1_8
+    compileOptionsTargetCompatibility = JavaVersion.VERSION_1_8
+
+    kotlinOptionsJvmTarget = '1.8'
+}
+
+ext.deps = [:]
+
+ext.deps.coil = 'io.coil-kt:coil:1.4.0' //加载网图
+ext.deps.kotlin_coroutines_retrofit = 'ru.gildor.coroutines:kotlin-coroutines-retrofit:1.1.0' //网络请求await
+
+def androidx = [:]
+androidx.core_ktx = 'androidx.core:core-ktx:1.6.0'
+androidx.appcompat = 'androidx.appcompat:appcompat:1.3.0'
+androidx.constraintlayout = 'androidx.constraintlayout:constraintlayout:2.0.4'
+androidx.lifecycle_livedata = 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
+androidx.lifecycle_viewmodel = 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
+androidx.navigation_fragment = 'androidx.navigation:navigation-fragment-ktx:2.3.5'
+androidx.navigation_ui = 'androidx.navigation:navigation-ui-ktx:2.3.5'
+androidx.recyclerview = 'androidx.recyclerview:recyclerview:1.2.0'
+deps.androidx = androidx
+
+def google = [:]
+google.material = 'com.google.android.material:material:1.3.0'
+google.gson = 'com.google.code.gson:gson:2.8.9'
+deps.google = google
+
+def kotlin = [:]
+kotlin.reflect = 'org.jetbrains.kotlin:kotlin-reflect:1.6.10'//引入 kotlin-reflect 解决调用fastjson JSON.parseObject报“default constructor not found”错误
+deps.kotlin = kotlin
+
+def github =[:]
+github.BaseRecyclerViewAdapterHelper = 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.7'
+github.okhttp_json_mock = 'com.github.mirrajabi:okhttp-json-mock:3.0'
+github.refresh_layout_kernel = 'io.github.scwang90:refresh-layout-kernel:2.0.5'
+github.refresh_header_classics = 'io.github.scwang90:refresh-header-classics:2.0.5'
+deps.github = github
+
+def squareup = [:]
+squareup.okhttp = 'com.squareup.okhttp3:okhttp:4.9.3'
+squareup.logging_interceptor = 'com.squareup.okhttp3:logging-interceptor:4.9.3'
+squareup.converter_gson = 'com.squareup.retrofit2:converter-gson:2.9.0'
+squareup.retrofit = 'com.squareup.retrofit2:retrofit:2.9.0' //Retrofit 是一个 RESTful 的 HTTP 网络请求框架的封装,基于okhttp
+squareup.leakcanary = 'com.squareup.leakcanary:leakcanary-android:2.8.1'
+deps.squareup = squareup
+
+def test = [:]
+test.junit = 'junit:junit:4.+'
+test.test_ext = 'androidx.test.ext:junit:1.1.2'
+test.espresso_core = 'androidx.test.espresso:espresso-core:3.3.0'
+deps.test = test

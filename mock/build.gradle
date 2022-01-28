@@ -4,13 +4,13 @@ plugins {
 }
 
 android {
-    compileSdk 30
+    compileSdk rootProject.ext.compileSdk
 
     defaultConfig {
-        minSdk 21
-        targetSdk 30
-        versionCode 1
-        versionName "1.0"
+        minSdk rootProject.ext.defaultConfigMinSdk
+        targetSdk rootProject.ext.defaultConfigTargetSdk
+        versionCode rootProject.ext.defaultConfigVersionCode
+        versionName rootProject.ext.defaultConfigVersionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -23,22 +23,17 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility rootProject.ext.compileOptionsSourceCompatibility
+        targetCompatibility rootProject.ext.compileOptionsTargetCompatibility
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = rootProject.ext.kotlinOptionsJvmTarget
     }
 }
 
 dependencies {
-    implementation 'androidx.core:core-ktx:1.6.0'
-    implementation 'androidx.appcompat:appcompat:1.3.0'
-    implementation 'com.google.android.material:material:1.3.0'
+    implementation deps.androidx.core_ktx
+    implementation deps.androidx.appcompat
 
-    implementation 'com.github.mirrajabi:okhttp-json-mock:3.0'  //https://github.com/mirrajabi/okhttp-json-mock
-
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    implementation deps.github.okhttp_json_mock
 }

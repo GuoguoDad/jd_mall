@@ -5,14 +5,14 @@ plugins {
 }
 
 android {
-    compileSdk 30
+    compileSdk rootProject.ext.compileSdk
 
     defaultConfig {
-        applicationId "com.example.news"
-        minSdk 21
-        targetSdk 30
-        versionCode 1
-        versionName "1.0"
+        applicationId rootProject.ext.defalutConfigApplicationId
+        minSdk rootProject.ext.defaultConfigMinSdk
+        targetSdk rootProject.ext.defaultConfigTargetSdk
+        versionCode rootProject.ext.defaultConfigVersionCode
+        versionName rootProject.ext.defaultConfigVersionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -24,11 +24,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility rootProject.ext.compileOptionsSourceCompatibility
+        targetCompatibility rootProject.ext.compileOptionsTargetCompatibility
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = rootProject.ext.kotlinOptionsJvmTarget
     }
     buildFeatures {
         viewBinding true
@@ -39,31 +39,38 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.core:core-ktx:1.6.0'
-    implementation 'androidx.appcompat:appcompat:1.3.0'
-    implementation 'com.google.android.material:material:1.3.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
-    implementation 'androidx.recyclerview:recyclerview:1.2.0'
-    implementation 'org.jetbrains.kotlin:kotlin-reflect:1.6.10'//引入 kotlin-reflect 解决调用fastjson JSON.parseObject报“default constructor not found”错误
-    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.7'
-    implementation 'io.coil-kt:coil:1.4.0' //加载网图
-    implementation 'io.github.scwang90:refresh-layout-kernel:2.0.5'    //SmartRefreshLayout核心必须依赖
-    implementation 'io.github.scwang90:refresh-header-classics:2.0.5'  //SmartRefreshLayout经典刷新头
-    implementation 'com.google.code.gson:gson:2.8.9'
-    implementation 'com.squareup.okhttp3:okhttp:4.9.3'
-    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.3'
-    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
-    implementation 'com.squareup.retrofit2:retrofit:2.9.0' //Retrofit 是一个 RESTful 的 HTTP 网络请求框架的封装,基于okhttp
-    implementation 'ru.gildor.coroutines:kotlin-coroutines-retrofit:1.1.0' //网络请求的awit库
-    implementation 'com.github.mirrajabi:okhttp-json-mock:3.0'  //https://github.com/mirrajabi/okhttp-json-mock
-    implementation 'com.squareup.leakcanary:leakcanary-android:2.8.1'
-    implementation project(path: ':mock') //a memory leak detection library
+    implementation project(path: ':mock')
 
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    implementation deps.androidx.core_ktx
+    implementation deps.androidx.appcompat
+    implementation deps.androidx.constraintlayout
+    implementation deps.androidx.lifecycle_livedata
+    implementation deps.androidx.lifecycle_viewmodel
+    implementation deps.androidx.navigation_fragment
+    implementation deps.androidx.navigation_ui
+    implementation deps.androidx.recyclerview
+
+    implementation deps.google.material
+    implementation deps.google.gson
+
+    implementation deps.kotlin.reflect
+
+    implementation deps.github.BaseRecyclerViewAdapterHelper
+    implementation deps.github.okhttp_json_mock
+    implementation deps.github.refresh_layout_kernel
+    implementation deps.github.refresh_header_classics
+
+    implementation deps.coil
+
+    implementation deps.squareup.okhttp
+    implementation deps.squareup.logging_interceptor
+    implementation deps.squareup.converter_gson
+    implementation deps.squareup.retrofit
+    implementation deps.squareup.leakcanary
+
+    implementation deps.kotlin_coroutines_retrofit
+
+    testImplementation deps.test.junit
+    androidTestImplementation deps.test.test_ext
+    androidTestImplementation deps.test.espresso_core
 }
