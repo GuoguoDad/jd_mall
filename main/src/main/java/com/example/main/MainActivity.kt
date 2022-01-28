@@ -1,19 +1,18 @@
 package com.example.main
 
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.common.ui.BaseActivity
 import com.google.android.material.bottomnavigation.LabelVisibilityMode
 import kotlinx.android.synthetic.main.layout_main.*
 
-class MainActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.layout_main)
+class MainActivity : BaseActivity(R.layout.layout_main) {
 
+    override fun initView() {
         val navController = findNavController(R.id.layout_fragment_activity_main)
         nav_view.labelVisibilityMode = LabelVisibilityMode.LABEL_VISIBILITY_LABELED
         nav_view.setupWithNavController(navController)
     }
+
+    override fun initData() {}
 }

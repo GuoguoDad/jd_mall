@@ -1,10 +1,9 @@
 package com.example.main.ui.waterfall
 
-import android.os.Bundle
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.example.common.ui.BaseActivity
 import com.example.main.R
 import com.example.main.kit.util.HttpUtil
 import com.example.main.kit.util.LoadingDialog
@@ -19,7 +18,7 @@ import kotlinx.coroutines.launch
 import retrofit2.*
 import java.lang.reflect.Method
 
-class WaterfallListActivity: AppCompatActivity() {
+class WaterfallListActivity: BaseActivity(R.layout.layout_waterfall) {
     private var currentPage: Int = 1
     private var pageSize: Int = 11
     private lateinit var mCheckForGapMethod: Method
@@ -30,13 +29,7 @@ class WaterfallListActivity: AppCompatActivity() {
     private lateinit var apiInstance: ApiService
     private lateinit var loadingDialog: LoadingDialog
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.layout_waterfall)
-        initView()
-    }
-
-    private fun initView() {
+    override fun initView() {
         apiInstance = HttpUtil.instance.create(applicationContext).service(ApiService::class.java)
         loadingDialog = LoadingDialog(this)
 
@@ -45,7 +38,7 @@ class WaterfallListActivity: AppCompatActivity() {
             finish()
         }
 
-        getPageList(true,1, null)
+
         //下拉刷新
         waterfallLayout.setRefreshHeader(ClassicsHeader(this))
         waterfallLayout.setOnRefreshListener { layout ->
@@ -94,6 +87,10 @@ class WaterfallListActivity: AppCompatActivity() {
             }
         }
         waterfallLayout.setEnableAutoLoadMore(true)
+    }
+
+    override fun initData() {
+        getPageList(true,1, null)
     }
 
     /**
