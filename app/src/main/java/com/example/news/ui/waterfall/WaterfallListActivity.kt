@@ -33,7 +33,6 @@ class WaterfallListActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.layout_waterfall)
-
         initView()
     }
 
