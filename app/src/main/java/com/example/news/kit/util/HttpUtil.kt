@@ -3,7 +3,7 @@ package com.example.news.kit.util
 import android.content.Context
 import android.os.Build
 import android.util.Log
-import com.example.news.kit.provider.AssetsStreamProvider
+import com.example.mock.provider.AssetsStreamProvider
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonDeserializer

@@ -1,4 +1,4 @@
-package com.example.news.kit.provider
+package com.example.mock.provider
 
 import android.content.Context
 import ir.mirrajabi.okhttpjsonmock.providers.InputStreamProvider
