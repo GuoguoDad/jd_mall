@@ -35,9 +35,9 @@ android {
 }
 
 dependencies {
-    implementation project(path: ':mock')
-    implementation project(path: ':common')
-    implementation project(path: ':home')
+    implementation project(path: ':module_mock')
+    implementation project(path: ':moudle_common')
+    implementation project(path: ':moudle_home')
 
     implementation deps.androidx.core_ktx
     implementation deps.androidx.appcompat
