@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.main">
+
+    <application>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".ui.adv.AdvertiseActivity" />
+        <activity android:name=".ui.waterfall.WaterfallListActivity" />
+    </application>
+</manifest>

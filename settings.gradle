@@ -10,3 +10,7 @@ dependencyResolutionManagement {
 rootProject.name = "news"
 include ':app'
 include ':mock'
+include ':common'
+include ':home'
+
+include ':main'

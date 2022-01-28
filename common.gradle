@@ -27,6 +27,7 @@ androidx.lifecycle_viewmodel = 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1
 androidx.navigation_fragment = 'androidx.navigation:navigation-fragment-ktx:2.3.5'
 androidx.navigation_ui = 'androidx.navigation:navigation-ui-ktx:2.3.5'
 androidx.recyclerview = 'androidx.recyclerview:recyclerview:1.2.0'
+androidx.multidex = 'androidx.multidex:multidex:2.0.1'
 deps.androidx = androidx
 
 def google = [:]

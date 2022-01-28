@@ -40,9 +40,11 @@ android {
 
 dependencies {
     implementation project(path: ':mock')
+    implementation project(path: ':main')
 
     implementation deps.androidx.core_ktx
     implementation deps.androidx.appcompat
+    implementation deps.androidx.multidex
     implementation deps.androidx.constraintlayout
     implementation deps.androidx.lifecycle_livedata
     implementation deps.androidx.lifecycle_viewmodel
@@ -69,6 +71,7 @@ dependencies {
     implementation deps.squareup.leakcanary
 
     implementation deps.kotlin_coroutines_retrofit
+    implementation project(path: ':common')
 
     testImplementation deps.test.junit
     androidTestImplementation deps.test.test_ext
