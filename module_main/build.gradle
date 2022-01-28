@@ -35,7 +35,6 @@ android {
 }
 
 dependencies {
-    implementation project(path: ':module_mock')
     implementation project(path: ':moudle_common')
     implementation project(path: ':moudle_home')
 
@@ -65,10 +64,9 @@ dependencies {
     implementation deps.squareup.logging_interceptor
     implementation deps.squareup.converter_gson
     implementation deps.squareup.retrofit
-    implementation deps.squareup.leakcanary
-
     implementation deps.kotlin_coroutines_retrofit
 
+    debugImplementation deps.squareup.leakcanary
 
     testImplementation deps.test.junit
     androidTestImplementation deps.test.test_ext

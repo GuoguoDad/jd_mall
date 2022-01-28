@@ -4,8 +4,8 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.common.ui.BaseActivity
+import com.example.common.util.HttpUtil
 import com.example.main.R
-import com.example.main.kit.util.HttpUtil
 import com.example.main.kit.util.LoadingDialog
 import com.scwang.smart.refresh.footer.ClassicsFooter
 import com.scwang.smart.refresh.header.ClassicsHeader

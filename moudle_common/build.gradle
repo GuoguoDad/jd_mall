@@ -32,9 +32,18 @@ android {
 }
 
 dependencies {
+    implementation project(path: ':module_mock')
+
     implementation deps.androidx.core_ktx
     implementation deps.androidx.appcompat
     implementation deps.androidx.multidex
+
+    implementation deps.squareup.okhttp
+    implementation deps.squareup.logging_interceptor
+    implementation deps.squareup.converter_gson
+    implementation deps.squareup.retrofit
+    implementation deps.github.okhttp_json_mock
+    implementation deps.kotlin_coroutines_retrofit
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

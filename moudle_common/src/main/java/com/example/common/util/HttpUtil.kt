@@ -1,4 +1,4 @@
-package com.example.main.kit.util
+package com.example.common.util
 
 import android.content.Context
 import android.os.Build
