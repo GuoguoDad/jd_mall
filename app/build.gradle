@@ -30,48 +30,16 @@ android {
     kotlinOptions {
         jvmTarget = rootProject.ext.kotlinOptionsJvmTarget
     }
-    buildFeatures {
-        viewBinding true
-    }
-    dataBinding {
-        enabled = true
-    }
 }
 
 dependencies {
     implementation project(path: ':mock')
     implementation project(path: ':main')
+    implementation project(path: ':common')
 
     implementation deps.androidx.core_ktx
     implementation deps.androidx.appcompat
     implementation deps.androidx.multidex
-    implementation deps.androidx.constraintlayout
-    implementation deps.androidx.lifecycle_livedata
-    implementation deps.androidx.lifecycle_viewmodel
-    implementation deps.androidx.navigation_fragment
-    implementation deps.androidx.navigation_ui
-    implementation deps.androidx.recyclerview
-
-    implementation deps.google.material
-    implementation deps.google.gson
-
-    implementation deps.kotlin.reflect
-
-    implementation deps.github.BaseRecyclerViewAdapterHelper
-    implementation deps.github.okhttp_json_mock
-    implementation deps.github.refresh_layout_kernel
-    implementation deps.github.refresh_header_classics
-
-    implementation deps.coil
-
-    implementation deps.squareup.okhttp
-    implementation deps.squareup.logging_interceptor
-    implementation deps.squareup.converter_gson
-    implementation deps.squareup.retrofit
-    implementation deps.squareup.leakcanary
-
-    implementation deps.kotlin_coroutines_retrofit
-    implementation project(path: ':common')
 
     testImplementation deps.test.junit
     androidTestImplementation deps.test.test_ext
