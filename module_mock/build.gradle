@@ -32,8 +32,8 @@ android {
 }
 
 dependencies {
-    implementation deps.androidx.core_ktx
-    implementation deps.androidx.appcompat
+    api deps.androidx.core_ktx
+    api deps.androidx.appcompat
 
-    implementation deps.github.okhttp_json_mock
+    api deps.github.okhttp_json_mock
 }

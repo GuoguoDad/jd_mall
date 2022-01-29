@@ -36,12 +36,4 @@ dependencies {
     implementation project(path: ':module_mock')
     implementation project(path: ':module_main')
     implementation project(path: ':moudle_common')
-
-    implementation deps.androidx.core_ktx
-    implementation deps.androidx.appcompat
-    implementation deps.androidx.multidex
-
-    testImplementation deps.test.junit
-    androidTestImplementation deps.test.test_ext
-    androidTestImplementation deps.test.espresso_core
 }

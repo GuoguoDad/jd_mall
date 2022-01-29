@@ -32,20 +32,38 @@ android {
 }
 
 dependencies {
-    implementation project(path: ':module_mock')
+    api project(path: ':module_mock')
 
-    implementation deps.androidx.core_ktx
-    implementation deps.androidx.appcompat
-    implementation deps.androidx.multidex
+    api deps.androidx.core_ktx
+    api deps.androidx.appcompat
+    api deps.androidx.multidex
+    api deps.androidx.constraintlayout
+    api deps.androidx.lifecycle_livedata
+    api deps.androidx.lifecycle_viewmodel
+    api deps.androidx.navigation_fragment
+    api deps.androidx.navigation_ui
+    api deps.androidx.recyclerview
 
-    implementation deps.squareup.okhttp
-    implementation deps.squareup.logging_interceptor
-    implementation deps.squareup.converter_gson
-    implementation deps.squareup.retrofit
-    implementation deps.github.okhttp_json_mock
-    implementation deps.kotlin_coroutines_retrofit
+    api deps.google.material
+    api deps.google.gson
 
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    api deps.kotlin.reflect
+
+    api deps.github.BaseRecyclerViewAdapterHelper
+    api deps.github.refresh_layout_kernel
+    api deps.github.refresh_header_classics
+
+    api deps.coil
+
+    api deps.squareup.okhttp
+    api deps.squareup.logging_interceptor
+    api deps.squareup.converter_gson
+    api deps.squareup.retrofit
+    api deps.kotlin_coroutines_retrofit
+
+    debugApi deps.squareup.leakcanary
+
+    testApi 'junit:junit:4.+'
+    androidTestApi 'androidx.test.ext:junit:1.1.2'
+    androidTestApi 'androidx.test.espresso:espresso-core:3.3.0'
 }

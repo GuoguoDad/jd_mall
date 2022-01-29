@@ -42,7 +42,7 @@ abstract class BaseFragment(@LayoutRes val layoutResId: Int): Fragment()  {
 
     abstract fun initData()
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
+        super.onDestroyView()
     }
 }
