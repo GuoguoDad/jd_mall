@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -13,6 +14,12 @@ android {
         targetSdk rootProject.ext.defaultConfigTargetSdk
         versionCode rootProject.ext.defaultConfigVersionCode
         versionName rootProject.ext.defaultConfigVersionName
+
+        kapt {
+            arguments {
+                arg("AROUTER_MODULE_NAME", project.getName())
+            }
+        }
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }

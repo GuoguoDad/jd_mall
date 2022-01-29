@@ -1,8 +1,8 @@
 package com.example.news
 
-import com.example.common.CommonApplication
+import com.example.common.abs.BaseApplication
 
-class AppApplication: CommonApplication() {
+class AppApplication: BaseApplication() {
     override fun onCreate() {
         super.onCreate()
     }

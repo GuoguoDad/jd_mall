@@ -3,10 +3,10 @@ package com.example.main
 import coil.ImageLoader
 import coil.ImageLoaderFactory
 import coil.util.CoilUtils
-import com.example.common.CommonApplication
+import com.example.common.abs.BaseApplication
 import okhttp3.OkHttpClient
 
-class MainApplication: CommonApplication(), ImageLoaderFactory {
+class MainApplication: BaseApplication(), ImageLoaderFactory {
     override fun newImageLoader(): ImageLoader {
         return ImageLoader.Builder(this)
             .crossfade(true)

@@ -61,6 +61,8 @@ dependencies {
     api deps.squareup.retrofit
     api deps.kotlin_coroutines_retrofit
 
+    api deps.alibaba.arouter_api
+
     debugApi deps.squareup.leakcanary
 
     testApi 'junit:junit:4.+'

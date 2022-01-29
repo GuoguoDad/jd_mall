@@ -10,6 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.GridLayoutManager.SpanSizeLookup
 import androidx.recyclerview.widget.RecyclerView
+import com.alibaba.android.arouter.launcher.ARouter
+import com.example.common.constants.RouterPaths
 import com.example.main.R
 import com.example.main.kit.util.GsonUtil
 import com.example.main.databinding.FragmentDashboardBinding
@@ -60,8 +62,7 @@ class DashboardFragment : Fragment() {
                     if (bean != null) {
                         when(bean.code) {
                             "001" -> {
-                                val to = Intent(localThis.context, WaterfallListActivity::class.java)
-                                startActivity(to)
+                                ARouter.getInstance().build(RouterPaths.WATERFALL_ACTIVITY).navigation()
                             }
                             else -> {
                                 Toast.makeText(localThis.context ,bean?.name, Toast.LENGTH_SHORT).show()

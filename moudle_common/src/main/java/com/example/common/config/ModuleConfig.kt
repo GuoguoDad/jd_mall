@@ -6,6 +6,8 @@ interface ModuleConfig {
 
         private const val MODULE_MAIN = "com.example.main.MainApplication"
 
-        val modules = arrayOf( MODULE_MAIN)
+        private const val MODULE_COMMON = "com.example.common.CommonApplication"
+
+        val modules = arrayOf( MODULE_MAIN, MODULE_COMMON )
     }
 }

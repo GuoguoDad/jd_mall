@@ -2,10 +2,13 @@ package com.example.main
 
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
+import com.alibaba.android.arouter.facade.annotation.Route
+import com.example.common.constants.RouterPaths
 import com.example.common.ui.BaseActivity
 import com.google.android.material.bottomnavigation.LabelVisibilityMode
 import kotlinx.android.synthetic.main.layout_main.*
 
+@Route(path = RouterPaths.MAIN_ACTIVITY)
 class MainActivity : BaseActivity(R.layout.layout_main) {
 
     override fun initView() {

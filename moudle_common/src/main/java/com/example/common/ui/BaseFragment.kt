@@ -44,5 +44,7 @@ abstract class BaseFragment(@LayoutRes val layoutResId: Int): Fragment()  {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        rootView = null
+        mContext = null
     }
 }

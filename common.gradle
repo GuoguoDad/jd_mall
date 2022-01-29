@@ -54,6 +54,11 @@ squareup.retrofit = 'com.squareup.retrofit2:retrofit:2.9.0' //Retrofit 是一个
 squareup.leakcanary = 'com.squareup.leakcanary:leakcanary-android:2.8.1'
 deps.squareup = squareup
 
+def alibaba = [:]
+alibaba.arouter_api = 'com.alibaba:arouter-api:1.5.2'
+alibaba.arouter_compiler = 'com.alibaba:arouter-compiler:1.5.2'
+deps.alibaba = alibaba
+
 def test = [:]
 test.junit = 'junit:junit:4.+'
 test.test_ext = 'androidx.test.ext:junit:1.1.2'

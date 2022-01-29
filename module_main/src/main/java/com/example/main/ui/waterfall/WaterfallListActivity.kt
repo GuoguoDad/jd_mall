@@ -3,6 +3,8 @@ package com.example.main.ui.waterfall
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.alibaba.android.arouter.facade.annotation.Route
+import com.example.common.constants.RouterPaths
 import com.example.common.ui.BaseActivity
 import com.example.common.util.HttpUtil
 import com.example.main.R
@@ -18,6 +20,7 @@ import kotlinx.coroutines.launch
 import retrofit2.*
 import java.lang.reflect.Method
 
+@Route(path = RouterPaths.WATERFALL_ACTIVITY)
 class WaterfallListActivity: BaseActivity(R.layout.layout_waterfall) {
     private var currentPage: Int = 1
     private var pageSize: Int = 11
