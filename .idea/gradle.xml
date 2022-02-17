@@ -11,9 +11,9 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/lib_common" />
+            <option value="$PROJECT_DIR$/lib_mock" />
             <option value="$PROJECT_DIR$/module_main" />
-            <option value="$PROJECT_DIR$/module_mock" />
-            <option value="$PROJECT_DIR$/moudle_common" />
             <option value="$PROJECT_DIR$/moudle_home" />
           </set>
         </option>

@@ -1,6 +1,5 @@
 package com.example.main.ui.dashboard
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,7 +18,6 @@ import com.example.main.ui.dashboard.adapter.ModuleSelectionAdapter
 import com.example.main.ui.dashboard.bean.ModuleBean
 import com.example.main.ui.dashboard.bean.ModuleBeanWrapper
 import com.example.main.ui.dashboard.decor.ItemOffsetDecoration
-import com.example.main.ui.waterfall.WaterfallListActivity
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStream

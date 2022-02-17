@@ -43,8 +43,8 @@ android {
 }
 
 dependencies {
-    api project(path: ':module_mock')
-    api project(path: ':moudle_common')
+    api project(path: ':lib_mock')
+    api project(path: ':lib_common')
 
     kapt deps.alibaba.arouter_compiler
 }

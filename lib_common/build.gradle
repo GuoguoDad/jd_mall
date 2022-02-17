@@ -32,7 +32,7 @@ android {
 }
 
 dependencies {
-    api project(path: ':module_mock')
+    api project(path: ':lib_mock')
 
     api deps.androidx.core_ktx
     api deps.androidx.appcompat

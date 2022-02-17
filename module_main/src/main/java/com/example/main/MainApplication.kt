@@ -18,7 +18,5 @@ class MainApplication: BaseApplication(), ImageLoaderFactory {
             .build()
     }
 
-    override fun init() {
-    }
-
+    override fun init() {}
 }

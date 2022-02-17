@@ -40,7 +40,7 @@ android {
 }
 
 dependencies {
-    implementation project(path: ':module_mock')
+    implementation project(path: ':lib_mock')
     implementation project(path: ':module_main')
-    implementation project(path: ':moudle_common')
+    implementation project(path: ':lib_common')
 }

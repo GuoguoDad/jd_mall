@@ -9,8 +9,8 @@ dependencyResolutionManagement {
 }
 rootProject.name = "news"
 include ':app'
-include ':module_mock'
-include ':moudle_common'
+include ':lib_mock'
+include ':lib_common'
 include ':moudle_home'
 include ':module_main'
 
