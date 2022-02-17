@@ -46,5 +46,5 @@ dependencies {
     api project(path: ':lib_mock')
     api project(path: ':lib_common')
 
-    kapt deps.alibaba.arouter_compiler
+    kapt 'com.alibaba:arouter-compiler:1.5.2'
 }

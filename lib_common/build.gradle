@@ -34,36 +34,36 @@ android {
 dependencies {
     api project(path: ':lib_mock')
 
-    api deps.androidx.core_ktx
-    api deps.androidx.appcompat
-    api deps.androidx.multidex
-    api deps.androidx.constraintlayout
-    api deps.androidx.lifecycle_livedata
-    api deps.androidx.lifecycle_viewmodel
-    api deps.androidx.navigation_fragment
-    api deps.androidx.navigation_ui
-    api deps.androidx.recyclerview
+    api 'androidx.core:core-ktx:1.6.0'
+    api 'androidx.appcompat:appcompat:1.3.0'
+    api 'androidx.multidex:multidex:2.0.1'
+    api 'androidx.constraintlayout:constraintlayout:2.0.4'
+    api 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
+    api 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
+    api 'androidx.navigation:navigation-fragment-ktx:2.3.5'
+    api 'androidx.navigation:navigation-ui-ktx:2.3.5'
+    api 'androidx.recyclerview:recyclerview:1.2.0'
 
-    api deps.google.material
-    api deps.google.gson
+    api 'com.google.android.material:material:1.3.0'
+    api 'com.google.code.gson:gson:2.8.9'
 
-    api deps.kotlin.reflect
+    api 'org.jetbrains.kotlin:kotlin-reflect:1.6.10'//引入 kotlin-reflect 解决调用fastjson JSON.parseObject报“default constructor not found”错误
 
-    api deps.github.BaseRecyclerViewAdapterHelper
-    api deps.github.refresh_layout_kernel
-    api deps.github.refresh_header_classics
+    api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.7'
+    api 'io.github.scwang90:refresh-layout-kernel:2.0.5'
+    api 'io.github.scwang90:refresh-header-classics:2.0.5'
 
-    api deps.coil
+    api 'io.coil-kt:coil:1.4.0' //加载网图
 
-    api deps.squareup.okhttp
-    api deps.squareup.logging_interceptor
-    api deps.squareup.converter_gson
-    api deps.squareup.retrofit
-    api deps.kotlin_coroutines_retrofit
+    api 'com.squareup.okhttp3:okhttp:4.9.3'
+    api 'com.squareup.okhttp3:logging-interceptor:4.9.3'
+    api 'com.squareup.retrofit2:converter-gson:2.9.0'
+    api 'com.squareup.retrofit2:retrofit:2.9.0' //Retrofit 是一个 RESTful 的 HTTP 网络请求框架的封装,基于okhttp
+    api 'ru.gildor.coroutines:kotlin-coroutines-retrofit:1.1.0' //网络请求await
 
-    api deps.alibaba.arouter_api
+    api 'com.alibaba:arouter-api:1.5.2'
 
-    debugApi deps.squareup.leakcanary
+    debugApi 'com.squareup.leakcanary:leakcanary-android:2.8.1'
 
     testApi 'junit:junit:4.+'
     androidTestApi 'androidx.test.ext:junit:1.1.2'

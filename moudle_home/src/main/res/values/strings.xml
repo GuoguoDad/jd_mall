@@ -1,11 +1,17 @@
 <resources>
+    <string name="app_name">android_demo</string>
+    <string name="title_home">首页</string>
+    <string name="title_dashboard">面板</string>
+    <string name="title_category">分类</string>
+    <string name="title_setting">设置</string>
+
     <string name="srl_header_pulling">下拉可以刷新</string>
     <string name="srl_header_refreshing">正在刷新…</string>
     <string name="srl_header_loading">正在加载…</string>
     <string name="srl_header_release">释放立即刷新</string>
     <string name="srl_header_finish">刷新完成</string>
     <string name="srl_header_failed">刷新失败</string>
-    <string name="srl_header_update">上次更新 YYYY-MM-dd HH:mm:dd</string>
+    <string name="srl_header_update">上次更新 YYYY-MM-dd HH:mm</string>
     <string name="srl_header_secondary">释放进入二楼</string>
 
     <string name="srl_footer_pulling">上拉加载更多</string>
@@ -15,4 +21,9 @@
     <string name="srl_footer_finish">加载完成</string>
     <string name="srl_footer_failed">加载失败</string>
     <string name="srl_footer_nothing">没有更多数据了</string>
+
+    <string name="waterfall_item_name">明星</string>
+
+
+    <string name="waterfall">瀑布流</string>
 </resources>

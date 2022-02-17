@@ -32,8 +32,5 @@ android {
 }
 
 dependencies {
-    api deps.androidx.core_ktx
-    api deps.androidx.appcompat
-
-    api deps.github.okhttp_json_mock
+    api 'com.github.mirrajabi:okhttp-json-mock:3.0'
 }
