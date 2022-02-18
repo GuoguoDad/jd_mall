@@ -41,7 +41,6 @@ class WaterfallListActivity: BaseActivity(R.layout.layout_waterfall) {
             finish()
         }
 
-
         //下拉刷新
         waterfallLayout.setRefreshHeader(ClassicsHeader(this))
         waterfallLayout.setOnRefreshListener { layout ->
@@ -102,7 +101,7 @@ class WaterfallListActivity: BaseActivity(R.layout.layout_waterfall) {
     private fun getPageList(isRefresh: Boolean, pageNo: Int, layout: RefreshLayout?) {
         loadingDialog.show()
         CoroutineScope(Dispatchers.IO).launch {
-            val result = apiInstance.queryProductListByPage(QueryProductListParams(pageNo, pageSize)).await()
+            val result = apiInstance.queryProductListByPage(QueryProductListParams(pageNo, pageSize))
             loadingDialog.dismiss()
 
             val list = result.data.dataList
