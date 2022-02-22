@@ -23,9 +23,12 @@ import java.lang.Exception
 import ir.mirrajabi.okhttpjsonmock.OkHttpMockInterceptor
 
 open class HttpUtil {
-    private lateinit var retrofit: Retrofit
+    private var retrofit: Retrofit
     private var tag = "HttpUtil"
-    private var context: Context? = null
+
+    init {
+        retrofit = buildRetrofit("http://localhost:8090")
+    }
 
     companion object {
         const val TIME_OUT_CONNECT = 5000L
@@ -34,13 +37,6 @@ open class HttpUtil {
 
         val instance: HttpUtil by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) { HttpUtil() }
     }
-
-    fun create(context: Context): HttpUtil {
-        this.context = context
-        retrofit = buildRetrofit("http://localhost:8090")
-        return this
-    }
-
 
     /**
      * 获取API服务
@@ -62,7 +58,9 @@ open class HttpUtil {
         val builder = OkHttpClient.Builder().connectTimeout(TIME_OUT_CONNECT, TimeUnit.MILLISECONDS)
             .readTimeout(TIME_OUT_READ, TimeUnit.MILLISECONDS)
             .writeTimeout(TIME_OUT_WRITE, TimeUnit.MILLISECONDS)
-            .addInterceptor(OkHttpMockInterceptor(AssetsStreamProvider(context!!),0))
+            .addInterceptor(OkHttpMockInterceptor(ShareContentProvider.getApplication()?.let {
+                AssetsStreamProvider(it)
+            },0))
             .addInterceptor(loggingInterceptor)
             .addInterceptor(errorInterceptor())
             .addNetworkInterceptor(baseInterceptor())

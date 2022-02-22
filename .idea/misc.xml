@@ -47,7 +47,14 @@
         <entry key="main/src/main/res/layout/fragment_setting.xml" value="0.22780797101449277" />
         <entry key="main/src/main/res/layout/layout_waterfall.xml" value="0.22780797101449277" />
         <entry key="main/src/main/res/menu/bottom_nav_menu.xml" value="0.3625" />
+        <entry key="module_main/src/main/res/layout/fragment_dashboard.xml" value="0.2164855072463768" />
+        <entry key="module_main/src/main/res/layout/layout_header.xml" value="0.26358695652173914" />
+        <entry key="module_main/src/main/res/layout/layout_loading.xml" value="0.26358695652173914" />
+        <entry key="module_main/src/main/res/layout/layout_main.xml" value="0.2164855072463768" />
         <entry key="module_main/src/main/res/layout/layout_waterfall.xml" value="0.24592391304347827" />
+        <entry key="module_main/src/main/res/layout/layout_waterfall_fragment.xml" value="0.2164855072463768" />
+        <entry key="module_main/src/main/res/layout/layout_waterfall_item.xml" value="0.2296195652173913" />
+        <entry key="module_main/src/main/res/menu/bottom_nav_menu.xml" value="0.3770833333333333" />
         <entry key="moudle_home/src/main/res/layout/fragment_home.xml" value="0.23097826086956522" />
       </map>
     </option>

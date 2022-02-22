@@ -33,7 +33,7 @@ class WaterfallListActivity: BaseActivity(R.layout.layout_waterfall) {
     private lateinit var loadingDialog: LoadingDialog
 
     override fun initView() {
-        apiInstance = HttpUtil.instance.create(applicationContext).service(ApiService::class.java)
+        apiInstance = HttpUtil.instance.service(ApiService::class.java)
         loadingDialog = LoadingDialog(this)
 
         //返回

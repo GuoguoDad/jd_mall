@@ -1,4 +1,4 @@
-package com.example.home
+package com.example.home.ui
 
 import android.widget.ImageView
 import coil.load

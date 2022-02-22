@@ -1,4 +1,4 @@
-package com.example.home
+package com.example.home.ui
 
 data class GoodsBean(
     var url: String,

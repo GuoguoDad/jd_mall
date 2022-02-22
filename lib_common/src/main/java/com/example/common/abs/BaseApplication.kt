@@ -2,6 +2,7 @@ package com.example.common.abs
 
 import android.content.Context
 import androidx.multidex.MultiDexApplication
+import com.airbnb.mvrx.Mavericks
 import com.example.common.config.ModuleConfig
 import com.example.common.impl.IBaseApplication
 
@@ -15,6 +16,7 @@ abstract class BaseApplication : MultiDexApplication(), IBaseApplication {
         super.onCreate()
         mContext = this
         initComponent()
+        Mavericks.initialize(this)
     }
 
     private fun initComponent() {

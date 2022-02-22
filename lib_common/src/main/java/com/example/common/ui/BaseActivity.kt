@@ -69,5 +69,4 @@ abstract class BaseActivity(@LayoutRes val layoutResId: Int) : AppCompatActivity
         }
         return result
     }
-
 }

@@ -1,16 +1,21 @@
-package com.example.home
+package com.example.home.ui
 
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.airbnb.mvrx.MavericksView
+import com.airbnb.mvrx.fragmentViewModel
 import com.example.common.ui.BaseFragment
+import com.example.home.R
 import com.scwang.smart.refresh.footer.ClassicsFooter
 import com.scwang.smart.refresh.header.ClassicsHeader
 import com.scwang.smart.refresh.layout.api.RefreshLayout
 import kotlinx.android.synthetic.main.fragment_home.*
 
-class HomeFragment : BaseFragment(R.layout.fragment_home) {
+class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
     private var dataList: MutableList<GoodsBean> = arrayListOf()
     private lateinit var adapter: GoodsListAdapter
+
+//    private val viewModel: GoodListViewModel by fragmentViewModel()
 
     override fun onDestroyView() {
         super.onDestroyView()
@@ -89,5 +94,8 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
         } else {
             layout.finishLoadMoreWithNoMoreData()
         }
+    }
+
+    override fun invalidate() {
     }
 }
