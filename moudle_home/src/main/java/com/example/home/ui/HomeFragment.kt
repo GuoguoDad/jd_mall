@@ -17,7 +17,9 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
     private var dataList: MutableList<GoodsBean> = arrayListOf()
     private lateinit var refreshLayout: RefreshLayout
     private lateinit var loadMoreLayout: RefreshLayout
-    private lateinit var loadingDialog: LoadingDialog
+    private val loadingDialog: LoadingDialog by lazy {
+        LoadingDialog(this.requireActivity())
+    }
 
     private val viewModel: GoodListViewModel by fragmentViewModel()
     private val adapter: GoodsListAdapter by lazy {
@@ -30,8 +32,6 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
     }
 
     override fun initView() {
-        loadingDialog = LoadingDialog(this.requireActivity())
-        addLoadingListener()
         //下拉刷新
         fragmentHome.setRefreshHeader(ClassicsHeader(this.context))
         fragmentHome.setOnRefreshListener { layout ->
@@ -66,6 +66,11 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
 
     override fun invalidate() {
         withState(viewModel) {
+            when (it.isLoading) {
+                true -> loadingDialog.show()
+                false -> loadingDialog.dismiss()
+            }
+
             when (it.fetchType) {
                 ActionType.INIT -> {
                     dataList.addAll(it.dataList)
@@ -87,15 +92,6 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
                         loadMoreLayout.finishLoadMoreWithNoMoreData()
                 }
             }
-        }
-    }
-
-    private fun addLoadingListener() {
-        viewModel.onEach(GoodListState::isLoading) {
-           if (it)
-               loadingDialog.show()
-           else
-               loadingDialog.dismiss()
         }
     }
 }

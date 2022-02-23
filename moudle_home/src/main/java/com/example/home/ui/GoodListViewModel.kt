@@ -20,7 +20,7 @@ class GoodListViewModel(initialState: GoodListState): MavericksViewModel<GoodLis
                 copy(
                     currentPage = if (state is Success) currentPage.plus(1) else currentPage,
                     pageResponse = state,
-                    isLoading = false,
+                    isLoading = state !is Success,
                     fetchType = if (isRefresh) ActionType.REFRESH else ActionType.INIT,
                     dataList = (state()?.data?.dataList ?: it.dataList),
                     totalPage = (state()?.data?.totalPageCount ?: 0)
@@ -39,7 +39,7 @@ class GoodListViewModel(initialState: GoodListState): MavericksViewModel<GoodLis
             }.execute(Dispatchers.IO) { state ->
                 copy(
                     pageResponse = state,
-                    isLoading = false,
+                    isLoading = state !is Success,
                     fetchType = ActionType.LOADMORE,
                     dataList = dataList + (state()?.data?.dataList ?: emptyList()),
                     newList = (state()?.data?.dataList ?: emptyList()),
