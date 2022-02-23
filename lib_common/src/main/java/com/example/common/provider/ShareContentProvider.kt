@@ -1,4 +1,4 @@
-package com.example.common.util
+package com.example.common.provider
 
 import android.content.ContentProvider
 import android.content.ContentValues

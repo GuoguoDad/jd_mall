@@ -8,7 +8,7 @@ import com.example.common.constants.RouterPaths
 import com.example.common.base.BaseActivity
 import com.example.common.util.HttpUtil
 import com.example.main.R
-import com.example.main.kit.util.LoadingDialog
+import com.example.common.util.LoadingDialog
 import com.scwang.smart.refresh.footer.ClassicsFooter
 import com.scwang.smart.refresh.header.ClassicsHeader
 import com.scwang.smart.refresh.layout.api.RefreshLayout
@@ -29,11 +29,12 @@ class WaterfallListActivity: BaseActivity(R.layout.layout_waterfall) {
     private lateinit var adapter: WaterfallListAdapter
     private lateinit var staggeredGridLayoutManager: StaggeredGridLayoutManager
     private lateinit var apiInstance: ApiService
-    private lateinit var loadingDialog: LoadingDialog
+    private val loadingDialog: LoadingDialog by lazy {
+        LoadingDialog(this)
+    }
 
     override fun initView() {
         apiInstance = HttpUtil.instance.service(ApiService::class.java)
-        loadingDialog = LoadingDialog(this)
 
         //返回
         leftText.setOnClickListener {

@@ -27,7 +27,7 @@
 
 
         <provider
-            android:name="com.example.common.util.ShareContentProvider"
+            android:name="com.example.common.provider.ShareContentProvider"
             android:authorities="${applicationId}.contextprovider"
             android:exported="false" />
 

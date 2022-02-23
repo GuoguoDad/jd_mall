@@ -6,6 +6,7 @@ import com.airbnb.mvrx.MavericksView
 import com.airbnb.mvrx.fragmentViewModel
 import com.airbnb.mvrx.withState
 import com.example.common.base.BaseFragment
+import com.example.common.util.LoadingDialog
 import com.example.home.R
 import com.scwang.smart.refresh.footer.ClassicsFooter
 import com.scwang.smart.refresh.header.ClassicsHeader
@@ -16,6 +17,7 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
     private var dataList: MutableList<GoodsBean> = arrayListOf()
     private lateinit var refreshLayout: RefreshLayout
     private lateinit var loadMoreLayout: RefreshLayout
+    private lateinit var loadingDialog: LoadingDialog
 
     private val viewModel: GoodListViewModel by fragmentViewModel()
     private val adapter: GoodsListAdapter by lazy {
@@ -28,6 +30,8 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
     }
 
     override fun initView() {
+        loadingDialog = LoadingDialog(this.requireActivity())
+        addLoadingListener()
         //下拉刷新
         fragmentHome.setRefreshHeader(ClassicsHeader(this.context))
         fragmentHome.setOnRefreshListener { layout ->
@@ -63,25 +67,35 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
     override fun invalidate() {
         withState(viewModel) {
             when (it.fetchType) {
-                FetchType.INIT -> {
+                ActionType.INIT -> {
                     dataList.addAll(it.dataList)
                     adapter.setList(it.dataList)
                 }
-                FetchType.REFRESH -> {
+                ActionType.REFRESH -> {
                     dataList.clear()
                     dataList.addAll(it.dataList)
                     adapter.setList(it.dataList)
                     refreshLayout.finishRefresh()
                 }
-                FetchType.LOADMORE -> {
+                ActionType.LOADMORE -> {
                     dataList.addAll(it.newList)
                     adapter.addData(it.dataList.size, it.newList)
-                    if (it.currentPage < it.totalPage)
+                    adapter.notifyDataSetChanged()
+                    if (it.currentPage <= it.totalPage)
                         loadMoreLayout.finishLoadMore()
                     else
                         loadMoreLayout.finishLoadMoreWithNoMoreData()
                 }
             }
+        }
+    }
+
+    private fun addLoadingListener() {
+        viewModel.onEach(GoodListState::isLoading) {
+           if (it)
+               loadingDialog.show()
+           else
+               loadingDialog.dismiss()
         }
     }
 }

@@ -1,8 +1,8 @@
 package com.example.common.util
 
-import android.content.Context
 import android.os.Build
 import android.util.Log
+import com.example.common.provider.ShareContentProvider
 import com.example.mock.provider.AssetsStreamProvider
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder

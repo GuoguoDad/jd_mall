@@ -41,6 +41,7 @@
         <entry key="home/src/main/res/drawable/ic_icon_main_category.xml" value="0.3828125" />
         <entry key="home/src/main/res/layout/fragment_home.xml" value="0.22780797101449277" />
         <entry key="home/src/main/res/layout/fragment_home_recyclerview_item.xml" value="0.22780797101449277" />
+        <entry key="lib_common/src/main/res/layout/layout_loading.xml" value="0.23550724637681159" />
         <entry key="main/src/main/res/drawable/skipshape.xml" value="0.3828125" />
         <entry key="main/src/main/res/layout/activity_main.xml" value="0.2391304347826087" />
         <entry key="main/src/main/res/layout/fragment_home.xml" value="0.22780797101449277" />

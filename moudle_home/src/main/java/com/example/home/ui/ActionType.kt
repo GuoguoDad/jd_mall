@@ -1,6 +1,6 @@
 package com.example.home.ui
 
-enum class FetchType {
+enum class ActionType {
     INIT,
     REFRESH,
     LOADMORE

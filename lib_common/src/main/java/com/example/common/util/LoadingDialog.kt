@@ -1,8 +1,8 @@
-package com.example.main.kit.util
+package com.example.common.util
 
 import android.app.Dialog
 import android.content.Context
-import com.example.main.R
+import com.example.common.R
 import android.view.Gravity
 import android.view.Window
 
