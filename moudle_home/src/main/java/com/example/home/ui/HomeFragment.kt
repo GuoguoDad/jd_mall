@@ -3,7 +3,7 @@ package com.example.home.ui
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.airbnb.mvrx.MavericksView
-import com.airbnb.mvrx.fragmentViewModel
+import com.airbnb.mvrx.activityViewModel
 import com.airbnb.mvrx.withState
 import com.example.common.base.BaseFragment
 import com.example.common.util.LoadingDialog
@@ -21,7 +21,7 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
         LoadingDialog(this.requireActivity())
     }
 
-    private val viewModel: GoodListViewModel by fragmentViewModel()
+    private val viewModel: GoodListViewModel by activityViewModel()
     private val adapter: GoodsListAdapter by lazy {
         GoodsListAdapter(R.layout.fragment_home_recyclerview_item, dataList)
     }
@@ -45,7 +45,7 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
         adapter.addChildClickViewIds(R.id.home_recycle_list_item)
         adapter.setOnItemClickListener{ _, view, position ->
             if (view.id == R.id.home_recycle_list_item) {
-                Toast.makeText(this.context, adapter.data[position].name, Toast.LENGTH_SHORT).show()
+                Toast.makeText(this.context, dataList[position].name, Toast.LENGTH_SHORT).show()
             }
         }
         fragmentHomeRecycleView.adapter = adapter
