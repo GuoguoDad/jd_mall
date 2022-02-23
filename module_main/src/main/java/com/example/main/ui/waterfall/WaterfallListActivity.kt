@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.example.common.constants.RouterPaths
-import com.example.common.ui.BaseActivity
+import com.example.common.base.BaseActivity
 import com.example.common.util.HttpUtil
 import com.example.main.R
 import com.example.main.kit.util.LoadingDialog
@@ -17,7 +17,6 @@ import kotlinx.android.synthetic.main.layout_waterfall.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import retrofit2.*
 import java.lang.reflect.Method
 
 @Route(path = RouterPaths.WATERFALL_ACTIVITY)

@@ -1,6 +1,6 @@
 package com.example.main.ui.waterfall
 
-import com.example.main.ui.base.BaseResponse
+import com.example.common.base.BaseResponse
 import retrofit2.http.Body
 import retrofit2.http.POST
 

@@ -1,4 +1,4 @@
-package com.example.common.ui
+package com.example.common.base
 
 import android.app.Activity
 import android.content.Context
