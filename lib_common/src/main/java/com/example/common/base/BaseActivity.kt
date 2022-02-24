@@ -58,12 +58,13 @@ abstract class BaseActivity(@LayoutRes val layoutResId: Int) : AppCompatActivity
         }
     }
 
+    protected fun setTranslucent() {
+        this.window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+    }
+
     open fun getStatusBarHeight(context: Context): Int {
         var result = 0
-        val resourceId: Int = context.resources.getIdentifier(
-            "status_bar_height", "dimen",
-            "android"
-        )
+        val resourceId: Int = context.resources.getIdentifier("status_bar_height", "dimen","android")
         if (resourceId > 0) {
             result = context.resources.getDimensionPixelSize(resourceId)
         }
