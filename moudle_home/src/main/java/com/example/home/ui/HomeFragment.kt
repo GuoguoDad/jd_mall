@@ -67,24 +67,28 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
         withState(viewModel) {
             when (it.isLoading) {
                 true -> loadingDialog.show()
-                false -> loadingDialog.dismiss()
+                false -> {
+                    loadingDialog.dismiss()
+
+                    when (it.fetchType) {
+                        ActionType.INIT -> {
+                            adapter.setList(it.dataList)
+                        }
+                        ActionType.REFRESH -> {
+                            adapter.setList(it.dataList)
+                            refreshLayout.finishRefresh()
+                        }
+                        ActionType.LOADMORE -> {
+                            adapter.addData(adapter.data.size, it.newList)
+                            if (it.currentPage <= it.totalPage)
+                                loadMoreLayout.finishLoadMore()
+                            else
+                                loadMoreLayout.finishLoadMoreWithNoMoreData()
+                        }
+                    }
+                }
             }
-            when (it.fetchType) {
-                ActionType.INIT -> {
-                    adapter.setList(it.dataList)
-                }
-                ActionType.REFRESH -> {
-                    adapter.setList(it.dataList)
-                    refreshLayout.finishRefresh()
-                }
-                ActionType.LOADMORE -> {
-                    adapter.addData(adapter.data.size, it.newList)
-                    if (it.currentPage <= it.totalPage)
-                        loadMoreLayout.finishLoadMore()
-                    else
-                        loadMoreLayout.finishLoadMoreWithNoMoreData()
-                }
-            }
+
         }
     }
 }
