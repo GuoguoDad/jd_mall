@@ -21,18 +21,15 @@ class MainActivity: BaseActivity(R.layout.layout_main) {
     private val settingFragment: Fragment = SettingFragment()
 
     override fun initView() {
-        val navController = findNavController(R.id.layout_fragment_activity_main)
+        val navController = findNavController(R.id.container_fragment)
         navView.labelVisibilityMode = LabelVisibilityMode.LABEL_VISIBILITY_LABELED
         navView.setupWithNavController(navController)
 
         var active = homeFragment
-        supportFragmentManager.beginTransaction().add(R.id.layout_fragment_activity_main, homeFragment, "1").commit()
-        supportFragmentManager.beginTransaction().add(R.id.layout_fragment_activity_main, dashboardFragment, "2")
-            .hide(dashboardFragment).commit()
-        supportFragmentManager.beginTransaction().add(R.id.layout_fragment_activity_main, categoryFragment, "3")
-            .hide(categoryFragment).commit()
-        supportFragmentManager.beginTransaction().add(R.id.layout_fragment_activity_main, settingFragment, "4")
-            .hide(settingFragment).commit()
+        supportFragmentManager.beginTransaction().add(R.id.container_fragment, homeFragment, "1").commit()
+        supportFragmentManager.beginTransaction().add(R.id.container_fragment, dashboardFragment, "2").hide(dashboardFragment).commit()
+        supportFragmentManager.beginTransaction().add(R.id.container_fragment, categoryFragment, "3").hide(categoryFragment).commit()
+        supportFragmentManager.beginTransaction().add(R.id.container_fragment, settingFragment, "4").hide(settingFragment).commit()
 
         navView.setOnNavigationItemSelectedListener {
             when (it.itemId) {
