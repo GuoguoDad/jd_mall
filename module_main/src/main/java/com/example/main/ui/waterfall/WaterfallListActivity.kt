@@ -3,10 +3,11 @@ package com.example.main.ui.waterfall
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.airbnb.mvrx.MavericksView
+import com.airbnb.mvrx.viewModel
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.example.common.constants.RouterPaths
 import com.example.common.base.BaseActivity
-import com.example.common.util.HttpUtil
 import com.example.main.R
 import com.example.common.util.LoadingDialog
 import com.scwang.smart.refresh.footer.ClassicsFooter
@@ -14,28 +15,25 @@ import com.scwang.smart.refresh.header.ClassicsHeader
 import com.scwang.smart.refresh.layout.api.RefreshLayout
 import kotlinx.android.synthetic.main.layout_header.*
 import kotlinx.android.synthetic.main.layout_waterfall.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import java.lang.reflect.Method
 
 @Route(path = RouterPaths.WATERFALL_ACTIVITY)
-class WaterfallListActivity: BaseActivity(R.layout.layout_waterfall) {
-    private var currentPage: Int = 1
-    private var pageSize: Int = 11
+class WaterfallListActivity: BaseActivity(R.layout.layout_waterfall), MavericksView {
     private lateinit var mCheckForGapMethod: Method
     private lateinit var mMarkItemDecorInsetsDirtyMethod: Method
-    private var dataList: MutableList<GoodsBean> = arrayListOf()
-    private lateinit var adapter: WaterfallListAdapter
-    private lateinit var staggeredGridLayoutManager: StaggeredGridLayoutManager
-    private lateinit var apiInstance: ApiService
-    private val loadingDialog: LoadingDialog by lazy {
-        LoadingDialog(this)
+    private lateinit var refreshLayout: RefreshLayout
+    private lateinit var loadMoreLayout: RefreshLayout
+
+    private val adapter: WaterfallListAdapter by lazy {
+        WaterfallListAdapter(R.layout.layout_waterfall_item, arrayListOf())
     }
+    private val staggeredGridLayoutManager: StaggeredGridLayoutManager by lazy {
+        StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+    }
+    private val loadingDialog: LoadingDialog by lazy { LoadingDialog(this) }
+    private val viewModel: WaterfallViewModel by viewModel()
 
     override fun initView() {
-        apiInstance = HttpUtil.instance.service(ApiService::class.java)
-
         //返回
         leftText.setOnClickListener {
             finish()
@@ -45,12 +43,12 @@ class WaterfallListActivity: BaseActivity(R.layout.layout_waterfall) {
         waterfallLayout.setRefreshHeader(ClassicsHeader(this))
         waterfallLayout.setOnRefreshListener { layout ->
             run {
-                getPageList(true,1, layout)
+                refreshLayout = layout
+                viewModel.refresh(true)
             }
         }
 
         //瀑布列表
-        staggeredGridLayoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         staggeredGridLayoutManager.gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_NONE //解决加载下一页后重新排列的问题
         waterfall_recycler_view.layoutManager = staggeredGridLayoutManager
         waterfall_recycler_view.itemAnimator = null
@@ -70,11 +68,9 @@ class WaterfallListActivity: BaseActivity(R.layout.layout_waterfall) {
                 }
             }
         })
-
-        adapter = WaterfallListAdapter(R.layout.layout_waterfall_item, dataList)
         adapter.setOnItemClickListener{_, view, position ->
             if (view.id == R.id.waterfallItemLayout) {
-                Toast.makeText(this, dataList[position].name, Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, adapter.data[position].name, Toast.LENGTH_SHORT).show()
             }
         }
         waterfall_recycler_view.adapter = adapter
@@ -85,46 +81,47 @@ class WaterfallListActivity: BaseActivity(R.layout.layout_waterfall) {
         waterfallLayout.setRefreshFooter(ClassicsFooter(this))
         waterfallLayout.setOnLoadMoreListener { layout ->
             run {
-                getPageList(false, currentPage + 1, layout)
+                loadMoreLayout = layout
+                viewModel.loadMore()
             }
         }
         waterfallLayout.setEnableAutoLoadMore(true)
+
+        addStateChangeListener()
     }
 
     override fun initData() {
-        getPageList(true,1, null)
+        viewModel.refresh(false)
     }
 
-    /**
-     * 分页加载数据
-     */
-    private fun getPageList(isRefresh: Boolean, pageNo: Int, layout: RefreshLayout?) {
-        loadingDialog.show()
-        CoroutineScope(Dispatchers.IO).launch {
-            val result = apiInstance.queryProductListByPage(QueryProductListParams(pageNo, pageSize))
-            loadingDialog.dismiss()
+    private fun addStateChangeListener() {
+        viewModel.onEach {
+            when (it.isLoading) {
+                true -> loadingDialog.show()
+                false -> {
+                    loadingDialog.dismiss()
 
-            val list = result.data.dataList
-            val lastIndex = dataList.size
-            if (isRefresh) {
-                dataList.clear()
-            }
-            dataList.addAll(list)
-
-            runOnUiThread {
-                currentPage = if (isRefresh) 1 else pageNo
-                if (isRefresh) {
-                    adapter.setList(dataList)
-                    layout?.finishRefresh()
-                } else {
-                    adapter.addData(lastIndex, list)
-                    if (pageNo < result.data.totalPageCount ) {
-                        layout?.finishLoadMore()
-                    }else{
-                        layout?.finishLoadMoreWithNoMoreData()
+                    when (it.fetchType) {
+                        ActionType.INIT -> {
+                            adapter.setList(it.dataList)
+                        }
+                        ActionType.REFRESH -> {
+                            adapter.setList(it.dataList)
+                            refreshLayout.finishRefresh()
+                        }
+                        ActionType.LOADMORE -> {
+                            adapter.addData(adapter.data.size, it.newList)
+                            if (it.currentPage <= it.totalPage)
+                                loadMoreLayout.finishLoadMore()
+                            else
+                                loadMoreLayout.finishLoadMoreWithNoMoreData()
+                        }
                     }
                 }
             }
         }
+    }
+
+    override fun invalidate() {
     }
 }

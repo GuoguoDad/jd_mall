@@ -14,7 +14,6 @@ import com.scwang.smart.refresh.layout.api.RefreshLayout
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
-    private var dataList: MutableList<GoodsBean> = arrayListOf()
     private lateinit var refreshLayout: RefreshLayout
     private lateinit var loadMoreLayout: RefreshLayout
     private val loadingDialog: LoadingDialog by lazy {
@@ -23,7 +22,7 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
 
     private val viewModel: GoodListViewModel by activityViewModel()
     private val adapter: GoodsListAdapter by lazy {
-        GoodsListAdapter(R.layout.fragment_home_recyclerview_item, dataList)
+        GoodsListAdapter(R.layout.fragment_home_recyclerview_item, arrayListOf())
     }
 
     override fun onDestroyView() {
@@ -45,7 +44,7 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
         adapter.addChildClickViewIds(R.id.home_recycle_list_item)
         adapter.setOnItemClickListener{ _, view, position ->
             if (view.id == R.id.home_recycle_list_item) {
-                Toast.makeText(this.context, dataList[position].name, Toast.LENGTH_SHORT).show()
+                Toast.makeText(this.context, adapter.data[position].name, Toast.LENGTH_SHORT).show()
             }
         }
         fragmentHomeRecycleView.adapter = adapter
@@ -70,22 +69,16 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
                 true -> loadingDialog.show()
                 false -> loadingDialog.dismiss()
             }
-
             when (it.fetchType) {
                 ActionType.INIT -> {
-                    dataList.addAll(it.dataList)
                     adapter.setList(it.dataList)
                 }
                 ActionType.REFRESH -> {
-                    dataList.clear()
-                    dataList.addAll(it.dataList)
                     adapter.setList(it.dataList)
                     refreshLayout.finishRefresh()
                 }
                 ActionType.LOADMORE -> {
-                    dataList.addAll(it.newList)
-                    adapter.addData(it.dataList.size, it.newList)
-                    adapter.notifyDataSetChanged()
+                    adapter.addData(adapter.data.size, it.newList)
                     if (it.currentPage <= it.totalPage)
                         loadMoreLayout.finishLoadMore()
                     else
