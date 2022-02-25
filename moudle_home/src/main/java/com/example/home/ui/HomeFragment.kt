@@ -14,8 +14,6 @@ import com.scwang.smart.refresh.layout.api.RefreshLayout
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
-    private lateinit var refreshLayout: RefreshLayout
-    private lateinit var loadMoreLayout: RefreshLayout
     private val loadingDialog: LoadingDialog by lazy {
         LoadingDialog(this.requireActivity())
     }
@@ -32,9 +30,8 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
 
     override fun initView() {
         //下拉刷新
-        fragmentHome.setOnRefreshListener { layout ->
+        fragmentHome.setOnRefreshListener {
             run {
-                refreshLayout = layout
                 viewModel.refresh(true)
             }
         }
@@ -48,9 +45,8 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
         }
         fragmentHomeRecycleView.adapter = adapter
         //上拉加载更多
-        fragmentHome.setOnLoadMoreListener { layout ->
+        fragmentHome.setOnLoadMoreListener {
             run {
-                loadMoreLayout = layout
                 viewModel.loadMore()
             }
         }
@@ -74,14 +70,20 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
                         }
                         ActionType.REFRESH -> {
                             adapter.setList(it.dataList)
-                            refreshLayout.finishRefresh()
+                            fragmentHome.run {
+                                finishRefresh()
+                            }
                         }
                         ActionType.LOADMORE -> {
                             adapter.addData(adapter.data.size, it.newList)
                             if (it.currentPage <= it.totalPage)
-                                loadMoreLayout.finishLoadMore()
+                                fragmentHome.run {
+                                    finishLoadMore()
+                                }
                             else
-                                loadMoreLayout.finishLoadMoreWithNoMoreData()
+                                fragmentHome.run {
+                                    finishLoadMoreWithNoMoreData()
+                                }
                         }
                     }
                 }

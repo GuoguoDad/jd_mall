@@ -21,8 +21,6 @@ import java.lang.reflect.Method
 class WaterfallListActivity: BaseActivity(R.layout.layout_waterfall), MavericksView {
     private lateinit var mCheckForGapMethod: Method
     private lateinit var mMarkItemDecorInsetsDirtyMethod: Method
-    private lateinit var refreshLayout: RefreshLayout
-    private lateinit var loadMoreLayout: RefreshLayout
 
     private val adapter: WaterfallListAdapter by lazy {
         WaterfallListAdapter(R.layout.layout_waterfall_item, arrayListOf())
@@ -40,9 +38,8 @@ class WaterfallListActivity: BaseActivity(R.layout.layout_waterfall), MavericksV
         }
 
         //下拉刷新
-        waterfallLayout.setOnRefreshListener { layout ->
+        waterfallLayout.setOnRefreshListener {
             run {
-                refreshLayout = layout
                 viewModel.refresh(true)
             }
         }
@@ -77,9 +74,8 @@ class WaterfallListActivity: BaseActivity(R.layout.layout_waterfall), MavericksV
         waterfall_recycler_view.addItemDecoration(SpacesItemDecoration(space.toInt()))
 
         //上拉加载更多
-        waterfallLayout.setOnLoadMoreListener { layout ->
+        waterfallLayout.setOnLoadMoreListener {
             run {
-                loadMoreLayout = layout
                 viewModel.loadMore()
             }
         }
@@ -105,14 +101,20 @@ class WaterfallListActivity: BaseActivity(R.layout.layout_waterfall), MavericksV
                         }
                         ActionType.REFRESH -> {
                             adapter.setList(it.dataList)
-                            refreshLayout.finishRefresh()
+                            waterfallLayout.run {
+                                finishRefresh()
+                            }
                         }
                         ActionType.LOADMORE -> {
                             adapter.addData(adapter.data.size, it.newList)
                             if (it.currentPage <= it.totalPage)
-                                loadMoreLayout.finishLoadMore()
+                                waterfallLayout.run {
+                                    finishLoadMore()
+                                }
                             else
-                                loadMoreLayout.finishLoadMoreWithNoMoreData()
+                                waterfallLayout.run {
+                                    finishLoadMoreWithNoMoreData()
+                                }
                         }
                     }
                 }
