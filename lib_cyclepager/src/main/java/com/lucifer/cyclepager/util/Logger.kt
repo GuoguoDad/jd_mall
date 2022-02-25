@@ -4,7 +4,7 @@ import android.util.Log
 
 object Logger {
     private const val TAG = "CycleViewPager2"
-    private var isDebug = false
+    private var isDebug = true
     fun setIsDebug(isDebug: Boolean) {
         Logger.isDebug = isDebug
     }

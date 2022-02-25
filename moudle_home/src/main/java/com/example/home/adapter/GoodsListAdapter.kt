@@ -1,4 +1,4 @@
-package com.example.home.ui
+package com.example.home.adapter
 
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
@@ -8,6 +8,7 @@ import coil.load
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.example.home.R
+import com.example.home.ui.GoodsBean
 
 class GoodsListAdapter(layoutResId: Int, data: MutableList<GoodsBean>) : BaseQuickAdapter<GoodsBean, BaseViewHolder>(layoutResId, data) {
     private lateinit var imageLoader: ImageLoader

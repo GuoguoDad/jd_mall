@@ -1,4 +1,4 @@
-package com.example.main.kit.util
+package com.example.common.util
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder

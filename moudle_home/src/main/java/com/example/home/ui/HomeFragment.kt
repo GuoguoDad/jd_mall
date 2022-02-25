@@ -1,27 +1,27 @@
 package com.example.home.ui
 
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.airbnb.mvrx.MavericksView
 import com.airbnb.mvrx.activityViewModel
 import com.airbnb.mvrx.withState
 import com.example.common.base.BaseFragment
+import com.example.common.util.GsonUtil
+import com.example.common.util.HttpUtil
 import com.example.common.util.LoadingDialog
 import com.example.home.R
-import com.scwang.smart.refresh.footer.ClassicsFooter
-import com.scwang.smart.refresh.header.ClassicsHeader
-import com.scwang.smart.refresh.layout.api.RefreshLayout
+import com.lucifer.cyclepager.util.Logger
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
     private val loadingDialog: LoadingDialog by lazy {
         LoadingDialog(this.requireActivity())
     }
 
-    private val viewModel: GoodListViewModel by activityViewModel()
-    private val adapter: GoodsListAdapter by lazy {
-        GoodsListAdapter(R.layout.fragment_home_recyclerview_item, arrayListOf())
-    }
+    private val viewModel: HomeViewModel by activityViewModel()
+    private val adapter: HomeAdapter by lazy { HomeAdapter() }
 
     override fun onDestroyView() {
         super.onDestroyView()
@@ -37,20 +37,16 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
         }
         //设置recyclerView的layoutManager和adapter
         fragmentHomeRecycleView.layoutManager = LinearLayoutManager(this.context)
-        adapter.addChildClickViewIds(R.id.home_recycle_list_item)
-        adapter.setOnItemClickListener{ _, view, position ->
-            if (view.id == R.id.home_recycle_list_item) {
-                Toast.makeText(this.context, adapter.data[position].name, Toast.LENGTH_SHORT).show()
-            }
-        }
         fragmentHomeRecycleView.adapter = adapter
-        //上拉加载更多
-        fragmentHome.setOnLoadMoreListener {
-            run {
-                viewModel.loadMore()
-            }
-        }
-        fragmentHome.setEnableAutoLoadMore(true)
+
+        fragmentHome.setEnableLoadMore(false)
+//        //上拉加载更多
+//        fragmentHome.setOnLoadMoreListener {
+//            run {
+//                viewModel.loadMore()
+//            }
+//        }
+//        fragmentHome.setEnableAutoLoadMore(true)
     }
 
     override fun initData() {
@@ -66,24 +62,24 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
 
                     when (it.fetchType) {
                         ActionType.INIT -> {
-                            adapter.setList(it.dataList)
+                            adapter.setData(it.dataList)
                         }
                         ActionType.REFRESH -> {
-                            adapter.setList(it.dataList)
+                            adapter.setData(it.dataList)
                             fragmentHome.run {
                                 finishRefresh()
                             }
                         }
                         ActionType.LOADMORE -> {
-                            adapter.addData(adapter.data.size, it.newList)
-                            if (it.currentPage <= it.totalPage)
-                                fragmentHome.run {
-                                    finishLoadMore()
-                                }
-                            else
-                                fragmentHome.run {
-                                    finishLoadMoreWithNoMoreData()
-                                }
+//                            adapter.addData(adapter.data., it.newList)
+//                            if (it.currentPage <= it.totalPage)
+//                                fragmentHome.run {
+//                                    finishLoadMore()
+//                                }
+//                            else
+//                                fragmentHome.run {
+//                                    finishLoadMoreWithNoMoreData()
+//                                }
                         }
                     }
                 }

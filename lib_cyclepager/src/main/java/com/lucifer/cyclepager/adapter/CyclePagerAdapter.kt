@@ -5,8 +5,7 @@ import androidx.recyclerview.widget.RecyclerView.NO_ID
 
 import com.lucifer.cyclepager.util.CyclePositionUtil
 
-abstract class CyclePagerAdapter<VH : RecyclerView.ViewHolder?> :
-    RecyclerView.Adapter<VH>() {
+abstract class CyclePagerAdapter<VH : RecyclerView.ViewHolder?> : RecyclerView.Adapter<VH>() {
     override fun getItemCount(): Int {
         return if (realItemCount > 1) realItemCount + 2 else realItemCount
     }

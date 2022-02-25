@@ -5,11 +5,11 @@ import com.airbnb.mvrx.MavericksState
 import com.airbnb.mvrx.Uninitialized
 import com.example.common.base.BaseResponse
 
-data class GoodListState(
+data class HomeState(
     val fetchType: ActionType = ActionType.REFRESH,
-    val dataList: List<GoodsBean> = emptyList(),
-    val newList: List<GoodsBean> = emptyList(),
-    val pageResponse: Async<BaseResponse<GoodsListRes>> = Uninitialized,
+    val dataList: List<HomeItem<HomeItemBean>> = emptyList(),
+    val newList: List<HomeItem<HomeItemBean>> = emptyList(),
+    val pageResponse: Async<BaseResponse<HomeResponse>> = Uninitialized,
     val isLoading: Boolean = false,
     val currentPage: Int = 1,
     val pageSize: Int = 10,

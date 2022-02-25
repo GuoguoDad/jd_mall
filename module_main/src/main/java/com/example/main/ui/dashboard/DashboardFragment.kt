@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.launcher.ARouter
 import com.example.common.constants.RouterPaths
 import com.example.main.R
-import com.example.main.kit.util.GsonUtil
+import com.example.common.util.GsonUtil
 import com.example.main.databinding.FragmentDashboardBinding
 import com.example.main.ui.dashboard.adapter.ModuleSelectionAdapter
 import com.example.main.ui.dashboard.bean.ModuleBean

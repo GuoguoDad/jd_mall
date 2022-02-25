@@ -59,8 +59,14 @@
         <entry key="module_main/src/main/res/layout/layout_waterfall_fragment.xml" value="0.2164855072463768" />
         <entry key="module_main/src/main/res/layout/layout_waterfall_item.xml" value="0.2296195652173913" />
         <entry key="module_main/src/main/res/menu/bottom_nav_menu.xml" value="0.3770833333333333" />
+        <entry key="moudle_home/src/main/res/layout/fragment_banner.xml" value="0.23278985507246377" />
         <entry key="moudle_home/src/main/res/layout/fragment_home.xml" value="0.18264379414732593" />
+        <entry key="moudle_home/src/main/res/layout/fragment_home_goods_item.xml" value="0.23278985507246377" />
         <entry key="moudle_home/src/main/res/layout/fragment_home_recyclerview_item.xml" value="0.24909420289855072" />
+        <entry key="moudle_home/src/main/res/layout/fragment_list.xml" value="0.23278985507246377" />
+        <entry key="moudle_home/src/main/res/layout/fragment_list_item.xml" value="0.23278985507246377" />
+        <entry key="moudle_home/src/main/res/layout/fragment_pager.xml" value="0.23278985507246377" />
+        <entry key="moudle_home/src/main/res/layout/view_special_square.xml" value="0.23278985507246377" />
       </map>
     </option>
   </component>

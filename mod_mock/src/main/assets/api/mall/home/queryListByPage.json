@@ -1,0 +1,90 @@
+{
+  "code": "0",
+  "msg": "",
+  "data": {
+    "dataList" : [
+      {
+        "type" : "1",
+        "data" :{
+          "bannerList": [
+              {
+                "imgUrl": "https://oss.suning.com/sffe/sffe/waterfall01.jpeg",
+                "name": "佟丽娅"
+              },
+              {
+                "imgUrl": "https://oss.suning.com/sffe/sffe/waterfall03.jpeg",
+                "name": "明星"
+              },
+              {
+                "imgUrl": "https://oss.suning.com/sffe/sffe/waterfall06.jpeg",
+                "name": "明星"
+              },
+              {
+                "imgUrl": "https://oss.suning.com/sffe/sffe/waterfall18.jpeg",
+                "name": "唐嫣"
+              }
+            ]
+        }
+      },
+      {
+        "type" : "2",
+        "data" : {
+          "goodsList": [
+            {
+              "url": "https://oss.suning.com/sffe/sffe/default_goods.png",
+              "name": "苹果（Apple）iPhone 13 Pro max1",
+              "price": 8999
+            },
+            {
+              "url": "https://oss.suning.com/sffe/sffe/default_goods.png",
+              "name": "苹果（Apple）iPhone 13 Pro max2",
+              "price": 8999
+            },
+            {
+              "url": "https://oss.suning.com/sffe/sffe/default_goods.png",
+              "name": "苹果（Apple）iPhone 13 Pro max3",
+              "price": 8999
+            },
+            {
+              "url": "https://oss.suning.com/sffe/sffe/default_goods.png",
+              "name": "苹果（Apple）iPhone 13 Pro max4",
+              "price": 8999
+            },
+            {
+              "url": "https://oss.suning.com/sffe/sffe/default_goods.png",
+              "name": "苹果（Apple）iPhone 13 Pro max5",
+              "price": 8999
+            },
+            {
+              "url": "https://oss.suning.com/sffe/sffe/default_goods.png",
+              "name": "苹果（Apple）iPhone 13 Pro max6",
+              "price": 8999
+            },
+            {
+              "url": "https://oss.suning.com/sffe/sffe/default_goods.png",
+              "name": "苹果（Apple）iPhone 13 Pro max7",
+              "price": 8999
+            },
+            {
+              "url": "https://oss.suning.com/sffe/sffe/default_goods.png",
+              "name": "苹果（Apple）iPhone 13 Pro max8",
+              "price": 8999
+            },
+            {
+              "url": "https://oss.suning.com/sffe/sffe/default_goods.png",
+              "name": "苹果（Apple）iPhone 13 Pro max9",
+              "price": 8999
+            },
+            {
+              "url": "https://oss.suning.com/sffe/sffe/default_goods.png",
+              "name": "苹果（Apple）iPhone 13 Pro max10",
+              "price": 8999
+            }
+          ]
+        }
+      }
+    ],
+    "totalCount": 20,
+    "totalPageCount": 2
+  }
+}
