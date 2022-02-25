@@ -32,7 +32,6 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
 
     override fun initView() {
         //下拉刷新
-        fragmentHome.setRefreshHeader(ClassicsHeader(this.context))
         fragmentHome.setOnRefreshListener { layout ->
             run {
                 refreshLayout = layout
@@ -49,7 +48,6 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
         }
         fragmentHomeRecycleView.adapter = adapter
         //上拉加载更多
-        fragmentHome.setRefreshFooter(ClassicsFooter(this.context))
         fragmentHome.setOnLoadMoreListener { layout ->
             run {
                 loadMoreLayout = layout

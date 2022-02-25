@@ -40,7 +40,6 @@ class WaterfallListActivity: BaseActivity(R.layout.layout_waterfall), MavericksV
         }
 
         //下拉刷新
-        waterfallLayout.setRefreshHeader(ClassicsHeader(this))
         waterfallLayout.setOnRefreshListener { layout ->
             run {
                 refreshLayout = layout
@@ -78,7 +77,6 @@ class WaterfallListActivity: BaseActivity(R.layout.layout_waterfall), MavericksV
         waterfall_recycler_view.addItemDecoration(SpacesItemDecoration(space.toInt()))
 
         //上拉加载更多
-        waterfallLayout.setRefreshFooter(ClassicsFooter(this))
         waterfallLayout.setOnLoadMoreListener { layout ->
             run {
                 loadMoreLayout = layout
