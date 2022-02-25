@@ -18,6 +18,7 @@ import com.example.home.ui.BannerBean
 import com.lucifer.cyclepager.CycleViewPager2Helper
 import com.lucifer.cyclepager.adapter.CyclePagerAdapter
 import com.lucifer.cyclepager.indicator.DotsIndicator
+import com.lucifer.cyclepager.transformer.DepthPageTransformer
 import kotlinx.android.synthetic.main.fragment_banner.view.*
 
 class BannerView: FrameLayout {
@@ -57,7 +58,7 @@ class BannerView: FrameLayout {
                 )
                 .setDotsIndicator(
                     dotsRadius,
-                    Color.RED,
+                    Color.GRAY,
                     Color.WHITE,
                     dotsPadding,
                     0,
@@ -65,10 +66,10 @@ class BannerView: FrameLayout {
                     0,
                     DotsIndicator.Direction.CENTER
                  )
-                .setAutoTurning(12000L)
+                .setAutoTurning(8000L)
                 .build()
         }
-//        homeFragmentBanner.setPageTransformer(ZoomOutPageTransformer())
+        homeFragmentBanner.setPageTransformer(DepthPageTransformer())
     }
 
     fun setData(data: List<BannerBean>) {

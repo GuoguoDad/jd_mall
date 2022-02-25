@@ -3,9 +3,7 @@ package com.example.home.ui
 import com.airbnb.mvrx.Loading
 import com.airbnb.mvrx.MavericksViewModel
 import com.airbnb.mvrx.Success
-import com.example.common.util.GsonUtil
 import com.example.common.util.HttpUtil
-import com.lucifer.cyclepager.util.Logger
 import kotlinx.coroutines.Dispatchers
 
 class HomeViewModel(initialState: HomeState): MavericksViewModel<HomeState>(initialState) {
@@ -43,7 +41,7 @@ class HomeViewModel(initialState: HomeState): MavericksViewModel<HomeState>(init
                     pageResponse = state,
                     isLoading = state !is Success,
                     fetchType = ActionType.LOADMORE,
-//                    dataList = dataList + (state()?.data?.dataList ?: arrayListOf()),
+                    dataList = dataList + (state()?.data?.dataList ?: arrayListOf()),
                     newList = (state()?.data?.dataList ?: arrayListOf()),
                     currentPage = if (state is Success) currentPage.plus(1) else currentPage,
                     totalPage = (state()?.data?.totalPageCount ?: 0)

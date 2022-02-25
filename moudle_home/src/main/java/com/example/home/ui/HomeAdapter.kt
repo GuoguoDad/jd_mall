@@ -20,34 +20,30 @@ class HomeAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         notifyDataSetChanged()
     }
 
+    fun addData(list: List<HomeItem<HomeItemBean>>) {
+        datas.addAll(list)
+        notifyDataSetChanged()
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
-            ITEM_TYPE_GOODS -> {
-                ItemHolder(GoodsListView(parent.context))
-            }
-            else -> {
-                ItemHolder(BannerView(parent.context))
-            }
+            ITEM_TYPE_BANNER -> ItemHolder(BannerView(parent.context))
+            else -> ItemHolder(GoodsListView(parent.context))
         }
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val itemData = datas[position].data
         when (getItemViewType(position)) {
-            ITEM_TYPE_BANNER -> {
-                (holder.itemView as BannerView).setData(itemData.bannerList!!)
-            }
-            ITEM_TYPE_GOODS -> {
-                (holder.itemView as GoodsListView).setData(itemData.goodsList!!)
-            }
+            ITEM_TYPE_BANNER -> (holder.itemView as BannerView).setData(itemData.bannerList!!)
+            ITEM_TYPE_GOODS -> (holder.itemView as GoodsListView).setData(itemData.goodsList!!)
         }
     }
 
     override fun getItemViewType(position: Int): Int {
         return when (datas[position].type) {
             "1" -> ITEM_TYPE_BANNER
-            "2" -> ITEM_TYPE_GOODS
-            else -> 0
+            else -> ITEM_TYPE_GOODS
         }
     }
 

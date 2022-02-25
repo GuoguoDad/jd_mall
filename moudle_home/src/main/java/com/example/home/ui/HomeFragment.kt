@@ -5,15 +5,9 @@ import com.airbnb.mvrx.MavericksView
 import com.airbnb.mvrx.activityViewModel
 import com.airbnb.mvrx.withState
 import com.example.common.base.BaseFragment
-import com.example.common.util.GsonUtil
-import com.example.common.util.HttpUtil
 import com.example.common.util.LoadingDialog
 import com.example.home.R
-import com.lucifer.cyclepager.util.Logger
 import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
     private val loadingDialog: LoadingDialog by lazy {
@@ -39,14 +33,13 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
         fragmentHomeRecycleView.layoutManager = LinearLayoutManager(this.context)
         fragmentHomeRecycleView.adapter = adapter
 
-        fragmentHome.setEnableLoadMore(false)
-//        //上拉加载更多
-//        fragmentHome.setOnLoadMoreListener {
-//            run {
-//                viewModel.loadMore()
-//            }
-//        }
-//        fragmentHome.setEnableAutoLoadMore(true)
+        //上拉加载更多
+        fragmentHome.setOnLoadMoreListener {
+            run {
+                viewModel.loadMore()
+            }
+        }
+        fragmentHome.setEnableAutoLoadMore(true)
     }
 
     override fun initData() {
@@ -71,15 +64,16 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
                             }
                         }
                         ActionType.LOADMORE -> {
-//                            adapter.addData(adapter.data., it.newList)
-//                            if (it.currentPage <= it.totalPage)
-//                                fragmentHome.run {
-//                                    finishLoadMore()
-//                                }
-//                            else
-//                                fragmentHome.run {
-//                                    finishLoadMoreWithNoMoreData()
-//                                }
+                            var list = it.newList.filter { item -> !item.type.equals("1") }
+                            adapter.addData(list)
+                            if (it.currentPage <= it.totalPage)
+                                fragmentHome.run {
+                                    finishLoadMore()
+                                }
+                            else
+                                fragmentHome.run {
+                                    finishLoadMoreWithNoMoreData()
+                                }
                         }
                     }
                 }
