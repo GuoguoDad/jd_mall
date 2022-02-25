@@ -72,11 +72,11 @@ class BannerView: FrameLayout {
     }
 
     fun setData(data: List<BannerBean>) {
-        bannerList.clear()
-        bannerList.addAll(data)
-        bannerAdapter.notifyDataSetChanged()
+        if (bannerList.size === 0) {
+            bannerList.addAll(data)
+            bannerAdapter.notifyDataSetChanged()
+        }
     }
-
 
     private inner class BannerAdapter: CyclePagerAdapter<ItemHolder>() {
         override val realItemCount: Int
