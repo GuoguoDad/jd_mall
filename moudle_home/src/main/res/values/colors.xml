@@ -13,6 +13,8 @@
     <color name="loading">#BFBFBF</color>
     <color name="white">#FFFFFFFF</color>
 
+    <color name="indicator_selected_color">#5AB55A</color>
+
     <color name="colorPrimary">#ffffff</color>
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#549cf8</color>

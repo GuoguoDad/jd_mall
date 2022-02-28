@@ -29,6 +29,5 @@ class CommonApplication: BaseApplication() {
         SmartRefreshLayout.setDefaultRefreshFooterCreator { context, _ ->
             ClassicsFooter(context)
         }
-
     }
 }

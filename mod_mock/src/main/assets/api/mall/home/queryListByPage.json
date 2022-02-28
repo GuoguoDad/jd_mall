@@ -8,20 +8,20 @@
         "data" :{
           "bannerList": [
               {
-                "imgUrl": "https://oss.suning.com/sffe/sffe/waterfall01.jpeg",
-                "name": "佟丽娅"
-              },
-              {
-                "imgUrl": "https://oss.suning.com/sffe/sffe/waterfall03.jpeg",
+                "imgUrl": "https://oss.suning.com/srcfews/lsypc/imgs/20220228111153284.jpg",
                 "name": "明星"
               },
               {
-                "imgUrl": "https://oss.suning.com/sffe/sffe/waterfall06.jpeg",
+                "imgUrl": "https://oss.suning.com/srcfews/lsypc/imgs/20220228111215703.jpg",
                 "name": "明星"
               },
               {
-                "imgUrl": "https://oss.suning.com/sffe/sffe/waterfall18.jpeg",
-                "name": "唐嫣"
+                "imgUrl": "http://oss.suning.com/srcfews/lsypc/imgs/20220228111221231.jpg",
+                "name": "明星"
+              },
+              {
+                "imgUrl": "http://oss.suning.com/srcfews/lsypc/imgs/20220228111226214.jpg",
+                "name": "明星"
               }
             ]
         }

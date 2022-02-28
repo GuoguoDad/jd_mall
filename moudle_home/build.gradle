@@ -45,7 +45,6 @@ android {
 dependencies {
     api project(path: ':mod_mock')
     api project(path: ':mod_common')
-    api project(path: ':lib_cyclepager')
 
     kapt 'com.alibaba:arouter-compiler:1.5.2'
 }
