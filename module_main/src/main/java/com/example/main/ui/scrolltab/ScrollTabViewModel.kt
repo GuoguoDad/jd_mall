@@ -10,8 +10,7 @@ import kotlinx.coroutines.Dispatchers
 class ScrollTabViewModel(initialState: ScrollTabState): MavericksViewModel<ScrollTabState>(initialState) {
     private var apiService: ApiService = HttpUtil.instance.service(ApiService::class.java)
 
-    fun queryBanner(isRefresh: Boolean) {
-        setState { copy(actionType = "") }
+    fun queryBanner() {
         withState {
             if (it.bannerResponse is Loading) return@withState
 
@@ -19,7 +18,6 @@ class ScrollTabViewModel(initialState: ScrollTabState): MavericksViewModel<Scrol
                 apiService.queryBannerList()
             }.execute(Dispatchers.IO) { state ->
                 copy(
-                    actionType = if (state is Success && isRefresh) "refresh" else "init",
                     bannerResponse = state,
                     bannerList = state()?.data ?: emptyList()
                 )
@@ -28,7 +26,6 @@ class ScrollTabViewModel(initialState: ScrollTabState): MavericksViewModel<Scrol
     }
 
     fun queryScrollTab() {
-        setState { copy(actionType = "") }
         withState {
             if (it.tabsResponse is Loading) return@withState
 
@@ -37,8 +34,7 @@ class ScrollTabViewModel(initialState: ScrollTabState): MavericksViewModel<Scrol
             }.execute(Dispatchers.IO) { state ->
                 copy(
                     tabsResponse = state,
-                    actionType = if (state is Success) "scrollTab" else "",
-                    tabs = state()?.data ?: emptyList()
+                    tabs = state()?.data ?: it.tabs
                 )
             }
         }

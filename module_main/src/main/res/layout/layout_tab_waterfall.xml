@@ -1,57 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.scwang.smart.refresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/tabWaterfall"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:srlEnablePreviewInEditMode="true"
-    app:srlEnableLoadMoreWhenContentNotFull="false"
-    tools:ignore="MissingDefaultResource">
+    android:layout_height="match_parent">
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
-        <com.google.android.material.appbar.AppBarLayout
+        <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:titleEnabled="false"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-            <com.google.android.material.appbar.CollapsingToolbarLayout
+            <com.youth.banner.Banner
+                android:id="@+id/tabWaterfallBanner"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:titleEnabled="false"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+                android:layout_height="220dp"
+                app:layout_collapseMode="pin">
+            </com.youth.banner.Banner>
 
-                <com.youth.banner.Banner
-                    android:id="@+id/tabWaterfallBanner"
-                    android:layout_width="match_parent"
-                    android:layout_height="220dp"
-                    app:layout_collapseMode="pin">
-                </com.youth.banner.Banner>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
-            </com.google.android.material.appbar.CollapsingToolbarLayout>
-        </com.google.android.material.appbar.AppBarLayout>
+    <androidx.appcompat.widget.LinearLayoutCompat
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <androidx.appcompat.widget.LinearLayoutCompat
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            app:tabMode="scrollable"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"/>
 
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tabLayout"
-                app:tabMode="scrollable"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/tabWaterfallViewPager"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
-
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
-</com.scwang.smart.refresh.layout.SmartRefreshLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

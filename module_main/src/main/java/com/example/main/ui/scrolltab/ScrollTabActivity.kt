@@ -20,17 +20,11 @@ class ScrollTabActivity: BaseActivity(R.layout.layout_tab_waterfall), MavericksV
     private val viewModel: ScrollTabViewModel by viewModel()
 
     override fun initView() {
-        tabWaterfall.setOnRefreshListener {
-            viewModel.queryBanner(true)
-            viewModel.queryScrollTab()
-        }
-        tabWaterfall.setEnableLoadMore(false)
-
         addStateChangeListener()
     }
 
     override fun initData() {
-        viewModel.queryBanner(false)
+        viewModel.queryBanner()
         viewModel.queryScrollTab()
     }
 
@@ -38,30 +32,18 @@ class ScrollTabActivity: BaseActivity(R.layout.layout_tab_waterfall), MavericksV
 
     private fun addStateChangeListener() {
         viewModel.onEach(
-            ScrollTabState::actionType,
             ScrollTabState::bannerList,
             ScrollTabState::tabs
-        ) { actionType, bannerList, tabs ->
+        ) { bannerList, tabs ->
             run {
-                when (actionType) {
-                    "init" -> {
-                        if (bannerList.isNotEmpty()) {
-                            showBannerView(bannerList)
-                        }
-                    }
-                    "refresh" -> {
-                        if (bannerList.isNotEmpty()) {
-                            showBannerView(bannerList)
-                            tabWaterfall.run {
-                                finishRefresh()
-                            }
-                        }
-                    }
-                    "scrollTab" -> {
-                        if (tabs.isNotEmpty()) {
-                            showTabLayout(tabs)
-                        }
-                    }
+                if (bannerList.isNotEmpty()) {
+                    showBannerView(bannerList)
+                }
+                if (bannerList.isNotEmpty()) {
+                    showBannerView(bannerList)
+                }
+                if (tabs.isNotEmpty()) {
+                    showTabLayout(tabs)
                 }
             }
         }
@@ -80,13 +62,14 @@ class ScrollTabActivity: BaseActivity(R.layout.layout_tab_waterfall), MavericksV
     }
 
     private fun showTabLayout(list: List<String>) {
-        tabWaterfallViewPager.adapter = object : FragmentStateAdapter(this){
+        viewPager.adapter = object : FragmentStateAdapter(this){
             override fun getItemCount(): Int = list.size
             override fun createFragment(position: Int): Fragment {
                 return WaterfallFragment()
             }
         }
-        TabLayoutMediator(tabLayout, tabWaterfallViewPager) {
+        viewPager.offscreenPageLimit = list.size
+        TabLayoutMediator(tabLayout, viewPager) {
             tab, position -> tab.text = list[position]
         }.attach()
     }
