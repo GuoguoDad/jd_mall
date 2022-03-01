@@ -62,6 +62,9 @@ class DashboardFragment : Fragment() {
                             "001" -> {
                                 ARouter.getInstance().build(RouterPaths.WATERFALL_ACTIVITY).navigation()
                             }
+                            "002" -> {
+                                ARouter.getInstance().build(RouterPaths.TAB_WATERFALL_ACTIVITY).navigation()
+                            }
                             else -> {
                                 Toast.makeText(localThis.context ,bean?.name, Toast.LENGTH_SHORT).show()
                             }

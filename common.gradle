@@ -1,9 +1,9 @@
 ext {
-    compileSdk = 30
+    compileSdk = 31
 
     defalutConfigApplicationId = "com.example.news"
     defaultConfigMinSdk = 21
-    defaultConfigTargetSdk = 30
+    defaultConfigTargetSdk = 31
     defaultConfigVersionCode = 1
     defaultConfigVersionName = "1.0"
 

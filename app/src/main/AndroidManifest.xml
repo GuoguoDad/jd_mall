@@ -17,7 +17,8 @@
 
         <activity
             android:name="com.example.main.ui.splash.StartPageActivity"
-            android:theme="@style/SplashActivityTheme">
+            android:theme="@style/SplashActivityTheme"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
