@@ -1,7 +1,7 @@
 package com.example.common.util
 
 import android.content.Context
-import com.example.common.abs.BaseApplication
+import com.example.common.BaseApplication
 
 class DisplayUtil {
 

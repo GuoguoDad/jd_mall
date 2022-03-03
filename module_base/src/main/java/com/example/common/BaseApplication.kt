@@ -1,4 +1,4 @@
-package com.example.common.abs
+package com.example.common
 
 import android.content.Context
 import androidx.multidex.MultiDexApplication
