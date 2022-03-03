@@ -1,4 +1,4 @@
-package com.example.main.ui.scrolltab
+package com.example.main.ui.coordinator
 
 import com.airbnb.mvrx.Loading
 import com.airbnb.mvrx.MavericksViewModel

@@ -1,10 +1,11 @@
-package com.example.main.ui.scrolltab
+package com.example.main.ui.coordinator
 
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import coil.Coil
 import coil.ImageLoader
 import coil.load
+import com.example.main.R
 import com.youth.banner.adapter.BannerImageAdapter
 import com.youth.banner.holder.BannerImageHolder
 
@@ -25,8 +26,7 @@ class BannerAdapter(var data: List<BannerBean>): BannerImageAdapter<BannerBean>(
         holder?.imageView?.scaleType = ImageView.ScaleType.FIT_XY
         holder?.imageView?.load(data?.imgUrl, imageLoader) {
             crossfade(true)
-            placeholder(com.example.home.R.drawable.banner01)
-            error(com.example.home.R.drawable.banner01)
+            placeholder(R.drawable.default_img)
         }
     }
 }

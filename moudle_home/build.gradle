@@ -43,8 +43,8 @@ android {
 }
 
 dependencies {
-    api project(path: ':mod_mock')
-    api project(path: ':mod_common')
+    api project(path: ':lib_mock')
+    api project(path: ':module_base')
 
     kapt 'com.alibaba:arouter-compiler:1.5.2'
 }

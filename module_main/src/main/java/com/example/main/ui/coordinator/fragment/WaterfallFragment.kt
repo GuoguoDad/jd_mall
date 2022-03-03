@@ -1,12 +1,13 @@
-package com.example.main.ui.scrolltab.fragment
+package com.example.main.ui.coordinator.fragment
 
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.airbnb.mvrx.MavericksView
 import com.airbnb.mvrx.activityViewModel
 import com.airbnb.mvrx.withState
 import com.example.common.base.BaseFragment
+import com.example.common.dialog.PreviewPicture
 import com.example.main.R
-import com.example.main.ui.scrolltab.ScrollTabViewModel
+import com.example.main.ui.coordinator.ScrollTabViewModel
 import com.example.main.ui.waterfall.SpacesItemDecoration
 import com.example.main.ui.waterfall.WaterfallListAdapter
 import kotlinx.android.synthetic.main.view_list.*
@@ -18,6 +19,7 @@ class WaterfallFragment: BaseFragment(R.layout.view_list), MavericksView {
     private val staggeredGridLayoutManager: StaggeredGridLayoutManager by lazy {
         StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
     }
+    private val previewPicture: PreviewPicture by lazy { PreviewPicture(this.requireActivity()) }
 
     private val viewModel: ScrollTabViewModel by activityViewModel()
 
@@ -31,6 +33,12 @@ class WaterfallFragment: BaseFragment(R.layout.view_list), MavericksView {
         recyclerView.layoutManager = staggeredGridLayoutManager
 
         recyclerView.adapter = adapter
+        adapter.setOnItemClickListener{_, view, position ->
+            if (view.id == R.id.waterfallItemLayout) {
+                val imgUrls = adapter.data.map { v-> v.thumb }
+                previewPicture.show(imgUrls, position)
+            }
+        }
         val space = resources.getDimension(R.dimen.waterfall_space)
         recyclerView.addItemDecoration(SpacesItemDecoration(space.toInt()))
     }

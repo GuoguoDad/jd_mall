@@ -1,4 +1,4 @@
-package com.example.main.ui.scrolltab
+package com.example.main.ui.coordinator
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -9,7 +9,7 @@ import com.example.common.base.BaseActivity
 import com.example.common.constants.RouterPaths
 import com.example.common.util.DisplayUtil
 import com.example.main.R
-import com.example.main.ui.scrolltab.fragment.WaterfallFragment
+import com.example.main.ui.coordinator.fragment.WaterfallFragment
 import com.google.android.material.tabs.TabLayoutMediator
 import com.youth.banner.indicator.CircleIndicator
 import com.youth.banner.transformer.AlphaPageTransformer

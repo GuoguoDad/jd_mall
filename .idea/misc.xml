@@ -51,6 +51,8 @@
         <entry key="main/src/main/res/layout/fragment_setting.xml" value="0.22780797101449277" />
         <entry key="main/src/main/res/layout/layout_waterfall.xml" value="0.22780797101449277" />
         <entry key="main/src/main/res/menu/bottom_nav_menu.xml" value="0.3625" />
+        <entry key="mod_common/src/main/res/layout/loading_dialog.xml" value="0.2368659420289855" />
+        <entry key="mod_common/src/main/res/layout/preview_picture.xml" value="0.2368659420289855" />
         <entry key="module_main/src/main/res/layout/fragment_category.xml" value="0.2368659420289855" />
         <entry key="module_main/src/main/res/layout/fragment_dashboard.xml" value="0.2164855072463768" />
         <entry key="module_main/src/main/res/layout/layout_header.xml" value="0.26358695652173914" />

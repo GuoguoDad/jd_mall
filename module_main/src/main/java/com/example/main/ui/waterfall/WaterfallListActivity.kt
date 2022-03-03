@@ -1,6 +1,5 @@
 package com.example.main.ui.waterfall
 
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.airbnb.mvrx.MavericksView
@@ -9,10 +8,8 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.example.common.constants.RouterPaths
 import com.example.common.base.BaseActivity
 import com.example.main.R
-import com.example.common.util.LoadingDialog
-import com.scwang.smart.refresh.footer.ClassicsFooter
-import com.scwang.smart.refresh.header.ClassicsHeader
-import com.scwang.smart.refresh.layout.api.RefreshLayout
+import com.example.common.dialog.LoadingDialog
+import com.example.common.dialog.PreviewPicture
 import kotlinx.android.synthetic.main.layout_header.*
 import kotlinx.android.synthetic.main.layout_waterfall.*
 import java.lang.reflect.Method
@@ -29,6 +26,8 @@ class WaterfallListActivity: BaseActivity(R.layout.layout_waterfall), MavericksV
         StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
     }
     private val loadingDialog: LoadingDialog by lazy { LoadingDialog(this) }
+    private val previewPicture: PreviewPicture by lazy { PreviewPicture(this) }
+
     private val viewModel: WaterfallViewModel by viewModel()
 
     override fun initView() {
@@ -66,7 +65,8 @@ class WaterfallListActivity: BaseActivity(R.layout.layout_waterfall), MavericksV
         })
         adapter.setOnItemClickListener{_, view, position ->
             if (view.id == R.id.waterfallItemLayout) {
-                Toast.makeText(this, adapter.data[position].name, Toast.LENGTH_SHORT).show()
+                val imgUrls = adapter.data.map { v-> v.thumb }
+                previewPicture.show(imgUrls, position)
             }
         }
         waterfall_recycler_view.adapter = adapter

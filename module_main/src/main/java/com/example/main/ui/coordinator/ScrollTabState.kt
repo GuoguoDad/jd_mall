@@ -1,4 +1,4 @@
-package com.example.main.ui.scrolltab
+package com.example.main.ui.coordinator
 
 import com.airbnb.mvrx.Async
 import com.airbnb.mvrx.MavericksState

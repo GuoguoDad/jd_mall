@@ -5,21 +5,25 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
 import android.widget.ImageView
+import android.widget.LinearLayout
 import coil.Coil
 import coil.ImageLoader
 import coil.load
 import com.example.common.util.DisplayUtil
+import com.example.common.dialog.PreviewPicture
 import com.example.home.R
 import com.example.home.ui.BannerBean
 import com.youth.banner.adapter.BannerImageAdapter
 import com.youth.banner.holder.BannerImageHolder
 import com.youth.banner.indicator.CircleIndicator
 import com.youth.banner.transformer.AlphaPageTransformer
-import com.youth.banner.transformer.RotateYTransformer
 import kotlinx.android.synthetic.main.view_scroll_card.view.*
+import kotlin.properties.Delegates
 
 class BannerView: FrameLayout {
     private lateinit var imageLoader: ImageLoader
+    private lateinit var previewPicture: PreviewPicture
+    private var imageWidth by Delegates.notNull<Int>()
 
     constructor(context: Context) : this(context, null)
 
@@ -34,7 +38,9 @@ class BannerView: FrameLayout {
     }
 
     private fun init(context: Context) {
+        imageWidth = DisplayUtil.getScreenWidth(context)
         imageLoader = Coil.imageLoader(context)
+        previewPicture = PreviewPicture(context)
         LayoutInflater.from(context).inflate(R.layout.view_scroll_card, this, true)
     }
 
@@ -50,9 +56,14 @@ class BannerView: FrameLayout {
                     holder?.imageView?.scaleType = ImageView.ScaleType.FIT_XY
                     holder?.imageView?.load(data?.imgUrl, imageLoader ) {
                         crossfade(true)
-                        placeholder(R.drawable.banner01)
-                        error(R.drawable.banner01)
+                        placeholder(R.drawable.default_img)
                     }
+                }
+            }
+            setOnBannerListener { _, position ->
+                run {
+                    var imgUrls = data.map { item -> item.imgUrl }
+                    previewPicture.show(imgUrls, position)
                 }
             }
             setBannerRound(DisplayUtil.dip2px(3f).toFloat())

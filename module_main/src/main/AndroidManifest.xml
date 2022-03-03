@@ -6,6 +6,6 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".ui.adv.AdvertiseActivity" />
         <activity android:name=".ui.waterfall.WaterfallListActivity" />
-        <activity android:name=".ui.scrolltab.ScrollTabActivity"/>
+        <activity android:name=".ui.coordinator.ScrollTabActivity"/>
     </application>
 </manifest>

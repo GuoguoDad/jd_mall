@@ -1,4 +1,4 @@
-package com.example.main.ui.scrolltab
+package com.example.main.ui.coordinator
 
 import com.example.common.base.BaseResponse
 import com.example.main.ui.waterfall.ProductListRes
