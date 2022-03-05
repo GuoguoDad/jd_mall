@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="f2">#F2F2F2</color>
+    <color name="scrollBar">#9D9D9E</color>
+    <color name="category_name_select_color">#000100</color>
+    <color name="category_name_color">#656665</color>
+</resources>
