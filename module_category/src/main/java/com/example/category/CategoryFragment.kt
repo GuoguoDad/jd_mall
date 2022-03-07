@@ -9,9 +9,11 @@ import com.example.common.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_main.*
 
 class CategoryFragment : BaseFragment(R.layout.fragment_main), MavericksView {
-    private val viewModel: CategoryViewModel by activityViewModel()
+    private val leftViewModel: LeftCategoryViewModel by activityViewModel()
+    private val rightViewModel: RightCategoryViewModel by activityViewModel()
+
     private val categoryListAdapter by lazy { CategoryListAdapter(R.layout.main_left_item, arrayListOf())  }
-    private val categoryLayoutManager: LinearLayoutManager by lazy { LinearLayoutManager(this.context) }
+    private val categoryLayoutManager: LinearLayoutManager by lazy { LinearLayoutManager(this.activity) }
 
     override fun initView() {
         categoryList.run {
@@ -20,6 +22,7 @@ class CategoryFragment : BaseFragment(R.layout.fragment_main), MavericksView {
             categoryListAdapter.setOnItemClickListener{ _, _, position ->
                 setSelectCategory(position)
                 scrollToMiddle(position)
+                rightViewModel.queryContentByCate(categoryListAdapter.data[position].code)
             }
         }
         rightContainer.run {
@@ -28,18 +31,30 @@ class CategoryFragment : BaseFragment(R.layout.fragment_main), MavericksView {
         }
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        rightContainer.removeAllViews()
+    }
+
     override fun initData() {
-        viewModel.initBrandList()
-        viewModel.queryContentByCate()
+        leftViewModel.initBrandList()
+        leftViewModel.onEach(LeftCategoryState::brandList) {
+                brandList -> run {
+                if (brandList.isNotEmpty()) {
+                    rightViewModel.queryContentByCate(brandList[0].code)
+                }
+            }
+        }
     }
 
     override fun invalidate() {
-        withState(viewModel) {
-            if (it.brandList.isNotEmpty()) {
-                categoryListAdapter.setList(it.brandList)
+        withState(leftViewModel, rightViewModel) {
+            left, right ->
+            if (left.brandList.isNotEmpty()) {
+                categoryListAdapter.setList(left.brandList)
             }
-            if (it.content.cateList.isNotEmpty()) {
-                categoryRightView.setData(it.content)
+            if (right.content.cateList.isNotEmpty()) {
+                categoryRightView.setData(right.content)
             }
         }
     }
