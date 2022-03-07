@@ -4,4 +4,7 @@
     <color name="scrollBar">#9D9D9E</color>
     <color name="category_name_select_color">#000100</color>
     <color name="category_name_color">#656665</color>
+
+    <color name="color_404040">#404040</color>
+    <color name="color_E33A3C">#E33A3C</color>
 </resources>

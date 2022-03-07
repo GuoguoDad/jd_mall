@@ -16,7 +16,7 @@ import com.example.category.R
 import com.example.category.adapter.SectionQuickAdapter
 import com.example.category.modal.CategoryModal
 import com.google.android.material.tabs.TabLayout
-import kotlinx.android.synthetic.main.fragment_categroy_right.view.*
+import kotlinx.android.synthetic.main.main_right.view.*
 
 class CategoryRightView: FrameLayout {
     private lateinit var imageLoader: ImageLoader
@@ -42,9 +42,9 @@ class CategoryRightView: FrameLayout {
     private fun init(context: Context) {
         imageLoader = Coil.imageLoader(context)
         gridLayoutManager = GridLayoutManager(context, 3)
-        LayoutInflater.from(context).inflate(R.layout.fragment_categroy_right, this, true)
+        LayoutInflater.from(context).inflate(R.layout.main_right, this, true)
 
-        sectionQuickAdapter = SectionQuickAdapter(R.layout.fragment_categroy_right_item_header, R.layout.fragment_categroy_right_item, arrayListOf())
+        sectionQuickAdapter = SectionQuickAdapter(R.layout.main_right_grid_header, R.layout.main_right_grid, arrayListOf())
         var _tabLayout = tabLayout
         categoryRecyclerView.run {
             layoutManager = gridLayoutManager

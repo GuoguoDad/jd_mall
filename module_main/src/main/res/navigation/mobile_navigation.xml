@@ -21,7 +21,7 @@
         android:id="@+id/navigation_category"
         android:name="com.example.main.ui.category.CategoryFragment"
         android:label="@string/title_category"
-        tools:layout="@layout/fragment_category"/>
+        tools:layout="@layout/fragment_main"/>
 
     <fragment
         android:id="@+id/navigation_setting"

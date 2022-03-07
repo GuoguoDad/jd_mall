@@ -5,13 +5,12 @@ import com.airbnb.mvrx.MavericksView
 import com.airbnb.mvrx.activityViewModel
 import com.airbnb.mvrx.withState
 import com.example.category.adapter.CategoryListAdapter
-import com.example.category.adapter.SectionQuickAdapter
 import com.example.common.base.BaseFragment
-import kotlinx.android.synthetic.main.fragment_category.*
+import kotlinx.android.synthetic.main.fragment_main.*
 
-class CategoryFragment : BaseFragment(R.layout.fragment_category), MavericksView {
+class CategoryFragment : BaseFragment(R.layout.fragment_main), MavericksView {
     private val viewModel: CategoryViewModel by activityViewModel()
-    private val categoryListAdapter by lazy { CategoryListAdapter(R.layout.category_item, arrayListOf())  }
+    private val categoryListAdapter by lazy { CategoryListAdapter(R.layout.main_left_item, arrayListOf())  }
     private val categoryLayoutManager: LinearLayoutManager by lazy { LinearLayoutManager(this.context) }
 
     override fun initView() {
