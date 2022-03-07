@@ -30,7 +30,6 @@ class CategoryListAdapter(layoutResId: Int, brandList: MutableList<CategoryBean>
                         setBackgroundColor(Color.parseColor("#F2F2F2"))
                     }
                 }
-
             }
         }
         holder.getView<TextView>(R.id.categoryName).run {

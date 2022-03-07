@@ -11,33 +11,31 @@
         app:layout_constraintTop_toTopOf="parent">
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-<!--    <androidx.recyclerview.widget.RecyclerView-->
-<!--        android:id="@+id/categoryList"-->
-<!--        android:layout_width="120dp"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:scrollbarSize="2dp"-->
-<!--        android:scrollbars="vertical"-->
-<!--        android:scrollbarThumbVertical="@color/scrollBar"-->
-<!--        app:layout_constraintTop_toBottomOf="@id/header"-->
-<!--        app:layout_constraintLeft_toLeftOf="parent"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"/>-->
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/categoryList"
-        android:layout_width="100dp"
+        android:layout_width="120dp"
         android:layout_height="0dp"
+        android:scrollbarSize="2dp"
+        android:scrollbars="vertical"
         android:background="@color/white"
+        android:scrollbarThumbVertical="@color/scrollBar"
         app:layout_constraintTop_toBottomOf="@id/header"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
     <com.scwang.smart.refresh.layout.SmartRefreshLayout
+        android:id="@+id/rightContainer"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintTop_toBottomOf="@id/header"
         app:layout_constraintLeft_toRightOf="@+id/categoryList"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent">
+
+    <com.example.category.view.CategoryRightView
+        android:id="@+id/categoryRightView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
     </com.scwang.smart.refresh.layout.SmartRefreshLayout>
 

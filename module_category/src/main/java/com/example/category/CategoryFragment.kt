@@ -5,6 +5,7 @@ import com.airbnb.mvrx.MavericksView
 import com.airbnb.mvrx.activityViewModel
 import com.airbnb.mvrx.withState
 import com.example.category.adapter.CategoryListAdapter
+import com.example.category.adapter.SectionQuickAdapter
 import com.example.common.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_category.*
 
@@ -22,16 +23,24 @@ class CategoryFragment : BaseFragment(R.layout.fragment_category), MavericksView
                 scrollToMiddle(position)
             }
         }
+        rightContainer.run {
+            setEnableRefresh(false)
+            setEnableAutoLoadMore(false)
+        }
     }
 
     override fun initData() {
         viewModel.initBrandList()
+        viewModel.queryContentByCate()
     }
 
     override fun invalidate() {
         withState(viewModel) {
             if (it.brandList.isNotEmpty()) {
                 categoryListAdapter.setList(it.brandList)
+            }
+            if (it.content.cateList.isNotEmpty()) {
+                categoryRightView.setData(it.content)
             }
         }
     }

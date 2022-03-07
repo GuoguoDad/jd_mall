@@ -23,4 +23,19 @@ class CategoryViewModel(initialState: CategoryState): MavericksViewModel<Categor
             }
         }
     }
+
+    fun queryContentByCate() {
+        withState {
+            if (it.contentResponse is Loading) return@withState
+
+            suspend {
+                apiService.queryContentByCate()
+            }.execute(Dispatchers.IO) { state ->
+                copy(
+                    contentResponse = state,
+                    content = if (state is Success) state()?.data else it.content
+                )
+            }
+        }
+    }
 }

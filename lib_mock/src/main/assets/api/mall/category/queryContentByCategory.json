@@ -1,0 +1,306 @@
+{
+  "code": "0",
+  "msg": "",
+  "data": {
+    "bannerUrl": "http://oss.suning.com/srcfews/lsypc/imgs/20220228111221231.jpg",
+    "cateList": [
+      {
+        "categoryName": "专场推荐",
+        "categoryCode": "01",
+        "cateList": [
+          {
+            "iconUrl": "",
+            "categoryName": "男装馆",
+            "categoryCode": "0101"
+          },
+          {
+            "iconUrl": "",
+            "categoryName": "玩潮立志",
+            "categoryCode": "0102"
+          },
+          {
+            "iconUrl": "",
+            "categoryName": "国际大牌",
+            "categoryCode": "0103"
+          },
+          {
+            "iconUrl": "",
+            "categoryName": "羽绒馆",
+            "categoryCode": "0104"
+          },
+          {
+            "iconUrl": "",
+            "categoryName": "咱爸衣橱",
+            "categoryCode": "0105"
+          },
+          {
+            "iconUrl": "",
+            "categoryName": "私人定制",
+            "categoryCode": "0106"
+          }
+        ]
+      },
+      {
+        "categoryName": "御寒外套",
+        "categoryCode": "02",
+        "cateList": [
+          {
+            "iconUrl": "",
+            "categoryName": "轻薄羽绒服",
+            "categoryCode": "0201"
+          },
+          {
+            "iconUrl": "",
+            "categoryName": "极寒羽绒服",
+            "categoryCode": "0202"
+          },
+          {
+            "iconUrl": "",
+            "categoryName": "工装羽绒服",
+            "categoryCode": "0203"
+          },
+          {
+            "iconUrl": "",
+            "categoryName": "亮面羽绒服",
+            "categoryCode": "0204"
+          },
+          {
+            "iconUrl": "",
+            "categoryName": "潮流棉服",
+            "categoryCode": "0205"
+          },
+          {
+            "iconUrl": "",
+            "categoryName": "双面昵大衣",
+            "categoryCode": "0206"
+          }
+        ]
+      },
+      {
+        "categoryName": "裤装",
+        "categoryCode": "03",
+        "cateList": [
+          {
+            "iconUrl": "",
+            "categoryName": "休闲卫裤",
+            "categoryCode": "0301"
+          },
+          {
+            "iconUrl": "",
+            "categoryName": "束脚裤",
+            "categoryCode": "0302"
+          },
+          {
+            "iconUrl": "",
+            "categoryName": "西裤",
+            "categoryCode": "0303"
+          },
+          {
+            "iconUrl": "",
+            "categoryName": "加绒裤",
+            "categoryCode": "0304"
+          },
+          {
+            "iconUrl": "",
+            "categoryName": "直筒裤",
+            "categoryCode": "0305"
+          },
+          {
+            "iconUrl": "",
+            "categoryName": "锥形裤",
+            "categoryCode": "0306"
+          },
+          {
+            "iconUrl": "",
+            "categoryName": "复古牛仔裤",
+            "categoryCode": "0307"
+          },
+          {
+            "iconUrl": "",
+            "categoryName": "休闲牛仔裤",
+            "categoryCode": "0308"
+          },
+          {
+            "iconUrl": "",
+            "categoryName": "直筒牛仔裤",
+            "categoryCode": "0309"
+          }
+        ]
+      },
+      {
+        "categoryName": "童装",
+        "categoryCode": "04",
+        "cateList": [
+          {
+            "iconUrl": "",
+            "categoryName": "童装馆",
+            "categoryCode": "0401"
+          },
+          {
+            "iconUrl": "",
+            "categoryName": "自选精选",
+            "categoryCode": "0402"
+          },
+          {
+            "iconUrl": "",
+            "categoryName": "萌宝婴童",
+            "categoryCode": "0403"
+          },
+          {
+            "iconUrl": "",
+            "categoryName": "羽绒服",
+            "categoryCode": "0404"
+          },
+          {
+            "iconUrl": "",
+            "categoryName": "外套大衣",
+            "categoryCode": "0405"
+          },
+          {
+            "iconUrl": "",
+            "categoryName": "棉服",
+            "categoryCode": "0406"
+          },
+          {
+            "iconUrl": "",
+            "categoryName": "套装",
+            "categoryCode": "0407"
+          },
+          {
+            "iconUrl": "",
+            "categoryName": "裤子",
+            "categoryCode": "0408"
+          },
+          {
+            "iconUrl": "",
+            "categoryName": "卫衣",
+            "categoryCode": "0409"
+          }
+        ]
+      },
+      {
+        "categoryName": "上衣",
+        "categoryCode": "05",
+        "cateList": [
+          {
+            "iconUrl": "",
+            "categoryName": "LOGO卫衣",
+            "categoryCode": "0501"
+          },
+          {
+            "iconUrl": "",
+            "categoryName": "男女同款卫衣",
+            "categoryCode": "0502"
+          },
+          {
+            "iconUrl": "",
+            "categoryName": "宽松卫衣",
+            "categoryCode": "0503"
+          },
+          {
+            "iconUrl": "",
+            "categoryName": "格纹衬衫",
+            "categoryCode": "0504"
+          },
+          {
+            "iconUrl": "",
+            "categoryName": "纯色衬衫",
+            "categoryCode": "0505"
+          },
+          {
+            "iconUrl": "",
+            "categoryName": "法兰绒衬衫",
+            "categoryCode": "0506"
+          },
+          {
+            "iconUrl": "",
+            "categoryName": "套头针织衫",
+            "categoryCode": "0507"
+          },
+          {
+            "iconUrl": "",
+            "categoryName": "针织开衫",
+            "categoryCode": "0508"
+          },
+          {
+            "iconUrl": "",
+            "categoryName": "羊毛衫",
+            "categoryCode": "0509"
+          }
+        ]
+      },
+      {
+        "categoryName": "夹克",
+        "categoryCode": "06",
+        "cateList": [
+          {
+            "iconUrl": "",
+            "categoryName": "棒球服",
+            "categoryCode": "0601"
+          },
+          {
+            "iconUrl": "",
+            "categoryName": "羊羔绒",
+            "categoryCode": "0602"
+          },
+          {
+            "iconUrl": "",
+            "categoryName": "牛仔夹克",
+            "categoryCode": "0603"
+          },
+          {
+            "iconUrl": "",
+            "categoryName": "工装夹克",
+            "categoryCode": "0604"
+          },
+          {
+            "iconUrl": "",
+            "categoryName": "飞行夹克",
+            "categoryCode": "0605"
+          },
+          {
+            "iconUrl": "",
+            "categoryName": "刺绣夹克",
+            "categoryCode": "0606"
+          }
+        ]
+      },
+      {
+        "categoryName": "潮流单品",
+        "categoryCode": "07",
+        "cateList": [
+          {
+            "iconUrl": "",
+            "categoryName": "军事风夹克",
+            "categoryCode": "0701"
+          },
+          {
+            "iconUrl": "",
+            "categoryName": "鬼脸卫衣",
+            "categoryCode": "0702"
+          },
+          {
+            "iconUrl": "",
+            "categoryName": "vibe风长裤",
+            "categoryCode": "0703"
+          },
+          {
+            "iconUrl": "",
+            "categoryName": "涂鸦卫衣",
+            "categoryCode": "0704"
+          },
+          {
+            "iconUrl": "",
+            "categoryName": "大码卫衣",
+            "categoryCode": "0705"
+          },
+          {
+            "iconUrl": "",
+            "categoryName": "pu皮羽绒服",
+            "categoryCode": "0706"
+          }
+        ]
+      }
+    ]
+  }
+}
