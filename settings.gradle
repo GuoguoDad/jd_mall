@@ -7,7 +7,7 @@ dependencyResolutionManagement {
         jcenter() // Warning: this repository is going to shut down soon
     }
 }
-rootProject.name = "news"
+rootProject.name = "android_template"
 include ':app'
 include ':lib_mock'
 include ':module_base'
