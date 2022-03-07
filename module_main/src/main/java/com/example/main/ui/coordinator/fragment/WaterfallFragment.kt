@@ -43,6 +43,11 @@ class WaterfallFragment: BaseFragment(R.layout.view_list), MavericksView {
         recyclerView.addItemDecoration(SpacesItemDecoration(space.toInt()))
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        recyclerViewContainer.removeAllViews()
+    }
+
     override fun initData() {
         viewModel.queryProductListByPage(true)
     }
