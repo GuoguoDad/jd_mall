@@ -1,4 +1,4 @@
-package com.example.home.ui
+package com.example.home
 
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.airbnb.mvrx.MavericksView
@@ -6,7 +6,9 @@ import com.airbnb.mvrx.activityViewModel
 import com.airbnb.mvrx.withState
 import com.example.common.base.BaseFragment
 import com.example.common.dialog.LoadingDialog
-import com.example.home.R
+import com.example.home.adapter.HomeAdapter
+import com.example.home.constants.ActionType
+import com.example.home.viewmodel.HomeViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {

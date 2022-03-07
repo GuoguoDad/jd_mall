@@ -9,7 +9,10 @@ import com.example.common.base.BaseActivity
 import com.example.common.constants.RouterPaths
 import com.example.common.util.DisplayUtil
 import com.example.main.R
+import com.example.main.ui.coordinator.adapter.BannerAdapter
 import com.example.main.ui.coordinator.fragment.WaterfallFragment
+import com.example.main.ui.coordinator.state.ScrollTabState
+import com.example.main.ui.coordinator.viewmodel.ScrollTabViewModel
 import com.google.android.material.tabs.TabLayoutMediator
 import com.youth.banner.indicator.CircleIndicator
 import com.youth.banner.transformer.AlphaPageTransformer

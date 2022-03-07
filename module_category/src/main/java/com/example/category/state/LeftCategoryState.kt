@@ -1,8 +1,9 @@
-package com.example.category
+package com.example.category.state
 
 import com.airbnb.mvrx.Async
 import com.airbnb.mvrx.MavericksState
 import com.airbnb.mvrx.Uninitialized
+import com.example.category.CategoryBean
 import com.example.common.base.BaseResponse
 
 data class LeftCategoryState(

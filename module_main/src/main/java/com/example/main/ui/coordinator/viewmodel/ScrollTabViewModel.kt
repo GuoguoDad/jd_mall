@@ -1,9 +1,11 @@
-package com.example.main.ui.coordinator
+package com.example.main.ui.coordinator.viewmodel
 
 import com.airbnb.mvrx.Loading
 import com.airbnb.mvrx.MavericksViewModel
 import com.airbnb.mvrx.Success
 import com.example.common.util.HttpUtil
+import com.example.main.ui.coordinator.ApiService
+import com.example.main.ui.coordinator.state.ScrollTabState
 import com.example.main.ui.waterfall.QueryProductListParams
 import kotlinx.coroutines.Dispatchers
 

@@ -8,7 +8,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.home.R
 import com.example.home.adapter.GoodsListAdapter
-import com.example.home.ui.GoodsBean
+import com.example.home.GoodsBean
 import kotlinx.android.synthetic.main.fragment_list.view.*
 
 class GoodsListView: FrameLayout {

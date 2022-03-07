@@ -1,4 +1,4 @@
-package com.example.home.ui
+package com.example.home
 
 import com.example.common.base.BaseResponse
 import retrofit2.http.Body

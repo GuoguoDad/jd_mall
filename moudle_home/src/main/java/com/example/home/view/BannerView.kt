@@ -5,14 +5,13 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
 import android.widget.ImageView
-import android.widget.LinearLayout
 import coil.Coil
 import coil.ImageLoader
 import coil.load
 import com.example.common.util.DisplayUtil
 import com.example.common.dialog.PreviewPicture
 import com.example.home.R
-import com.example.home.ui.BannerBean
+import com.example.home.BannerBean
 import com.youth.banner.adapter.BannerImageAdapter
 import com.youth.banner.holder.BannerImageHolder
 import com.youth.banner.indicator.CircleIndicator

@@ -1,9 +1,13 @@
-package com.example.home.ui
+package com.example.home.state
 
 import com.airbnb.mvrx.Async
 import com.airbnb.mvrx.MavericksState
 import com.airbnb.mvrx.Uninitialized
 import com.example.common.base.BaseResponse
+import com.example.home.constants.ActionType
+import com.example.home.HomeItem
+import com.example.home.HomeItemBean
+import com.example.home.HomeResponse
 
 data class HomeState(
     val fetchType: ActionType = ActionType.REFRESH,

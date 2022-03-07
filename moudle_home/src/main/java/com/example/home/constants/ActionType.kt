@@ -1,4 +1,4 @@
-package com.example.home.ui
+package com.example.home.constants
 
 enum class ActionType {
     INIT,

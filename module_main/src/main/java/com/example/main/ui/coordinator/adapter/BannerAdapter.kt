@@ -1,4 +1,4 @@
-package com.example.main.ui.coordinator
+package com.example.main.ui.coordinator.adapter
 
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
@@ -6,6 +6,7 @@ import coil.Coil
 import coil.ImageLoader
 import coil.load
 import com.example.main.R
+import com.example.main.ui.coordinator.BannerBean
 import com.youth.banner.adapter.BannerImageAdapter
 import com.youth.banner.holder.BannerImageHolder
 

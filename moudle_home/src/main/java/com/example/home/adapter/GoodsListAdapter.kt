@@ -8,7 +8,7 @@ import coil.load
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.example.home.R
-import com.example.home.ui.GoodsBean
+import com.example.home.GoodsBean
 
 class GoodsListAdapter(layoutResId: Int, data: MutableList<GoodsBean>) : BaseQuickAdapter<GoodsBean, BaseViewHolder>(layoutResId, data) {
     private lateinit var imageLoader: ImageLoader

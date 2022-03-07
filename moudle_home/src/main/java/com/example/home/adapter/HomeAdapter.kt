@@ -1,8 +1,10 @@
-package com.example.home.ui
+package com.example.home.adapter
 
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.home.HomeItem
+import com.example.home.HomeItemBean
 import com.example.home.view.BannerView
 import com.example.home.view.GoodsListView
 
