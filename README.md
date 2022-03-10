@@ -4,11 +4,11 @@ android_template 是本人学习android的练手项目，项目具有完整的�
 
 1. kotlin
 
-2. 基于MVI架构(airbnb的Mavericks)
+2. ([基于MVI架构airbnb的Mavericks](https://airbnb.io/mavericks/#/README))
 
 3. 多模块、本地mock
 
-4. alibaba ARouter
+4. [alibaba ARouter](https://github.com/alibaba/ARouter/tree/master)
 
 # 项目展示
 
