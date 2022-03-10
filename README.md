@@ -16,3 +16,4 @@ android_template 是本人学习android的练手项目，项目具有完整的�
 <img src="images/screen2.png" title="" alt="image" width="353">
 <img src="images/screen3.png" title="" alt="image" width="355">
 <img src="images/screen4.png" title="" alt="image" width="361">
+<img src="images/screen5.png" title="" alt="image" width="361">
