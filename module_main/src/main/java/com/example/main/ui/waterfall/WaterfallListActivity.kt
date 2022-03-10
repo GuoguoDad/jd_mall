@@ -9,7 +9,7 @@ import com.example.common.constants.RouterPaths
 import com.example.common.base.BaseActivity
 import com.example.main.R
 import com.example.common.dialog.LoadingDialog
-import com.example.common.dialog.PreviewPicture
+import com.example.common.dialog.PreviewPictureDialog
 import kotlinx.android.synthetic.main.layout_header.*
 import kotlinx.android.synthetic.main.layout_waterfall.*
 import java.lang.reflect.Method
@@ -26,7 +26,7 @@ class WaterfallListActivity: BaseActivity(R.layout.layout_waterfall), MavericksV
         StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
     }
     private val loadingDialog: LoadingDialog by lazy { LoadingDialog(this) }
-    private val previewPicture: PreviewPicture by lazy { PreviewPicture(this) }
+    private val previewPicture: PreviewPictureDialog by lazy { PreviewPictureDialog(this) }
 
     private val viewModel: WaterfallViewModel by viewModel()
 

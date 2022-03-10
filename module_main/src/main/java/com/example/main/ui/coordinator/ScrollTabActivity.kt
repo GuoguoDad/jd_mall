@@ -8,6 +8,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.example.common.base.BaseActivity
 import com.example.common.constants.RouterPaths
 import com.example.common.util.DisplayUtil
+import com.example.common.util.PixelUtil
 import com.example.main.R
 import com.example.main.ui.coordinator.adapter.BannerAdapter
 import com.example.main.ui.coordinator.fragment.WaterfallFragment
@@ -55,7 +56,7 @@ class ScrollTabActivity: BaseActivity(R.layout.layout_tab_waterfall), MavericksV
     private fun showBannerView(data: List<BannerBean>) {
         tabWaterfallBanner.run {
             adapter = BannerAdapter(data)
-            setBannerRound(DisplayUtil.dip2px(3f).toFloat())
+            setBannerRound(PixelUtil.toPixelFromDIP(3f).toFloat())
             setIndicator(CircleIndicator(this.context))
             setPageTransformer(AlphaPageTransformer())
             setIndicatorSelectedColorRes(com.example.home.R.color.indicator_selected_color)

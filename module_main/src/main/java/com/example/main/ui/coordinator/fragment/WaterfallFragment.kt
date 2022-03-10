@@ -5,7 +5,7 @@ import com.airbnb.mvrx.MavericksView
 import com.airbnb.mvrx.activityViewModel
 import com.airbnb.mvrx.withState
 import com.example.common.base.BaseFragment
-import com.example.common.dialog.PreviewPicture
+import com.example.common.dialog.PreviewPictureDialog
 import com.example.main.R
 import com.example.main.ui.coordinator.viewmodel.ScrollTabViewModel
 import com.example.main.ui.waterfall.SpacesItemDecoration
@@ -19,7 +19,7 @@ class WaterfallFragment: BaseFragment(R.layout.view_list), MavericksView {
     private val staggeredGridLayoutManager: StaggeredGridLayoutManager by lazy {
         StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
     }
-    private val previewPicture: PreviewPicture by lazy { PreviewPicture(this.requireActivity()) }
+    private val previewPicture: PreviewPictureDialog by lazy { PreviewPictureDialog(this.requireActivity()) }
 
     private val viewModel: ScrollTabViewModel by activityViewModel()
 

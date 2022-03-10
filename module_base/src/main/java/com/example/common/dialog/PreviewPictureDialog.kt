@@ -6,10 +6,10 @@ import android.view.Window
 import android.view.WindowManager
 import androidx.viewpager.widget.ViewPager
 import com.example.common.R
-import com.example.common.util.adapter.PreviewPictureAdapter
+import com.example.common.adapter.PreviewPictureAdapter
 import kotlinx.android.synthetic.main.preview_picture.*
 
-class PreviewPicture(context: Context): Dialog(context, R.style.transparentBgDialog) {
+class PreviewPictureDialog(context: Context): Dialog(context, R.style.transparentBgDialog) {
     init {
         setContentView(R.layout.preview_picture)
 

@@ -9,7 +9,8 @@ import coil.Coil
 import coil.ImageLoader
 import coil.load
 import com.example.common.util.DisplayUtil
-import com.example.common.dialog.PreviewPicture
+import com.example.common.dialog.PreviewPictureDialog
+import com.example.common.util.PixelUtil
 import com.example.home.R
 import com.example.home.BannerBean
 import com.youth.banner.adapter.BannerImageAdapter
@@ -21,7 +22,7 @@ import kotlin.properties.Delegates
 
 class BannerView: FrameLayout {
     private lateinit var imageLoader: ImageLoader
-    private lateinit var previewPicture: PreviewPicture
+    private lateinit var previewPicture: PreviewPictureDialog
     private var imageWidth by Delegates.notNull<Int>()
 
     constructor(context: Context) : this(context, null)
@@ -39,7 +40,7 @@ class BannerView: FrameLayout {
     private fun init(context: Context) {
         imageWidth = DisplayUtil.getScreenWidth(context)
         imageLoader = Coil.imageLoader(context)
-        previewPicture = PreviewPicture(context)
+        previewPicture = PreviewPictureDialog(context)
         LayoutInflater.from(context).inflate(R.layout.view_scroll_card, this, true)
     }
 
@@ -65,7 +66,7 @@ class BannerView: FrameLayout {
                     previewPicture.show(imgUrls, position)
                 }
             }
-            setBannerRound(DisplayUtil.dip2px(3f).toFloat())
+            setBannerRound(PixelUtil.toPixelFromDIP(3f).toFloat())
             setIndicator(CircleIndicator(this.context))
             setPageTransformer(AlphaPageTransformer())
             setIndicatorSelectedColorRes(R.color.indicator_selected_color)
