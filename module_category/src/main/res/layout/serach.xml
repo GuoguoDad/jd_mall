@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/searchOuterView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/dp_10"
+    android:paddingBottom="5dp"
+    android:background="@color/cl_549cf8">
+
+        <LinearLayout
+            android:id="@+id/photo"
+            android:layout_width="60dp"
+            android:layout_height="38dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/searchView"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:gravity="center_vertical|center_horizontal"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/scan"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="扫码"
+                android:textSize="10sp"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/searchView"
+            android:layout_width="0dp"
+            android:layout_height="34dp"
+            app:layout_constraintLeft_toRightOf="@+id/photo"
+            app:layout_constraintRight_toLeftOf="@+id/message"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="2dp"
+            android:background="@drawable/shape_search_view_bg"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/search"/>
+
+            <TextView
+                android:id="@+id/search_tv_search"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:cursorVisible="false"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/dp_10"
+                android:textColor="#cdcdcd"
+                android:hint="这是搜索框"
+                android:textSize="12sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/message"
+            android:layout_width="60dp"
+            android:layout_height="38dp"
+            app:layout_constraintLeft_toRightOf="@+id/searchView"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:gravity="center_vertical|center_horizontal"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/message"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="消息"
+                android:textSize="10sp"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -60,6 +60,7 @@
         <entry key="module_category/src/main/res/drawable/shape_corner_bottom2_right.xml" value="0.39739583333333334" />
         <entry key="module_category/src/main/res/drawable/shape_corner_bottom_right.xml" value="0.39739583333333334" />
         <entry key="module_category/src/main/res/drawable/shape_corner_top_right.xml" value="0.39739583333333334" />
+        <entry key="module_category/src/main/res/drawable/shape_search_view_bg.xml" value="0.39739583333333334" />
         <entry key="module_category/src/main/res/drawable/shape_tab_indicator.xml" value="0.39739583333333334" />
         <entry key="module_category/src/main/res/drawable/shape_tab_indicator_selected.xml" value="0.39739583333333334" />
         <entry key="module_category/src/main/res/layout/category_content.xml" value="0.2269021739130435" />
@@ -70,6 +71,7 @@
         <entry key="module_category/src/main/res/layout/fragment_categroy_right_item_header.xml" value="0.22040816326530613" />
         <entry key="module_category/src/main/res/layout/fragment_main.xml" value="0.2269021739130435" />
         <entry key="module_category/src/main/res/layout/main_right.xml" value="0.2269021739130435" />
+        <entry key="module_category/src/main/res/layout/serach.xml" value="0.165" />
         <entry key="module_main/src/main/res/drawable/appbar_elevation.xml" value="0.39739583333333334" />
         <entry key="module_main/src/main/res/layout/fragment_category.xml" value="0.2368659420289855" />
         <entry key="module_main/src/main/res/layout/fragment_dashboard.xml" value="0.2164855072463768" />
