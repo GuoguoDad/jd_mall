@@ -24,11 +24,12 @@ class SearchHeaderView: FrameLayout {
         LayoutInflater.from(context).inflate(R.layout.serach, this, true)
         var statusHeight = StatusBarUtil.getHeight()
 
+        var padding = PixelUtil.toPixelFromDIP(8f).toInt()
         searchOuterView.setPadding(
             0,
-            statusHeight,
+            statusHeight + padding,
             0,
-            PixelUtil.toPixelFromDIP(10f).toInt()
+            padding
         )
     }
 }
