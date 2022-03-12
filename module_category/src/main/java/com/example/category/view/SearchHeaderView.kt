@@ -5,6 +5,8 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
 import com.example.category.R
+import com.example.common.util.PixelUtil
+import com.example.common.util.StatusBarUtil
 import kotlinx.android.synthetic.main.serach.view.*
 
 class SearchHeaderView: FrameLayout {
@@ -20,9 +22,13 @@ class SearchHeaderView: FrameLayout {
 
     private fun init(context: Context) {
         LayoutInflater.from(context).inflate(R.layout.serach, this, true)
+        var statusHeight = StatusBarUtil.getHeight()
 
-        searchView.setOnClickListener {
-
-        }
+        searchOuterView.setPadding(
+            0,
+            statusHeight,
+            0,
+            PixelUtil.toPixelFromDIP(10f).toInt()
+        )
     }
 }

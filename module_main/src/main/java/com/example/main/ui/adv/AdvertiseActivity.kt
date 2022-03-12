@@ -1,5 +1,6 @@
 package com.example.main.ui.adv
 
+import android.app.Activity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -8,11 +9,10 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.example.common.constants.RouterPaths
 import com.example.main.R
-import com.example.main.ui.base.BaseActivity
 import kotlinx.android.synthetic.main.layout_advertisement.*
 
 @Route(path = RouterPaths.ADV_ACTIVITY)
-class AdvertiseActivity: BaseActivity() {
+class AdvertiseActivity: Activity() {
     private var count: Int = 5
 
     override fun onCreate(savedInstanceState: Bundle?) {

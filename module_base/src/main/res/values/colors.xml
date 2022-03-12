@@ -19,4 +19,8 @@
 
     <color name="color_404040">#404040</color>
     <color name="color_E33A3C">#E33A3C</color>
+
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
 </resources>
