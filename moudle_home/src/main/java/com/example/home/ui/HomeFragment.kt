@@ -8,6 +8,7 @@ import com.airbnb.mvrx.withState
 import com.example.common.base.BaseFragment
 import com.example.common.dialog.LoadingDialog
 import com.example.home.R
+import com.example.home.ui.constants.ActionType
 import com.example.home.ui.fragment.GoodsListFragment
 import com.example.home.ui.view.BannerView
 import com.example.home.ui.viewmodel.HomeViewModel
@@ -28,6 +29,11 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
     }
 
     override fun initView() {
+        refreshView.run {
+            setOnRefreshListener {
+                viewModel.init(true)
+            }
+        }
         collapsableContent.run {
             removeAllViews()
             addView(topView)
@@ -45,6 +51,9 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
                 true -> loadingDialog.show()
                 false -> {
                     loadingDialog.hide()
+                    if (it.fetchType === ActionType.REFRESH) {
+                        refreshView.run { finishRefresh() }
+                    }
                     if (it.bannerList.isNotEmpty()) {
                         banner.setData(it.bannerList)
                     }
