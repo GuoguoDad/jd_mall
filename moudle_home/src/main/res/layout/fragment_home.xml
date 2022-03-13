@@ -85,6 +85,7 @@
             android:id="@+id/floatSearch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:visibility="gone"
             android:background="@color/theme_color">
             <include layout="@layout/home_search" />
         </RelativeLayout>

@@ -20,7 +20,6 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.example.common.util.PixelUtil
 import com.google.android.material.appbar.AppBarLayout
 
-
 class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
     private val viewModel: HomeViewModel by activityViewModel()
     private val loadingDialog: LoadingDialog by lazy { LoadingDialog(this.requireActivity()) }
@@ -97,7 +96,7 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
         viewPager.adapter = object : FragmentStateAdapter(this){
             override fun getItemCount(): Int = list.size
             override fun createFragment(position: Int): Fragment {
-                return GoodsListFragment()
+                return GoodsListFragment(list[position].code)
             }
         }
         viewPager.offscreenPageLimit = list.size
@@ -107,10 +106,7 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
     }
 
     private fun initFloatHeader() {
-        floatSearch.run {
-            setPadding(0, StatusBarUtil.getHeight(), 0, 10)
-            visibility = View.GONE
-        }
+        floatSearch.setPadding(0, StatusBarUtil.getHeight(), 0, 10)
         val layoutParams = toolbar.layoutParams
         layoutParams.height = searchHeight
         toolbar.layoutParams = layoutParams

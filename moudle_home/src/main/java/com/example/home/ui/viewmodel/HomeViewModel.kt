@@ -32,13 +32,13 @@ class HomeViewModel(initialState: HomeState): MavericksViewModel<HomeState>(init
         }
     }
 
-    fun initGoodsList() {
+    fun initGoodsList(code: String) {
         setState { copy(currentPage = 1) }
         withState {
             if (it.goodsListResponse is Loading) return@withState
 
             suspend {
-                apiService.queryGoodsListByPage(QueryGoodsListParams(it.currentPage, it.pageSize))
+                apiService.queryGoodsListByPage(QueryGoodsListParams(code, it.currentPage, it.pageSize))
             }.execute(Dispatchers.IO) { state ->
                 copy(
                     currentPage = if (state is Success) currentPage.plus(1) else currentPage,
@@ -51,12 +51,12 @@ class HomeViewModel(initialState: HomeState): MavericksViewModel<HomeState>(init
         }
     }
 
-    fun loadMoreGoodsList() {
+    fun loadMoreGoodsList(code: String) {
         withState {
             if (it.goodsListResponse is Loading) return@withState
 
             suspend {
-                apiService.queryGoodsListByPage(QueryGoodsListParams(it.currentPage, it.pageSize))
+                apiService.queryGoodsListByPage(QueryGoodsListParams(code, it.currentPage, it.pageSize))
             }.execute(Dispatchers.IO) { state ->
                 copy(
                     goodsListResponse = state,

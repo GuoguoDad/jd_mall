@@ -14,7 +14,7 @@ import com.example.home.ui.viewmodel.HomeViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.home_goods.*
 
-class GoodsListFragment: BaseFragment(R.layout.home_goods), MavericksView {
+class GoodsListFragment(var code: String): BaseFragment(R.layout.home_goods), MavericksView {
     private val viewModel: HomeViewModel by activityViewModel()
 
     private val goodsListAdapter by lazy { GoodsListAdapter(R.layout.home_goods_item, arrayListOf()) }
@@ -32,14 +32,14 @@ class GoodsListFragment: BaseFragment(R.layout.home_goods), MavericksView {
         }
         goodsLayout.run {
             setOnLoadMoreListener {
-                viewModel.loadMoreGoodsList()
+                viewModel.loadMoreGoodsList(code)
             }
         }
         addStateChangeListener()
     }
 
     override fun initData() {
-        viewModel.initGoodsList()
+        viewModel.initGoodsList(code)
     }
 
 
