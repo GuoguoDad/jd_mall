@@ -1,12 +1,13 @@
 package com.example.home.ui
 
+import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.airbnb.mvrx.MavericksView
 import com.airbnb.mvrx.activityViewModel
-import com.airbnb.mvrx.withState
 import com.example.common.base.BaseFragment
 import com.example.common.dialog.LoadingDialog
+import com.example.common.util.StatusBarUtil
 import com.example.home.R
 import com.example.home.ui.constants.ActionType
 import com.example.home.ui.fragment.GoodsListFragment
@@ -16,6 +17,9 @@ import com.example.home.ui.viewmodel.HomeViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
 import com.example.home.ui.view.TopView
 import com.google.android.material.tabs.TabLayoutMediator
+import com.example.common.util.PixelUtil
+import com.google.android.material.appbar.AppBarLayout
+
 
 class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
     private val viewModel: HomeViewModel by activityViewModel()
@@ -24,12 +28,15 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
     private val banner: BannerView by lazy { BannerView(this.requireContext()) }
     private val topView: TopView by lazy { TopView(this.requireContext()) }
 
+    private val searchHeight = StatusBarUtil.getHeight() + PixelUtil.toPixelFromDIP(30f).toInt()
+
     override fun onDestroyView() {
         super.onDestroyView()
         refreshView.removeAllViews()
     }
 
     override fun initView() {
+        initFloatHeader()
         refreshView.run {
             setOnRefreshListener {
                 viewModel.init(true)
@@ -40,6 +47,16 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
             addView(topView)
             addView(banner)
         }
+        appBar.run {
+            addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { _, verticalOffset ->
+                if (verticalOffset <= -searchHeight) {
+                    floatSearch.visibility = View.VISIBLE
+                } else {
+                    floatSearch.visibility = View.GONE
+                }
+            })
+        }
+
         addStateChangeListener()
     }
 
@@ -87,5 +104,19 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
         TabLayoutMediator(tabLayout, viewPager) {
                 tab, position -> tab.text = list[position].name
         }.attach()
+    }
+
+    private fun initFloatHeader() {
+        floatSearch.run {
+            setPadding(0, StatusBarUtil.getHeight(), 0, 10)
+            visibility = View.GONE
+        }
+        val layoutParams = toolbar.layoutParams
+        layoutParams.height = searchHeight
+        toolbar.layoutParams = layoutParams
+    }
+
+    private fun scrollTop() {
+        refreshView.scrollTo(0, 0)
     }
 }
