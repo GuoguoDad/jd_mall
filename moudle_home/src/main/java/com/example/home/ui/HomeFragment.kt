@@ -10,6 +10,7 @@ import com.example.common.dialog.LoadingDialog
 import com.example.home.R
 import com.example.home.ui.constants.ActionType
 import com.example.home.ui.fragment.GoodsListFragment
+import com.example.home.ui.state.HomeState
 import com.example.home.ui.view.BannerView
 import com.example.home.ui.viewmodel.HomeViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -39,37 +40,47 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
             addView(topView)
             addView(banner)
         }
+        addStateChangeListener()
     }
 
     override fun initData() {
         viewModel.init(false)
     }
 
-    override fun invalidate() {
-        withState(viewModel) {
-            when (it.isLoading) {
-                true -> loadingDialog.show()
-                false -> {
-                    loadingDialog.hide()
-                    if (it.fetchType === ActionType.REFRESH) {
-                        refreshView.run { finishRefresh() }
-                    }
-                    if (it.bannerList.isNotEmpty()) {
-                        banner.setData(it.bannerList)
-                    }
-                    if (it.tabList.isNotEmpty() && it.goodsList.isNotEmpty()) {
-                        showTabLayout(it.tabList, it.goodsList)
+    private fun addStateChangeListener() {
+        viewModel.onEach(
+            HomeState::isLoading,
+            HomeState::fetchType,
+            HomeState::bannerList,
+            HomeState::tabList
+        ) { isLoading, fetchType, bannerList, tabList ->
+            run {
+                when (isLoading) {
+                    true -> loadingDialog.show()
+                    false -> {
+                        loadingDialog.hide()
+                        if (fetchType === ActionType.REFRESH) {
+                            refreshView.run { finishRefresh() }
+                        }
+                        if (bannerList.isNotEmpty()) {
+                            banner.setData(bannerList)
+                        }
+                        if (tabList.isNotEmpty()) {
+                            showTabLayout(tabList)
+                        }
                     }
                 }
             }
         }
     }
 
-    private fun showTabLayout(list: List<TabBean>, goodsList: List<GoodsBean>) {
+    override fun invalidate() {}
+
+    private fun showTabLayout(list: List<TabBean>) {
         viewPager.adapter = object : FragmentStateAdapter(this){
             override fun getItemCount(): Int = list.size
             override fun createFragment(position: Int): Fragment {
-                return GoodsListFragment(goodsList.toMutableList())
+                return GoodsListFragment()
             }
         }
         viewPager.offscreenPageLimit = list.size

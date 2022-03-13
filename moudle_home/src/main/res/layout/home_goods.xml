@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     app:srlEnableRefresh="false"
     app:srlEnablePreviewInEditMode="true"
-
     tools:ignore="MissingDefaultResource">
 
     <androidx.recyclerview.widget.RecyclerView
