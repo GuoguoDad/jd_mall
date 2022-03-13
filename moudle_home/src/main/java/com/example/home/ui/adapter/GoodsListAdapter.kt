@@ -24,6 +24,6 @@ class GoodsListAdapter(layoutResId: Int, data: MutableList<GoodsBean>): BaseQuic
             error(R.drawable.default_img)
         }
         holder.setText(R.id.tv_content, item.description)
-        holder.setText(R.id.tv_price, item.price)
+        holder.setText(R.id.tv_price, "￥${item.price}")
     }
 }
