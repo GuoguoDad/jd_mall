@@ -7,7 +7,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.example.category.CategoryFragment
 import com.example.common.constants.RouterPaths
 import com.example.common.base.BaseActivity
-import com.example.home.HomeFragment
+import com.example.home.ui.HomeFragment
 import com.example.main.ui.dashboard.DashboardFragment
 import com.example.main.ui.setting.SettingFragment
 import com.google.android.material.bottomnavigation.LabelVisibilityMode

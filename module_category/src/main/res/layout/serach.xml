@@ -4,7 +4,7 @@
     android:id="@+id/searchOuterView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/cl_549cf8">
+    android:background="@color/theme_color">
 
         <LinearLayout
             android:id="@+id/photo"

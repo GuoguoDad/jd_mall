@@ -2,18 +2,90 @@
 <com.scwang.smart.refresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/fragmentHome"
+    android:id="@+id/refreshView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:srlEnablePreviewInEditMode="true"
     app:srlEnableLoadMoreWhenContentNotFull="false"
     tools:ignore="MissingDefaultResource">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/fragmentHomeRecycleView"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:overScrollMode="never"
-        android:background="@color/white"/>
+        android:layout_height="match_parent">
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/app_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:stateListAnimator="@drawable/appbar_elevation">
+
+                <com.google.android.material.appbar.CollapsingToolbarLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:titleEnabled="false"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/white">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="180dp"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/header_bg" />
+
+                        <LinearLayout
+                            android:id="@+id/collapsableContent"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical" />
+
+                    </RelativeLayout>
+
+                </com.google.android.material.appbar.CollapsingToolbarLayout>
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tabLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:tabMode="scrollable"
+                    app:tabIndicatorHeight="0dp"
+                    app:tabRippleColor="@color/transparent"
+                    app:tabTextColor="@color/color_404040"
+                    app:tabSelectedTextColor="@color/color_E33A3C"
+                    app:tabBackground="@drawable/selector_tab_indicator"/>
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/viewPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_float_search"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:visibility="invisible"
+            android:background="@color/theme_color">
+            <include layout="@layout/home_search" />
+        </RelativeLayout>
+
+    </RelativeLayout>
 
 </com.scwang.smart.refresh.layout.SmartRefreshLayout>

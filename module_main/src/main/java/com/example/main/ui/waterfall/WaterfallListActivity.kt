@@ -7,6 +7,7 @@ import com.airbnb.mvrx.viewModel
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.example.common.constants.RouterPaths
 import com.example.common.base.BaseActivity
+import com.example.common.decoration.SpacesItemDecoration
 import com.example.main.R
 import com.example.common.dialog.LoadingDialog
 import com.example.common.dialog.PreviewPictureDialog

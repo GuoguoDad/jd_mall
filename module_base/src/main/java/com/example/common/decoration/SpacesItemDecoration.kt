@@ -1,4 +1,4 @@
-package com.example.main.ui.waterfall
+package com.example.common.decoration
 
 import android.graphics.Rect
 import android.view.View

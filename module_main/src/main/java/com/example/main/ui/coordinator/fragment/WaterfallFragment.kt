@@ -5,10 +5,10 @@ import com.airbnb.mvrx.MavericksView
 import com.airbnb.mvrx.activityViewModel
 import com.airbnb.mvrx.withState
 import com.example.common.base.BaseFragment
+import com.example.common.decoration.SpacesItemDecoration
 import com.example.common.dialog.PreviewPictureDialog
 import com.example.main.R
 import com.example.main.ui.coordinator.viewmodel.ScrollTabViewModel
-import com.example.main.ui.waterfall.SpacesItemDecoration
 import com.example.main.ui.waterfall.WaterfallListAdapter
 import kotlinx.android.synthetic.main.view_list.*
 
