@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/secondImg"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="fitXY" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_corners_white_10_bg"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:background="@drawable/tag_bg"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            android:paddingLeft="6dp"
+            android:paddingRight="6dp"
+            tools:text="好物集市" />
+
+        <TextView
+            android:id="@+id/des1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tag"
+            android:layout_marginTop="4dp"
+            android:textColor="#f00"
+            android:textSize="15sp"
+            tools:text="专业运动装备" />
+
+        <TextView
+            android:id="@+id/des2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/des1"
+            android:layout_marginTop="4dp"
+            android:textColor="#5D5E5C"
+            android:textSize="12sp"
+            tools:text="运动与你相伴" />
+
+        <TextView
+            android:id="@+id/enter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/des2"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="7dp"
+            android:background="@drawable/enter_bg"
+            android:text="点击进入"
+            android:textColor="#EB351D"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            android:paddingLeft="6dp"
+            android:paddingRight="6dp"
+            android:textSize="10sp"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

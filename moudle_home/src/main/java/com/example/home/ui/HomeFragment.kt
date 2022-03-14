@@ -7,14 +7,11 @@ import com.airbnb.mvrx.MavericksView
 import com.airbnb.mvrx.activityViewModel
 import com.example.common.base.BaseFragment
 import com.example.common.dialog.LoadingDialog
-import com.example.common.util.DisplayUtil
 import com.example.common.util.StatusBarUtil
 import com.example.home.R
 import com.example.home.ui.constants.ActionType
 import com.example.home.ui.fragment.GoodsListFragment
-import com.example.home.ui.state.HomeState
 import com.example.home.ui.view.BannerView
-import com.example.home.ui.viewmodel.HomeViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
 import com.example.home.ui.view.TopView
 import com.google.android.material.tabs.TabLayoutMediator

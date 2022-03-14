@@ -90,9 +90,12 @@
         <entry key="module_main/src/main/res/layout/layout_waterfall_item.xml" value="0.2296195652173913" />
         <entry key="module_main/src/main/res/layout/view_list.xml" value="0.2368659420289855" />
         <entry key="module_main/src/main/res/menu/bottom_nav_menu.xml" value="0.3770833333333333" />
+        <entry key="moudle_home/src/main/res/drawable/enter_bg.xml" value="0.3828125" />
         <entry key="moudle_home/src/main/res/drawable/gray_circular_bg.xml" value="0.39739583333333334" />
         <entry key="moudle_home/src/main/res/drawable/rounded_corners_white_10_bg.xml" value="0.3828125" />
         <entry key="moudle_home/src/main/res/drawable/rounded_corners_white_bg.xml" value="0.3828125" />
+        <entry key="moudle_home/src/main/res/drawable/similar_bg.xml" value="0.3828125" />
+        <entry key="moudle_home/src/main/res/drawable/text_bg.xml" value="0.3828125" />
         <entry key="moudle_home/src/main/res/layout/banner_layout.xml" value="0.23233695652173914" />
         <entry key="moudle_home/src/main/res/layout/fragment_banner.xml" value="0.23278985507246377" />
         <entry key="moudle_home/src/main/res/layout/fragment_home.xml" value="0.18264379414732593" />
@@ -104,6 +107,7 @@
         <entry key="moudle_home/src/main/res/layout/home_banner.xml" value="0.22644927536231885" />
         <entry key="moudle_home/src/main/res/layout/home_goods.xml" value="0.22644927536231885" />
         <entry key="moudle_home/src/main/res/layout/home_goods_item.xml" value="0.22644927536231885" />
+        <entry key="moudle_home/src/main/res/layout/home_goods_second_item.xml" value="0.24048913043478262" />
         <entry key="moudle_home/src/main/res/layout/home_search.xml" value="0.18264379414732593" />
         <entry key="moudle_home/src/main/res/layout/home_top_view.xml" value="0.22644927536231885" />
         <entry key="moudle_home/src/main/res/layout/search_layout.xml" value="0.23233695652173914" />

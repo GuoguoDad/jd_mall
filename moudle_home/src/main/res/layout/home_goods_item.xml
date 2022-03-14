@@ -25,10 +25,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:ellipsize="end"
-            android:maxLines="3"
+            android:maxLines="2"
             android:textColor="@color/font_6"
-            android:textSize="13sp"
-            tools:text="当吃到蛋黄与鲜肉后，才知咸香入口的双重体验，能叫人如此回味" />
+            android:textSize="13sp" />
 
         <TextView
             android:id="@+id/tv_price"
@@ -37,20 +36,23 @@
             android:layout_below="@+id/tv_content"
             android:layout_marginTop="5dp"
             android:textColor="#f00"
-            android:textSize="15sp"
-            tools:text="¥49.50" />
+            android:textSize="15sp"/>
 
         <TextView
-            android:id="@+id/tv_look_similar"
+            android:id="@+id/lookSimilar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_content"
             android:layout_alignParentRight="true"
             android:layout_marginTop="7dp"
             android:text="看相似"
+            android:background="@drawable/similar_bg"
             android:textColor="#9c9c9c"
-            android:textSize="12sp"
-            android:visibility="gone" />
+            android:textSize="10sp"
+            android:paddingTop="1dp"
+            android:paddingBottom="1dp"
+            android:paddingLeft="6dp"
+            android:paddingRight="4dp"/>
 
         <ImageView
             android:id="@+id/iv_shop_cart"

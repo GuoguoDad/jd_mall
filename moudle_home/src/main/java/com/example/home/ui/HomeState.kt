@@ -1,4 +1,4 @@
-package com.example.home.ui.state
+package com.example.home.ui
 
 import com.airbnb.mvrx.Async
 import com.airbnb.mvrx.MavericksState

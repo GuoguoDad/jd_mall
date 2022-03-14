@@ -3,21 +3,19 @@ package com.example.home.ui.fragment
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.airbnb.mvrx.MavericksView
 import com.airbnb.mvrx.activityViewModel
-import com.airbnb.mvrx.withState
 import com.example.common.base.BaseFragment
 import com.example.common.decoration.SpacesItemDecoration
 import com.example.home.R
 import com.example.home.ui.adapter.GoodsListAdapter
 import com.example.home.ui.constants.ActionType
-import com.example.home.ui.state.HomeState
-import com.example.home.ui.viewmodel.HomeViewModel
-import kotlinx.android.synthetic.main.fragment_home.*
+import com.example.home.ui.HomeState
+import com.example.home.ui.HomeViewModel
 import kotlinx.android.synthetic.main.home_goods.*
 
 class GoodsListFragment(var code: String): BaseFragment(R.layout.home_goods), MavericksView {
     private val viewModel: HomeViewModel by activityViewModel()
 
-    private val goodsListAdapter by lazy { GoodsListAdapter(R.layout.home_goods_item, arrayListOf()) }
+    private val goodsListAdapter by lazy { GoodsListAdapter(arrayListOf()) }
     private val staggeredGridLayoutManager: StaggeredGridLayoutManager by lazy {
         StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
     }

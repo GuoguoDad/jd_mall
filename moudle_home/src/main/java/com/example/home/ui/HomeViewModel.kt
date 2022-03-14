@@ -1,13 +1,10 @@
-package com.example.home.ui.viewmodel
+package com.example.home.ui
 
 import com.airbnb.mvrx.Loading
 import com.airbnb.mvrx.MavericksViewModel
 import com.airbnb.mvrx.Success
 import com.example.common.util.HttpUtil
-import com.example.home.ui.state.HomeState
 import com.example.home.ui.constants.ActionType
-import com.example.home.ui.ApiService
-import com.example.home.ui.QueryGoodsListParams
 import kotlinx.coroutines.Dispatchers
 
 class HomeViewModel(initialState: HomeState): MavericksViewModel<HomeState>(initialState) {
