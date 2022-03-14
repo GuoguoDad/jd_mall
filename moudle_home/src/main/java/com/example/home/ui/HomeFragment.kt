@@ -7,6 +7,7 @@ import com.airbnb.mvrx.MavericksView
 import com.airbnb.mvrx.activityViewModel
 import com.example.common.base.BaseFragment
 import com.example.common.dialog.LoadingDialog
+import com.example.common.util.DisplayUtil
 import com.example.common.util.StatusBarUtil
 import com.example.home.R
 import com.example.home.ui.constants.ActionType
@@ -51,8 +52,10 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
             addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { _, verticalOffset ->
                 if (verticalOffset <= -searchHeight) {
                     floatSearch.visibility = View.VISIBLE
+                    backTop.visibility = View.VISIBLE
                 } else {
                     floatSearch.visibility = View.GONE
+                    backTop.visibility = View.GONE
                 }
             })
         }
