@@ -3,7 +3,7 @@
     <color name="grey">#58616d</color>
     <!-- 纯色 -->
     <color name="white">#FFFFFF</color>
-
+    <color name="font_6">#666666</color>
     <color name="transparent">#00000000</color>
 
     <color name="cl_ffffff">#ffffff</color>

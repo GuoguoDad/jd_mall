@@ -19,6 +19,7 @@ import com.example.home.ui.view.TopView
 import com.google.android.material.tabs.TabLayoutMediator
 import com.example.common.util.PixelUtil
 import com.google.android.material.appbar.AppBarLayout
+import kotlinx.android.synthetic.main.home_goods.*
 
 class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
     private val viewModel: HomeViewModel by activityViewModel()
@@ -55,7 +56,9 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
                 }
             })
         }
-
+        backTop.setOnClickListener {
+            scrollTop()
+        }
         addStateChangeListener()
     }
 
@@ -113,6 +116,7 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
     }
 
     private fun scrollTop() {
-        refreshView.scrollTo(0, 0)
+        recyclerView.scrollToPosition(0)
+        appBar.setExpanded(true, true)
     }
 }

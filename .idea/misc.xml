@@ -54,6 +54,8 @@
         <entry key="mod_common/src/main/res/layout/loading_dialog.xml" value="0.2368659420289855" />
         <entry key="mod_common/src/main/res/layout/preview_picture.xml" value="0.2368659420289855" />
         <entry key="module_base/src/main/res/drawable/appbar_elevation.xml" value="0.39739583333333334" />
+        <entry key="module_base/src/main/res/drawable/back_top_b.xml" value="0.39739583333333334" />
+        <entry key="module_base/src/main/res/drawable/back_top_bg.xml" value="0.39739583333333334" />
         <entry key="module_base/src/main/res/drawable/selector_tab_indicator.xml" value="0.39739583333333334" />
         <entry key="module_base/src/main/res/drawable/shape_loading_circle.xml" value="0.3828125" />
         <entry key="module_base/src/main/res/drawable/shape_tab_indicator_selected.xml" value="0.39739583333333334" />
