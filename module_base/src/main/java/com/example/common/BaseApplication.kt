@@ -2,6 +2,7 @@ package com.example.common
 
 import android.content.Context
 import androidx.multidex.MultiDexApplication
+import coil.ImageLoaderFactory
 import com.airbnb.mvrx.Mavericks
 import com.example.common.config.ModuleConfig
 import com.example.common.impl.IBaseApplication

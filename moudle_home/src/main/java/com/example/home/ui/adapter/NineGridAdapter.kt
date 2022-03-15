@@ -7,15 +7,15 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import coil.Coil
 import coil.ImageLoader
 import coil.load
 import com.example.home.R
 import com.example.home.ui.MenuBean
 import android.widget.TextView
+import com.example.common.util.CoilUtil
 
 class NineGridAdapter(var context: Context, var data: MutableList<MenuBean>, var index: Int, var pageSize: Int): BaseAdapter()  {
-    private var imageLoader: ImageLoader = Coil.imageLoader(context)
+    private var imageLoader: ImageLoader = CoilUtil.getImageLoader()
 
     override fun getView(position: Int, p1: View?, parent: ViewGroup?): View {
         var menuBean = getItem(position)

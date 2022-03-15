@@ -1,22 +1,15 @@
 package com.example.home.ui.adapter
 
 import android.widget.ImageView
-import androidx.recyclerview.widget.RecyclerView
-import coil.Coil
-import coil.ImageLoader
 import coil.load
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
-import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
+import com.example.common.util.CoilUtil
 import com.example.home.R
 import com.example.home.ui.GoodsBean
 
 class GoodsListAdapter(data: MutableList<GoodsBean>): BaseMultiItemQuickAdapter<GoodsBean, BaseViewHolder>(data) {
-    private lateinit var imageLoader: ImageLoader
-    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
-        super.onAttachedToRecyclerView(recyclerView)
-        imageLoader = Coil.imageLoader(context)
-    }
+    private var imageLoader = CoilUtil.getImageLoader()
 
     init {
         addItemType(1, R.layout.home_goods_item)

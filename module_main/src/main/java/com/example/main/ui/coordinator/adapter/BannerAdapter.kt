@@ -1,22 +1,16 @@
 package com.example.main.ui.coordinator.adapter
 
 import android.widget.ImageView
-import androidx.recyclerview.widget.RecyclerView
-import coil.Coil
 import coil.ImageLoader
 import coil.load
+import com.example.common.util.CoilUtil
 import com.example.main.R
 import com.example.main.ui.coordinator.BannerBean
 import com.youth.banner.adapter.BannerImageAdapter
 import com.youth.banner.holder.BannerImageHolder
 
 class BannerAdapter(var data: List<BannerBean>): BannerImageAdapter<BannerBean>(data) {
-    private lateinit var imageLoader: ImageLoader
-
-    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
-        super.onAttachedToRecyclerView(recyclerView)
-        imageLoader = Coil.imageLoader(recyclerView.context)
-    }
+    private var imageLoader: ImageLoader = CoilUtil.getImageLoader()
 
     override fun onBindView(
         holder: BannerImageHolder?,

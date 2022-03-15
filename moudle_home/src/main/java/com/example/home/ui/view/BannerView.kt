@@ -9,6 +9,7 @@ import android.widget.ImageView
 import coil.Coil
 import coil.ImageLoader
 import coil.load
+import com.example.common.util.CoilUtil
 import com.example.home.R
 import com.example.home.ui.BannerBean
 import com.youth.banner.adapter.BannerImageAdapter
@@ -18,7 +19,7 @@ import com.youth.banner.transformer.AlphaPageTransformer
 import kotlinx.android.synthetic.main.home_banner.view.*
 
 class BannerView: FrameLayout {
-    private lateinit var imageLoader: ImageLoader
+    private var imageLoader: ImageLoader = CoilUtil.getImageLoader()
     constructor(context: Context) : this(context, null)
 
     constructor(context: Context, attributeSet: AttributeSet?) : this(context, attributeSet, 0)
@@ -32,7 +33,6 @@ class BannerView: FrameLayout {
     }
 
     private fun init(context: Context) {
-        imageLoader = Coil.imageLoader(context)
         LayoutInflater.from(context).inflate(R.layout.home_banner, this, true)
     }
 
