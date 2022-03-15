@@ -24,6 +24,7 @@ class HomeViewModel(initialState: HomeState): MavericksViewModel<HomeState>(init
                     fetchType = if (isRefresh) ActionType.REFRESH else ActionType.INIT,
                     bannerList = (state()?.data?.bannerList ?: it.bannerList),
                     nineMenuList = (state()?.data?.nineMenuList ?: it.nineMenuList),
+                    adUrl = (state()?.data?.adUrl ?: it.adUrl),
                     tabList = (state()?.data?.tabList ?: it.tabList)
                 )
             }

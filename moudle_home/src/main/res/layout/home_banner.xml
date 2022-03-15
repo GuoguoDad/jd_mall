@@ -12,7 +12,6 @@
         android:layout_marginLeft="12dp"
         android:layout_marginTop="10dp"
         android:layout_marginRight="12dp"
-        android:layout_marginBottom="8dp"
-        app:banner_radius="10dp"/>
+        app:banner_radius="5dp"/>
 
 </RelativeLayout>

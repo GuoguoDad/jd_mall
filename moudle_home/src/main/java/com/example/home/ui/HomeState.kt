@@ -4,7 +4,6 @@ import com.airbnb.mvrx.Async
 import com.airbnb.mvrx.MavericksState
 import com.airbnb.mvrx.Uninitialized
 import com.example.common.base.BaseResponse
-import com.example.home.ui.*
 import com.example.home.ui.constants.ActionType
 
 data class HomeState(
@@ -12,6 +11,7 @@ data class HomeState(
     val fetchType: ActionType = ActionType.REFRESH,
     val bannerList: List<BannerBean> = emptyList(),
     val tabList: List<TabBean> = emptyList(),
+    val adUrl: String = "",
     val nineMenuList: List<MenuBean> = emptyList(),
     val homeInfoResponse: Async<BaseResponse<HomeInfoResponse>> = Uninitialized,
 
