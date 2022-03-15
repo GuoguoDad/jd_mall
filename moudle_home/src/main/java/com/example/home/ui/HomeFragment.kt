@@ -16,6 +16,7 @@ import kotlinx.android.synthetic.main.fragment_home.*
 import com.example.home.ui.view.TopView
 import com.google.android.material.tabs.TabLayoutMediator
 import com.example.common.util.PixelUtil
+import com.example.home.ui.view.NineMenuView
 import com.google.android.material.appbar.AppBarLayout
 import kotlinx.android.synthetic.main.home_goods.*
 
@@ -25,6 +26,7 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
 
     private val banner: BannerView by lazy { BannerView(this.requireContext()) }
     private val topView: TopView by lazy { TopView(this.requireContext()) }
+    private val nineMenuView: NineMenuView by lazy { NineMenuView(this.requireContext()) }
 
     private val searchHeight = StatusBarUtil.getHeight() + PixelUtil.toPixelFromDIP(30f).toInt()
 
@@ -44,6 +46,7 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
             removeAllViews()
             addView(topView)
             addView(banner)
+            addView(nineMenuView)
         }
         appBar.run {
             addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { _, verticalOffset ->
@@ -71,8 +74,9 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
             HomeState::isLoading,
             HomeState::fetchType,
             HomeState::bannerList,
-            HomeState::tabList
-        ) { isLoading, fetchType, bannerList, tabList ->
+            HomeState::tabList,
+            HomeState::nineMenuList
+        ) { isLoading, fetchType, bannerList, tabList, nineMenuList ->
             run {
                 when (isLoading) {
                     true -> loadingDialog.show()
@@ -86,6 +90,9 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
                         }
                         if (tabList.isNotEmpty()) {
                             showTabLayout(tabList)
+                        }
+                        if (nineMenuList.isNotEmpty()) {
+                            nineMenuView.setData(nineMenuList, this@HomeFragment)
                         }
                     }
                 }

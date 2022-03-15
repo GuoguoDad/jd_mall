@@ -92,8 +92,10 @@
         <entry key="module_main/src/main/res/menu/bottom_nav_menu.xml" value="0.3770833333333333" />
         <entry key="moudle_home/src/main/res/drawable/enter_bg.xml" value="0.3828125" />
         <entry key="moudle_home/src/main/res/drawable/gray_circular_bg.xml" value="0.39739583333333334" />
+        <entry key="moudle_home/src/main/res/drawable/normal_indicator.xml" value="0.3828125" />
         <entry key="moudle_home/src/main/res/drawable/rounded_corners_white_10_bg.xml" value="0.3828125" />
         <entry key="moudle_home/src/main/res/drawable/rounded_corners_white_bg.xml" value="0.3828125" />
+        <entry key="moudle_home/src/main/res/drawable/selected_indicator.xml" value="0.3828125" />
         <entry key="moudle_home/src/main/res/drawable/similar_bg.xml" value="0.3828125" />
         <entry key="moudle_home/src/main/res/drawable/text_bg.xml" value="0.3828125" />
         <entry key="moudle_home/src/main/res/layout/banner_layout.xml" value="0.23233695652173914" />
@@ -110,6 +112,9 @@
         <entry key="moudle_home/src/main/res/layout/home_goods_second_item.xml" value="0.24048913043478262" />
         <entry key="moudle_home/src/main/res/layout/home_search.xml" value="0.18264379414732593" />
         <entry key="moudle_home/src/main/res/layout/home_top_view.xml" value="0.22644927536231885" />
+        <entry key="moudle_home/src/main/res/layout/nine_memu_gridview.xml" value="0.24048913043478262" />
+        <entry key="moudle_home/src/main/res/layout/nine_memu_item.xml" value="0.24048913043478262" />
+        <entry key="moudle_home/src/main/res/layout/nine_memu_main.xml" value="0.24048913043478262" />
         <entry key="moudle_home/src/main/res/layout/search_layout.xml" value="0.23233695652173914" />
         <entry key="moudle_home/src/main/res/layout/top_view_layout.xml" value="0.1286549707602339" />
         <entry key="moudle_home/src/main/res/layout/view_scroll_card.xml" value="0.2368659420289855" />

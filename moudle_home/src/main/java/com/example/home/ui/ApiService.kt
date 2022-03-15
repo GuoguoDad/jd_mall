@@ -7,7 +7,8 @@ import retrofit2.http.POST
 
 data class BannerBean(var imgUrl: String, var type: String)
 data class TabBean(var name: String, var code: String)
-data class HomeInfoResponse(var bannerList: MutableList<BannerBean>, var tabList: MutableList<TabBean>)
+data class MenuBean(var menuIcon: String, var menuName: String, var menuCode: String)
+data class HomeInfoResponse(var bannerList: MutableList<BannerBean>, var tabList: MutableList<TabBean>, var nineMenuList: MutableList<MenuBean>)
 
 data class GoodsBean(
     var imgUrl: String,

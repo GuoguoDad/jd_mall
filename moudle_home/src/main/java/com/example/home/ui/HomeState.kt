@@ -12,6 +12,7 @@ data class HomeState(
     val fetchType: ActionType = ActionType.REFRESH,
     val bannerList: List<BannerBean> = emptyList(),
     val tabList: List<TabBean> = emptyList(),
+    val nineMenuList: List<MenuBean> = emptyList(),
     val homeInfoResponse: Async<BaseResponse<HomeInfoResponse>> = Uninitialized,
 
     val goodsListFetchType: ActionType = ActionType.INIT,
