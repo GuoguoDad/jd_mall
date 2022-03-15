@@ -1,4 +1,4 @@
-package com.example.news
+package com.example.mall
 
 import com.example.common.BaseApplication
 

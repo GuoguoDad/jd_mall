@@ -1,6 +1,6 @@
 # 前言
 
-android_template 是本人学习android的练手项目，项目具有完整的结构。代码整洁规范，结构清晰。
+android_mall 是本人学习android的练手项目，项目具有完整的结构。代码整洁规范，结构清晰。
 
 1. kotlin
 
