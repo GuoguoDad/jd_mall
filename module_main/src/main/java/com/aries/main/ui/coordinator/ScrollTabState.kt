@@ -1,4 +1,4 @@
-package com.aries.main.ui.coordinator.state
+package com.aries.main.ui.coordinator
 
 import com.airbnb.mvrx.Async
 import com.airbnb.mvrx.MavericksState

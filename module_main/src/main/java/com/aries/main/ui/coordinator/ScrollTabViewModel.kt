@@ -1,11 +1,9 @@
-package com.aries.main.ui.coordinator.viewmodel
+package com.aries.main.ui.coordinator
 
 import com.airbnb.mvrx.Loading
 import com.airbnb.mvrx.MavericksViewModel
 import com.airbnb.mvrx.Success
 import com.aries.common.util.HttpUtil
-import com.aries.main.ui.coordinator.ApiService
-import com.aries.main.ui.coordinator.state.ScrollTabState
 import com.aries.main.ui.waterfall.QueryProductListParams
 import kotlinx.coroutines.Dispatchers
 

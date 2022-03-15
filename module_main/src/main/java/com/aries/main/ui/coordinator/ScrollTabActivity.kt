@@ -11,18 +11,22 @@ import com.aries.common.util.PixelUtil
 import com.aries.main.R
 import com.aries.main.ui.coordinator.adapter.BannerAdapter
 import com.aries.main.ui.coordinator.fragment.WaterfallFragment
-import com.aries.main.ui.coordinator.state.ScrollTabState
-import com.aries.main.ui.coordinator.viewmodel.ScrollTabViewModel
 import com.google.android.material.tabs.TabLayoutMediator
 import com.youth.banner.indicator.CircleIndicator
 import com.youth.banner.transformer.AlphaPageTransformer
 import kotlinx.android.synthetic.main.layout_tab_waterfall.*
+import kotlinx.android.synthetic.main.layout_tab_waterfall.tabLayout
+import kotlinx.android.synthetic.main.layout_tab_waterfall.viewPager
 
 @Route(path = RouterPaths.TAB_WATERFALL_ACTIVITY)
 class ScrollTabActivity: BaseActivity(R.layout.layout_tab_waterfall), MavericksView {
     private val viewModel: ScrollTabViewModel by viewModel()
 
+    private var tabList: ArrayList<String> = arrayListOf()
+    private lateinit var tabViewPagerAdapter: FragmentStateAdapter
+
     override fun initView() {
+        initTabViewPagerAdapter()
         addStateChangeListener()
     }
 
@@ -65,15 +69,23 @@ class ScrollTabActivity: BaseActivity(R.layout.layout_tab_waterfall), MavericksV
     }
 
     private fun showTabLayout(list: List<String>) {
-        viewPager.adapter = object : FragmentStateAdapter(this){
-            override fun getItemCount(): Int = list.size
-            override fun createFragment(position: Int): Fragment {
-                return WaterfallFragment()
-            }
-        }
+        tabList.clear()
+        tabList.addAll(list)
+        tabViewPagerAdapter.notifyDataSetChanged()
+
         viewPager.offscreenPageLimit = list.size
         TabLayoutMediator(tabLayout, viewPager) {
             tab, position -> tab.text = list[position]
         }.attach()
+    }
+
+    private fun initTabViewPagerAdapter() {
+        tabViewPagerAdapter = object : FragmentStateAdapter(this){
+            override fun getItemCount(): Int = tabList.size
+            override fun createFragment(position: Int): Fragment {
+                return WaterfallFragment()
+            }
+        }
+        viewPager.adapter = tabViewPagerAdapter
     }
 }
