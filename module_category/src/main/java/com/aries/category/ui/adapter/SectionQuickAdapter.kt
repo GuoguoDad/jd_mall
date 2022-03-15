@@ -2,7 +2,7 @@ package com.aries.category.ui.adapter
 
 import com.chad.library.adapter.base.BaseSectionQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
-import com.example.category.R
+import com.aries.category.R
 import com.aries.category.ui.modal.CategoryModal
 
 class SectionQuickAdapter(sectionHeadResId: Int, layoutResId: Int, data: MutableList<CategoryModal> ):

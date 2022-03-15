@@ -5,7 +5,7 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
-import com.example.main.R
+import com.aries.main.R
 
 class Header: ConstraintLayout {
     private var title: String? = null

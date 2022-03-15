@@ -8,7 +8,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.aries.common.constants.RouterPaths
 import com.aries.common.base.BaseActivity
 import com.aries.common.decoration.SpacesItemDecoration
-import com.example.main.R
+import com.aries.main.R
 import com.aries.common.dialog.LoadingDialog
 import com.aries.common.dialog.PreviewPictureDialog
 import kotlinx.android.synthetic.main.layout_header.*

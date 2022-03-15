@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
-import com.example.category.R
+import com.aries.category.R
 import com.aries.common.util.PixelUtil
 import com.aries.common.util.StatusBarUtil
 import kotlinx.android.synthetic.main.serach.view.*

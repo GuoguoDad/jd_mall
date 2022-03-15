@@ -9,7 +9,7 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import coil.ImageLoader
 import coil.load
-import com.example.home.R
+import com.aries.home.R
 import com.aries.home.ui.MenuBean
 import android.widget.TextView
 import com.aries.common.util.CoilUtil

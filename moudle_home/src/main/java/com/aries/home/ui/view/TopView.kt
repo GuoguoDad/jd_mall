@@ -5,7 +5,7 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
 import com.aries.common.util.StatusBarUtil
-import com.example.home.R
+import com.aries.home.R
 import kotlinx.android.synthetic.main.home_top_view.view.*
 
 class TopView: FrameLayout {

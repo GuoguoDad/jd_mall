@@ -6,7 +6,7 @@ import android.widget.FrameLayout
 import coil.ImageLoader
 import coil.load
 import com.aries.common.util.CoilUtil
-import com.example.home.R
+import com.aries.home.R
 import kotlinx.android.synthetic.main.home_ad.view.*
 
 class AdView(context: Context): FrameLayout(context) {

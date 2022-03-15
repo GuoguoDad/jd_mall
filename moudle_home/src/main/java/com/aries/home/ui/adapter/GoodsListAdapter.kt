@@ -5,7 +5,7 @@ import coil.load
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.aries.common.util.CoilUtil
-import com.example.home.R
+import com.aries.home.R
 import com.aries.home.ui.GoodsBean
 
 class GoodsListAdapter(data: MutableList<GoodsBean>): BaseMultiItemQuickAdapter<GoodsBean, BaseViewHolder>(data) {

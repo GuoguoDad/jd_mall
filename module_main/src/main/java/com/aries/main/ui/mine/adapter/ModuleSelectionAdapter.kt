@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.main.R
+import com.aries.main.R
 import com.aries.main.ui.mine.bean.ModuleBean
 import com.aries.main.ui.mine.bean.ModuleBeanWrapper
 import com.aries.main.ui.mine.holder.ModuleItemHolder

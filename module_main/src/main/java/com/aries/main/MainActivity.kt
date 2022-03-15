@@ -13,7 +13,7 @@ import com.aries.common.base.BaseActivity
 import com.aries.common.util.UnreadMsgUtil
 import com.aries.home.ui.HomeFragment
 import com.aries.main.ui.cart.CartFragment
-import com.example.main.R
+import com.aries.main.R
 import com.aries.main.ui.mine.MineFragment
 import com.google.android.material.bottomnavigation.BottomNavigationItemView
 import com.google.android.material.bottomnavigation.LabelVisibilityMode
@@ -77,7 +77,7 @@ class MainActivity: BaseActivity(R.layout.layout_main) {
         val menuView = navView.getChildAt(0) as BottomNavigationMenuView
         if (viewIndex < menuView.childCount) {
             val itemView: BottomNavigationItemView = menuView.getChildAt(viewIndex) as BottomNavigationItemView
-            var badgeView = LayoutInflater.from(this).inflate(com.example.common.R.layout.badge_layout, itemView, false)
+            var badgeView = LayoutInflater.from(this).inflate(com.aries.common.R.layout.badge_layout, itemView, false)
 
             UnreadMsgUtil.show(badgeView.findViewById(R.id.badgeNum), showNumber)
 

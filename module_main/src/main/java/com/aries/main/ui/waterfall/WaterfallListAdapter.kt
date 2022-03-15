@@ -8,7 +8,7 @@ import coil.load
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.aries.common.util.CoilUtil
-import com.example.main.R
+import com.aries.main.R
 import com.aries.main.kit.util.ScreenUtil
 
 open class WaterfallListAdapter(layoutResId: Int, data: MutableList<GoodsBean>): BaseQuickAdapter<GoodsBean, BaseViewHolder>(layoutResId, data) {

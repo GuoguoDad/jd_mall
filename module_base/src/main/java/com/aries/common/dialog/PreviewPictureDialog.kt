@@ -5,7 +5,7 @@ import android.content.Context
 import android.view.Window
 import android.view.WindowManager
 import androidx.viewpager.widget.ViewPager
-import com.example.common.R
+import com.aries.common.R
 import com.aries.common.adapter.PreviewPictureAdapter
 import kotlinx.android.synthetic.main.preview_picture.*
 

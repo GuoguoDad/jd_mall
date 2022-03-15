@@ -8,7 +8,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.aries.common.base.BaseActivity
 import com.aries.common.constants.RouterPaths
 import com.aries.common.util.PixelUtil
-import com.example.main.R
+import com.aries.main.R
 import com.aries.main.ui.coordinator.adapter.BannerAdapter
 import com.aries.main.ui.coordinator.fragment.WaterfallFragment
 import com.aries.main.ui.coordinator.state.ScrollTabState
@@ -58,7 +58,7 @@ class ScrollTabActivity: BaseActivity(R.layout.layout_tab_waterfall), MavericksV
             setBannerRound(PixelUtil.toPixelFromDIP(3f).toFloat())
             setIndicator(CircleIndicator(this.context))
             setPageTransformer(AlphaPageTransformer())
-            setIndicatorSelectedColorRes(com.example.home.R.color.indicator_selected_color)
+            setIndicatorSelectedColorRes(com.aries.home.R.color.indicator_selected_color)
             setLoopTime(6000L)
             isAutoLoop(true)
         }

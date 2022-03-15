@@ -9,7 +9,7 @@ import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
-import com.example.home.R
+import com.aries.home.R
 import com.aries.home.ui.MenuBean
 import com.aries.home.ui.fragment.GridFragment
 import kotlinx.android.synthetic.main.nine_memu_main.view.*

@@ -8,7 +8,7 @@ import android.widget.TextView
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.aries.category.ui.CategoryBean
-import com.example.category.R
+import com.aries.category.R
 
 class CategoryListAdapter(layoutResId: Int, brandList: MutableList<CategoryBean>): BaseQuickAdapter<CategoryBean, BaseViewHolder>(layoutResId, brandList) {
 

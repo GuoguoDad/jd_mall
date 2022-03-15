@@ -4,7 +4,7 @@ import android.widget.ImageView
 import coil.ImageLoader
 import coil.load
 import com.aries.common.util.CoilUtil
-import com.example.main.R
+import com.aries.main.R
 import com.aries.main.ui.coordinator.BannerBean
 import com.youth.banner.adapter.BannerImageAdapter
 import com.youth.banner.holder.BannerImageHolder

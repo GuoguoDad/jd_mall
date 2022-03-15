@@ -12,7 +12,7 @@ import coil.Coil
 import coil.ImageLoader
 import coil.load
 import com.aries.category.ui.ContentCateResponse
-import com.example.category.R
+import com.aries.category.R
 import com.aries.category.ui.adapter.SectionQuickAdapter
 import com.aries.category.ui.modal.CategoryModal
 import com.google.android.material.tabs.TabLayout

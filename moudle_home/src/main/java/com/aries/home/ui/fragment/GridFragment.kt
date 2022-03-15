@@ -2,7 +2,7 @@ package com.aries.home.ui.fragment
 
 import android.widget.ListAdapter
 import com.aries.common.base.BaseFragment
-import com.example.home.R
+import com.aries.home.R
 import com.aries.home.ui.MenuBean
 import com.aries.home.ui.adapter.NineGridAdapter
 import kotlinx.android.synthetic.main.nine_memu_gridview.*

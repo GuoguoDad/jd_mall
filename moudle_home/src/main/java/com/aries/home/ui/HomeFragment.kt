@@ -8,7 +8,7 @@ import com.airbnb.mvrx.activityViewModel
 import com.aries.common.base.BaseFragment
 import com.aries.common.dialog.LoadingDialog
 import com.aries.common.util.StatusBarUtil
-import com.example.home.R
+import com.aries.home.R
 import com.aries.home.ui.constants.ActionType
 import com.aries.home.ui.fragment.GoodsListFragment
 import com.aries.home.ui.view.BannerView

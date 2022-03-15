@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.GridLayoutManager.SpanSizeLookup
 import com.alibaba.android.arouter.launcher.ARouter
 import com.aries.common.base.BaseFragment
 import com.aries.common.constants.RouterPaths
-import com.example.main.R
+import com.aries.main.R
 import com.aries.common.util.GsonUtil
 import com.aries.main.ui.mine.adapter.ModuleSelectionAdapter
 import com.aries.main.ui.mine.bean.ModuleBean

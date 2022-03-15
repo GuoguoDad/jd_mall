@@ -4,7 +4,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.airbnb.mvrx.MavericksView
 import com.airbnb.mvrx.activityViewModel
 import com.airbnb.mvrx.withState
-import com.example.category.R
+import com.aries.category.R
 import com.aries.category.ui.adapter.CategoryListAdapter
 import com.aries.common.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_main.*

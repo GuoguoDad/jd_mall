@@ -5,7 +5,7 @@ import com.airbnb.mvrx.MavericksView
 import com.airbnb.mvrx.activityViewModel
 import com.aries.common.base.BaseFragment
 import com.aries.common.decoration.SpacesItemDecoration
-import com.example.home.R
+import com.aries.home.R
 import com.aries.home.ui.adapter.GoodsListAdapter
 import com.aries.home.ui.constants.ActionType
 import com.aries.home.ui.HomeState

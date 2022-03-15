@@ -7,7 +7,7 @@ import com.airbnb.mvrx.withState
 import com.aries.common.base.BaseFragment
 import com.aries.common.decoration.SpacesItemDecoration
 import com.aries.common.dialog.PreviewPictureDialog
-import com.example.main.R
+import com.aries.main.R
 import com.aries.main.ui.coordinator.viewmodel.ScrollTabViewModel
 import com.aries.main.ui.waterfall.WaterfallListAdapter
 import kotlinx.android.synthetic.main.view_list.*

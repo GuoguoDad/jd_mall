@@ -8,7 +8,7 @@ import android.os.Message
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.aries.common.constants.RouterPaths
-import com.example.main.R
+import com.aries.main.R
 import kotlinx.android.synthetic.main.layout_advertisement.*
 
 @Route(path = RouterPaths.ADV_ACTIVITY)

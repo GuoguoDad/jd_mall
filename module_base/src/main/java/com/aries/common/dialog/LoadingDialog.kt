@@ -2,8 +2,7 @@ package com.aries.common.dialog
 
 import android.app.Dialog
 import android.content.Context
-import android.graphics.drawable.AnimationDrawable
-import com.example.common.R
+import com.aries.common.R
 import android.view.Gravity
 import android.view.Window
 
