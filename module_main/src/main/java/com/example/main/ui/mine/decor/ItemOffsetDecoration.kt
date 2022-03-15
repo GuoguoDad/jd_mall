@@ -1,4 +1,4 @@
-package com.example.main.ui.dashboard.decor
+package com.example.main.ui.mine.decor
 
 import android.graphics.Rect
 import android.view.View

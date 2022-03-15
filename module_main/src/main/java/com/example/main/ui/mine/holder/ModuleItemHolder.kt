@@ -1,4 +1,4 @@
-package com.example.main.ui.dashboard.holder
+package com.example.main.ui.mine.holder
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView

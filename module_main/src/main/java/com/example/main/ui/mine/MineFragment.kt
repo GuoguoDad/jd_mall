@@ -1,56 +1,31 @@
-package com.example.main.ui.dashboard
+package com.example.main.ui.mine
 
-import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.GridLayoutManager.SpanSizeLookup
-import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.launcher.ARouter
+import com.example.common.base.BaseFragment
 import com.example.common.constants.RouterPaths
 import com.example.main.R
 import com.example.common.util.GsonUtil
-import com.example.main.databinding.FragmentDashboardBinding
-import com.example.main.ui.dashboard.adapter.ModuleSelectionAdapter
-import com.example.main.ui.dashboard.bean.ModuleBean
-import com.example.main.ui.dashboard.bean.ModuleBeanWrapper
-import com.example.main.ui.dashboard.decor.ItemOffsetDecoration
+import com.example.main.ui.mine.adapter.ModuleSelectionAdapter
+import com.example.main.ui.mine.bean.ModuleBean
+import com.example.main.ui.mine.bean.ModuleBeanWrapper
+import com.example.main.ui.mine.decor.ItemOffsetDecoration
+import kotlinx.android.synthetic.main.fragment_mine.*
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStream
 import java.io.InputStreamReader
 import java.lang.StringBuilder
 
-class DashboardFragment : Fragment() {
+class MineFragment : BaseFragment(R.layout.fragment_mine) {
     val titleItem = 0
     val galleryItem = 1
-    private var _binding: FragmentDashboardBinding? = null
-    private var recyclerView: RecyclerView? = null
     private var moduleSelectionAdapter: ModuleSelectionAdapter? = null
-    private val binding get() = _binding!!
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        _binding = FragmentDashboardBinding.inflate(inflater, container, false)
-
-        initView()
-        initData()
-
-        return binding.root
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
-    private fun initView() {
-        recyclerView = binding.rvModule
-    }
-
-    private fun initData() {
+    override fun initView() {
         val localThis = this
         val wrapper = initListData()
         if (wrapper != null) {
@@ -88,6 +63,10 @@ class DashboardFragment : Fragment() {
             val space = resources.getDimension(R.dimen.space)
             recyclerView!!.addItemDecoration(ItemOffsetDecoration(space.toInt()))
         }
+    }
+
+    override fun initData() {
+
     }
 
     private fun initListData(): ModuleBeanWrapper? {
