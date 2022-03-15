@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.example.main.kit.header.Header
+    <com.aries.main.kit.header.Header
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
         app:title="@string/waterfall"

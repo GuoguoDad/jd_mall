@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.mall">
+    package="com.aries.mall">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
-        android:name="com.example.mall.AppApplication"
+        android:name="com.aries.mall.AppApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -16,7 +16,7 @@
         android:theme="@style/TranslucentTheme">
 
         <activity
-            android:name="com.example.main.ui.splash.StartPageActivity"
+            android:name="com.aries.main.ui.splash.StartPageActivity"
             android:theme="@style/SplashActivityTheme"
             android:exported="true">
             <intent-filter>
@@ -28,7 +28,7 @@
 
 
         <provider
-            android:name="com.example.common.provider.ShareContentProvider"
+            android:name="com.aries.common.provider.ShareContentProvider"
             android:authorities="${applicationId}.contextprovider"
             android:exported="false" />
 
