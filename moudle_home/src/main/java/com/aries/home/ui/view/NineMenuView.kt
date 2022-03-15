@@ -7,31 +7,33 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
-import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.aries.home.R
 import com.aries.home.ui.MenuBean
-import com.aries.home.ui.fragment.GridFragment
+import com.aries.home.ui.adapter.NineViewPagerAdapter
 import kotlinx.android.synthetic.main.nine_memu_main.view.*
 import kotlin.math.ceil
 
-class NineMenuView(var content: Context): FrameLayout(content) {
+class NineMenuView(var content: Context, fragment: Fragment): FrameLayout(content) {
     private val pageSize: Int = 10
     private var points: ArrayList<ImageView> = arrayListOf()
+    private var menuList: ArrayList<MenuBean> = arrayListOf()
+    private var layoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams(16, 16))
+
+    private val nineViewPagerAdapter: NineViewPagerAdapter by lazy { NineViewPagerAdapter(fragment, menuList, pageSize) }
 
     init {
         LayoutInflater.from(context).inflate(R.layout.nine_memu_main, this, true)
+        nineViewPager.adapter = nineViewPagerAdapter
     }
 
-    fun setData(data: List<MenuBean>, fragment: Fragment) {
+    fun setData(data: List<MenuBean>) {
         var totalPage = ceil(data.size * 1.0 / pageSize).toInt()
 
-        nineViewPager.adapter = object : FragmentStateAdapter(fragment){
-            override fun getItemCount(): Int = totalPage
-            override fun createFragment(position: Int): Fragment {
-                return GridFragment(data.toMutableList(), position, pageSize)
-            }
-        }
+        menuList.clear()
+        menuList.addAll(data)
+        nineViewPagerAdapter.notifyDataSetChanged()
+
         nineViewPager.registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback(){
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
@@ -39,22 +41,22 @@ class NineMenuView(var content: Context): FrameLayout(content) {
             }
         })
 
-        points.clear()
-        pointsLayout.removeAllViews()
-        for (current in 1..totalPage) {
-            val imageView = ImageView(content)
-            imageView.layoutParams = ViewGroup.LayoutParams(16,16)
-            if(current == 1){
-                imageView.setBackgroundResource(R.drawable.selected_indicator)
-            }else{
-                imageView.setBackgroundResource(R.drawable.normal_indicator)
-            }
-            points.add(imageView)
+        layoutParams.leftMargin = 5
+        layoutParams.rightMargin = 5
 
-            var layoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams(16, 16))
-            layoutParams.leftMargin = 5
-            layoutParams.rightMargin = 5
-            pointsLayout.addView(imageView, layoutParams)
+        if (points.size != totalPage) {
+            points.clear()
+            for (current in 1..totalPage) {
+                val imageView = ImageView(content)
+                imageView.layoutParams = ViewGroup.LayoutParams(16,16)
+                if(current == 1){
+                    imageView.setBackgroundResource(R.drawable.selected_indicator)
+                }else{
+                    imageView.setBackgroundResource(R.drawable.normal_indicator)
+                }
+                points.add(imageView)
+                pointsLayout.addView(imageView, layoutParams)
+            }
         }
     }
 

@@ -25,10 +25,13 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
     private val viewModel: HomeViewModel by activityViewModel()
     private val loadingDialog: LoadingDialog by lazy { LoadingDialog(this.requireActivity()) }
 
+    private var tabList: ArrayList<TabBean> = arrayListOf()
+    private lateinit var tabViewPagerAdapter: FragmentStateAdapter
+
     private val banner: BannerView by lazy { BannerView(this.requireContext()) }
     private val topView: TopView by lazy { TopView(this.requireContext()) }
     private val adView: AdView by lazy { AdView(this.requireContext()) }
-    private val nineMenuView: NineMenuView by lazy { NineMenuView(this.requireContext()) }
+    private val nineMenuView: NineMenuView by lazy { NineMenuView(this.requireContext(), this@HomeFragment) }
 
     private val searchHeight = StatusBarUtil.getHeight() + PixelUtil.toPixelFromDIP(30f).toInt()
 
@@ -51,6 +54,7 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
             addView(adView)
             addView(nineMenuView)
         }
+        initTabViewPagerAdapter()
         appBar.run {
             addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { _, verticalOffset ->
                 if (verticalOffset <= -searchHeight) {
@@ -99,7 +103,7 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
                             adView.setData(adUrl)
                         }
                         if (nineMenuList.isNotEmpty()) {
-                            nineMenuView.setData(nineMenuList, this@HomeFragment)
+                            nineMenuView.setData(nineMenuList)
                         }
                     }
                 }
@@ -110,12 +114,10 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
     override fun invalidate() {}
 
     private fun showTabLayout(list: List<TabBean>) {
-        viewPager.adapter = object : FragmentStateAdapter(this){
-            override fun getItemCount(): Int = list.size
-            override fun createFragment(position: Int): Fragment {
-                return GoodsListFragment(list[position].code)
-            }
-        }
+        tabList.clear()
+        tabList.addAll(list)
+        tabViewPagerAdapter.notifyDataSetChanged()
+
         viewPager.offscreenPageLimit = list.size
         TabLayoutMediator(tabLayout, viewPager) {
                 tab, position -> tab.text = list[position].name
@@ -127,6 +129,16 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
         val layoutParams = toolbar.layoutParams
         layoutParams.height = searchHeight
         toolbar.layoutParams = layoutParams
+    }
+
+    private fun initTabViewPagerAdapter() {
+        tabViewPagerAdapter = object : FragmentStateAdapter(this){
+            override fun getItemCount(): Int = tabList.size
+            override fun createFragment(position: Int): Fragment {
+                return GoodsListFragment(tabList[position].code)
+            }
+        }
+        viewPager.adapter = tabViewPagerAdapter
     }
 
     private fun scrollTop() {
