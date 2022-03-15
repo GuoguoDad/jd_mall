@@ -1,13 +1,11 @@
-package com.example.category
+package com.example.category.ui
 
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.airbnb.mvrx.MavericksView
 import com.airbnb.mvrx.activityViewModel
 import com.airbnb.mvrx.withState
-import com.example.category.adapter.CategoryListAdapter
-import com.example.category.state.LeftCategoryState
-import com.example.category.viewmodel.LeftCategoryViewModel
-import com.example.category.viewmodel.RightCategoryViewModel
+import com.example.category.R
+import com.example.category.ui.adapter.CategoryListAdapter
 import com.example.common.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_main.*
 

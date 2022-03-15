@@ -1,10 +1,8 @@
-package com.example.category.viewmodel
+package com.example.category.ui
 
 import com.airbnb.mvrx.Loading
 import com.airbnb.mvrx.MavericksViewModel
 import com.airbnb.mvrx.Success
-import com.example.category.ApiService
-import com.example.category.state.RightCategoryState
 import com.example.common.util.HttpUtil
 import kotlinx.coroutines.Dispatchers
 

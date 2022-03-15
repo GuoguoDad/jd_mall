@@ -1,4 +1,4 @@
-package com.example.category.adapter
+package com.example.category.ui.adapter
 
 import android.annotation.SuppressLint
 import android.graphics.Color
@@ -7,7 +7,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
-import com.example.category.CategoryBean
+import com.example.category.ui.CategoryBean
 import com.example.category.R
 
 class CategoryListAdapter(layoutResId: Int, brandList: MutableList<CategoryBean>): BaseQuickAdapter<CategoryBean, BaseViewHolder>(layoutResId, brandList) {

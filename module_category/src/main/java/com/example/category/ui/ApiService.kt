@@ -1,4 +1,4 @@
-package com.example.category
+package com.example.category.ui
 
 import com.example.common.base.BaseResponse
 import retrofit2.http.GET

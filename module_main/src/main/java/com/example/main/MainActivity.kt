@@ -1,17 +1,23 @@
 package com.example.main
 
+import android.annotation.SuppressLint
+import android.view.LayoutInflater
+import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.example.category.CategoryFragment
+import com.example.category.ui.CategoryFragment
 import com.example.common.constants.RouterPaths
 import com.example.common.base.BaseActivity
+import com.example.common.util.UnreadMsgUtil
 import com.example.home.ui.HomeFragment
 import com.example.main.ui.cart.CartFragment
 import com.example.main.ui.mine.MineFragment
+import com.google.android.material.bottomnavigation.BottomNavigationItemView
 import com.google.android.material.bottomnavigation.LabelVisibilityMode
 import kotlinx.android.synthetic.main.layout_main.*
+import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 
 @Route(path = RouterPaths.MAIN_ACTIVITY)
 class MainActivity: BaseActivity(R.layout.layout_main) {
@@ -23,6 +29,7 @@ class MainActivity: BaseActivity(R.layout.layout_main) {
     override fun initView() {
         val navController = findNavController(R.id.container_fragment)
         navView.labelVisibilityMode = LabelVisibilityMode.LABEL_VISIBILITY_LABELED
+        navView.itemIconTintList = null //保留icon原图颜色
         navView.setupWithNavController(navController)
 
         var active = homeFragment
@@ -54,5 +61,31 @@ class MainActivity: BaseActivity(R.layout.layout_main) {
         }
     }
 
-    override fun initData() {}
+    override fun initData() {
+        showBadgeView(2, 1)
+    }
+
+    /**
+     * BottomNavigationView显示角标
+     *
+     * @param viewIndex tab索引
+     * @param showNumber 显示的数字，小于等于0是将不显示
+     */
+    @SuppressLint("RestrictedApi")
+    private fun showBadgeView(viewIndex: Int, showNumber: Int) {
+        val menuView = navView.getChildAt(0) as BottomNavigationMenuView
+        if (viewIndex < menuView.childCount) {
+            val itemView: BottomNavigationItemView = menuView.getChildAt(viewIndex) as BottomNavigationItemView
+            var badgeView = LayoutInflater.from(this).inflate(com.example.common.R.layout.badge_layout, itemView, false)
+
+            UnreadMsgUtil.show(badgeView.findViewById(R.id.badgeNum), showNumber)
+
+            var lp = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT)
+            lp.leftMargin = menuView.itemIconSize
+            lp.bottomMargin = menuView.itemIconSize
+
+            itemView.addView(badgeView, lp)
+        }
+    }
+
 }

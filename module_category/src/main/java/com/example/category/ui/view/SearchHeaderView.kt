@@ -1,4 +1,4 @@
-package com.example.category.view
+package com.example.category.ui.view
 
 import android.content.Context
 import android.util.AttributeSet

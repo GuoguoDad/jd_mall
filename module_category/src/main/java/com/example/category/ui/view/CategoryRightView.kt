@@ -1,4 +1,4 @@
-package com.example.category.view
+package com.example.category.ui.view
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -11,10 +11,10 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.Coil
 import coil.ImageLoader
 import coil.load
-import com.example.category.ContentCateResponse
+import com.example.category.ui.ContentCateResponse
 import com.example.category.R
-import com.example.category.adapter.SectionQuickAdapter
-import com.example.category.modal.CategoryModal
+import com.example.category.ui.adapter.SectionQuickAdapter
+import com.example.category.ui.modal.CategoryModal
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.main_right.view.*
 

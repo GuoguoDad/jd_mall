@@ -1,9 +1,9 @@
-package com.example.category.adapter
+package com.example.category.ui.adapter
 
 import com.chad.library.adapter.base.BaseSectionQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.example.category.R
-import com.example.category.modal.CategoryModal
+import com.example.category.ui.modal.CategoryModal
 
 class SectionQuickAdapter(sectionHeadResId: Int, layoutResId: Int, data: MutableList<CategoryModal> ):
     BaseSectionQuickAdapter<CategoryModal, BaseViewHolder>(sectionHeadResId, layoutResId, data) {

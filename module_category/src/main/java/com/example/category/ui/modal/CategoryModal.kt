@@ -1,4 +1,4 @@
-package com.example.category.modal
+package com.example.category.ui.modal
 
 import com.chad.library.adapter.base.entity.SectionEntity
 

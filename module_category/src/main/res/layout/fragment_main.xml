@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.example.category.view.SearchHeaderView
+    <com.example.category.ui.view.SearchHeaderView
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,11 +14,8 @@
         android:id="@+id/categoryList"
         android:layout_width="120dp"
         android:layout_height="0dp"
-        android:scrollbarSize="2dp"
-        android:scrollbars="vertical"
         android:background="@color/white"
         android:paddingTop="5dp"
-        android:scrollbarThumbVertical="@color/scrollBar"
         app:layout_constraintTop_toBottomOf="@id/header"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
@@ -32,7 +29,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent">
 
-    <com.example.category.view.CategoryRightView
+    <com.example.category.ui.view.CategoryRightView
         android:id="@+id/categoryRightView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
