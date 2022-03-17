@@ -29,10 +29,10 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent">
 
-    <com.aries.category.ui.view.CategoryRightView
-        android:id="@+id/categoryRightView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        <com.aries.category.ui.view.CategoryRightView
+            android:id="@+id/categoryRightView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
     </com.scwang.smart.refresh.layout.SmartRefreshLayout>
 
