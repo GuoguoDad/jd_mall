@@ -97,10 +97,10 @@ class CategoryRightView: FrameLayout {
         var list: ArrayList<CategoryModal> = arrayListOf()
         data.cateList.forEach { v ->
             run {
-                list.add(CategoryModal("", v.categoryName, v.categoryCode, true))
+                list.add(CategoryModal(v?.iconUrl, v.categoryName, v.categoryCode, true))
                 v.cateList?.forEach { m ->
                     run {
-                        list.add(CategoryModal("", m.categoryName, m.categoryCode, false))
+                        list.add(CategoryModal(m?.iconUrl, m.categoryName, m.categoryCode, false))
                     }
                 }
             }

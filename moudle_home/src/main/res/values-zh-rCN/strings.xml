@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">android_demo</string>
+    <string name="app_name">android_mall</string>
     <string name="title_home">首页</string>
     <string name="title_dashboard">面板</string>
     <string name="title_category">分类</string>

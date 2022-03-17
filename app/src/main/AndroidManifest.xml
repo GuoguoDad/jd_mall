@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.aries.mall">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -13,7 +14,9 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/TranslucentTheme">
+        android:theme="@style/TranslucentTheme"
+        tools:targetApi="n"
+        tools:ignore="AllowBackup">
 
         <activity
             android:name="com.aries.main.ui.splash.StartPageActivity"
@@ -26,6 +29,13 @@
             </intent-filter>
         </activity>
 
+<!--        <activity-->
+<!--            android:name=".alive.OnePxActivity"-->
+<!--            android:theme="@style/OnePxActStyle"-->
+<!--            android:configChanges="keyboardHidden|orientation|screenSize|navigation|keyboard"-->
+<!--            android:excludeFromRecents="true"-->
+<!--            android:finishOnTaskLaunch="false"-->
+<!--            android:launchMode="singleInstance"/>-->
 
         <provider
             android:name="com.aries.common.provider.ShareContentProvider"

@@ -1,5 +1,6 @@
 package com.aries.category.ui
 
+import android.annotation.SuppressLint
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.airbnb.mvrx.MavericksView
 import com.airbnb.mvrx.activityViewModel
@@ -60,29 +61,26 @@ class CategoryFragment : BaseFragment(R.layout.fragment_main), MavericksView {
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun setSelectCategory(selectIndex: Int) {
         categoryListAdapter.run {
             var preSelectIndex = data.indexOfFirst { v -> v.isSelect == true }
             if (preSelectIndex - 1 >= 0) {
                 data[preSelectIndex - 1].fillet = ""
-                notifyItemChanged(preSelectIndex - 1)
             }
             if (preSelectIndex + 1 < categoryListAdapter.data.size) {
                 data[preSelectIndex + 1].fillet = ""
-                notifyItemChanged(preSelectIndex + 1)
             }
+
             data[preSelectIndex].isSelect = false
             data[selectIndex].isSelect = true
             if (selectIndex - 1 >= 0) {
                 data[selectIndex - 1].fillet = "down"
-                notifyItemChanged(selectIndex - 1)
             }
             if (selectIndex + 1 < categoryListAdapter.data.size) {
                 data[selectIndex + 1].fillet = "up"
-                notifyItemChanged(selectIndex + 1)
             }
-            notifyItemChanged(preSelectIndex)
-            notifyItemChanged(selectIndex)
+            notifyDataSetChanged()
         }
     }
 
