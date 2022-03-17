@@ -7,7 +7,7 @@
     <TextView
         android:id="@+id/textHeader"
         android:padding="@dimen/dp_4"
-        android:textColor="#3F403F"
+        android:textColor="#181818"
         android:textSize="14dp"
         android:textStyle="bold"
         android:text="专属推荐"

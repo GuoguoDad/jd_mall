@@ -11,6 +11,7 @@
     android:background="@color/white">
 
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:stateListAnimator="@drawable/appbar_elevation">
@@ -44,6 +45,8 @@
             android:layout_height="wrap_content"
             app:tabMode="scrollable"
             app:tabIndicatorHeight="0dp"
+            app:tabMaxWidth="120dp"
+            app:tabMinWidth="60dp"
             app:tabRippleColor="@color/transparent"
             app:tabTextAppearance="@style/tab_title"
             app:tabTextColor="@color/color_404040"
