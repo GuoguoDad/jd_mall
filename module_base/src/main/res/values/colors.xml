@@ -19,6 +19,8 @@
 
     <color name="color_404040">#404040</color>
     <color name="color_E33A3C">#E33A3C</color>
+    <color name="color_F9EFED">#F9EFED</color>
+    <color name="color_F5F5F5">#F5F5F5</color>
 
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>

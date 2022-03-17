@@ -1,2 +1,5 @@
 <resources>
+    <style name="tab_title">
+        <item name="android:textSize">12sp</item>
+    </style>
 </resources>

@@ -73,25 +73,34 @@ class CategoryFragment : BaseFragment(R.layout.fragment_main), MavericksView {
     private fun setSelectCategory(selectIndex: Int) {
         categoryListAdapter.run {
             var preSelectIndex = data.indexOfFirst { v -> v.isSelect == true }
+
+            var preStart = preSelectIndex
+            var preCount = 1
             data[preSelectIndex].isSelect = false
             if (preSelectIndex - 1 >= 0) {
                 data[preSelectIndex - 1].fillet = ""
-                notifyItemRangeChanged(preSelectIndex - 1, 2)
+                preStart = preSelectIndex - 1
+                preCount += 1
             }
             if (preSelectIndex + 1 < categoryListAdapter.data.size) {
                 data[preSelectIndex + 1].fillet = ""
-                notifyItemRangeChanged(preSelectIndex, 2)
+                preCount += 1
             }
+            notifyItemRangeChanged(preStart, preCount)
 
+            var start = selectIndex
+            var count = 1
             data[selectIndex].isSelect = true
             if (selectIndex - 1 >= 0) {
                 data[selectIndex - 1].fillet = "down"
-                notifyItemRangeChanged(selectIndex - 1, 2)
+                start = selectIndex - 1
+                count += 1
             }
             if (selectIndex + 1 < categoryListAdapter.data.size) {
                 data[selectIndex + 1].fillet = "up"
-                notifyItemRangeChanged(selectIndex, 2)
+                count += 1
             }
+            notifyItemRangeChanged(start, count)
         }
     }
 

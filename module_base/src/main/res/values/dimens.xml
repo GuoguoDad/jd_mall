@@ -1,3 +1,5 @@
 <resources>
+    <dimen name="dp_14">14</dimen>
+    <dimen name="dp_16">16</dimen>
     <dimen name="loading_size">28dp</dimen>
 </resources>

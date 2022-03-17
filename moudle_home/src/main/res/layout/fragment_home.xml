@@ -106,8 +106,7 @@
             app:rippleColor="@color/font_6"
             app:backgroundTint="@color/white"
             android:visibility="gone"
-            android:src="@drawable/back_top"
-            />
+            android:src="@drawable/back_top"/>
 
     </RelativeLayout>
 
