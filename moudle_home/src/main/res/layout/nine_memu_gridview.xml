@@ -3,6 +3,7 @@
     android:id="@+id/gridView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:listSelector="@color/transparent"
     android:numColumns="5"
     >
 </GridView>
