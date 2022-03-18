@@ -7,13 +7,12 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.aries.cart.ui.CartFragment
 import com.aries.category.ui.CategoryFragment
 import com.aries.common.constants.RouterPaths
 import com.aries.common.base.BaseActivity
 import com.aries.common.util.UnreadMsgUtil
 import com.aries.home.ui.HomeFragment
-import com.aries.main.ui.cart.CartFragment
-import com.aries.main.R
 import com.aries.main.ui.mine.MineFragment
 import com.google.android.material.bottomnavigation.BottomNavigationItemView
 import com.google.android.material.bottomnavigation.LabelVisibilityMode
@@ -35,9 +34,9 @@ class MainActivity: BaseActivity(R.layout.layout_main) {
 
         var active = homeFragment
         supportFragmentManager.beginTransaction().add(R.id.container_fragment, homeFragment, "1").commit()
-        supportFragmentManager.beginTransaction().add(R.id.container_fragment, mineFragment, "2").hide(mineFragment).commit()
+        supportFragmentManager.beginTransaction().add(R.id.container_fragment, cartFragment, "2").hide(cartFragment).commit()
         supportFragmentManager.beginTransaction().add(R.id.container_fragment, categoryFragment, "3").hide(categoryFragment).commit()
-        supportFragmentManager.beginTransaction().add(R.id.container_fragment, cartFragment, "4").hide(cartFragment).commit()
+        supportFragmentManager.beginTransaction().add(R.id.container_fragment, mineFragment, "4").hide(mineFragment).commit()
 
         navView.setOnNavigationItemSelectedListener {
             when (it.itemId) {

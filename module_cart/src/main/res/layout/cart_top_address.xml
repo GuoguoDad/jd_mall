@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="40dp">
+
+    <TextView
+        android:id="@+id/cartTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="12dp"
+        android:gravity="center"
+        android:textColor="@color/color_181818"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:text="购物车"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/addressLayout"
+        android:layout_width="0dp"
+        android:layout_height="24dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/cartTxt"
+        app:layout_constraintRight_toLeftOf="@+id/threePointsLayout"
+        android:background="@drawable/cart_top_address_text_bg">
+
+        <ImageView
+            android:id="@+id/iconAddress"
+            android:layout_width="16dp"
+            android:layout_height="14dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/addressText"
+            android:layout_marginLeft="6dp"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/ic_address"/>
+
+        <TextView
+            android:id="@+id/addressText"
+            android:layout_width="0dp"
+            android:layout_height="16dp"
+            android:layout_marginLeft="2dp"
+            android:maxLines="1"
+            android:text="配送至:江苏省南京市丰泽路118号中粮鸿云21栋2007室"
+            android:textSize="12sp"
+            android:ellipsize="end"
+            android:paddingRight="@dimen/dp_10"
+            android:layout_marginTop="5dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/iconAddress"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout >
+
+    <RelativeLayout
+        android:id="@+id/threePointsLayout"
+        android:layout_width="40dp"
+        android:layout_height="match_parent"
+        android:layout_marginRight="15dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/addressLayout"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <ImageView
+            android:id="@+id/threePoints"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerInParent="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_ellipsis" />
+
+        <TextView
+            android:id="@+id/threePointsBadgeNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/badge_bg"
+            android:minWidth="15dp"
+            android:minHeight="15dp"
+            android:gravity="center"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/white"
+            android:visibility="visible"
+            android:textSize="9sp"/>
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
+

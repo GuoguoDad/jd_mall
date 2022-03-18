@@ -7,7 +7,7 @@
     android:paddingTop="5dp"
     android:paddingLeft="18dp"
     android:paddingRight="18dp"
-    android:paddingBottom="18dp"
+    android:paddingBottom="5dp"
     android:background="@color/white">
 
     <com.google.android.material.appbar.AppBarLayout

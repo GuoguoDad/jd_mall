@@ -66,6 +66,9 @@
         <entry key="module_base/src/main/res/layout/badge_layout.xml" value="0.22327898550724637" />
         <entry key="module_base/src/main/res/layout/loading_dialog.xml" value="0.24048913043478262" />
         <entry key="module_base/src/main/res/layout/preview_picture.xml" value="0.23233695652173914" />
+        <entry key="module_cart/src/main/res/drawable/cart_top_address_text_bg.xml" value="0.39739583333333334" />
+        <entry key="module_cart/src/main/res/layout/cart_top_address.xml" value="0.24444444444444444" />
+        <entry key="module_cart/src/main/res/layout/fragment_cart.xml" value="0.23233695652173914" />
         <entry key="module_category/src/main/res/drawable/appbar_elevation.xml" value="0.39739583333333334" />
         <entry key="module_category/src/main/res/drawable/selector_tab_indicator.xml" value="0.39739583333333334" />
         <entry key="module_category/src/main/res/drawable/shape_corner_bottom2_right.xml" value="0.39739583333333334" />
@@ -101,6 +104,7 @@
         <entry key="module_main/src/main/res/drawable/selector_main_home.xml" value="0.39739583333333334" />
         <entry key="module_main/src/main/res/drawable/selector_tab_color.xml" value="0.39739583333333334" />
         <entry key="module_main/src/main/res/layout/badge_layout.xml" value="0.24048913043478262" />
+        <entry key="module_main/src/main/res/layout/fragment_cart.xml" value="0.23233695652173914" />
         <entry key="module_main/src/main/res/layout/fragment_category.xml" value="0.2368659420289855" />
         <entry key="module_main/src/main/res/layout/fragment_dashboard.xml" value="0.2164855072463768" />
         <entry key="module_main/src/main/res/layout/fragment_setting.xml" value="0.24048913043478262" />
