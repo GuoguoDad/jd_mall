@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 外层阴影 -->
+    <item>
+        <shape>
+            <padding
+                android:bottom="1dp"
+                android:left="0dp"
+                android:right="0dp"
+                android:top="0dp" />
+            <solid android:color="#DDDDDD" />
+            <corners android:bottomRightRadius="@dimen/dp_10" android:bottomLeftRadius="@dimen/dp_10" />
+        </shape>
+    </item>
+
+    <item>
+        <shape>
+            <corners android:bottomRightRadius="@dimen/dp_10" android:bottomLeftRadius="@dimen/dp_10"/>
+            <solid android:color="#F7F7F7" />
+        </shape>
+    </item>
+</layer-list>

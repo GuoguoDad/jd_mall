@@ -26,7 +26,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/cartTxt"
         app:layout_constraintRight_toLeftOf="@+id/threePointsLayout"
-        android:background="@drawable/cart_top_address_text_bg">
+        android:background="@drawable/address_text_bg">
 
         <ImageView
             android:id="@+id/iconAddress"

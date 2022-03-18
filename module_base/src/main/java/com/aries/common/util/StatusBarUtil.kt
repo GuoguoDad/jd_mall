@@ -3,6 +3,13 @@ package com.aries.common.util
 import android.app.Activity
 import android.view.View
 import com.aries.common.BaseApplication
+import android.os.Build
+import android.view.Window
+
+import android.view.WindowManager
+
+
+
 
 object StatusBarUtil {
     /**

@@ -26,7 +26,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <include layout="@layout/cart_top_address" />
+                    <include layout="@layout/top_address" />
                 </RelativeLayout>
 
                 <!-- floatSearch 占位的-->
