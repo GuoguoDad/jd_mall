@@ -21,8 +21,7 @@ class CartFragment : BaseFragment(R.layout.fragment_cart) {
         }
     }
 
-    override fun initData() {
-    }
+    override fun initData() {}
 
 
     private fun initStatusBarPlaceholder() {
