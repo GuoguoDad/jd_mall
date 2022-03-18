@@ -47,7 +47,7 @@ class MineFragment : BaseFragment(R.layout.fragment_mine) {
                     }
                 }
             })
-            recyclerView!!.adapter = moduleSelectionAdapter
+            contentLayout!!.adapter = moduleSelectionAdapter
 
             val manager = GridLayoutManager(this.context, 6, GridLayoutManager.VERTICAL, false)
             manager.spanSizeLookup = object : SpanSizeLookup() {
@@ -59,9 +59,9 @@ class MineFragment : BaseFragment(R.layout.fragment_mine) {
                     }
                 }
             }
-            recyclerView!!.layoutManager = manager
+            contentLayout!!.layoutManager = manager
             val space = resources.getDimension(R.dimen.space)
-            recyclerView!!.addItemDecoration(ItemOffsetDecoration(space.toInt()))
+            contentLayout!!.addItemDecoration(ItemOffsetDecoration(space.toInt()))
         }
     }
 

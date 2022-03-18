@@ -30,9 +30,9 @@ class WaterfallFragment: BaseFragment(R.layout.view_list), MavericksView {
         }
         //瀑布列表
         staggeredGridLayoutManager.gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_NONE //解决加载下一页后重新排列的问题
-        recyclerView.layoutManager = staggeredGridLayoutManager
+        contentLayout.layoutManager = staggeredGridLayoutManager
 
-        recyclerView.adapter = adapter
+        contentLayout.adapter = adapter
         adapter.setOnItemClickListener{_, view, position ->
             if (view.id == R.id.waterfallItemLayout) {
                 val imgUrls = adapter.data.map { v-> v.thumb }
@@ -40,7 +40,7 @@ class WaterfallFragment: BaseFragment(R.layout.view_list), MavericksView {
             }
         }
         val space = resources.getDimension(R.dimen.waterfall_space)
-        recyclerView.addItemDecoration(SpacesItemDecoration(space.toInt()))
+        contentLayout.addItemDecoration(SpacesItemDecoration(space.toInt()))
     }
 
     override fun onDestroyView() {
