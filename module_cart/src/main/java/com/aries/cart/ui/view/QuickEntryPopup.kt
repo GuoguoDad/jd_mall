@@ -2,8 +2,8 @@ package com.aries.cart.ui.view
 
 import android.content.Context
 import com.aries.cart.R
+import com.aries.cart.ui.QuickMenuBean
 import com.aries.cart.ui.adapter.QuickEntryPopupAdapter
-import com.aries.cart.ui.bean.QuickMenuBean
 import com.aries.common.util.DisplayUtil
 import com.aries.common.util.StatusBarUtil
 import com.lxj.xpopup.core.PositionPopupView

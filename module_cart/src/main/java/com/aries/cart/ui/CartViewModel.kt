@@ -9,6 +9,22 @@ import kotlinx.coroutines.Dispatchers
 class CartViewModel(initialState: CartState): MavericksViewModel<CartState>(initialState) {
     private var apiService: ApiService = HttpUtil.instance.service(ApiService::class.java)
 
+    fun queryCartGoodsList() {
+        withState {
+            if (it.goodsListResponse is Loading) return@withState
+
+            suspend {
+                apiService.queryCartGoodsList()
+            }.execute(Dispatchers.IO) { state ->
+                copy(
+                    cartGoodsListResponse = state,
+                    cartGoodsList = (state()?.data?: it.cartGoodsList)
+                )
+            }
+        }
+    }
+
+
     fun initMaybeLikeList() {
         setState { copy(currentPage = 1) }
         withState {

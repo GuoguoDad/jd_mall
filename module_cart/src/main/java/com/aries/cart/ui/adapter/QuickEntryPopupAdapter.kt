@@ -9,7 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.aries.cart.R
-import com.aries.cart.ui.bean.QuickMenuBean
+import com.aries.cart.ui.QuickMenuBean
 
 class QuickEntryPopupAdapter(var context: Context, var data: ArrayList<QuickMenuBean>): BaseAdapter() {
 

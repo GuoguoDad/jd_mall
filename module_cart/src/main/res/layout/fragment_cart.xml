@@ -30,6 +30,7 @@
                     app:titleEnabled="false"
                     app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
+                    <!-- 顶部文字购物车 地址更改 快捷入口 -->
                     <RelativeLayout
                         android:id="@+id/topAddressLayout"
                         android:layout_width="match_parent"
@@ -80,6 +81,15 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
 
+                            <!-- 购物车中的店铺商品二级列表 -->
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/cartGoodsList"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingBottom="@dimen/dp_10"
+                                android:overScrollMode="never"/>
+
+                            <!-- 你可能还喜欢 或者 快点来看看 -->
                             <TextView
                                 android:id="@+id/title"
                                 android:layout_width="match_parent"
@@ -87,6 +97,7 @@
                                 android:gravity="center"
                                 android:text="你可能还喜欢" />
 
+                            <!-- 你可能还喜欢列表 或者 快点来看看列表 -->
                             <androidx.recyclerview.widget.RecyclerView
                                 android:id="@+id/goodsList"
                                 android:layout_width="match_parent"
@@ -104,7 +115,7 @@
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     </LinearLayout>
-    <!-- 全选和结算 -->
+    <!-- 全选按钮和结算 -->
     <include layout="@layout/bottom_all_select" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
