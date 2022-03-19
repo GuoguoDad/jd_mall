@@ -1,12 +1,12 @@
-package com.aries.home.ui.adapter
+package com.aries.common.adapter
 
 import android.widget.ImageView
 import coil.load
+import com.aries.common.R
+import com.aries.common.bean.GoodsBean
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.aries.common.util.CoilUtil
-import com.aries.home.R
-import com.aries.home.ui.GoodsBean
 
 class GoodsListAdapter(data: MutableList<GoodsBean>): BaseMultiItemQuickAdapter<GoodsBean, BaseViewHolder>(data) {
     private var imageLoader = CoilUtil.getImageLoader()
@@ -38,6 +38,5 @@ class GoodsListAdapter(data: MutableList<GoodsBean>): BaseMultiItemQuickAdapter<
                 holder.setText(R.id.des2, item.des2)
             }
         }
-
     }
 }

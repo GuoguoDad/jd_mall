@@ -4,6 +4,7 @@ import com.airbnb.mvrx.Async
 import com.airbnb.mvrx.MavericksState
 import com.airbnb.mvrx.Uninitialized
 import com.aries.common.base.BaseResponse
+import com.aries.common.bean.GoodsBean
 import com.aries.home.ui.constants.ActionType
 
 data class HomeState(
