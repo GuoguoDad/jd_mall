@@ -28,9 +28,9 @@ class CartFragment : BaseFragment(R.layout.fragment_cart), MavericksView {
 
         UnreadMsgUtil.show(threePointsBadgeNum, 2)
 
-        threePointsLayout.setOnClickListener {
-            showQuickEntry()
-        }
+//        threePointsLayout.setOnClickListener {
+//            showQuickEntry()
+//        }
 
         contentLayout.run {
             setEnableRefresh(false)
@@ -51,10 +51,10 @@ class CartFragment : BaseFragment(R.layout.fragment_cart), MavericksView {
     }
 
     private fun initStatusBarPlaceholder() {
-        topAddressLayout.setPadding(0, StatusBarUtil.getHeight(), 0 , 0)
-        val layoutParams = statusBarPlaceholder.layoutParams
-        layoutParams.height = StatusBarUtil.getHeight()
-        statusBarPlaceholder.layoutParams = layoutParams
+//        topAddressLayout.setPadding(0, StatusBarUtil.getHeight(), 0 , 0)
+//        val layoutParams = statusBarPlaceholder.layoutParams
+//        layoutParams.height = StatusBarUtil.getHeight()
+//        statusBarPlaceholder.layoutParams = layoutParams
     }
 
     //顶部快捷入口
