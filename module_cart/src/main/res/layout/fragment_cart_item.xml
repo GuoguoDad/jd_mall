@@ -22,9 +22,17 @@
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <ImageView
+            <CheckBox
+                android:id="@+id/storeCheckBox"
                 android:layout_width="16dp"
                 android:layout_height="16dp"
+                android:button="@null"
+                android:background="@drawable/selector_check_box"/>
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="4dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/ic_store"/>
 
@@ -32,7 +40,7 @@
                 android:id="@+id/storeName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp_10"
+                android:layout_marginLeft="5dp"
                 android:textColor="@color/cl_000000"
                 android:text="ASICS 旗舰店"/>
 
