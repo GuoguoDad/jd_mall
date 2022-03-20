@@ -1,5 +1,6 @@
 package com.aries.cart.ui
 
+import android.graphics.Color
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -8,7 +9,6 @@ import com.airbnb.mvrx.activityViewModel
 import com.airbnb.mvrx.withState
 import com.aries.common.base.BaseFragment
 import com.aries.cart.R
-import com.aries.cart.ui.adapter.StoreGoodsListAdapter
 import com.aries.cart.ui.adapter.StoreListAdapter
 import com.aries.cart.ui.view.QuickEntryPopup
 import com.aries.common.adapter.GoodsListAdapter
@@ -21,6 +21,7 @@ import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.enums.PopupAnimation
 import kotlinx.android.synthetic.main.fragment_cart.*
 import kotlinx.android.synthetic.main.top_address.*
+import kotlinx.android.synthetic.main.top_filter.*
 
 class CartFragment : BaseFragment(R.layout.fragment_cart), MavericksView {
     private val viewModel: CartViewModel by activityViewModel()
@@ -38,12 +39,10 @@ class CartFragment : BaseFragment(R.layout.fragment_cart), MavericksView {
 
     override fun initView() {
         initStatusBarPlaceholder()
-
+        //快捷菜单点点点 角标
         UnreadMsgUtil.show(threePointsBadgeNum, 2)
-
-        threePointsLayout.setOnClickListener {
-            showQuickEntry()
-        }
+        //快捷菜单点击事件
+        threePointsLayout.setOnClickListener { showQuickEntry() }
 
         cartAppBarLayout.run {
             addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { _, verticalOffset ->
@@ -112,6 +111,7 @@ class CartFragment : BaseFragment(R.layout.fragment_cart), MavericksView {
         withState(viewModel) {
             if (it.cartGoodsList.isNotEmpty()) {
                 cartGoodsListAdapter.setList(it.cartGoodsList)
+                setFilter(it.cartGoodsList)
                 if (it.fetchType === "refresh") {
                     contentLayout.run { finishRefresh() }
                 }
@@ -129,5 +129,14 @@ class CartFragment : BaseFragment(R.layout.fragment_cart), MavericksView {
                 }
             }
         }
+    }
+
+    private fun setFilter(list: List<StoreGoodsBean>) {
+        var totalList = list.map(StoreGoodsBean::goodsList).flatMap { element -> element.asIterable() }
+        filterAll.run {
+            text = "全部 ${totalList.size}"
+            setTextColor(Color.parseColor("#D8433F"))
+        }
+        discountTxt.text = "降价 0"
     }
 }

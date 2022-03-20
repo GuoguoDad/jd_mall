@@ -4,8 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="8dp"
-    android:layout_marginTop="10dp"
-    app:cardCornerRadius="10dp">
+    android:layout_marginVertical="5dp"
+    android:clickable="true"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="15dp"
+    app:cardElevation="0.5dp">
 
     <LinearLayout
         android:layout_width="match_parent"
