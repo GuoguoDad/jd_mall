@@ -72,41 +72,64 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:ignore="MissingDefaultResource">
 
-                    <androidx.core.widget.NestedScrollView
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
-                        <LinearLayout
+                        <androidx.core.widget.NestedScrollView
+                            android:id="@+id/nestedScrollView"
                             android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentTop="true">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:orientation="vertical">
+
+                                    <!-- 购物车中的店铺商品二级列表 -->
+                                    <androidx.recyclerview.widget.RecyclerView
+                                        android:id="@+id/cartGoodsList"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:paddingBottom="@dimen/dp_10"
+                                        android:overScrollMode="never"/>
+
+                                    <!-- 你可能还喜欢 或者 快点来看看 -->
+                                    <TextView
+                                        android:id="@+id/title"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="40dp"
+                                        android:gravity="center"
+                                        android:text="你可能还喜欢" />
+
+                                    <!-- 你可能还喜欢列表 或者 快点来看看列表 -->
+                                    <androidx.recyclerview.widget.RecyclerView
+                                        android:id="@+id/goodsList"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:overScrollMode="never"/>
+
+                                </LinearLayout>
+                        </androidx.core.widget.NestedScrollView>
+                        <!-- 返回顶部 -->
+                        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                            android:id="@+id/backTop"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical">
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginRight="16dp"
+                            android:layout_marginBottom="20dp"
+                            android:scaleType="fitXY"
+                            app:fabSize="mini"
+                            app:borderWidth="0dp"
+                            app:elevation="@dimen/dp_10"
+                            app:rippleColor="@color/font_6"
+                            app:backgroundTint="@color/white"
+                            android:src="@drawable/back_top"/>
 
-                            <!-- 购物车中的店铺商品二级列表 -->
-                            <androidx.recyclerview.widget.RecyclerView
-                                android:id="@+id/cartGoodsList"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:paddingBottom="@dimen/dp_10"
-                                android:overScrollMode="never"/>
-
-                            <!-- 你可能还喜欢 或者 快点来看看 -->
-                            <TextView
-                                android:id="@+id/title"
-                                android:layout_width="match_parent"
-                                android:layout_height="40dp"
-                                android:gravity="center"
-                                android:text="你可能还喜欢" />
-
-                            <!-- 你可能还喜欢列表 或者 快点来看看列表 -->
-                            <androidx.recyclerview.widget.RecyclerView
-                                android:id="@+id/goodsList"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:overScrollMode="never"/>
-
-                        </LinearLayout>
-
-                    </androidx.core.widget.NestedScrollView>
+                    </RelativeLayout>
 
                 </com.scwang.smart.refresh.layout.SmartRefreshLayout>
 

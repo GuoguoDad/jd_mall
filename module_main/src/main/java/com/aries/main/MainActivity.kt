@@ -68,7 +68,7 @@ class MainActivity: BaseActivity(R.layout.layout_main) {
     }
 
     override fun initData() {
-        showBadgeView(2, 1)
+        showBadgeView(2, 3)
     }
 
     /**

@@ -54,10 +54,16 @@ class CartFragment : BaseFragment(R.layout.fragment_cart), MavericksView {
                 }
             })
         }
-
+        //SmartRefreshLayout
         contentLayout.run {
-            setEnableRefresh(false)
-            setEnableLoadMore(false)
+            setOnRefreshListener {
+                viewModel.queryCartGoodsList(true)
+                viewModel.initMaybeLikeList()
+            }
+            setEnableAutoLoadMore(true)
+            setOnLoadMoreListener {
+                viewModel.loadMoreMaybeLikeList()
+            }
         }
         //购物车中的商品列表
         cartGoodsList.run {
@@ -70,10 +76,15 @@ class CartFragment : BaseFragment(R.layout.fragment_cart), MavericksView {
             layoutManager = staggeredGridLayoutManager
             adapter = goodsListAdapter
         }
+        //返回顶部
+        backTop.setOnClickListener {
+            nestedScrollView.smoothScrollTo(0, 0)
+            cartAppBarLayout.setExpanded(true, true)
+        }
     }
 
     override fun initData() {
-        viewModel.queryCartGoodsList()
+        viewModel.queryCartGoodsList(false)
         viewModel.initMaybeLikeList()
     }
 
@@ -101,9 +112,21 @@ class CartFragment : BaseFragment(R.layout.fragment_cart), MavericksView {
         withState(viewModel) {
             if (it.cartGoodsList.isNotEmpty()) {
                 cartGoodsListAdapter.setList(it.cartGoodsList)
+                if (it.fetchType === "refresh") {
+                    contentLayout.run { finishRefresh() }
+                }
             }
             if (it.goodsList.isNotEmpty()) {
                 goodsListAdapter.setList(it.goodsList)
+                contentLayout.run { resetNoMoreData() }
+            }
+            if (it.nextPageGoodsList.isNotEmpty()) {
+                goodsListAdapter.addData(it.nextPageGoodsList)
+
+                contentLayout.run {
+                    if (it.currentPage <= it.totalPage) finishLoadMore()
+                    else finishLoadMoreWithNoMoreData()
+                }
             }
         }
     }

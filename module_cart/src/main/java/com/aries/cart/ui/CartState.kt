@@ -7,10 +7,12 @@ import com.aries.common.base.BaseResponse
 import com.aries.common.bean.GoodsBean
 
 data class CartState(
+    val fetchType: String = "init",
     val cartGoodsList: List<StoreGoodsBean> = emptyList(),
     val cartGoodsListResponse: Async<BaseResponse<List<StoreGoodsBean>>> = Uninitialized,
 
     val goodsList: List<GoodsBean> = emptyList(),
+    val nextPageGoodsList: List<GoodsBean> = emptyList(),
     val goodsListResponse: Async<BaseResponse<GoodsListResponse>> = Uninitialized,
     val currentPage: Int = 1,
     val pageSize: Int = 10,

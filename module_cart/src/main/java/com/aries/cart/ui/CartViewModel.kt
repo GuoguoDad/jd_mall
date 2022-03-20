@@ -9,7 +9,7 @@ import kotlinx.coroutines.Dispatchers
 class CartViewModel(initialState: CartState): MavericksViewModel<CartState>(initialState) {
     private var apiService: ApiService = HttpUtil.instance.service(ApiService::class.java)
 
-    fun queryCartGoodsList() {
+    fun queryCartGoodsList(isRefresh: Boolean) {
         withState {
             if (it.goodsListResponse is Loading) return@withState
 
@@ -18,6 +18,7 @@ class CartViewModel(initialState: CartState): MavericksViewModel<CartState>(init
             }.execute(Dispatchers.IO) { state ->
                 copy(
                     cartGoodsListResponse = state,
+                    fetchType = if (isRefresh) "refresh" else "init",
                     cartGoodsList = (state()?.data?: it.cartGoodsList)
                 )
             }
@@ -53,6 +54,7 @@ class CartViewModel(initialState: CartState): MavericksViewModel<CartState>(init
                 copy(
                     goodsListResponse = state,
                     goodsList = goodsList + (state()?.data?.dataList ?: arrayListOf()),
+                    nextPageGoodsList = (state()?.data?.dataList ?: arrayListOf()),
                     currentPage = if (state is Success) currentPage.plus(1) else currentPage,
                     totalPage = (state()?.data?.totalPageCount ?: 0)
                 )
