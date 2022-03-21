@@ -40,7 +40,5 @@ android {
 }
 
 dependencies {
-    implementation project(path: ':lib_mock')
     implementation project(path: ':module_main')
-    implementation project(path: ':module_base')
 }

@@ -37,7 +37,8 @@ class CategoryFragment : BaseFragment(R.layout.fragment_main), MavericksView {
         }
         rightContainer.run {
             setEnableRefresh(false)
-            setEnableAutoLoadMore(false)
+            setEnableLoadMore(false)
+//            setEnableAutoLoadMore(false)
         }
     }
 

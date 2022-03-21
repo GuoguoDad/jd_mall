@@ -20,6 +20,7 @@ import com.google.android.material.appbar.AppBarLayout
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.enums.PopupAnimation
 import kotlinx.android.synthetic.main.fragment_cart.*
+import kotlinx.android.synthetic.main.fragment_cart_content.*
 import kotlinx.android.synthetic.main.top_address.*
 import kotlinx.android.synthetic.main.top_filter.*
 
@@ -54,7 +55,7 @@ class CartFragment : BaseFragment(R.layout.fragment_cart), MavericksView {
             })
         }
         //SmartRefreshLayout
-        contentLayout.run {
+        smartRefreshLayout.run {
             setOnRefreshListener {
                 viewModel.queryCartGoodsList(true)
                 viewModel.initMaybeLikeList()
@@ -113,17 +114,17 @@ class CartFragment : BaseFragment(R.layout.fragment_cart), MavericksView {
                 cartGoodsListAdapter.setList(it.cartGoodsList)
                 setFilter(it.cartGoodsList)
                 if (it.fetchType === "refresh") {
-                    contentLayout.run { finishRefresh() }
+                    smartRefreshLayout.run { finishRefresh() }
                 }
             }
             if (it.goodsList.isNotEmpty()) {
                 goodsListAdapter.setList(it.goodsList)
-                contentLayout.run { resetNoMoreData() }
+                smartRefreshLayout.run { resetNoMoreData() }
             }
             if (it.nextPageGoodsList.isNotEmpty()) {
                 goodsListAdapter.addData(it.nextPageGoodsList)
 
-                contentLayout.run {
+                smartRefreshLayout.run {
                     if (it.currentPage <= it.totalPage) finishLoadMore()
                     else finishLoadMoreWithNoMoreData()
                 }

@@ -87,6 +87,7 @@
         <entry key="module_cart/src/main/res/layout/cart_top_address.xml" value="0.24444444444444444" />
         <entry key="module_cart/src/main/res/layout/cart_top_quick_entry.xml" value="0.23233695652173914" />
         <entry key="module_cart/src/main/res/layout/fragment_cart.xml" value="0.1" />
+        <entry key="module_cart/src/main/res/layout/fragment_cart_content.xml" value="0.1" />
         <entry key="module_cart/src/main/res/layout/fragment_cart_item.xml" value="0.1" />
         <entry key="module_cart/src/main/res/layout/fragment_cart_item_goods.xml" value="0.1" />
         <entry key="module_cart/src/main/res/layout/maybe_like_list.xml" value="0.1" />
