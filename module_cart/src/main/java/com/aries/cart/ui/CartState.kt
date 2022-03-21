@@ -7,6 +7,7 @@ import com.aries.common.base.BaseResponse
 import com.aries.common.bean.GoodsBean
 
 data class CartState(
+    val hasCodeFlag: Int = 0,
     val fetchType: String = "init",
     val cartGoodsList: List<StoreGoodsBean> = emptyList(),
     val cartGoodsListResponse: Async<BaseResponse<List<StoreGoodsBean>>> = Uninitialized,
@@ -17,4 +18,8 @@ data class CartState(
     val currentPage: Int = 1,
     val pageSize: Int = 10,
     val totalPage: Int = 0
-): MavericksState
+): MavericksState {
+    override fun hashCode(): Int {
+        return hasCodeFlag
+    }
+}

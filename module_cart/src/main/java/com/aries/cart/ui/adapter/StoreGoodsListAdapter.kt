@@ -1,5 +1,6 @@
 package com.aries.cart.ui.adapter
 
+import android.widget.CheckBox
 import android.widget.ImageView
 import coil.ImageLoader
 import coil.load
@@ -18,6 +19,8 @@ class StoreGoodsListAdapter(layoutResId: Int, data: MutableList<CartGoodsBean>):
             placeholder(R.drawable.default_img)
             error(R.drawable.default_img)
         }
+
+        holder.getView<CheckBox>(R.id.goodsCheckBox).isChecked = item.check ?: true
         holder.setText(R.id.cartGoodsDes, item.description)
         holder.setText(R.id.cartGoodsPrice, "￥${item.price}")
     }

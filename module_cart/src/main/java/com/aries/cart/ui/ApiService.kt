@@ -13,13 +13,15 @@ data class GoodsListResponse(var dataList: MutableList<GoodsBean>, var totalCoun
 data class CartGoodsBean(
     var imgUrl: String,
     var description: String,
-    var price: String
+    var price: String,
+    var check: Boolean? = true
 )
 
 data class StoreGoodsBean(
     var storeName: String,
     var storeCode: String,
-    var goodsList: ArrayList<CartGoodsBean>
+    var goodsList: ArrayList<CartGoodsBean>,
+    var check: Boolean? = true
 )
 
 

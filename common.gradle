@@ -1,7 +1,7 @@
 ext {
     compileSdk = 31
 
-    defalutConfigApplicationId = "com.example.news"
+    defalutConfigApplicationId = "com.aries.mall"
     defaultConfigMinSdk = 21
     defaultConfigTargetSdk = 31
     defaultConfigVersionCode = 1

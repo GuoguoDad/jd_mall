@@ -25,6 +25,10 @@ class CartViewModel(initialState: CartState): MavericksViewModel<CartState>(init
         }
     }
 
+    fun updateCartGoodsList(list: List<StoreGoodsBean>) {
+        setState { copy(hasCodeFlag = hasCodeFlag + 1 ,cartGoodsList = list) }
+    }
+
 
     fun initMaybeLikeList() {
         setState { copy(currentPage = 1) }

@@ -19,10 +19,11 @@
         android:orientation="horizontal">
 
         <CheckBox
-            android:id="@+id/storeCheckBox"
+            android:id="@+id/totalCheckBox"
             android:layout_width="16dp"
             android:layout_height="16dp"
             android:layout_marginLeft="8dp"
+            android:checked="true"
             android:layout_gravity="left|center_vertical"
             android:button="@null"
             android:background="@drawable/selector_check_box" />
