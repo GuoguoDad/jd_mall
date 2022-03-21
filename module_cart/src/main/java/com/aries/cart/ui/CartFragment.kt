@@ -157,17 +157,17 @@ class CartFragment : BaseFragment(R.layout.fragment_cart), MavericksView {
     }
 
     private fun setFilter(list: List<StoreGoodsBean>) {
-        var totalList = list.map(StoreGoodsBean::goodsList).flatMap { element -> element.asIterable() }
+        val totalList = list.map(StoreGoodsBean::goodsList).flatMap { element -> element.asIterable() }
         filterAll.run {
-            text = "全部 ${totalList.size}"
+            "全部 ${totalList.size}".also { text = it }
             setTextColor(Color.parseColor("#D8433F"))
         }
         discountTxt.text = "降价 0"
     }
 
     private fun checkAllByStore(position: Int) {
-        var dataList = cartGoodsListAdapter.data
-        var storeCheck = dataList[position].check ?: true
+        val dataList = cartGoodsListAdapter.data
+        val storeCheck = dataList[position].check ?: true
         if (!storeCheck) {
             dataList[position].check = true
             dataList[position].goodsList.forEach{v -> v.check = true}
@@ -178,13 +178,13 @@ class CartFragment : BaseFragment(R.layout.fragment_cart), MavericksView {
 
         viewModel.updateCartGoodsList(dataList)
 
-        var totalFlag = dataList.indexOfFirst { v -> v.check == false }
+        val totalFlag = dataList.indexOfFirst { v -> v.check == false }
         totalCheckBox.isChecked = totalFlag == -1
     }
 
     private fun checkGoods(parent: Int, position: Int) {
-        var parentList = cartGoodsListAdapter.data
-        var childList = parentList[parent].goodsList
+        val parentList = cartGoodsListAdapter.data
+        val childList = parentList[parent].goodsList
 
         childList[position].check = !(childList[position].check ?: true)
 
@@ -194,12 +194,12 @@ class CartFragment : BaseFragment(R.layout.fragment_cart), MavericksView {
 
         viewModel.updateCartGoodsList(parentList)
 
-        var totalFlag = parentList.indexOfFirst { v -> v.check == false }
+        val totalFlag = parentList.indexOfFirst { v -> v.check == false }
         totalCheckBox.isChecked = totalFlag == -1
     }
 
     private fun checkAll(isChecked: Boolean) {
-        var dataList = cartGoodsListAdapter.data
+        val dataList = cartGoodsListAdapter.data
         totalCheckBox.isChecked = isChecked
         dataList.forEach { v -> v.check = isChecked; v.goodsList.forEach { m -> m.check = isChecked } }
 

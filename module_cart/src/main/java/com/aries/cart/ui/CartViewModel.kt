@@ -26,7 +26,9 @@ class CartViewModel(initialState: CartState): MavericksViewModel<CartState>(init
     }
 
     fun updateCartGoodsList(list: List<StoreGoodsBean>) {
-        setState { copy(hasCodeFlag = hasCodeFlag + 1 ,cartGoodsList = list) }
+        setState {
+            copy(cartGoodsList = list, hasCodeFlag = hasCodeFlag + 1)
+        }
     }
 
 
