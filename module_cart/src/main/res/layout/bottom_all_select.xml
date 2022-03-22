@@ -57,6 +57,7 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/btnGoOrder"
         android:layout_width="100dp"
         android:layout_height="@dimen/dp_40"
         android:layout_alignParentRight="true"

@@ -75,13 +75,13 @@ class CartFragment : BaseFragment(R.layout.fragment_cart), MavericksView {
             adapter = cartGoodsListAdapter
         }
         cartGoodsListAdapter.addChildClickViewIds(R.id.storeCheckBox)
-        //店铺前的checkbox
+        //点击店铺前的checkbox
         cartGoodsListAdapter.setOnItemChildClickListener  { _, view, position ->
             when (view.id) {
                 R.id.storeCheckBox -> checkAllByStore(position)
             }
         }
-        //店铺中商品前的checkbox
+        //点击店铺中商品前的checkbox
         cartGoodsListAdapter.setOnChildItemChildClickListener(object : OnChildItemChildClickListener {
             override fun onItemChildClick(
                 adapter: BaseQuickAdapter<*, *>,
@@ -220,11 +220,18 @@ class CartFragment : BaseFragment(R.layout.fragment_cart), MavericksView {
 
     // 设置下面的全选 总价
     private fun calcTotalInfo(dataList: List<StoreGoodsBean>) {
+        totalCheckBox.isChecked = dataList.indexOfFirst { v -> v.check == false } == -1
+
         var totalPrice: BigDecimal = BigDecimal.ZERO
-        dataList.forEach { v -> v.goodsList.forEach { m -> if (m.check == true){ totalPrice = totalPrice.add(m.price.toBigDecimal()) } }}
+        var totalNum = 0
+        dataList.forEach { v ->
+            v.goodsList.forEach { m -> if (m.check == true){
+                totalNum += 1;
+                totalPrice = totalPrice.add(m.price.toBigDecimal())
+            }}
+        }
 
         totalPriceTxt.text = "￥${totalPrice}"
-
-        totalCheckBox.isChecked = dataList.indexOfFirst { v -> v.check == false } == -1
+        btnGoOrder.text = "去结算(${totalNum})"
     }
 }
