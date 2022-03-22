@@ -45,6 +45,7 @@
             android:text="合计:"/>
 
         <TextView
+            android:id="@+id/totalPriceTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
