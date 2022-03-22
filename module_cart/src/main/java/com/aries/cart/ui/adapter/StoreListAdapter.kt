@@ -25,7 +25,7 @@ open class StoreListAdapter(layoutResId: Int, data: MutableList<StoreGoodsBean>)
         }
 
         holder.setText(R.id.storeName, item.storeName)
-        holder.getView<CheckBox>(R.id.storeCheckBox).isChecked = item.check ?: true
+        holder.getView<CheckBox>(R.id.storeCheckBox).isChecked = item.check!!
         holder.getView<RecyclerView>(R.id.goodsItemList).run {
             layoutManager = LinearLayoutManager(this.context)
             adapter = goodsListAdapter

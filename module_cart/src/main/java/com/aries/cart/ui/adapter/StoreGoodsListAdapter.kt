@@ -20,7 +20,7 @@ class StoreGoodsListAdapter(layoutResId: Int, data: MutableList<CartGoodsBean>):
             error(R.drawable.default_img)
         }
 
-        holder.getView<CheckBox>(R.id.goodsCheckBox).isChecked = item.check ?: true
+        holder.getView<CheckBox>(R.id.goodsCheckBox).isChecked = item.check!!
         holder.setText(R.id.cartGoodsDes, item.description)
         holder.setText(R.id.cartGoodsPrice, "￥${item.price}")
     }

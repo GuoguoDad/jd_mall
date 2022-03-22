@@ -1,10 +1,15 @@
 package com.aries.common
 
 import android.content.Context
+import android.os.StrictMode
 import androidx.multidex.MultiDexApplication
 import com.airbnb.mvrx.Mavericks
+import com.airbnb.mvrx.MavericksViewModelConfigFactory
+import com.airbnb.mvrx.asContextElement
 import com.aries.common.config.ModuleConfig
 import com.aries.common.impl.IBaseApplication
+import com.aries.mock.BuildConfig
+import kotlin.coroutines.EmptyCoroutineContext
 
 abstract class BaseApplication : MultiDexApplication(), IBaseApplication {
     companion object {
@@ -16,7 +21,21 @@ abstract class BaseApplication : MultiDexApplication(), IBaseApplication {
         super.onCreate()
         mContext = this
         initComponent()
-        Mavericks.initialize(this)
+
+//        val threadPolicy = StrictMode.ThreadPolicy.Builder()
+//            .detectNetwork()
+//            .penaltyDialog()
+//            .build()
+
+//        val viewModelConfigFactory = MavericksViewModelConfigFactory(this,
+//            storeContextOverride = if (BuildConfig.DEBUG) threadPolicy.asContextElement() else EmptyCoroutineContext
+//        )
+
+        val viewModelConfigFactory = MavericksViewModelConfigFactory(this,
+            storeContextOverride = EmptyCoroutineContext
+        )
+
+        Mavericks.initialize(this, viewModelConfigFactory)
     }
 
     private fun initComponent() {

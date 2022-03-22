@@ -14,6 +14,7 @@ import com.aries.cart.ui.listener.OnChildItemChildClickListener
 import com.aries.cart.ui.view.QuickEntryPopup
 import com.aries.common.adapter.GoodsListAdapter
 import com.aries.common.decoration.SpacesItemDecoration
+import com.aries.common.util.GsonUtil
 import com.aries.common.util.PixelUtil
 import com.aries.common.util.StatusBarUtil
 import com.aries.common.util.UnreadMsgUtil
@@ -167,7 +168,7 @@ class CartFragment : BaseFragment(R.layout.fragment_cart), MavericksView {
 
     private fun checkAllByStore(position: Int) {
         val dataList = cartGoodsListAdapter.data
-        val storeCheck = dataList[position].check ?: true
+        val storeCheck = dataList[position].check!!
         if (!storeCheck) {
             dataList[position].check = true
             dataList[position].goodsList.forEach{v -> v.check = true}
@@ -186,7 +187,7 @@ class CartFragment : BaseFragment(R.layout.fragment_cart), MavericksView {
         val parentList = cartGoodsListAdapter.data
         val childList = parentList[parent].goodsList
 
-        childList[position].check = !(childList[position].check ?: true)
+        childList[position].check = !(childList[position].check!!)
 
         val falseFLag = childList.indexOfFirst { v -> v.check == false }
         parentList[parent].check = falseFLag == -1

@@ -19,7 +19,7 @@ class CartViewModel(initialState: CartState): MavericksViewModel<CartState>(init
                 copy(
                     cartGoodsListResponse = state,
                     fetchType = if (isRefresh) "refresh" else "init",
-                    cartGoodsList = (state()?.data?: it.cartGoodsList)
+                    cartGoodsList = ConvertUtil.setAllCheck(state()?.data?: it.cartGoodsList)
                 )
             }
         }
@@ -27,10 +27,9 @@ class CartViewModel(initialState: CartState): MavericksViewModel<CartState>(init
 
     fun updateCartGoodsList(list: List<StoreGoodsBean>) {
         setState {
-            copy(cartGoodsList = list, hasCodeFlag = hasCodeFlag + 1)
+            copy(hasCodeFlag = hasCodeFlag + 1, cartGoodsList = list)
         }
     }
-
 
     fun initMaybeLikeList() {
         setState { copy(currentPage = 1) }
