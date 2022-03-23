@@ -1,6 +1,20 @@
 <resources>
+    <dimen name="dp_0.5">0.5</dimen>
     <dimen name="dp_14">14</dimen>
     <dimen name="dp_16">16</dimen>
+    <dimen name="dp_18">18</dimen>
+    <dimen name="dp_20">20</dimen>
+    <dimen name="dp_22">22</dimen>
+    <dimen name="dp_24">24</dimen>
     <dimen name="dp_26">26</dimen>
+    <dimen name="dp_28">28</dimen>
     <dimen name="loading_size">28dp</dimen>
+
+    <dimen name="step_btn_width" >30dp</dimen>
+    <dimen name="step_btn_height" >24dp</dimen>
+    <dimen name="step_btn_padding">6dp</dimen>
+    <dimen name="step_edit_size" >12sp</dimen>
+    <dimen name="step_edit_min_width" >28dp</dimen>
+    <dimen name="step_edit_max_width" >48dp</dimen>
+    <dimen name="step_radius" >12dp</dimen>
 </resources>

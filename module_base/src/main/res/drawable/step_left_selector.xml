@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:enterFadeDuration="200" android:exitFadeDuration="200">
+    <item android:state_pressed="true" >
+        <shape>
+            <stroke android:color="@color/divider" android:width="0.5dp"/>
+            <solid android:color="@color/divider"/>
+            <corners android:topLeftRadius="@dimen/step_radius"
+                android:bottomLeftRadius="@dimen/step_radius"/>
+        </shape>
+    </item>
+    <item android:state_pressed="false" >
+        <shape>
+            <stroke android:color="@color/divider" android:width="0.5dp"/>
+            <corners android:topLeftRadius="@dimen/step_radius"
+                android:bottomLeftRadius="@dimen/step_radius"/>
+        </shape>
+    </item>
+</selector>

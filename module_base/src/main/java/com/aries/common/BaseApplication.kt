@@ -1,14 +1,13 @@
 package com.aries.common
 
 import android.content.Context
-import android.os.StrictMode
 import androidx.multidex.MultiDexApplication
 import com.airbnb.mvrx.Mavericks
 import com.airbnb.mvrx.MavericksViewModelConfigFactory
-import com.airbnb.mvrx.asContextElement
 import com.aries.common.config.ModuleConfig
 import com.aries.common.impl.IBaseApplication
-import com.aries.mock.BuildConfig
+import com.orhanobut.logger.AndroidLogAdapter
+import com.orhanobut.logger.Logger
 import kotlin.coroutines.EmptyCoroutineContext
 
 abstract class BaseApplication : MultiDexApplication(), IBaseApplication {
@@ -21,6 +20,8 @@ abstract class BaseApplication : MultiDexApplication(), IBaseApplication {
         super.onCreate()
         mContext = this
         initComponent()
+
+        Logger.addLogAdapter(AndroidLogAdapter())
 
 //        val threadPolicy = StrictMode.ThreadPolicy.Builder()
 //            .detectNetwork()

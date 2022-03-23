@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="Stepper">
+        <!--是否可以手动输入-->
+        <attr name="editable" format="boolean" />
+        <!-- 步长 -->
+        <attr name="step" format="integer" />
+        <!-- 最低购买 -->
+        <attr name="minBuy" format="integer" />
+        <!-- value -->
+        <attr name="value" format="integer" />
+    </declare-styleable>
+</resources>

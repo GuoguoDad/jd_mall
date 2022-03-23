@@ -7,5 +7,6 @@
         <activity android:name="com.aries.main.ui.adv.AdvertiseActivity" />
         <activity android:name="com.aries.main.ui.waterfall.WaterfallListActivity" />
         <activity android:name="com.aries.main.ui.coordinator.ScrollTabActivity"/>
+        <activity android:name="com.aries.main.ui.stepper.StepperActivity"/>
     </application>
 </manifest>

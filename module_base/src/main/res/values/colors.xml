@@ -35,4 +35,18 @@
     <color name="colorAccent">#FF4081</color>
 
     <color name="theme_color">#FF1520</color>
+
+    <color name="divider">#D3D2D3</color>
+
+    <color name="material_amber_200">#FFE082</color>
+    <color name="material_amber_300">#FFD54F</color>
+    <color name="material_amber_400">#FFCA28</color>
+
+    <color name="material_light_green_200">#C5E1A5</color>
+    <color name="material_light_green_300">#AED581</color>
+    <color name="material_light_green_400">#9CCC65</color>
+
+    <color name="material_teal_200">#80CBC4</color>
+    <color name="material_teal_300">#4DB6AC</color>
+    <color name="material_teal_400">#26A69A</color>
 </resources>

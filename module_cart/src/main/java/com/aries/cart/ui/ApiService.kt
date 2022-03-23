@@ -11,10 +11,12 @@ data class QueryMaybeLikeListParams(var currentPage: Number, var pageSize: Numbe
 data class GoodsListResponse(var dataList: MutableList<GoodsBean>, var totalCount: Int, var totalPageCount: Int)
 
 data class CartGoodsBean(
+    var code: String,
     var imgUrl: String,
     var description: String,
     var price: String,
-    var check: Boolean? = true
+    var check: Boolean? = true,
+    var num: Int = 1
 )
 
 data class StoreGoodsBean(

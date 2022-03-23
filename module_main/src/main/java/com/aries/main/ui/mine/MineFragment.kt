@@ -40,6 +40,9 @@ class MineFragment : BaseFragment(R.layout.fragment_mine) {
                             "002" -> {
                                 ARouter.getInstance().build(RouterPaths.TAB_WATERFALL_ACTIVITY).navigation()
                             }
+                            "003" -> {
+                                ARouter.getInstance().build(RouterPaths.STEPPER_DEMO).navigation()
+                            }
                             else -> {
                                 Toast.makeText(localThis.context ,bean?.name, Toast.LENGTH_SHORT).show()
                             }

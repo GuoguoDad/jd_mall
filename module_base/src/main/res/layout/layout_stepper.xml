@@ -1,0 +1,45 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:divider="@drawable/divider_horizontal"
+    android:background="@drawable/step_add_sub_bg"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/minusImage"
+        android:layout_width="@dimen/step_btn_width"
+        android:layout_height="@dimen/step_btn_height"
+        android:background="@drawable/step_left_selector"
+        android:padding="@dimen/step_btn_padding"
+        android:clickable="false"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_stepper_sub" />
+
+    <EditText
+        android:id="@+id/numberEt"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/step_btn_height"
+        android:background="@null"
+        android:cursorVisible="true"
+        android:digits="0123456789"
+        android:gravity="center"
+        android:singleLine="true"
+        android:inputType="number"
+        android:minWidth="@dimen/step_edit_min_width"
+        android:maxWidth="@dimen/step_edit_max_width"
+        android:text="1"
+        android:textStyle="bold"
+        android:textColor="@color/cl_000000"
+        android:textCursorDrawable="@null"
+        android:textSize="@dimen/step_edit_size"/>
+
+    <ImageView
+        android:id="@+id/plusImage"
+        android:layout_width="@dimen/step_btn_width"
+        android:layout_height="@dimen/step_btn_height"
+        android:padding="@dimen/step_btn_padding"
+        android:background="@drawable/step_right_selector"
+        android:clickable="true"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_stepper_add" />
+</LinearLayout>

@@ -64,15 +64,29 @@
             android:paddingLeft="6dp"
             android:paddingRight="4dp"/>
 
-
-        <TextView
-            android:id="@+id/cartGoodsPrice"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_content"
-            android:layout_marginTop="5dp"
-            android:textColor="#f00"
-            android:textSize="15sp"/>
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:id="@+id/cartGoodsPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerInParent="true"
+                android:textColor="#f00"
+                android:textSize="18sp"/>
+
+            <com.aries.common.widget.Stepper
+                android:id="@+id/buyNum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:layout_marginRight="15dp" />
+
+        </RelativeLayout>
 
     </LinearLayout>
 </LinearLayout>

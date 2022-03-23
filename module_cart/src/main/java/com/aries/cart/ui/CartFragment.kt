@@ -11,6 +11,7 @@ import com.aries.common.base.BaseFragment
 import com.aries.cart.R
 import com.aries.cart.ui.adapter.StoreListAdapter
 import com.aries.cart.ui.listener.OnChildItemChildClickListener
+import com.aries.cart.ui.listener.OnStepperChangeListener
 import com.aries.cart.ui.view.QuickEntryPopup
 import com.aries.common.adapter.GoodsListAdapter
 import com.aries.common.decoration.SpacesItemDecoration
@@ -75,13 +76,13 @@ class CartFragment : BaseFragment(R.layout.fragment_cart), MavericksView {
             adapter = cartGoodsListAdapter
         }
         cartGoodsListAdapter.addChildClickViewIds(R.id.storeCheckBox)
-        //点击店铺前的checkbox
+        //监听店铺是否选中
         cartGoodsListAdapter.setOnItemChildClickListener  { _, view, position ->
             when (view.id) {
                 R.id.storeCheckBox -> checkAllByStore(position)
             }
         }
-        //点击店铺中商品前的checkbox
+        //监听商品是否选中
         cartGoodsListAdapter.setOnChildItemChildClickListener(object : OnChildItemChildClickListener {
             override fun onItemChildClick(
                 adapter: BaseQuickAdapter<*, *>,
@@ -94,6 +95,13 @@ class CartFragment : BaseFragment(R.layout.fragment_cart), MavericksView {
                 }
             }
         })
+        //监听数量stepper加减
+        cartGoodsListAdapter.setOnStepperChangeListener(object: OnStepperChangeListener {
+            override fun onStepperChange(bean: CartGoodsBean, value: Int) {
+                setGoodsNum(bean, value)
+            }
+        })
+
         //你可能还喜欢 或者 快点来看看 商品列表
         goodsList.run {
             addItemDecoration(SpacesItemDecoration(10))
@@ -168,8 +176,6 @@ class CartFragment : BaseFragment(R.layout.fragment_cart), MavericksView {
             setTextColor(Color.parseColor("#D8433F"))
         }
         discountTxt.text = "降价 0"
-
-
     }
 
     //点击店铺前面的checkbox
@@ -226,12 +232,20 @@ class CartFragment : BaseFragment(R.layout.fragment_cart), MavericksView {
         var totalNum = 0
         dataList.forEach { v ->
             v.goodsList.forEach { m -> if (m.check == true){
-                totalNum += 1;
-                totalPrice = totalPrice.add(m.price.toBigDecimal())
+                totalNum += m.num
+                totalPrice = totalPrice.add(m.price.toBigDecimal().multiply(m.num.toBigDecimal()))
             }}
         }
 
-        totalPriceTxt.text = "￥${totalPrice}"
-        btnGoOrder.text = "去结算(${totalNum})"
+        "￥${totalPrice}".also { totalPriceTxt.text = it }
+        "去结算(${totalNum})".also { btnGoOrder.text = it }
+    }
+
+    //
+    private fun setGoodsNum(bean: CartGoodsBean, value: Int) {
+        val dataList = cartGoodsListAdapter.data
+        dataList.forEach{ v-> v.goodsList.forEach { m -> if (m.code == bean.code) m.num = value }}
+
+        viewModel.updateCartGoodsList(dataList)
     }
 }
