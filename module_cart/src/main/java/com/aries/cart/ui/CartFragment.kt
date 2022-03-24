@@ -162,7 +162,7 @@ class CartFragment : BaseFragment(R.layout.fragment_cart), MavericksView {
     private fun showQuickEntry() {
         XPopup.Builder(this.requireContext())
             .popupAnimation(PopupAnimation.TranslateFromTop)
-            .hasShadowBg(false)
+//            .hasShadowBg(false)
             .isLightStatusBar(true)
             .asCustom(QuickEntryPopup(this.requireContext()))
             .show()

@@ -47,9 +47,6 @@ dependencies {
     api 'androidx.recyclerview:recyclerview:1.2.1'
 
     api 'com.youth.banner:banner:2.1.0'
-    api 'com.github.chrisbanes:PhotoView:2.3.0'
-
-    api 'com.github.li-xiaojun:XPopup:2.7.6'
 
     api 'com.airbnb.android:mavericks:2.6.1'
 
@@ -59,6 +56,9 @@ dependencies {
     api 'org.jetbrains.kotlin:kotlin-reflect:1.6.10'//引入 kotlin-reflect 解决调用fastjson JSON.parseObject报“default constructor not found”错误
 
     api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.7'
+    api 'com.github.chrisbanes:PhotoView:2.3.0'
+    api 'com.github.li-xiaojun:XPopup:2.7.6'
+
     api 'io.github.scwang90:refresh-layout-kernel:2.0.5'
     api 'io.github.scwang90:refresh-header-classics:2.0.5'
 
