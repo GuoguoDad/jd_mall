@@ -10,8 +10,9 @@ import com.aries.common.R
 import kotlinx.android.synthetic.main.layout_stepper.view.*
 import java.lang.NumberFormatException
 import android.text.method.DigitsKeyListener
+import androidx.appcompat.widget.LinearLayoutCompat
 
-open class Stepper: LinearLayout {
+open class Stepper: LinearLayoutCompat {
     constructor(context: Context) : this(context, null)
     constructor(context: Context, attributeSet: AttributeSet?) : this(context, attributeSet, 0)
     constructor(context: Context, attributeSet: AttributeSet?, defStyleAttr: Int) : super(
@@ -62,13 +63,13 @@ open class Stepper: LinearLayout {
             if (inputValue <= maxBuy.coerceAtMost(inventory)) {
                 inputValue += step
                 //正常添加
-                numberEt.setText(inputValue.toString())
+                numberEt.setText("$inputValue")
             }
         }
         minusImage.setOnClickListener {
             if (inputValue > minBuy) {
                 inputValue -= step
-                numberEt.setText(inputValue.toString())
+                numberEt.setText("$inputValue")
             }
         }
         numberEt.setOnClickListener { numberEt.setSelection(numberEt.text.length) }
@@ -83,8 +84,8 @@ open class Stepper: LinearLayout {
         if (count < minBuy) {
             //手动输入
             inputValue = minBuy
-            numberEt.setText(inputValue.toString())
-            onChangeValueListener?.onChangeValue(inputValue.toString())
+            numberEt.setText("$inputValue")
+            onChangeValueListener?.onChangeValue("$inputValue")
             return
         }
         val limit = maxBuy.coerceAtMost(inventory)
@@ -96,7 +97,7 @@ open class Stepper: LinearLayout {
             }
         } else {
             inputValue = count
-            onChangeValueListener?.onChangeValue(inputValue.toString())
+            onChangeValueListener?.onChangeValue("$inputValue")
         }
     }
 

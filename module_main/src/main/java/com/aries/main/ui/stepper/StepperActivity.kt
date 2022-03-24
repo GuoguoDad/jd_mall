@@ -14,12 +14,11 @@ class StepperActivity: BaseActivity(R.layout.layout_stepper_demo) {
         stepperDemo.setStep(2)
         stepperDemo.setInputValue(10)
         stepperDemo.setOnChangeValueListener(object: Stepper.OnChangeValueListener {
-            override fun onChangeValue(value: String, position: Int) {
+            override fun onChangeValue(value: String) {
                 Logger.i(value)
             }
         })
     }
 
-    override fun initData() {
-    }
+    override fun initData() {}
 }
