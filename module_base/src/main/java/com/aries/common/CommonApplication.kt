@@ -1,6 +1,7 @@
 package com.aries.common
 
 import android.app.Application
+import android.util.AttributeSet
 import com.alibaba.android.arouter.launcher.ARouter
 import com.scwang.smart.refresh.footer.ClassicsFooter
 import com.scwang.smart.refresh.header.ClassicsHeader
@@ -26,7 +27,7 @@ class CommonApplication: BaseApplication() {
             ClassicsHeader(context)
         }
         SmartRefreshLayout.setDefaultRefreshFooterCreator { context, _ ->
-            ClassicsFooter(context)
+            ClassicsFooter(context).setFinishDuration(0)
         }
     }
 }

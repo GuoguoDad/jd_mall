@@ -84,7 +84,7 @@ open class Stepper: LinearLayout {
             //手动输入
             inputValue = minBuy
             numberEt.setText(inputValue.toString())
-            onChangeValueListener?.onChangeValue(inputValue.toString(), 0)
+            onChangeValueListener?.onChangeValue(inputValue.toString())
             return
         }
         val limit = maxBuy.coerceAtMost(inventory)
@@ -96,7 +96,7 @@ open class Stepper: LinearLayout {
             }
         } else {
             inputValue = count
-            onChangeValueListener?.onChangeValue(inputValue.toString(), 0)
+            onChangeValueListener?.onChangeValue(inputValue.toString())
         }
     }
 
@@ -164,6 +164,6 @@ open class Stepper: LinearLayout {
     }
 
     interface OnChangeValueListener {
-        fun onChangeValue(value: String, position: Int)
+        fun onChangeValue(value: String)
     }
 }

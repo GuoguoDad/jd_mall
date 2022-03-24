@@ -31,8 +31,8 @@ open class StoreGoodsListAdapter(layoutResId: Int, data: MutableList<CartGoodsBe
         holder.getView<Stepper>(R.id.buyNum).run {
             setInputValue(item.num)
             setOnChangeValueListener(object: Stepper.OnChangeValueListener {
-                override fun onChangeValue(value: String, position: Int) {
-                    onStepperChangeListener?.onStepperChange(data[position], value.toInt())
+                override fun onChangeValue(value: String) {
+                    onStepperChangeListener?.onStepperChange(item, value.toInt())
                 }
             })
         }
