@@ -60,6 +60,7 @@
         <entry key="module_base/src/main/res/drawable/badge_bg.xml" value="0.39739583333333334" />
         <entry key="module_base/src/main/res/drawable/divider_horizontal.xml" value="0.34074074074074073" />
         <entry key="module_base/src/main/res/drawable/gray_circular_bg.xml" value="0.39739583333333334" />
+        <entry key="module_base/src/main/res/drawable/rounded_corners_white_10_bg.xml" value="0.39739583333333334" />
         <entry key="module_base/src/main/res/drawable/selector_check_box.xml" value="0.3828125" />
         <entry key="module_base/src/main/res/drawable/selector_tab_indicator.xml" value="0.39739583333333334" />
         <entry key="module_base/src/main/res/drawable/selector_tab_indicator2.xml" value="0.39739583333333334" />
@@ -74,7 +75,7 @@
         <entry key="module_base/src/main/res/drawable/tag_bg.xml" value="0.39739583333333334" />
         <entry key="module_base/src/main/res/layout/badge_layout.xml" value="0.22327898550724637" />
         <entry key="module_base/src/main/res/layout/goods_cart_item.xml" value="0.1" />
-        <entry key="module_base/src/main/res/layout/home_goods_item.xml" value="0.23233695652173914" />
+        <entry key="module_base/src/main/res/layout/home_goods_item.xml" value="0.18326693227091634" />
         <entry key="module_base/src/main/res/layout/home_goods_second_item.xml" value="0.23233695652173914" />
         <entry key="module_base/src/main/res/layout/layout_stepper.xml" value="0.1" />
         <entry key="module_base/src/main/res/layout/loading_dialog.xml" value="0.24048913043478262" />

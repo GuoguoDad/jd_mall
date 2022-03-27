@@ -5,7 +5,6 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.AttributeSet
 import android.view.LayoutInflater
-import android.widget.LinearLayout
 import com.aries.common.R
 import kotlinx.android.synthetic.main.layout_stepper.view.*
 import java.lang.NumberFormatException

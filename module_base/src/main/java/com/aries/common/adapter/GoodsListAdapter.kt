@@ -12,13 +12,14 @@ class GoodsListAdapter(data: MutableList<GoodsBean>): BaseMultiItemQuickAdapter<
     private var imageLoader = CoilUtil.getImageLoader()
 
     init {
-        addItemType(1, R.layout.home_goods_item)
-        addItemType(2, R.layout.home_goods_second_item)
+        addItemType(1, R.layout.goods_item)
+        addItemType(2, R.layout.goods_second_item)
     }
 
     override fun convert(holder: BaseViewHolder, item: GoodsBean) {
         when (holder.itemViewType) {
             1 -> {
+                holder.getView<ImageView>(R.id.img).scaleType = ImageView.ScaleType.FIT_XY
                 holder.getView<ImageView>(R.id.img).load(item.imgUrl, imageLoader ) {
                     crossfade(true)
                     placeholder(R.drawable.default_img)
@@ -28,6 +29,7 @@ class GoodsListAdapter(data: MutableList<GoodsBean>): BaseMultiItemQuickAdapter<
                 holder.setText(R.id.tv_price, "￥${item.price}")
             }
             2 -> {
+                holder.getView<ImageView>(R.id.secondImg).scaleType = ImageView.ScaleType.FIT_XY
                 holder.getView<ImageView>(R.id.secondImg).load(item.imgUrl, imageLoader ) {
                     crossfade(true)
                     placeholder(R.drawable.default_img)
