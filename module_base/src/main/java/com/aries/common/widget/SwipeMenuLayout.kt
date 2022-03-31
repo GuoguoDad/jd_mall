@@ -3,15 +3,15 @@ package com.aries.common.widget
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.ValueAnimator
-import android.animation.ValueAnimator.AnimatorUpdateListener
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.PointF
 import android.util.AttributeSet
-import android.util.Log
 import android.view.*
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.OvershootInterpolator
 import com.aries.common.R
+import kotlin.math.abs
 
 
 /**
@@ -46,8 +46,6 @@ import com.aries.common.R
  * 2016 11 18,fix 当ItemView存在高度可变的情况
  * 2016 12 07,fix 禁止侧滑时(isSwipeEnable false)，点击事件不受干扰。
  * 2016 12 09,fix ListView快速滑动快速删除时，偶现菜单不消失的bug。
- * Created by zhangxutong .
- * Date: 16/04/24
  */
 class SwipeMenuLayout @JvmOverloads constructor(
     context: Context,
@@ -87,7 +85,6 @@ class SwipeMenuLayout @JvmOverloads constructor(
     private var isUserSwiped = false
     private var mVelocityTracker //滑动速度变量
             : VelocityTracker? = null
-    private val LogUtils: Log? = null
     /**
      * 设置侧滑功能开关
      *
@@ -151,14 +148,17 @@ class SwipeMenuLayout @JvmOverloads constructor(
             0)
         val count = ta.indexCount
         for (i in 0 until count) {
-            val attr = ta.getIndex(i)
             //如果引用成AndroidLib 资源都不是常量，无法使用switch case
-            if (attr == R.styleable.SwipeMenuLayout_swipeEnable) {
-                isSwipeEnable = ta.getBoolean(attr, true)
-            } else if (attr == R.styleable.SwipeMenuLayout_ios) {
-                isIos = ta.getBoolean(attr, true)
-            } else if (attr == R.styleable.SwipeMenuLayout_leftSwipe) {
-                isLeftSwipe = ta.getBoolean(attr, true)
+            when (val attr = ta.getIndex(i)) {
+                R.styleable.SwipeMenuLayout_swipeEnable -> {
+                    isSwipeEnable = ta.getBoolean(attr, true)
+                }
+                R.styleable.SwipeMenuLayout_ios -> {
+                    isIos = ta.getBoolean(attr, true)
+                }
+                R.styleable.SwipeMenuLayout_leftSwipe -> {
+                    isLeftSwipe = ta.getBoolean(attr, true)
+                }
             }
         }
         ta.recycle()
@@ -186,8 +186,8 @@ class SwipeMenuLayout @JvmOverloads constructor(
                 measureChild(childView, widthMeasureSpec, heightMeasureSpec)
                 //measureChildWithMargins(childView, widthMeasureSpec, 0, heightMeasureSpec, 0);
                 val lp = childView.layoutParams as MarginLayoutParams
-                mHeight = Math.max(mHeight,
-                    childView.measuredHeight /* + lp.topMargin + lp.bottomMargin*/)
+                mHeight = /* + lp.topMargin + lp.bottomMargin*/
+                    mHeight.coerceAtLeast(childView.measuredHeight)
                 if (measureMatchParentChildren && lp.height == LayoutParams.MATCH_PARENT) {
                     isNeedMeasureChildHeight = true
                 }
@@ -255,18 +255,18 @@ class SwipeMenuLayout @JvmOverloads constructor(
                         paddingTop,
                         left + childView.measuredWidth,
                         paddingTop + childView.measuredHeight)
-                    left = left + childView.measuredWidth
+                    left += childView.measuredWidth
                 } else {
                     if (isLeftSwipe) {
                         childView.layout(left,
                             paddingTop,
                             left + childView.measuredWidth,
                             paddingTop + childView.measuredHeight)
-                        left = left + childView.measuredWidth
+                        left += childView.measuredWidth
                     } else {
                         childView.layout(right - childView.measuredWidth,
                             paddingTop, right, paddingTop + childView.measuredHeight)
-                        right = right - childView.measuredWidth
+                        right -= childView.measuredWidth
                     }
                 }
             }
@@ -312,11 +312,11 @@ class SwipeMenuLayout @JvmOverloads constructor(
                     }
                     val gap = mLastP.x - ev.rawX
                     //为了在水平滑动中禁止父类ListView等再竖直滑动
-                    if (Math.abs(gap) > 10 || Math.abs(scrollX) > 10) { //2016 09 29 修改此处，使屏蔽父布局滑动更加灵敏，
+                    if (abs(gap) > 10 || abs(scrollX) > 10) { //2016 09 29 修改此处，使屏蔽父布局滑动更加灵敏，
                         parent.requestDisallowInterceptTouchEvent(true)
                     }
                     //2016 10 22 add , 仿QQ，侧滑菜单展开时，点击内容区域，关闭侧滑菜单。begin
-                    if (Math.abs(gap) > mScaleTouchSlop) {
+                    if (abs(gap) > mScaleTouchSlop) {
                         isUnMoved = false
                     }
                     //2016 10 22 add , 仿QQ，侧滑菜单展开时，点击内容区域，关闭侧滑菜单。end
@@ -344,7 +344,7 @@ class SwipeMenuLayout @JvmOverloads constructor(
                 }
                 MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
                     //2016 11 03 add,判断手指起始落点，如果距离属于滑动了，就屏蔽一切点击事件。
-                    if (Math.abs(ev.rawX - mFirstP.x) > mScaleTouchSlop) {
+                    if (abs(ev.rawX - mFirstP.x) > mScaleTouchSlop) {
                         isUserSwiped = true
                     }
 
@@ -353,7 +353,7 @@ class SwipeMenuLayout @JvmOverloads constructor(
                         //求伪瞬时速度
                         verTracker!!.computeCurrentVelocity(1000, mMaxVelocity.toFloat())
                         val velocityX = verTracker.getXVelocity(mPointerId)
-                        if (Math.abs(velocityX) > 1000) { //滑动速度超过阈值
+                        if (abs(velocityX) > 1000) { //滑动速度超过阈值
                             if (velocityX < -1000) {
                                 if (isLeftSwipe) { //左滑
                                     //平滑展开Menu
@@ -372,7 +372,7 @@ class SwipeMenuLayout @JvmOverloads constructor(
                                 }
                             }
                         } else {
-                            if (Math.abs(scrollX) > mLimit) { //否则就判断滑动距离
+                            if (abs(scrollX) > mLimit) { //否则就判断滑动距离
                                 //平滑展开Menu
                                 smoothExpand()
                             } else {
@@ -400,7 +400,7 @@ class SwipeMenuLayout @JvmOverloads constructor(
         if (isSwipeEnable) {
             when (ev.action) {
                 MotionEvent.ACTION_MOVE ->                     //屏蔽滑动时的事件
-                    if (Math.abs(ev.rawX - mFirstP.x) > mScaleTouchSlop) {
+                    if (abs(ev.rawX - mFirstP.x) > mScaleTouchSlop) {
                         return true
                     }
                 MotionEvent.ACTION_UP -> {
@@ -452,7 +452,7 @@ class SwipeMenuLayout @JvmOverloads constructor(
     private var isExpand //代表当前是否是展开状态 2016 11 03 add
             = false
 
-    fun smoothExpand() {
+    private fun smoothExpand() {
         //Log.d(TAG, "smoothExpand() called" + this);
         /*mScroller.startScroll(getScrollX(), 0, mRightMenuWidths - getScrollX(), 0);
         invalidate();*/
@@ -467,10 +467,10 @@ class SwipeMenuLayout @JvmOverloads constructor(
         mExpandAnim =
             ValueAnimator.ofInt(scrollX, if (isLeftSwipe) mRightMenuWidths else -mRightMenuWidths)
         mExpandAnim?.run {
-            addUpdateListener(AnimatorUpdateListener { animation ->
+            addUpdateListener { animation ->
                 scrollTo((animation.animatedValue as Int),
                     0)
-            })
+            }
             interpolator = OvershootInterpolator()
             addListener(object : AnimatorListenerAdapter() {
                 override fun onAnimationEnd(animation: Animator) {
@@ -496,7 +496,7 @@ class SwipeMenuLayout @JvmOverloads constructor(
     /**
      * 平滑关闭
      */
-    fun smoothClose() {
+    private fun smoothClose() {
         //Log.d(TAG, "smoothClose() called" + this);
 /*        mScroller.startScroll(getScrollX(), 0, -getScrollX(), 0);
         invalidate();*/
@@ -509,10 +509,10 @@ class SwipeMenuLayout @JvmOverloads constructor(
         cancelAnim()
         mCloseAnim = ValueAnimator.ofInt(scrollX, 0)
         mCloseAnim?.run {
-            addUpdateListener(AnimatorUpdateListener { animation ->
+            addUpdateListener { animation ->
                 scrollTo((animation.animatedValue as Int),
                     0)
-            })
+            }
             interpolator = AccelerateInterpolator()
             addListener(object : AnimatorListenerAdapter() {
                 override fun onAnimationEnd(animation: Animator) {
@@ -563,7 +563,7 @@ class SwipeMenuLayout @JvmOverloads constructor(
 
     //展开时，禁止长按
     override fun performLongClick(): Boolean {
-        return if (Math.abs(scrollX) > mScaleTouchSlop) {
+        return if (abs(scrollX) > mScaleTouchSlop) {
             false
         } else super.performLongClick()
     }
@@ -593,14 +593,13 @@ class SwipeMenuLayout @JvmOverloads constructor(
     }
 
     companion object {
-        private const val TAG = "zxt/SwipeMenuLayout"
-
         /**
          * 返回ViewCache
          *
          * @return
          */
         //存储的是当前正在展开的View
+        @SuppressLint("StaticFieldLeak")
         var viewCache: SwipeMenuLayout? = null
             private set
 
