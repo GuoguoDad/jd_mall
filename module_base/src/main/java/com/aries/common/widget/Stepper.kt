@@ -33,6 +33,8 @@ open class Stepper: LinearLayoutCompat {
 
     private var inputValue: Int = 1
 
+    private var data:Any? = null
+
     private var onChangeValueListener: OnChangeValueListener? = null
 
     private fun init(context: Context, attrs: AttributeSet?) {
@@ -151,6 +153,14 @@ open class Stepper: LinearLayoutCompat {
 
     fun getInputValue(): Int {
         return this.inputValue
+    }
+
+    fun setData(data: Any) {
+        this.data = data
+    }
+
+    fun getData(): Any? {
+        return this.data
     }
 
     private fun setEditable(editable: Boolean) {

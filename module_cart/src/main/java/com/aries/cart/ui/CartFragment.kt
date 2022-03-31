@@ -9,8 +9,8 @@ import com.airbnb.mvrx.activityViewModel
 import com.airbnb.mvrx.withState
 import com.aries.common.base.BaseFragment
 import com.aries.cart.R
-import com.aries.cart.ui.adapter.StoreListAdapter
-import com.aries.cart.ui.listener.OnChildItemChildClickListener
+import com.aries.cart.ui.ConvertUtil.convertCartData
+import com.aries.cart.ui.adapter.CartGoodsAdapter
 import com.aries.cart.ui.listener.OnStepperChangeListener
 import com.aries.cart.ui.view.QuickEntryPopup
 import com.aries.common.adapter.GoodsListAdapter
@@ -18,13 +18,15 @@ import com.aries.common.decoration.SpacesItemDecoration
 import com.aries.common.util.PixelUtil
 import com.aries.common.util.StatusBarUtil
 import com.aries.common.util.UnreadMsgUtil
-import com.chad.library.adapter.base.BaseQuickAdapter
+import com.aries.common.widget.Stepper
 import com.google.android.material.appbar.AppBarLayout
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.enums.PopupAnimation
+import com.orhanobut.logger.Logger
 import kotlinx.android.synthetic.main.bottom_all_select.*
 import kotlinx.android.synthetic.main.fragment_cart.*
 import kotlinx.android.synthetic.main.fragment_cart_content.*
+import kotlinx.android.synthetic.main.fragment_cart_item_goods.*
 import kotlinx.android.synthetic.main.top_address.*
 import kotlinx.android.synthetic.main.top_filter.*
 import java.math.BigDecimal
@@ -32,9 +34,8 @@ import java.math.BigDecimal
 class CartFragment : BaseFragment(R.layout.fragment_cart), MavericksView {
     private val viewModel: CartViewModel by activityViewModel()
     //购物车中店铺商品列表adapter
-    private val cartGoodsListAdapter: StoreListAdapter by lazy {
-        StoreListAdapter(R.layout.fragment_cart_item, arrayListOf())
-    }
+    private val cartGoodsAdapter: CartGoodsAdapter by lazy { CartGoodsAdapter(arrayListOf())  }
+    private var cartGoodsListCopy: List<StoreGoodsBean> = arrayListOf()
     //你可能还喜欢 或者 快点来看看 商品列表adapter
     private val goodsListAdapter by lazy { GoodsListAdapter(arrayListOf()) }
     private val staggeredGridLayoutManager: StaggeredGridLayoutManager by lazy {
@@ -73,34 +74,26 @@ class CartFragment : BaseFragment(R.layout.fragment_cart), MavericksView {
         //购物车中的商品列表
         cartGoodsList.run {
             layoutManager = LinearLayoutManager(this.context)
-            adapter = cartGoodsListAdapter
+            adapter = cartGoodsAdapter
         }
-        cartGoodsListAdapter.addChildClickViewIds(R.id.storeCheckBox)
-        //监听店铺是否选中
-        cartGoodsListAdapter.setOnItemChildClickListener  { _, view, position ->
-            when (view.id) {
-                R.id.storeCheckBox -> checkAllByStore(position)
-            }
-        }
-        //监听商品是否选中
-        cartGoodsListAdapter.setOnChildItemChildClickListener(object : OnChildItemChildClickListener {
-            override fun onItemChildClick(
-                adapter: BaseQuickAdapter<*, *>,
-                view: View,
-                parentPosition: Int,
-                position: Int,
-            ) {
+        cartGoodsAdapter.run {
+            addChildClickViewIds(R.id.storeCheckBox, R.id.goodsCheckBox)
+            setOnItemChildClickListener { adapter, view, position ->
+                val data: CartBean = adapter.data[position] as CartBean
+                val storeIndex = cartGoodsListCopy.indexOfFirst { m -> m.storeCode == data.storeCode }
+                val goodsIndex = if (data.code != null) cartGoodsListCopy[storeIndex].goodsList.indexOfFirst { n -> n.code == data.code } else 0
+
                 when (view.id) {
-                    R.id.goodsCheckBox -> checkGoods(parentPosition, position)
+                    R.id.storeCheckBox -> checkAllByStore(storeIndex)
+                    R.id.goodsCheckBox -> checkGoods(storeIndex, goodsIndex)
                 }
             }
-        })
-        //监听数量stepper加减
-        cartGoodsListAdapter.setOnStepperChangeListener(object: OnStepperChangeListener {
-            override fun onStepperChange(bean: CartGoodsBean, value: Int) {
-                setGoodsNum(bean, value)
-            }
-        })
+            setOnStepperChangeListener(object: OnStepperChangeListener {
+                override fun onStepperChange(bean: CartBean, value: Int) {
+                    setGoodsNum(bean, value)
+                }
+            })
+        }
 
         //你可能还喜欢 或者 快点来看看 商品列表
         goodsList.run {
@@ -125,9 +118,10 @@ class CartFragment : BaseFragment(R.layout.fragment_cart), MavericksView {
     override fun invalidate() {
         withState(viewModel) {
             if (it.cartGoodsList.isNotEmpty()) {
-                cartGoodsListAdapter.setList(it.cartGoodsList)
                 setFilterInfo(it.cartGoodsList)
                 calcTotalInfo(it.cartGoodsList)
+                cartGoodsListCopy = it.cartGoodsList
+                cartGoodsAdapter.setList(convertCartData(it.cartGoodsList))
                 if (it.fetchType === "refresh") {
                     smartRefreshLayout.run { finishRefresh() }
                 }
@@ -180,7 +174,7 @@ class CartFragment : BaseFragment(R.layout.fragment_cart), MavericksView {
 
     //点击店铺前面的checkbox
     private fun checkAllByStore(position: Int) {
-        val dataList = cartGoodsListAdapter.data
+        val dataList = cartGoodsListCopy
         val storeCheck = dataList[position].check!!
         if (!storeCheck) {
             dataList[position].check = true
@@ -198,7 +192,7 @@ class CartFragment : BaseFragment(R.layout.fragment_cart), MavericksView {
 
     //点击每个商品前面的checkbox
     private fun checkGoods(parent: Int, position: Int) {
-        val parentList = cartGoodsListAdapter.data
+        val parentList = cartGoodsListCopy
         val childList = parentList[parent].goodsList
 
         childList[position].check = !(childList[position].check!!)
@@ -215,7 +209,7 @@ class CartFragment : BaseFragment(R.layout.fragment_cart), MavericksView {
 
     //点击最下面的全选按钮
     private fun checkAll() {
-        val dataList = cartGoodsListAdapter.data
+        val dataList = cartGoodsListCopy
         val isAllChecked = dataList.indexOfFirst { v -> v.check == false } == -1
 
         totalCheckBox.isChecked = !isAllChecked
@@ -242,8 +236,8 @@ class CartFragment : BaseFragment(R.layout.fragment_cart), MavericksView {
     }
 
     //
-    private fun setGoodsNum(bean: CartGoodsBean, value: Int) {
-        val dataList = cartGoodsListAdapter.data
+    private fun setGoodsNum(bean: CartBean, value: Int) {
+        val dataList = cartGoodsListCopy
         dataList.forEach{ v-> v.goodsList.forEach { m -> if (m.code == bean.code) m.num = value }}
 
         viewModel.updateCartGoodsList(dataList)

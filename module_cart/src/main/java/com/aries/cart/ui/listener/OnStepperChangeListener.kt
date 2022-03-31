@@ -1,7 +1,7 @@
 package com.aries.cart.ui.listener
 
-import com.aries.cart.ui.CartGoodsBean
+import com.aries.cart.ui.CartBean
 
-open interface OnStepperChangeListener {
-    fun onStepperChange(bean: CartGoodsBean, value: Int)
+interface OnStepperChangeListener {
+    fun onStepperChange(bean: CartBean, value: Int)
 }

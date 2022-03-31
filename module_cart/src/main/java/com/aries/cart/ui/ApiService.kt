@@ -2,6 +2,7 @@ package com.aries.cart.ui
 
 import com.aries.common.base.BaseResponse
 import com.aries.common.bean.GoodsBean
+import com.chad.library.adapter.base.entity.MultiItemEntity
 import retrofit2.http.Body
 import retrofit2.http.POST
 
@@ -25,6 +26,24 @@ data class StoreGoodsBean(
     var goodsList: ArrayList<CartGoodsBean>,
     var check: Boolean? = true
 )
+
+data class CartBean(
+    var type: Int,
+
+    var storeName: String?,
+    var storeCode: String?,
+
+    var code: String?,
+    var imgUrl: String?,
+    var description: String?,
+    var price: String?,
+    var num: Int? = 1,
+
+    var check: Boolean = true
+): MultiItemEntity {
+    override val itemType: Int
+        get() = type
+}
 
 
 open interface ApiService {
