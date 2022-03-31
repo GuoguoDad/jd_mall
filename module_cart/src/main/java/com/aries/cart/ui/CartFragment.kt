@@ -2,6 +2,7 @@ package com.aries.cart.ui
 
 import android.graphics.Color
 import android.view.View
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.airbnb.mvrx.MavericksView
@@ -18,15 +19,12 @@ import com.aries.common.decoration.SpacesItemDecoration
 import com.aries.common.util.PixelUtil
 import com.aries.common.util.StatusBarUtil
 import com.aries.common.util.UnreadMsgUtil
-import com.aries.common.widget.Stepper
 import com.google.android.material.appbar.AppBarLayout
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.enums.PopupAnimation
-import com.orhanobut.logger.Logger
 import kotlinx.android.synthetic.main.bottom_all_select.*
 import kotlinx.android.synthetic.main.fragment_cart.*
 import kotlinx.android.synthetic.main.fragment_cart_content.*
-import kotlinx.android.synthetic.main.fragment_cart_item_goods.*
 import kotlinx.android.synthetic.main.top_address.*
 import kotlinx.android.synthetic.main.top_filter.*
 import java.math.BigDecimal
@@ -77,7 +75,7 @@ class CartFragment : BaseFragment(R.layout.fragment_cart), MavericksView {
             adapter = cartGoodsAdapter
         }
         cartGoodsAdapter.run {
-            addChildClickViewIds(R.id.storeCheckBox, R.id.goodsCheckBox)
+            addChildClickViewIds(R.id.storeCheckBox, R.id.goodsCheckBox, R.id.lookSimilar, R.id.btnDelete)
             setOnItemChildClickListener { adapter, view, position ->
                 val data: CartBean = adapter.data[position] as CartBean
                 val storeIndex = cartGoodsListCopy.indexOfFirst { m -> m.storeCode == data.storeCode }
@@ -86,6 +84,8 @@ class CartFragment : BaseFragment(R.layout.fragment_cart), MavericksView {
                 when (view.id) {
                     R.id.storeCheckBox -> checkAllByStore(storeIndex)
                     R.id.goodsCheckBox -> checkGoods(storeIndex, goodsIndex)
+                    R.id.lookSimilar -> Toast.makeText(this.context, "看相似", Toast.LENGTH_SHORT).show()
+                    R.id.btnDelete -> deleteGoods(storeIndex, goodsIndex)
                 }
             }
             setOnStepperChangeListener(object: OnStepperChangeListener {
@@ -117,15 +117,14 @@ class CartFragment : BaseFragment(R.layout.fragment_cart), MavericksView {
 
     override fun invalidate() {
         withState(viewModel) {
-            if (it.cartGoodsList.isNotEmpty()) {
-                setFilterInfo(it.cartGoodsList)
-                calcTotalInfo(it.cartGoodsList)
-                cartGoodsListCopy = it.cartGoodsList
-                cartGoodsAdapter.setList(convertCartData(it.cartGoodsList))
-                if (it.fetchType === "refresh") {
-                    smartRefreshLayout.run { finishRefresh() }
-                }
+            setFilterInfo(it.cartGoodsList)
+            calcTotalInfo(it.cartGoodsList)
+            cartGoodsListCopy = it.cartGoodsList
+            cartGoodsAdapter.setList(convertCartData(it.cartGoodsList))
+            if (it.fetchType === "refresh") {
+                smartRefreshLayout.run { finishRefresh() }
             }
+
             if (it.goodsList.isNotEmpty()) {
                 goodsListAdapter.setList(it.goodsList)
                 smartRefreshLayout.run { resetNoMoreData() }
@@ -235,7 +234,19 @@ class CartFragment : BaseFragment(R.layout.fragment_cart), MavericksView {
         "去结算(${totalNum})".also { btnGoOrder.text = it }
     }
 
-    //
+    //删除购物车中的商品
+    private fun deleteGoods(parentIndex: Int, index: Int) {
+        val dataList = cartGoodsListCopy.toMutableList()
+        val goodsList = dataList[parentIndex].goodsList
+        goodsList.removeAt(index)
+
+        if (goodsList.size == 0) {
+            dataList.removeAt(parentIndex)
+        }
+        viewModel.updateCartGoodsList(dataList)
+    }
+
+    //修改购物车中的商品数量
     private fun setGoodsNum(bean: CartBean, value: Int) {
         val dataList = cartGoodsListCopy
         dataList.forEach{ v-> v.goodsList.forEach { m -> if (m.code == bean.code) m.num = value }}
