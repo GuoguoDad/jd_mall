@@ -54,13 +54,13 @@
                 android:id="@+id/goodsCode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="invisible"/>
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/storeCode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="invisible"/>
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/cartGoodsDes"
