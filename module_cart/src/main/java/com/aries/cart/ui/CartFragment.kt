@@ -32,6 +32,7 @@ import java.math.BigDecimal
 
 class CartFragment : BaseFragment(R.layout.fragment_cart), MavericksView {
     private val viewModel: CartViewModel by activityViewModel()
+
     //购物车中店铺商品列表adapter
     private val cartGoodsAdapter: CartGoodsAdapter by lazy { CartGoodsAdapter(arrayListOf())  }
     private var cartGoodsListCopy: List<StoreGoodsBean> = arrayListOf()
@@ -100,7 +101,10 @@ class CartFragment : BaseFragment(R.layout.fragment_cart), MavericksView {
                     val storeIndex = cartGoodsListCopy.indexOfFirst { m -> m.storeCode == storeCode }
                     val goodsIndex = cartGoodsListCopy[storeIndex].goodsList.indexOfFirst { n -> n.code == goodsCode }
 
-                    deleteGoods(storeIndex, goodsIndex)
+                    when (type) {
+                        "similar" -> Toast.makeText(context, "TODO", Toast.LENGTH_SHORT).show()
+                        "delete" -> deleteGoods(storeIndex, goodsIndex)
+                    }
                 }
             })
         }

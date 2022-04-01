@@ -67,18 +67,10 @@ open class CartGoodsAdapter(data: MutableList<CartBean>): BaseMultiItemQuickAdap
                     })
                 }
                 viewHolder.itemView.findViewById<Button>(R.id.lookSimilar).setOnClickListener {
-                    viewHolder.itemView.findViewById<SwipeMenuLayout>(R.id.goodsSwipeMenuLayout).quickClose()
-                    val goodsCode = viewHolder.itemView.findViewById<TextView>(R.id.goodsCode).text
-                    val storeCode = viewHolder.itemView.findViewById<TextView>(R.id.storeCode).text
-
-                    onCartItemChangeListener?.onItemStateChange(storeCode.toString() ,goodsCode.toString(), "similar")
+                    onMenuClick(viewHolder, "similar")
                 }
                 viewHolder.itemView.findViewById<Button>(R.id.btnDelete).setOnClickListener {
-                    viewHolder.itemView.findViewById<SwipeMenuLayout>(R.id.goodsSwipeMenuLayout).quickClose()
-                    val goodsCode = viewHolder.itemView.findViewById<TextView>(R.id.goodsCode).text
-                    val storeCode = viewHolder.itemView.findViewById<TextView>(R.id.storeCode).text
-
-                    onCartItemChangeListener?.onItemStateChange(storeCode.toString(), goodsCode.toString(), "delete")
+                    onMenuClick(viewHolder, "delete")
                 }
             }
         }
@@ -90,5 +82,13 @@ open class CartGoodsAdapter(data: MutableList<CartBean>): BaseMultiItemQuickAdap
 
     open fun setOnCartItemChangeListener(onCartItemChangeListener: OnCartItemChangeListener) {
         this.onCartItemChangeListener = onCartItemChangeListener
+    }
+
+    private fun onMenuClick(viewHolder: BaseViewHolder, type: String) {
+        viewHolder.itemView.findViewById<SwipeMenuLayout>(R.id.goodsSwipeMenuLayout).quickClose()
+        val goodsCode = viewHolder.itemView.findViewById<TextView>(R.id.goodsCode).text
+        val storeCode = viewHolder.itemView.findViewById<TextView>(R.id.storeCode).text
+
+        onCartItemChangeListener?.onItemStateChange(storeCode.toString() ,goodsCode.toString(), type)
     }
 }

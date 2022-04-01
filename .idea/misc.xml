@@ -76,6 +76,7 @@
         <entry key="module_base/src/main/res/layout/badge_layout.xml" value="0.22327898550724637" />
         <entry key="module_base/src/main/res/layout/goods_cart_item.xml" value="0.1" />
         <entry key="module_base/src/main/res/layout/goods_item.xml" value="0.22010869565217392" />
+        <entry key="module_base/src/main/res/layout/goods_second_item.xml" value="0.22010869565217392" />
         <entry key="module_base/src/main/res/layout/home_goods_item.xml" value="0.18326693227091634" />
         <entry key="module_base/src/main/res/layout/home_goods_second_item.xml" value="0.23233695652173914" />
         <entry key="module_base/src/main/res/layout/layout_stepper.xml" value="0.1" />
