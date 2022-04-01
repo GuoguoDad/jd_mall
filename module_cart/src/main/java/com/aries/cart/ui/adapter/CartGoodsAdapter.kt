@@ -1,5 +1,7 @@
 package com.aries.cart.ui.adapter
 
+import android.view.View
+import android.widget.Button
 import android.widget.CheckBox
 import android.widget.ImageView
 import coil.load
@@ -8,7 +10,10 @@ import com.aries.cart.ui.CartBean
 import com.aries.cart.ui.listener.OnStepperChangeListener
 import com.aries.common.util.CoilUtil
 import com.aries.common.widget.Stepper
+import com.aries.common.widget.SwipeMenuLayout
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
+import com.chad.library.adapter.base.BaseQuickAdapter
+import com.chad.library.adapter.base.listener.OnItemChildClickListener
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 
 open class CartGoodsAdapter(data: MutableList<CartBean>): BaseMultiItemQuickAdapter<CartBean, BaseViewHolder>(data) {
@@ -48,15 +53,17 @@ open class CartGoodsAdapter(data: MutableList<CartBean>): BaseMultiItemQuickAdap
     override fun bindViewClickListener(viewHolder: BaseViewHolder, viewType: Int) {
         super.bindViewClickListener(viewHolder, viewType)
         when (viewType) {
-            2 -> viewHolder.itemView.findViewById<Stepper>(R.id.buyNum).run {
-                setOnChangeValueListener(object: Stepper.OnChangeValueListener {
-                    override fun onChangeValue(value: String) {
-                        val data = getData()
-                        if ( data != null && (data as CartBean).num != value.toInt()) {
-                            onStepperChangeListener?.onStepperChange(data, value.toInt())
+            2 -> {
+                viewHolder.itemView.findViewById<Stepper>(R.id.buyNum).run {
+                    setOnChangeValueListener(object : Stepper.OnChangeValueListener {
+                        override fun onChangeValue(value: String) {
+                            val data = getData()
+                            if (data != null && (data as CartBean).num != value.toInt()) {
+                                onStepperChangeListener?.onStepperChange(data, value.toInt())
+                            }
                         }
-                    }
-                })
+                    })
+                }
             }
         }
     }
