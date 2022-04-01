@@ -51,6 +51,18 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/goodsCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"/>
+
+            <TextView
+                android:id="@+id/storeCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"/>
+
+            <TextView
                 android:id="@+id/cartGoodsDes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

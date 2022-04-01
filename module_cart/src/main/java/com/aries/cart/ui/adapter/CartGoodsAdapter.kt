@@ -1,24 +1,24 @@
 package com.aries.cart.ui.adapter
 
-import android.view.View
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.ImageView
+import android.widget.TextView
 import coil.load
 import com.aries.cart.R
 import com.aries.cart.ui.CartBean
+import com.aries.cart.ui.listener.OnCartItemChangeListener
 import com.aries.cart.ui.listener.OnStepperChangeListener
 import com.aries.common.util.CoilUtil
 import com.aries.common.widget.Stepper
 import com.aries.common.widget.SwipeMenuLayout
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
-import com.chad.library.adapter.base.BaseQuickAdapter
-import com.chad.library.adapter.base.listener.OnItemChildClickListener
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 
 open class CartGoodsAdapter(data: MutableList<CartBean>): BaseMultiItemQuickAdapter<CartBean, BaseViewHolder>(data) {
     private var imageLoader = CoilUtil.getImageLoader()
     private var onStepperChangeListener: OnStepperChangeListener? = null
+    private var onCartItemChangeListener: OnCartItemChangeListener? = null
 
     init {
         addItemType(1, R.layout.fragment_cart_item_store)
@@ -39,6 +39,8 @@ open class CartGoodsAdapter(data: MutableList<CartBean>): BaseMultiItemQuickAdap
                 }
 
                 holder.getView<CheckBox>(R.id.goodsCheckBox).isChecked = item.check
+                holder.setText(R.id.storeCode, item.storeCode)
+                holder.setText(R.id.goodsCode, item.code)
                 holder.setText(R.id.cartGoodsDes, item.description)
                 holder.setText(R.id.cartGoodsPrice, "￥${item.price}")
 
@@ -64,11 +66,29 @@ open class CartGoodsAdapter(data: MutableList<CartBean>): BaseMultiItemQuickAdap
                         }
                     })
                 }
+                viewHolder.itemView.findViewById<Button>(R.id.lookSimilar).setOnClickListener {
+                    viewHolder.itemView.findViewById<SwipeMenuLayout>(R.id.goodsSwipeMenuLayout).quickClose()
+                    val goodsCode = viewHolder.itemView.findViewById<TextView>(R.id.goodsCode).text
+                    val storeCode = viewHolder.itemView.findViewById<TextView>(R.id.storeCode).text
+
+                    onCartItemChangeListener?.onItemStateChange(storeCode.toString() ,goodsCode.toString(), "similar")
+                }
+                viewHolder.itemView.findViewById<Button>(R.id.btnDelete).setOnClickListener {
+                    viewHolder.itemView.findViewById<SwipeMenuLayout>(R.id.goodsSwipeMenuLayout).quickClose()
+                    val goodsCode = viewHolder.itemView.findViewById<TextView>(R.id.goodsCode).text
+                    val storeCode = viewHolder.itemView.findViewById<TextView>(R.id.storeCode).text
+
+                    onCartItemChangeListener?.onItemStateChange(storeCode.toString(), goodsCode.toString(), "delete")
+                }
             }
         }
     }
 
     open fun setOnStepperChangeListener(onStepperChangeListener: OnStepperChangeListener) {
         this.onStepperChangeListener = onStepperChangeListener
+    }
+
+    open fun setOnCartItemChangeListener(onCartItemChangeListener: OnCartItemChangeListener) {
+        this.onCartItemChangeListener = onCartItemChangeListener
     }
 }

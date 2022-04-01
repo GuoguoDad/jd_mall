@@ -12,6 +12,7 @@ import com.aries.common.base.BaseFragment
 import com.aries.cart.R
 import com.aries.cart.ui.ConvertUtil.convertCartData
 import com.aries.cart.ui.adapter.CartGoodsAdapter
+import com.aries.cart.ui.listener.OnCartItemChangeListener
 import com.aries.cart.ui.listener.OnStepperChangeListener
 import com.aries.cart.ui.view.QuickEntryPopup
 import com.aries.common.adapter.GoodsListAdapter
@@ -75,7 +76,8 @@ class CartFragment : BaseFragment(R.layout.fragment_cart), MavericksView {
             adapter = cartGoodsAdapter
         }
         cartGoodsAdapter.run {
-            addChildClickViewIds(R.id.storeCheckBox, R.id.goodsCheckBox, R.id.lookSimilar, R.id.btnDelete)
+            addChildClickViewIds(R.id.storeCheckBox, R.id.goodsCheckBox)
+            //监听店铺选中、商品选中事件
             setOnItemChildClickListener { adapter, view, position ->
                 val data: CartBean = adapter.data[position] as CartBean
                 val storeIndex = cartGoodsListCopy.indexOfFirst { m -> m.storeCode == data.storeCode }
@@ -84,13 +86,21 @@ class CartFragment : BaseFragment(R.layout.fragment_cart), MavericksView {
                 when (view.id) {
                     R.id.storeCheckBox -> checkAllByStore(storeIndex)
                     R.id.goodsCheckBox -> checkGoods(storeIndex, goodsIndex)
-                    R.id.lookSimilar -> Toast.makeText(this.context, "看相似", Toast.LENGTH_SHORT).show()
-                    R.id.btnDelete -> deleteGoods(storeIndex, goodsIndex)
                 }
             }
+            //监听购物车中商品数量变化
             setOnStepperChangeListener(object: OnStepperChangeListener {
                 override fun onStepperChange(bean: CartBean, value: Int) {
                     setGoodsNum(bean, value)
+                }
+            })
+            //监听商品侧滑菜单(看相似，删除)
+            setOnCartItemChangeListener(object: OnCartItemChangeListener{
+                override fun onItemStateChange(storeCode: String, goodsCode: String, type: String) {
+                    val storeIndex = cartGoodsListCopy.indexOfFirst { m -> m.storeCode == storeCode }
+                    val goodsIndex = cartGoodsListCopy[storeIndex].goodsList.indexOfFirst { n -> n.code == goodsCode }
+
+                    deleteGoods(storeIndex, goodsIndex)
                 }
             })
         }
