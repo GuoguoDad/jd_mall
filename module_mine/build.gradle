@@ -21,6 +21,7 @@ android {
         }
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -43,10 +44,6 @@ android {
 
 dependencies {
     api project(path: ':module_base')
-    api project(path: ':moudle_home')
-    api project(path: ':module_category')
-    api project(path: ':module_cart')
-    api project(path: ':module_mine')
 
     kapt 'com.alibaba:arouter-compiler:1.5.2'
 }

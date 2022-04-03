@@ -1,38 +1,10 @@
 {
   "modules": [
-    {"moduleName":"模块1","name":"系统","code":"000","showType": 0},
-    {"moduleName":"模块2","name":"网络","code":"000","showType": 0},
-    {"moduleName":"模块3","name":"通信","code":"000","showType": 0},
-    {"moduleName":"模块4","name":"模块","code":"000","showType": 0},
-    {"moduleName":"更多","name":"更多","code":"000","showType": 0}
+    {"moduleName":"模块1","name":"系统","code":"000","showType": 0}
   ],
   "data": [
       {"moduleName":"模块1","name":"瀑布流","code":"001","showType": 1},
       {"moduleName":"模块1","name":"协调者布局","code":"002","showType": 1},
-      {"moduleName":"模块1","name":"步进器","code":"003","showType": 1},
-      {"moduleName":"模块1","name":"功能5","code":"004","showType": 1},
-      {"moduleName":"模块1","name":"功能6","code":"005","showType": 1},
-      {"moduleName":"模块1","name":"功能7","code":"006","showType": 1},
-      {"moduleName":"模块1","name":"功能8","code":"007","showType": 1},
-      {"moduleName":"模块1","name":"功能9","code":"008","showType": 1},
-      {"moduleName":"模块1","name":"功能10","code":"009","showType": 1},
-      {"moduleName":"模块2","name":"功能1","code":"010","showType": 1},
-      {"moduleName":"模块2","name":"功能2","code":"011","showType": 1},
-      {"moduleName":"模块3","name":"功能3","code":"012","showType": 1},
-      {"moduleName":"模块3","name":"功能4","code":"013","showType": 1},
-      {"moduleName":"模块3","name":"功能5","code":"014","showType": 1},
-      {"moduleName":"模块3","name":"功能6","code":"015","showType": 1},
-      {"moduleName":"模块3","name":"功能7","code":"016","showType": 1},
-      {"moduleName":"模块3","name":"功能8","code":"017","showType": 1},
-      {"moduleName":"模块3","name":"功能9","code":"018","showType": 1},
-      {"moduleName":"模块4","name":"功能1","code":"012","showType": 1},
-      {"moduleName":"模块4","name":"功能2","code":"013","showType": 1},
-      {"moduleName":"模块4","name":"功能3","code":"014","showType": 1},
-      {"moduleName":"模块4","name":"功能4","code":"015","showType": 1},
-      {"moduleName":"模块4","name":"功能5","code":"016","showType": 1},
-      {"moduleName":"模块4","name":"功能6","code":"017","showType": 1},
-      {"moduleName":"模块4","name":"功能7","code":"018","showType": 1},
-      {"moduleName":"更多","name":"功能1","code":"055","showType": 1},
-      {"moduleName":"更多","name":"功能2","code":"056","showType": 1}
+      {"moduleName":"模块1","name":"步进器","code":"003","showType": 1}
   ]
 }

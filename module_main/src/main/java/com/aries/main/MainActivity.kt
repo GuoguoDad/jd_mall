@@ -14,9 +14,8 @@ import com.aries.common.base.BaseActivity
 import com.aries.common.util.StatusBarUtil
 import com.aries.common.util.UnreadMsgUtil
 import com.aries.home.ui.HomeFragment
-import com.aries.main.ui.mine.MineFragment
+import com.aries.mine.ui.MineFragment
 import com.google.android.material.bottomnavigation.BottomNavigationItemView
-import com.google.android.material.bottomnavigation.LabelVisibilityMode
 import kotlinx.android.synthetic.main.layout_main.*
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 import com.google.android.material.navigation.NavigationBarView
@@ -59,7 +58,7 @@ class MainActivity: BaseActivity(R.layout.layout_main) {
                 }
                 R.id.navigation_mine -> {
                     supportFragmentManager.beginTransaction().hide(active).show(mineFragment).commit()
-                    StatusBarUtil.setBarTextModal(this, false)
+                    StatusBarUtil.setBarTextModal(this, true)
                     active = mineFragment
                 }
             }

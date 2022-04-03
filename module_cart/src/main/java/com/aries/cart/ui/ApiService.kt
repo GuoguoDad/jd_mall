@@ -46,7 +46,7 @@ data class CartBean(
 }
 
 
-open interface ApiService {
+interface ApiService {
     @POST("mall/cart/queryMaybeLikeList")
     suspend fun queryMaybeLikeListByPage(@Body body: QueryMaybeLikeListParams): BaseResponse<GoodsListResponse>
 

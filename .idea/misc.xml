@@ -59,6 +59,7 @@
         <entry key="module_base/src/main/res/drawable/back_top_bg.xml" value="0.39739583333333334" />
         <entry key="module_base/src/main/res/drawable/badge_bg.xml" value="0.39739583333333334" />
         <entry key="module_base/src/main/res/drawable/divider_horizontal.xml" value="0.34074074074074073" />
+        <entry key="module_base/src/main/res/drawable/enter_bg.xml" value="0.39739583333333334" />
         <entry key="module_base/src/main/res/drawable/gray_circular_bg.xml" value="0.39739583333333334" />
         <entry key="module_base/src/main/res/drawable/rounded_corners_white_10_bg.xml" value="0.39739583333333334" />
         <entry key="module_base/src/main/res/drawable/selector_check_box.xml" value="0.3828125" />
@@ -139,6 +140,7 @@
         <entry key="module_main/src/main/res/drawable/round_corner_btn_bg.xml" value="0.39739583333333334" />
         <entry key="module_main/src/main/res/drawable/selector_main_home.xml" value="0.39739583333333334" />
         <entry key="module_main/src/main/res/drawable/selector_tab_color.xml" value="0.39739583333333334" />
+        <entry key="module_main/src/main/res/drawable/skipshape.xml" value="0.39739583333333334" />
         <entry key="module_main/src/main/res/layout/badge_layout.xml" value="0.24048913043478262" />
         <entry key="module_main/src/main/res/layout/fragment_cart.xml" value="0.23233695652173914" />
         <entry key="module_main/src/main/res/layout/fragment_category.xml" value="0.2368659420289855" />
@@ -154,6 +156,7 @@
         <entry key="module_main/src/main/res/layout/layout_waterfall_item.xml" value="0.2296195652173913" />
         <entry key="module_main/src/main/res/layout/view_list.xml" value="0.2368659420289855" />
         <entry key="module_main/src/main/res/menu/bottom_nav_menu.xml" value="0.3770833333333333" />
+        <entry key="module_mine/src/main/res/layout/layout_mine.xml" value="0.13358778625954199" />
         <entry key="moudle_home/src/main/res/drawable/enter_bg.xml" value="0.3828125" />
         <entry key="moudle_home/src/main/res/drawable/gray_circular_bg.xml" value="0.39739583333333334" />
         <entry key="moudle_home/src/main/res/drawable/normal_indicator.xml" value="0.3828125" />
@@ -161,6 +164,7 @@
         <entry key="moudle_home/src/main/res/drawable/rounded_corners_white_bg.xml" value="0.3828125" />
         <entry key="moudle_home/src/main/res/drawable/selected_indicator.xml" value="0.3828125" />
         <entry key="moudle_home/src/main/res/drawable/similar_bg.xml" value="0.3828125" />
+        <entry key="moudle_home/src/main/res/drawable/tag_bg.xml" value="0.39739583333333334" />
         <entry key="moudle_home/src/main/res/drawable/text_bg.xml" value="0.3828125" />
         <entry key="moudle_home/src/main/res/layout/banner_layout.xml" value="0.23233695652173914" />
         <entry key="moudle_home/src/main/res/layout/fragment_banner.xml" value="0.23278985507246377" />
