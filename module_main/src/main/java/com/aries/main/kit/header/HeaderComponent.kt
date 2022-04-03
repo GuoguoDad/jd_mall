@@ -29,7 +29,7 @@ class Header: ConstraintLayout {
         leftText = types.getString(R.styleable.HeaderComponent_leftText)
 
         // 拿到我们编写的布局文件，这部分就相当于固定的部分
-        val view = LayoutInflater.from(getContext()).inflate(R.layout.layout_header, this)
+        val view = LayoutInflater.from(getContext()).inflate(R.layout.floating_header, this)
         titleView = view.findViewById(R.id.title)
         rightTextView = view.findViewById(R.id.rightText)
         leftTextView = view.findViewById(R.id.leftText)

@@ -1,10 +1,9 @@
 package com.aries.mine.ui
 
-import android.os.Build
+import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.LinearLayout
-import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.airbnb.mvrx.MavericksView
 import com.airbnb.mvrx.activityViewModel
@@ -12,12 +11,15 @@ import com.airbnb.mvrx.withState
 import com.aries.common.adapter.GoodsListAdapter
 import com.aries.common.base.BaseFragment
 import com.aries.common.decoration.SpacesItemDecoration
+import com.aries.common.util.DisplayUtil
 import com.aries.common.util.PixelUtil
 import com.aries.common.util.StatusBarUtil
 import com.aries.common.widget.AnimationNestedScrollView
 import com.aries.mine.R
 import com.orhanobut.logger.Logger
+import kotlinx.android.synthetic.main.floating_header.*
 import kotlinx.android.synthetic.main.layout_mine.*
+import kotlinx.android.synthetic.main.login_userinfo.*
 
 class MineFragment: BaseFragment(R.layout.layout_mine), MavericksView {
     private val viewModel: MineViewModal by activityViewModel()
@@ -27,13 +29,14 @@ class MineFragment: BaseFragment(R.layout.layout_mine), MavericksView {
         StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
     }
 
-    @RequiresApi(Build.VERSION_CODES.M)
     override fun initView() {
+        fixPosition()
+
         mineRefreshLayout.run {
             setEnableRefresh(false)
             setEnableLoadMore(false)
         }
-        headerLayout.setPadding(0, StatusBarUtil.getHeight(), 0, 0)
+
         recommendGoodsList.run {
             addItemDecoration(SpacesItemDecoration(10))
             layoutManager = staggeredGridLayoutManager
@@ -46,6 +49,10 @@ class MineFragment: BaseFragment(R.layout.layout_mine), MavericksView {
                 onScrollChange(dy.toInt(), marginLayoutParams)
             }
         })
+
+        backTop.setOnClickListener {
+            mineNestedScrollView.smoothScrollTo(0,0)
+        }
     }
 
     override fun initData() {
@@ -58,6 +65,11 @@ class MineFragment: BaseFragment(R.layout.layout_mine), MavericksView {
                 goodsListAdapter.setList(it.goodsList)
             }
         }
+    }
+
+
+    private fun fixPosition(){
+        headerLayout.setPadding(0, StatusBarUtil.getHeight(), 0, 0)
     }
 
 
@@ -84,7 +96,6 @@ class MineFragment: BaseFragment(R.layout.layout_mine), MavericksView {
         }
         userInfoLinearLayout.layoutParams = layoutLP
 
-
         //处理头像大小
         val lp = LinearLayout.LayoutParams(marginLayoutParams)
 
@@ -107,5 +118,12 @@ class MineFragment: BaseFragment(R.layout.layout_mine), MavericksView {
         scrollLP.setMargins(0, marginTop, 0, 0)
 
         mineNestedScrollView.layoutParams = scrollLP
+
+        //显示backToTop
+        if (scrollY >= DisplayUtil.getScreenHeight(this.requireContext())) {
+            backTop.visibility = View.VISIBLE
+        } else {
+            backTop.visibility = View.GONE
+        }
     }
 }

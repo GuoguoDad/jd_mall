@@ -156,7 +156,9 @@
         <entry key="module_main/src/main/res/layout/layout_waterfall_item.xml" value="0.2296195652173913" />
         <entry key="module_main/src/main/res/layout/view_list.xml" value="0.2368659420289855" />
         <entry key="module_main/src/main/res/menu/bottom_nav_menu.xml" value="0.3770833333333333" />
+        <entry key="module_mine/src/main/res/layout/layout_header.xml" value="0.24864130434782608" />
         <entry key="module_mine/src/main/res/layout/layout_mine.xml" value="0.13358778625954199" />
+        <entry key="module_mine/src/main/res/layout/layout_userinfo.xml" value="0.24864130434782608" />
         <entry key="moudle_home/src/main/res/drawable/enter_bg.xml" value="0.3828125" />
         <entry key="moudle_home/src/main/res/drawable/gray_circular_bg.xml" value="0.39739583333333334" />
         <entry key="moudle_home/src/main/res/drawable/normal_indicator.xml" value="0.3828125" />
