@@ -43,7 +43,7 @@ android {
 }
 
 dependencies {
-    api project(path: ':module_base')
+    api project(path: ':module_common')
 
     kapt 'com.alibaba:arouter-compiler:1.5.2'
 }

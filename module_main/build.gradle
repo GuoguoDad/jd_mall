@@ -42,7 +42,7 @@ android {
 }
 
 dependencies {
-    api project(path: ':module_base')
+    api project(path: ':module_common')
     api project(path: ':moudle_home')
     api project(path: ':module_category')
     api project(path: ':module_cart')
