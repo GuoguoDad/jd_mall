@@ -20,6 +20,13 @@
             android:layout_height="match_parent">
 
             <LinearLayout
+                android:id="@+id/bannerBg"
+                android:layout_width="match_parent"
+                android:layout_height="128dp"
+                android:background="@drawable/banner_bg"
+                android:orientation="horizontal" />
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
@@ -32,12 +39,25 @@
                     android:layout_height="match_parent"
                     android:layout_marginTop="54dp">
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/recommendGoodsList"
+                    <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:overScrollMode="never"/>
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
 
+                        <include layout="@layout/order_card" />
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:id="@+id/functionList"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recommendGoodsList"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:overScrollMode="never"/>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
                 </com.aries.common.widget.AnimationNestedScrollView>
 
             </LinearLayout>

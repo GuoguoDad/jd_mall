@@ -9,6 +9,22 @@ import kotlinx.coroutines.Dispatchers
 class MineViewModal(initialState: MineState): MavericksViewModel<MineState>(initialState) {
     private var apiService: ApiService = HttpUtil.instance.service(ApiService::class.java)
 
+    fun queryMineInfo() {
+        withState {
+            if (it.goodsListResponse is Loading) return@withState
+
+            suspend {
+                apiService.queryMineInfo()
+            }.execute(Dispatchers.IO) { state ->
+                copy(
+                    mineInfoResponse = state,
+                    fiveMenuList = (state()?.data?.functionList ?: it.fiveMenuList)
+                )
+            }
+        }
+    }
+
+
     fun initRecommendList() {
         setState { copy(currentPage = 1) }
         withState {

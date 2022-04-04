@@ -12,5 +12,46 @@
         android:layout_height="58dp"
         android:layout_marginLeft="20dp"
         android:src="@drawable/header"/>
+    
+    <LinearLayout
+        android:id="@+id/userInfo"
+        android:layout_width="0dp"
+        android:layout_height="58dp"
+        android:layout_weight="1"
+        android:paddingLeft="15dp"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/cl_000000"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:text="楠色星辰"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_181818"
+                android:layout_marginRight="15dp"
+                android:textSize="12sp"
+                android:text="积分: 200"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_181818"
+                android:textSize="12sp"
+                android:text="信用值: 1200"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </LinearLayout>

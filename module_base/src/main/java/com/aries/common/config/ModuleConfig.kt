@@ -4,9 +4,9 @@ interface ModuleConfig {
 
     companion object {
 
-        private const val MODULE_MAIN = "com.example.main.MainApplication"
+        private const val MODULE_MAIN = "com.aries.main.MainApplication"
 
-        private const val MODULE_HOME = "com.example.home.HomeApplication"
+        private const val MODULE_HOME = "com.aries.home.HomeApplication"
 
         private const val MODULE_COMMON = "com.aries.common.CommonApplication"
 

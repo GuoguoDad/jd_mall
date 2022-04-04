@@ -2,14 +2,57 @@
   "code": "0",
   "msg": "",
   "data": {
-    "": "https://img30.360buyimg.com/jdmonitor/jfs/t1/131167/32/21940/6587/620dc218E1e9dde63/3ef4939125d4ae3c.png",
-    "": "https://img30.360buyimg.com/jdmonitor/jfs/t1/133786/7/22584/5446/6204e163E6dba1ca0/b20fc6b3b8ec4ba5.png",
-    "": "https://img30.360buyimg.com/jdmonitor/jfs/t1/189988/4/7675/892/60c2c89eE84d9c2d9/6806013eec4961d6.png",
-    "": "https://img30.360buyimg.com/jdmonitor/jfs/t1/192420/14/7532/721/60c2c89dE636ae028/53375ef183dda08c.png",
-    "": "https://img30.360buyimg.com/jdmonitor/jfs/t1/184017/5/8552/929/60c2c89dEbf5381da/63b542401fedb6d6.png",
-    "": "https://img30.360buyimg.com/jdmonitor/jfs/t1/181843/36/3355/381/6098d127Eb10137e1/c049019a10b22404.png",
-    "": "https://img30.360buyimg.com/jdmonitor/jfs/t1/177422/20/3334/482/6098d127Ec3a01fb9/cc54c9cb77e81c29.png",
-    "": "https://img30.360buyimg.com/jdmonitor/jfs/t1/191128/9/2353/671/6098d127E817b4433/54bbc45abeb0b629.png",
-    "": "https://img30.360buyimg.com/jdmonitor/jfs/t1/176219/36/8719/613/6098d127Efa6ddee7/56ee0dca97eed9df.png"
+    "functionList": [
+      {
+        "menuIcon": "https://m15.360buyimg.com/mobilecms/jfs/t1/104637/39/25735/190791/622f3682E168960d2/2dbfbaf4147134c1.gif",
+        "menuName": "京东国际",
+        "menuCode": "m11"
+      },
+      {
+        "menuIcon": "https://m15.360buyimg.com/mobilecms/jfs/t1/146555/27/19306/16865/60ac616bEd519445a/bfbb2c0ba8206259.png!q70.jpg",
+        "menuName": "京东到家",
+        "menuCode": "m12"
+      },
+      {
+        "menuIcon": "https://m15.360buyimg.com/mobilecms/jfs/t1/189533/37/5319/12852/60b05d59Eb3b3fd29/4c478e3347507e51.png!q70.jpg",
+        "menuName": "京东生鲜",
+        "menuCode": "m13"
+      },
+      {
+        "menuIcon": "https://m15.360buyimg.com/mobilecms/jfs/t1/129902/19/16911/11005/60b05dd8Edad29a3f/ca6b3ea0f67e1826.png!q70.jpg",
+        "menuName": "沃尔玛",
+        "menuCode": "m14"
+      },
+      {
+        "menuIcon": "https://m15.360buyimg.com/mobilecms/jfs/t1/192361/9/5316/11815/60b05d25Eec7f6b5e/5555dcc59d99428d.png!q70.jpg",
+        "menuName": "京东旅行",
+        "menuCode": "m15"
+      },
+      {
+        "menuIcon": "https://m15.360buyimg.com/mobilecms/jfs/t1/109159/13/17721/9654/60b05d73Eefa154db/3a4a46ef2755c622.png!q70.jpg",
+        "menuName": "看病购药",
+        "menuCode": "m16"
+      },
+      {
+        "menuIcon": "https://m15.360buyimg.com/mobilecms/jfs/t1/188405/35/3707/11116/60a26055Ef91c306d/1ba7aa3b9328e35e.png!q70.jpg",
+        "menuName": "拍拍二手",
+        "menuCode": "m17"
+      },
+      {
+        "menuIcon": "https://m15.360buyimg.com/mobilecms/jfs/t1/177688/12/4847/7352/60a39a9bEe0a7e4f8/1a8efe458d1c3ee2.png!q70.jpg",
+        "menuName": "种豆得豆",
+        "menuCode": "m18"
+      },
+      {
+        "menuIcon": "https://m15.360buyimg.com/mobilecms/jfs/t1/184718/8/4051/11977/609e5222Ea2816259/d29fec6d4d8558f1.png!q70.jpg",
+        "menuName": "京东萌宠",
+        "menuCode": "m19"
+      },
+      {
+        "menuIcon": "https://m15.360buyimg.com/mobilecms/jfs/t1/126310/38/18675/7912/60b05e32E736cb5fe/2bb8508e955b88ee.png!q70.jpg",
+        "menuName": "更多频道",
+        "menuCode": "m20"
+      }
+    ]
   }
 }

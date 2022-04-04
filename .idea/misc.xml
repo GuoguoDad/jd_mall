@@ -62,6 +62,7 @@
         <entry key="module_base/src/main/res/drawable/enter_bg.xml" value="0.39739583333333334" />
         <entry key="module_base/src/main/res/drawable/gray_circular_bg.xml" value="0.39739583333333334" />
         <entry key="module_base/src/main/res/drawable/rounded_corners_white_10_bg.xml" value="0.39739583333333334" />
+        <entry key="module_base/src/main/res/drawable/selected_indicator.xml" value="0.39739583333333334" />
         <entry key="module_base/src/main/res/drawable/selector_check_box.xml" value="0.3828125" />
         <entry key="module_base/src/main/res/drawable/selector_tab_indicator.xml" value="0.39739583333333334" />
         <entry key="module_base/src/main/res/drawable/selector_tab_indicator2.xml" value="0.39739583333333334" />
@@ -91,6 +92,7 @@
         <entry key="module_cart/src/main/res/drawable/cart_top_address_text_bg.xml" value="0.39739583333333334" />
         <entry key="module_cart/src/main/res/drawable/fragment_cart_bg.xml" value="0.39739583333333334" />
         <entry key="module_cart/src/main/res/drawable/quick_entry_bg.xml" value="0.39739583333333334" />
+        <entry key="module_cart/src/main/res/drawable/text_grey_bg.xml" value="0.39739583333333334" />
         <entry key="module_cart/src/main/res/layout/bottom_all_select.xml" value="0.1" />
         <entry key="module_cart/src/main/res/layout/cart_content.xml" value="0.1" />
         <entry key="module_cart/src/main/res/layout/cart_quick_entry_gridvew_item.xml" value="0.23233695652173914" />
@@ -156,9 +158,20 @@
         <entry key="module_main/src/main/res/layout/layout_waterfall_item.xml" value="0.2296195652173913" />
         <entry key="module_main/src/main/res/layout/view_list.xml" value="0.2368659420289855" />
         <entry key="module_main/src/main/res/menu/bottom_nav_menu.xml" value="0.3770833333333333" />
+        <entry key="module_mine/src/main/res/drawable/banner_bg.xml" value="0.39739583333333334" />
+        <entry key="module_mine/src/main/res/drawable/banner_bg2.xml" value="0.3896833503575077" />
+        <entry key="module_mine/src/main/res/drawable/order_card_bg.xml" value="0.39739583333333334" />
+        <entry key="module_mine/src/main/res/drawable/page_bg.xml" value="0.39739583333333334" />
+        <entry key="module_mine/src/main/res/layout/five_memu_gridview.xml" value="0.24320652173913043" />
+        <entry key="module_mine/src/main/res/layout/five_memu_item.xml" value="0.24320652173913043" />
+        <entry key="module_mine/src/main/res/layout/five_memu_main.xml" value="0.24320652173913043" />
+        <entry key="module_mine/src/main/res/layout/floating_header.xml" value="0.24320652173913043" />
         <entry key="module_mine/src/main/res/layout/layout_header.xml" value="0.24864130434782608" />
-        <entry key="module_mine/src/main/res/layout/layout_mine.xml" value="0.13358778625954199" />
+        <entry key="module_mine/src/main/res/layout/layout_mine.xml" value="0.1" />
         <entry key="module_mine/src/main/res/layout/layout_userinfo.xml" value="0.24864130434782608" />
+        <entry key="module_mine/src/main/res/layout/login_userinfo.xml" value="0.1" />
+        <entry key="module_mine/src/main/res/layout/nine_memu_item.xml" value="0.24320652173913043" />
+        <entry key="module_mine/src/main/res/layout/order_card.xml" value="0.24320652173913043" />
         <entry key="moudle_home/src/main/res/drawable/enter_bg.xml" value="0.3828125" />
         <entry key="moudle_home/src/main/res/drawable/gray_circular_bg.xml" value="0.39739583333333334" />
         <entry key="moudle_home/src/main/res/drawable/normal_indicator.xml" value="0.3828125" />

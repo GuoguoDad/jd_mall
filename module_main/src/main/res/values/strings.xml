@@ -4,7 +4,7 @@
     <string name="title_dashboard">面板</string>
     <string name="title_category">分类</string>
     <string name="title_cart" translatable="false">购物车</string>
-    <string name="title_setting">设置</string>
+    <string name="title_setting">我的</string>
 
     <string name="srl_header_pulling">下拉可以刷新</string>
     <string name="srl_header_refreshing">正在刷新…</string>

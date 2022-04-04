@@ -54,6 +54,14 @@
                 android:layout_gravity="center_vertical"
                 android:src="@drawable/ic_setting"/>
 
+            <ImageView
+                android:id="@+id/message"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginRight="15dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_message"/>
+
         </LinearLayout>
 
     </LinearLayout>

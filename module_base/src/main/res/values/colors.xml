@@ -3,6 +3,7 @@
     <color name="grey">#58616d</color>
     <!-- 纯色 -->
     <color name="white">#FFFFFF</color>
+    <color name="font_4">#444444</color>
     <color name="font_6">#666666</color>
     <color name="transparent">#00000000</color>
 
@@ -11,6 +12,7 @@
     <color name="cl_999999">#999999</color>
     <color name="cl_dddddd">#dddddd</color>
     <color name="cl_aaaaaa">#aaaaaa</color>
+    <color name="color_F1F0F1">#F1F0F1</color>
     <color name="cl_549cf8">#549cf8</color>
     <color name="cl_80000000">#80000000</color>
 

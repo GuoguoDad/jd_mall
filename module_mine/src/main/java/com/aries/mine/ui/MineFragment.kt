@@ -16,7 +16,7 @@ import com.aries.common.util.PixelUtil
 import com.aries.common.util.StatusBarUtil
 import com.aries.common.widget.AnimationNestedScrollView
 import com.aries.mine.R
-import com.orhanobut.logger.Logger
+import com.aries.mine.ui.view.FiveMenuView
 import kotlinx.android.synthetic.main.floating_header.*
 import kotlinx.android.synthetic.main.layout_mine.*
 import kotlinx.android.synthetic.main.login_userinfo.*
@@ -29,15 +29,26 @@ class MineFragment: BaseFragment(R.layout.layout_mine), MavericksView {
         StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
     }
 
+    private val fiveMenuView: FiveMenuView by lazy { FiveMenuView(this.requireContext(), this@MineFragment) }
+
     override fun initView() {
         fixPosition()
 
         mineRefreshLayout.run {
             setEnableRefresh(false)
-            setEnableLoadMore(false)
+            setEnableAutoLoadMore(true)
+            setOnLoadMoreListener {
+                viewModel.loadMoreRecommendList()
+            }
+        }
+
+        functionList.run {
+            removeAllViews()
+            addView(fiveMenuView)
         }
 
         recommendGoodsList.run {
+//            staggeredGridLayoutManager.gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_NONE //解决加载下一页后重新排列的问题
             addItemDecoration(SpacesItemDecoration(10))
             layoutManager = staggeredGridLayoutManager
             adapter = goodsListAdapter
@@ -56,22 +67,35 @@ class MineFragment: BaseFragment(R.layout.layout_mine), MavericksView {
     }
 
     override fun initData() {
+        viewModel.queryMineInfo()
         viewModel.initRecommendList()
     }
 
     override fun invalidate() {
         withState(viewModel) {
+            if (it.fiveMenuList.isNotEmpty()) {
+                fiveMenuView.setData(it.fiveMenuList)
+            }
             if (it.goodsList.isNotEmpty()) {
                 goodsListAdapter.setList(it.goodsList)
+            }
+            if (it.nextPageGoodsList.isNotEmpty()) {
+                goodsListAdapter.addData(it.nextPageGoodsList)
+                mineRefreshLayout.run {
+                    if (it.currentPage <= it.totalPage) finishLoadMore()
+                    else finishLoadMoreWithNoMoreData()
+                }
             }
         }
     }
 
-
     private fun fixPosition(){
         headerLayout.setPadding(0, StatusBarUtil.getHeight(), 0, 0)
-    }
 
+        val lp = FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT)
+        lp.height = (StatusBarUtil.getHeight() + PixelUtil.toPixelFromDIP(128f)).toInt()
+        bannerBg.layoutParams = lp
+    }
 
     private fun onScrollChange(
         scrollY: Int,
@@ -87,12 +111,16 @@ class MineFragment: BaseFragment(R.layout.layout_mine), MavericksView {
 
         if (top <= fixedTop) {
             layoutLP.setMargins(0, fixedTop, 0, 0)
+            userInfo.visibility = View.GONE
             headerLayout.setBackgroundColor(resources.getColor(R.color.white))
             mineTxt.setTextColor(resources.getColor(R.color.cl_000000))
+            bannerBg.setBackgroundResource(R.drawable.banner_bg2)
         } else {
+            userInfo.visibility = View.VISIBLE
             layoutLP.setMargins(0, top, 0, 0)
             headerLayout.setBackgroundColor(resources.getColor(R.color.transparent))
             mineTxt.setTextColor(resources.getColor(R.color.transparent))
+            bannerBg.setBackgroundResource(R.drawable.banner_bg)
         }
         userInfoLinearLayout.layoutParams = layoutLP
 
