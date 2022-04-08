@@ -8,6 +8,7 @@ import com.aries.common.bean.GoodsBean
 
 data class MineState(
     val fiveMenuList: List<MenuBean> = emptyList(),
+    val tabList: List<TabBean> = emptyList(),
     val mineInfoResponse: Async<BaseResponse<MineInfoResponse>> = Uninitialized,
 
     val goodsList: List<GoodsBean> = emptyList(),

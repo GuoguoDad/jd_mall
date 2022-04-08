@@ -128,6 +128,8 @@
         <entry key="module_category/src/main/res/layout/main_right_grid.xml" value="0.22916666666666666" />
         <entry key="module_category/src/main/res/layout/main_right_grid_header.xml" value="0.23233695652173914" />
         <entry key="module_category/src/main/res/layout/serach.xml" value="0.165" />
+        <entry key="module_common/src/main/res/drawable/selector_tab_indicator.xml" value="0.273" />
+        <entry key="module_common/src/main/res/layout/layout_goods_tabs.xml" value="0.264945652173913" />
         <entry key="module_main/src/main/res/drawable/appbar_elevation.xml" value="0.39739583333333334" />
         <entry key="module_main/src/main/res/drawable/ic_icon_main_category.xml" value="0.39739583333333334" />
         <entry key="module_main/src/main/res/drawable/ic_icon_main_home.xml" value="0.39739583333333334" />
@@ -166,6 +168,7 @@
         <entry key="module_mine/src/main/res/layout/five_memu_item.xml" value="0.24320652173913043" />
         <entry key="module_mine/src/main/res/layout/five_memu_main.xml" value="0.24320652173913043" />
         <entry key="module_mine/src/main/res/layout/floating_header.xml" value="0.24320652173913043" />
+        <entry key="module_mine/src/main/res/layout/layout_goods_tabs.xml" value="0.264945652173913" />
         <entry key="module_mine/src/main/res/layout/layout_header.xml" value="0.24864130434782608" />
         <entry key="module_mine/src/main/res/layout/layout_mine.xml" value="0.1" />
         <entry key="module_mine/src/main/res/layout/layout_userinfo.xml" value="0.24864130434782608" />

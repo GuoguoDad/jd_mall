@@ -51,6 +51,17 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"/>
 
+                        <com.google.android.material.tabs.TabLayout
+                            android:id="@+id/tabLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:tabMode="scrollable"
+                            app:tabIndicatorHeight="0dp"
+                            app:tabRippleColor="@color/transparent"
+                            app:tabTextColor="@color/color_404040"
+                            app:tabSelectedTextColor="@color/color_E33A3C"
+                            app:tabBackground="@drawable/selector_tab_indicator"/>
+
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/recommendGoodsList"
                             android:layout_width="match_parent"
@@ -63,6 +74,19 @@
             </LinearLayout>
 
             <include layout="@layout/login_userinfo" />
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/floatingTabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                app:tabMode="scrollable"
+                app:tabIndicatorHeight="0dp"
+                android:visibility="gone"
+                app:tabRippleColor="@color/transparent"
+                app:tabTextColor="@color/color_404040"
+                app:tabSelectedTextColor="@color/color_E33A3C"
+                app:tabBackground="@drawable/selector_tab_indicator"/>
         </FrameLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton

@@ -6,7 +6,8 @@ import retrofit2.http.Body
 import retrofit2.http.POST
 
 data class MenuBean(var menuIcon: String, var menuName: String, var menuCode: String)
-data class MineInfoResponse( var functionList: MutableList<MenuBean>)
+data class TabBean(var name: String, var code: String)
+data class MineInfoResponse( var functionList: MutableList<MenuBean>, var tabList: MutableList<TabBean>)
 
 data class QueryRecommendListParams(var currentPage: Number, var pageSize: Number)
 data class GoodsListResponse(var dataList: MutableList<GoodsBean>, var totalCount: Int, var totalPageCount: Int)

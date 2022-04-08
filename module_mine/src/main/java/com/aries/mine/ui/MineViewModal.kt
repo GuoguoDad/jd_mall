@@ -18,6 +18,7 @@ class MineViewModal(initialState: MineState): MavericksViewModel<MineState>(init
             }.execute(Dispatchers.IO) { state ->
                 copy(
                     mineInfoResponse = state,
+                    tabList = (state()?.data?.tabList ?: it.tabList),
                     fiveMenuList = (state()?.data?.functionList ?: it.fiveMenuList)
                 )
             }

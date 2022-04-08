@@ -17,6 +17,8 @@ import com.aries.common.util.StatusBarUtil
 import com.aries.common.widget.AnimationNestedScrollView
 import com.aries.mine.R
 import com.aries.mine.ui.view.FiveMenuView
+import com.google.android.material.tabs.TabLayout
+import com.orhanobut.logger.Logger
 import kotlinx.android.synthetic.main.floating_header.*
 import kotlinx.android.synthetic.main.layout_mine.*
 import kotlinx.android.synthetic.main.login_userinfo.*
@@ -36,10 +38,7 @@ class MineFragment: BaseFragment(R.layout.layout_mine), MavericksView {
 
         mineRefreshLayout.run {
             setEnableRefresh(false)
-            setEnableAutoLoadMore(true)
-            setOnLoadMoreListener {
-                viewModel.loadMoreRecommendList()
-            }
+            setEnableLoadMore(false)
         }
 
         functionList.run {
@@ -61,6 +60,31 @@ class MineFragment: BaseFragment(R.layout.layout_mine), MavericksView {
             }
         })
 
+        tabLayout.run {
+            addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
+                override fun onTabSelected(tab: TabLayout.Tab?) {
+                    val position = tab?.position
+                    if (position != null) {
+                        floatingTabLayout.selectTab(floatingTabLayout.getTabAt(position))
+                    }
+                }
+                override fun onTabUnselected(tab: TabLayout.Tab?) {}
+                override fun onTabReselected(tab: TabLayout.Tab?) {}
+            })
+        }
+        floatingTabLayout.run {
+            addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
+                override fun onTabSelected(tab: TabLayout.Tab?) {
+                    val position = tab?.position
+                    if (position != null) {
+                        tabLayout.selectTab(tabLayout.getTabAt(position))
+                    }
+                }
+                override fun onTabUnselected(tab: TabLayout.Tab?) {}
+                override fun onTabReselected(tab: TabLayout.Tab?) {}
+            })
+        }
+
         backTop.setOnClickListener {
             mineNestedScrollView.smoothScrollTo(0,0)
         }
@@ -75,6 +99,14 @@ class MineFragment: BaseFragment(R.layout.layout_mine), MavericksView {
         withState(viewModel) {
             if (it.fiveMenuList.isNotEmpty()) {
                 fiveMenuView.setData(it.fiveMenuList)
+            }
+            if (it.tabList.isNotEmpty()) {
+                tabLayout.removeAllTabs()
+                floatingTabLayout.removeAllTabs()
+                it.tabList.forEach { v ->
+                    tabLayout.addTab(tabLayout.newTab().setText(v.name));
+                    floatingTabLayout.addTab(floatingTabLayout.newTab().setText(v.name))
+                }
             }
             if (it.goodsList.isNotEmpty()) {
                 goodsListAdapter.setList(it.goodsList)
@@ -95,6 +127,10 @@ class MineFragment: BaseFragment(R.layout.layout_mine), MavericksView {
         val lp = FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT)
         lp.height = (StatusBarUtil.getHeight() + PixelUtil.toPixelFromDIP(128f)).toInt()
         bannerBg.layoutParams = lp
+
+        val floatingTabLayoutLP = FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT)
+        floatingTabLayoutLP.topMargin = (StatusBarUtil.getHeight() + PixelUtil.toPixelFromDIP(50f)).toInt()
+        floatingTabLayout.layoutParams = floatingTabLayoutLP
     }
 
     private fun onScrollChange(
@@ -146,6 +182,17 @@ class MineFragment: BaseFragment(R.layout.layout_mine), MavericksView {
         scrollLP.setMargins(0, marginTop, 0, 0)
 
         mineNestedScrollView.layoutParams = scrollLP
+
+        //显示浮动的tab
+        val floatTab2Top = tabLayout.top - PixelUtil.toPixelFromDIP(54f).toInt() - tabLayout.height + 55
+        Logger.i("tabLayout.height:${tabLayout.height}")
+        Logger.i("scrollY:${scrollY}")
+        Logger.i("floatTab2Top:${floatTab2Top}")
+        if (scrollY >= floatTab2Top) {
+            floatingTabLayout.visibility = View.VISIBLE
+        } else {
+            floatingTabLayout.visibility = View.GONE
+        }
 
         //显示backToTop
         if (scrollY >= DisplayUtil.getScreenHeight(this.requireContext())) {
