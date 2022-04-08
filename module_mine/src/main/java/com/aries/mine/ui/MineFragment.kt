@@ -40,6 +40,9 @@ class MineFragment: BaseFragment(R.layout.layout_mine), MavericksView {
             setEnableRefresh(false)
             setEnableLoadMore(false)
         }
+        goodsListAdapter.loadMoreModule.setOnLoadMoreListener{
+            viewModel.loadMoreRecommendList()
+        }
 
         functionList.run {
             removeAllViews()
@@ -110,13 +113,14 @@ class MineFragment: BaseFragment(R.layout.layout_mine), MavericksView {
             }
             if (it.goodsList.isNotEmpty()) {
                 goodsListAdapter.setList(it.goodsList)
+                goodsListAdapter.loadMoreModule.loadMoreComplete()
             }
             if (it.nextPageGoodsList.isNotEmpty()) {
                 goodsListAdapter.addData(it.nextPageGoodsList)
-                mineRefreshLayout.run {
-                    if (it.currentPage <= it.totalPage) finishLoadMore()
-                    else finishLoadMoreWithNoMoreData()
-                }
+                if (it.currentPage <= it.totalPage)
+                    goodsListAdapter.loadMoreModule.loadMoreComplete()
+                else
+                    goodsListAdapter.loadMoreModule.loadMoreEnd()
             }
         }
     }
@@ -185,9 +189,9 @@ class MineFragment: BaseFragment(R.layout.layout_mine), MavericksView {
 
         //显示浮动的tab
         val floatTab2Top = tabLayout.top - PixelUtil.toPixelFromDIP(54f).toInt() - tabLayout.height + 55
-        Logger.i("tabLayout.height:${tabLayout.height}")
-        Logger.i("scrollY:${scrollY}")
-        Logger.i("floatTab2Top:${floatTab2Top}")
+//        Logger.i("tabLayout.height:${tabLayout.height}")
+//        Logger.i("scrollY:${scrollY}")
+//        Logger.i("floatTab2Top:${floatTab2Top}")
         if (scrollY >= floatTab2Top) {
             floatingTabLayout.visibility = View.VISIBLE
         } else {

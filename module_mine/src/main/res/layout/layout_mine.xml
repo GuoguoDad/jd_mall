@@ -6,8 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_F5F5F5"
-    app:srlEnablePreviewInEditMode="true"
-    app:srlEnableLoadMoreWhenContentNotFull="false"
     tools:ignore="MissingDefaultResource">
 
     <RelativeLayout

@@ -7,8 +7,9 @@ import com.aries.common.bean.GoodsBean
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.aries.common.util.CoilUtil
+import com.chad.library.adapter.base.module.LoadMoreModule
 
-class GoodsListAdapter(data: MutableList<GoodsBean>): BaseMultiItemQuickAdapter<GoodsBean, BaseViewHolder>(data) {
+class GoodsListAdapter(data: MutableList<GoodsBean>): BaseMultiItemQuickAdapter<GoodsBean, BaseViewHolder>(data), LoadMoreModule {
     private var imageLoader = CoilUtil.getImageLoader()
 
     init {
