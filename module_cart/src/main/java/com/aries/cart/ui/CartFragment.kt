@@ -17,9 +17,11 @@ import com.aries.cart.ui.listener.OnStepperChangeListener
 import com.aries.cart.ui.view.QuickEntryPopup
 import com.aries.common.adapter.GoodsListAdapter
 import com.aries.common.decoration.SpacesItemDecoration
+import com.aries.common.util.DisplayUtil
 import com.aries.common.util.PixelUtil
 import com.aries.common.util.StatusBarUtil
 import com.aries.common.util.UnreadMsgUtil
+import com.aries.common.widget.consecutiveScroller.ConsecutiveScrollerLayout
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.enums.PopupAnimation
 import kotlinx.android.synthetic.main.bottom_all_select.*
@@ -96,6 +98,16 @@ class CartFragment : BaseFragment(R.layout.fragment_cart), MavericksView {
                 }
             })
         }
+        //监听页面滚动显示与隐藏backTop按钮
+        consecutiveScrollerLayout.setOnVerticalScrollChangeListener(object : ConsecutiveScrollerLayout.OnScrollChangeListener{
+            override fun onScrollChange(v: View?, scrollY: Int, oldScrollY: Int, scrollState: Int) {
+                if (scrollY >= DisplayUtil.getScreenHeight(requireContext())) {
+                    backTop.visibility = View.VISIBLE
+                } else {
+                    backTop.visibility = View.GONE
+                }
+            }
+        })
 
         //你可能还喜欢 或者 快点来看看 商品列表
         goodsList.run {
@@ -105,7 +117,7 @@ class CartFragment : BaseFragment(R.layout.fragment_cart), MavericksView {
         }
         //返回顶部
         backTop.setOnClickListener {
-            consecutiveScrollerLayout.smoothScrollToChildWithOffset(consecutiveScrollerLayout.getChildAt(0), 0)
+            consecutiveScrollerLayout.smoothScrollToChild(consecutiveScrollerLayout.getChildAt(0))
         }
         //全选
         totalCheckBox.setOnClickListener { checkAll() }

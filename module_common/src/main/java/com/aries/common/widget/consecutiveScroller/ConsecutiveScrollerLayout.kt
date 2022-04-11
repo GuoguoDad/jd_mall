@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.TypedArray
 import android.graphics.Canvas
-import android.os.Build
 import android.util.AttributeSet
 import android.view.*
 import android.view.animation.Interpolator
@@ -16,7 +15,6 @@ import androidx.core.widget.EdgeEffectCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.aries.common.R
 import kotlin.math.abs
-
 
 @SuppressLint("Recycle")
 class ConsecutiveScrollerLayout @JvmOverloads constructor(
@@ -79,11 +77,6 @@ class ConsecutiveScrollerLayout @JvmOverloads constructor(
     private var mTouching = false
     private var SCROLL_ORIENTATION = SCROLL_NONE
     /**
-     * 设置滑动监听
-     *
-     * @param l
-     */
-    /**
      * 滑动监听
      */
     private var onVerticalScrollChangeListener: OnScrollChangeListener? = null
@@ -134,13 +127,12 @@ class ConsecutiveScrollerLayout @JvmOverloads constructor(
      * 注意：如果你的ConsecutiveScrollerLayout下使用了ViewPager、HorizontalScrollView、水平滑动RecyclerView等，
      * 就不要设置disableChildHorizontalScroll为true.因为它会禁止水平滑动
      *
-     * @param disableChildHorizontalScroll
      */
     /**
      * 禁用子view的水平滑动，如果ConsecutiveScrollerLayout下没有水平滑动的下级view，应该把它设置为true
      * 为true时，将不会分发滑动事件给子view，而是由ConsecutiveScrollerLayout处理，可以优化ConsecutiveScrollerLayout的滑动
      */
-    var isDisableChildHorizontalScroll = false
+    private var isDisableChildHorizontalScroll = false
 
     /**
      * 自动调整底部view的高度，使它不被吸顶布局覆盖。
@@ -187,11 +179,7 @@ class ConsecutiveScrollerLayout @JvmOverloads constructor(
      * 普通吸顶模式,监听吸顶变化
      */
     private var onStickyChangeListener: OnStickyChangeListener? = null
-    /**
-     * 常驻吸顶模式,监听吸顶变化
-     *
-     * @param l
-     */
+
     /**
      * 常驻吸顶模式,监听吸顶变化
      */
@@ -222,7 +210,7 @@ class ConsecutiveScrollerLayout @JvmOverloads constructor(
             }
             if (scrollChild is IConsecutiveScroller) {
                 val views: List<View> = (scrollChild as IConsecutiveScroller).scrolledViews
-                if (views != null && !views.isEmpty()) {
+                if (views.isNotEmpty()) {
                     val size = views.size
                     for (i in 0 until size) {
                         disableChildScroll(views[i])
@@ -259,10 +247,9 @@ class ConsecutiveScrollerLayout @JvmOverloads constructor(
             val child = children[i]
 
             // 父布局额外占用的高度空间，在测量子view时，子view的最大高度不大于父view的最大可用高度-heightUsed。
-            var heightUsed = 0
 
             // 测量底部view，并且需要自动调整高度时，计算吸顶部分占用的空间高度，作为测量子view的条件。
-            heightUsed = getAdjustHeightForChild(child)
+            val heightUsed: Int = getAdjustHeightForChild(child)
             measureChildWithMargins(child, widthMeasureSpec, 0, heightMeasureSpec, heightUsed)
             contentWidth = Math.max(contentWidth, getContentWidth(child))
             contentHeight += child.measuredHeight
@@ -294,7 +281,7 @@ class ConsecutiveScrollerLayout @JvmOverloads constructor(
      * @return
      */
     private val adjustHeight: Int
-        private get() {
+        get() {
             val children = stickyChildren
             var adjustHeight = mAdjustHeightOffset
             val count = children.size
@@ -328,7 +315,7 @@ class ConsecutiveScrollerLayout @JvmOverloads constructor(
     }
 
     private fun measureSize(measureSpec: Int, size: Int): Int {
-        var result = 0
+        var result: Int
         val specMode = MeasureSpec.getMode(measureSpec)
         val specSize = MeasureSpec.getSize(measureSpec)
         if (specMode == MeasureSpec.EXACTLY) {
@@ -426,7 +413,6 @@ class ConsecutiveScrollerLayout @JvmOverloads constructor(
             LayoutParams.Align.CENTER -> paddingLeft + lp.leftMargin + (parentWidth - child.measuredWidth
                     - paddingLeft - lp.leftMargin - paddingRight - lp.rightMargin) / 2
             LayoutParams.Align.LEFT -> paddingLeft + lp.leftMargin
-            else -> paddingLeft + lp.leftMargin
         }
     }
 
@@ -643,6 +629,7 @@ class ConsecutiveScrollerLayout @JvmOverloads constructor(
         return super.onInterceptTouchEvent(ev)
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(ev: MotionEvent): Boolean {
         if (ScrollUtils.isConsecutiveScrollParent(this) // 如果父级容器设置isConsecutive：true，则自己不消费滑动
             || isTouchNotTriggerScrollStick
@@ -810,11 +797,11 @@ class ConsecutiveScrollerLayout @JvmOverloads constructor(
                 var height = height
                 var xTranslation = 0
                 var yTranslation = scrollY
-                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP || clipToPadding) {
+                if (clipToPadding) {
                     width -= paddingLeft + paddingRight
                     xTranslation += paddingLeft
                 }
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && clipToPadding) {
+                if (clipToPadding) {
                     height -= paddingTop + paddingBottom
                     yTranslation += paddingTop
                 }
@@ -831,11 +818,11 @@ class ConsecutiveScrollerLayout @JvmOverloads constructor(
                 var height = height
                 var xTranslation = 0
                 var yTranslation = scrollY + height
-                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP || clipToPadding) {
+                if (clipToPadding) {
                     width -= paddingLeft + paddingRight
                     xTranslation += paddingLeft
                 }
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && clipToPadding) {
+                if (clipToPadding) {
                     height -= paddingTop + paddingBottom
                     yTranslation -= paddingBottom
                 }
@@ -851,12 +838,12 @@ class ConsecutiveScrollerLayout @JvmOverloads constructor(
     }
 
     private val scrollRange: Int
-        private get() {
+        get() {
             var scrollRange = 0
             if (childCount > 0) {
                 val childSize = computeVerticalScrollRange()
                 val parentSpace = height - paddingTop - paddingBottom
-                scrollRange = Math.max(0, childSize - parentSpace)
+                scrollRange = 0.coerceAtLeast(childSize - parentSpace)
             }
             return scrollRange
         }
@@ -985,7 +972,7 @@ class ConsecutiveScrollerLayout @JvmOverloads constructor(
      * @param offset
      */
     private fun scrollUp(offset: Int) {
-        var scrollOffset = 0
+        var scrollOffset: Int
         var remainder = offset
         val oldScrollY = computeVerticalScrollOffset()
         do {
@@ -1011,8 +998,7 @@ class ConsecutiveScrollerLayout @JvmOverloads constructor(
             scrollOffset = 0
             if (!isScrollBottom) {
                 // 找到当前显示的第一个View
-                var firstVisibleView: View? = null
-                firstVisibleView = if (scrollY < mScrollRange) {
+                val firstVisibleView: View? = if (scrollY < mScrollRange) {
                     findFirstVisibleView()
                 } else {
                     bottomView
@@ -1021,10 +1007,10 @@ class ConsecutiveScrollerLayout @JvmOverloads constructor(
                     awakenScrollBars()
                     val bottomOffset: Int = ScrollUtils.getScrollBottomOffset(firstVisibleView)
                     if (bottomOffset > 0) {
-                        scrollOffset = Math.min(remainder, bottomOffset)
+                        scrollOffset = remainder.coerceAtMost(bottomOffset)
                         if (mScrollToIndex != -1) {
-                            scrollOffset = Math.min(scrollOffset,
-                                scrollAnchor - (scrollY + paddingTop + viewScrollOffset))
+                            scrollOffset =
+                                scrollOffset.coerceAtMost(scrollAnchor - (scrollY + paddingTop + viewScrollOffset))
                         }
                         scrollChild(firstVisibleView, scrollOffset)
                     } else {
@@ -1048,7 +1034,7 @@ class ConsecutiveScrollerLayout @JvmOverloads constructor(
     }
 
     private fun scrollDown(offset: Int) {
-        var scrollOffset = 0
+        var scrollOffset: Int
         var remainder = offset
         val oldScrollY = computeVerticalScrollOffset()
         do {
@@ -1072,8 +1058,7 @@ class ConsecutiveScrollerLayout @JvmOverloads constructor(
             scrollOffset = 0
             if (!isScrollTop) {
                 // 找到当前显示的最后一个View
-                var lastVisibleView: View? = null
-                lastVisibleView = if (scrollY < mScrollRange) {
+                val lastVisibleView: View? = if (scrollY < mScrollRange) {
                     findLastVisibleView()
                 } else {
                     bottomView
@@ -1157,9 +1142,7 @@ class ConsecutiveScrollerLayout @JvmOverloads constructor(
     private fun scrollChild(child: View, y: Int) {
         val scrolledView: View? = ScrollUtils.getScrolledView(child)
         if (scrolledView is AbsListView) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                scrolledView.scrollListBy(y)
-            }
+            scrolledView.scrollListBy(y)
         } else {
             var isInterceptRequestLayout = false
             if (scrolledView is RecyclerView) {
@@ -1262,7 +1245,7 @@ class ConsecutiveScrollerLayout @JvmOverloads constructor(
                 val scrollChild: View? = ScrollUtils.getScrollChild(child)
                 if (scrollChild is IConsecutiveScroller) {
                     val views: List<View> = (scrollChild as IConsecutiveScroller).scrolledViews
-                    if (views != null && !views.isEmpty()) {
+                    if (views.isNotEmpty()) {
                         val size = views.size
                         for (c in 0 until size) {
                             scrollChildContentToTop(views[c])
@@ -1291,7 +1274,7 @@ class ConsecutiveScrollerLayout @JvmOverloads constructor(
      * @param target
      */
     private fun scrollChildContentToTop(target: View) {
-        var scrollY = 0
+        var scrollY: Int
         do {
             scrollY = 0
             val offset: Int = ScrollUtils.getScrollTopOffset(target)
@@ -1309,7 +1292,7 @@ class ConsecutiveScrollerLayout @JvmOverloads constructor(
      * @param target
      */
     fun scrollChildContentToBottom(target: View) {
-        var scrollY = 0
+        var scrollY: Int
         do {
             scrollY = 0
             val offset: Int = ScrollUtils.getScrollBottomOffset(target)
@@ -1404,9 +1387,9 @@ class ConsecutiveScrollerLayout @JvmOverloads constructor(
     }
 
     private val bottomView: View?
-        private get() {
+        get() {
             val views = effectiveChildren
-            return if (!views.isEmpty()) {
+            return if (views.isNotEmpty()) {
                 views[views.size - 1]
             } else null
         }
@@ -1417,7 +1400,7 @@ class ConsecutiveScrollerLayout @JvmOverloads constructor(
      * @return
      */
     private val nonGoneChildren: List<View>
-        private get() {
+        get() {
             val children: MutableList<View> = ArrayList()
             val count = childCount
             for (i in 0 until count) {
@@ -1433,7 +1416,7 @@ class ConsecutiveScrollerLayout @JvmOverloads constructor(
      * 返回所有高度不为0的view
      */
     private val effectiveChildren: List<View>
-        private get() {
+        get() {
             val children: MutableList<View> = ArrayList()
             val count = childCount
             for (i in 0 until count) {
@@ -1451,7 +1434,7 @@ class ConsecutiveScrollerLayout @JvmOverloads constructor(
      * @return
      */
     private val stickyChildren: List<View>
-        private get() {
+        get() {
             val children: MutableList<View> = ArrayList()
             val count = childCount
             for (i in 0 until count) {
@@ -1504,7 +1487,7 @@ class ConsecutiveScrollerLayout @JvmOverloads constructor(
      */
     private fun resetSticky() {
         val children = stickyChildren
-        if (!children.isEmpty()) {
+        if (children.isNotEmpty()) {
             val count = children.size
             // 让所有的View恢复原来的状态
             for (i in 0 until count) {
@@ -1589,7 +1572,7 @@ class ConsecutiveScrollerLayout @JvmOverloads constructor(
      * @return
      */
     private val stickyY: Int
-        private get() = scrollY + paddingTop + mStickyOffset
+        get() = scrollY + paddingTop + mStickyOffset
 
     /**
      * 子View吸顶常驻
@@ -1627,7 +1610,7 @@ class ConsecutiveScrollerLayout @JvmOverloads constructor(
     }
 
     private val isListEqual: Boolean
-        private get() {
+        get() {
             if (mTempStickyViews.size == mCurrentStickyViews.size) {
                 val size = mTempStickyViews.size
                 for (i in 0 until size) {
@@ -1768,11 +1751,24 @@ class ConsecutiveScrollerLayout @JvmOverloads constructor(
      * 禁止设置滑动监听，因为这个监听器已无效
      * 若想监听容器的滑动，请使用
      *
-     * @param l
      * @see .setOnVerticalScrollChangeListener
      */
     @Deprecated("")
     override fun setOnScrollChangeListener(l: View.OnScrollChangeListener) {
+    }
+
+
+    /**
+     * 设置滑动监听
+     *
+     * @param l
+     */
+    fun setOnVerticalScrollChangeListener(l: OnScrollChangeListener) {
+        this.onVerticalScrollChangeListener = l
+    }
+
+    fun getOnVerticalScrollChangeListener(): OnScrollChangeListener? {
+        return onVerticalScrollChangeListener
     }
 
     override fun computeHorizontalScrollRange(): Int {
@@ -2026,12 +2022,16 @@ class ConsecutiveScrollerLayout @JvmOverloads constructor(
             // 滑动方向。
             var scrollOrientation = 0
             if (offset >= 0) {
-                if (scrollY + paddingTop > scrollAnchor) {
-                    scrollOrientation = -1
-                } else if (scrollY + paddingTop < scrollAnchor) {
-                    scrollOrientation = 1
-                } else if (ScrollUtils.canScrollVertically(view, -1)) {
-                    scrollOrientation = -1
+                when {
+                    scrollY + paddingTop > scrollAnchor -> {
+                        scrollOrientation = -1
+                    }
+                    scrollY + paddingTop < scrollAnchor -> {
+                        scrollOrientation = 1
+                    }
+                    ScrollUtils.canScrollVertically(view, -1) -> {
+                        scrollOrientation = -1
+                    }
                 }
             } else {
                 val viewScrollOffset = getViewsScrollOffset(scrollToIndex)
@@ -2048,9 +2048,9 @@ class ConsecutiveScrollerLayout @JvmOverloads constructor(
                 mScrollToIndexWithOffset = offset
                 scrollState = SCROLL_STATE_SETTLING
                 mSmoothScrollOffset = if (scrollOrientation < 0) {
-                    -50
+                    -100
                 } else {
-                    50
+                    100
                 }
                 invalidate()
             }

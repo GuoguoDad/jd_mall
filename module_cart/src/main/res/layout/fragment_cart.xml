@@ -95,6 +95,7 @@
         android:layout_marginRight="16dp"
         android:layout_marginBottom="60dp"
         android:scaleType="fitXY"
+        android:visibility="gone"
         android:src="@drawable/back_top"
         app:backgroundTint="@color/white"
         app:borderWidth="0dp"
