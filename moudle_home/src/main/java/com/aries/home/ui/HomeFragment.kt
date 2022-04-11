@@ -7,19 +7,18 @@ import com.airbnb.mvrx.MavericksView
 import com.airbnb.mvrx.activityViewModel
 import com.aries.common.base.BaseFragment
 import com.aries.common.dialog.LoadingDialog
+import com.aries.common.util.DisplayUtil
 import com.aries.common.util.StatusBarUtil
+import com.aries.common.widget.consecutiveScroller.ConsecutiveScrollerLayout
 import com.aries.home.R
 import com.aries.home.ui.constants.ActionType
 import com.aries.home.ui.fragment.GoodsListFragment
 import com.aries.home.ui.view.BannerView
 import kotlinx.android.synthetic.main.fragment_home.*
-import com.aries.home.ui.view.TopView
 import com.google.android.material.tabs.TabLayoutMediator
-import com.aries.common.util.PixelUtil
 import com.aries.home.ui.view.AdView
 import com.aries.home.ui.view.NineMenuView
-import com.google.android.material.appbar.AppBarLayout
-import kotlinx.android.synthetic.main.home_goods.*
+import kotlinx.android.synthetic.main.home_top_view.*
 
 class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
     private val viewModel: HomeViewModel by activityViewModel()
@@ -29,11 +28,8 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
     private lateinit var tabViewPagerAdapter: FragmentStateAdapter
 
     private val banner: BannerView by lazy { BannerView(this.requireContext()) }
-    private val topView: TopView by lazy { TopView(this.requireContext()) }
     private val adView: AdView by lazy { AdView(this.requireContext()) }
     private val nineMenuView: NineMenuView by lazy { NineMenuView(this.requireContext(), this@HomeFragment) }
-
-    private val searchHeight = StatusBarUtil.getHeight() + PixelUtil.toPixelFromDIP(30f).toInt()
 
     override fun onDestroyView() {
         super.onDestroyView()
@@ -43,31 +39,31 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
     override fun initView() {
         initFloatHeader()
         refreshView.run {
+            setEnableLoadMore(false)
             setOnRefreshListener {
                 viewModel.init(true)
             }
         }
         collapsableContent.run {
             removeAllViews()
-            addView(topView)
             addView(banner)
             addView(adView)
             addView(nineMenuView)
         }
         initTabViewPagerAdapter()
-        appBar.run {
-            addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { _, verticalOffset ->
-                if (verticalOffset <= -searchHeight) {
-                    floatSearch.visibility = View.VISIBLE
+
+        consecutiveScrollerLayout.setOnVerticalScrollChangeListener(object: ConsecutiveScrollerLayout.OnScrollChangeListener{
+            override fun onScrollChange(v: View?, scrollY: Int, oldScrollY: Int, scrollState: Int) {
+                if (scrollY >= DisplayUtil.getScreenHeight(requireContext())) {
                     backTop.visibility = View.VISIBLE
                 } else {
-                    floatSearch.visibility = View.GONE
                     backTop.visibility = View.GONE
                 }
-            })
-        }
+            }
+        })
+
         backTop.setOnClickListener {
-            scrollTop()
+            consecutiveScrollerLayout.smoothScrollToChild(consecutiveScrollerLayout.getChildAt(0))
         }
         addStateChangeListener()
     }
@@ -119,16 +115,13 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
         tabViewPagerAdapter.notifyDataSetChanged()
 
         viewPager.offscreenPageLimit = list.size
-        TabLayoutMediator(tabLayout, viewPager) {
-                tab, position -> tab.text = list[position].name
-        }.attach()
+        viewPager.getViewPager2?.let {
+            TabLayoutMediator(tabLayout, it) { tab, position -> tab.text = list[position].name }.attach()
+        }
     }
 
     private fun initFloatHeader() {
-        floatSearch.setPadding(0, StatusBarUtil.getHeight(), 0, 10)
-        val layoutParams = toolbar.layoutParams
-        layoutParams.height = searchHeight
-        toolbar.layoutParams = layoutParams
+        searchLinearLayout.setPadding(0, StatusBarUtil.getHeight(), 0, 10)
     }
 
     private fun initTabViewPagerAdapter() {
@@ -139,10 +132,5 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
             }
         }
         viewPager.adapter = tabViewPagerAdapter
-    }
-
-    private fun scrollTop() {
-        recyclerView.scrollToPosition(0)
-        appBar.setExpanded(true, true)
     }
 }

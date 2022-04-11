@@ -1,113 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.scwang.smart.refresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/refreshView"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:srlEnablePreviewInEditMode="true"
-    app:srlEnableLoadMoreWhenContentNotFull="false"
-    tools:ignore="MissingDefaultResource">
+    android:layout_height="match_parent">
 
-    <RelativeLayout
+    <com.scwang.smart.refresh.layout.SmartRefreshLayout xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/refreshView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:ignore="MissingDefaultResource">
 
-        <androidx.coordinatorlayout.widget.CoordinatorLayout
+        <com.aries.common.widget.consecutiveScroller.ConsecutiveScrollerLayout
+            android:id="@+id/consecutiveScrollerLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <com.google.android.material.appbar.AppBarLayout
-                android:id="@+id/appBar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:stateListAnimator="@drawable/appbar_elevation">
-
-                <com.google.android.material.appbar.CollapsingToolbarLayout
-                    android:id="@+id/collapsingToolbarLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:titleEnabled="false"
-                    app:layout_scrollFlags="scroll|exitUntilCollapsed">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/white">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="180dp"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/header_bg" />
-
-                        <LinearLayout
-                            android:id="@+id/collapsableContent"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical" />
-
-                    </RelativeLayout>
-                    <!-- floatSearch 占位的-->
-                    <androidx.appcompat.widget.Toolbar
-                        android:id="@+id/toolbar"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp" />
-                </com.google.android.material.appbar.CollapsingToolbarLayout>
-            </com.google.android.material.appbar.AppBarLayout>
+            android:layout_height="match_parent"
+            app:isPermanent="true">
 
             <androidx.appcompat.widget.LinearLayoutCompat
-                app:layout_behavior="@string/appbar_scrolling_view_behavior"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                app:layout_isSticky="true">
 
-                <com.google.android.material.tabs.TabLayout
-                    android:id="@+id/tabLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:tabMode="scrollable"
-                    app:tabIndicatorHeight="0dp"
-                    app:tabRippleColor="@color/transparent"
-                    app:tabTextColor="@color/color_404040"
-                    app:tabSelectedTextColor="@color/color_E33A3C"
-                    app:tabBackground="@drawable/selector_tab_indicator"/>
-
-                <androidx.viewpager2.widget.ViewPager2
-                    android:id="@+id/viewPager"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
-
+                <include layout="@layout/home_top_view" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
-        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/collapsableContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
 
-        <RelativeLayout
-            android:id="@+id/floatSearch"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:background="@color/theme_color">
-            <include layout="@layout/home_search" />
-        </RelativeLayout>
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_isSticky="true"
+                android:background="@color/color_FAFAFA"
+                app:tabBackground="@drawable/selector_tab_indicator"
+                app:tabIndicatorHeight="0dp"
+                app:tabMode="scrollable"
+                app:tabRippleColor="@color/transparent"
+                app:tabSelectedTextColor="@color/color_E33A3C"
+                app:tabTextColor="@color/color_404040" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/backTop"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginRight="16dp"
-            android:layout_marginBottom="20dp"
-            android:scaleType="fitXY"
-            app:fabSize="mini"
-            app:borderWidth="0dp"
-            app:elevation="@dimen/dp_10"
-            app:rippleColor="@color/font_6"
-            app:backgroundTint="@color/white"
-            android:visibility="gone"
-            android:src="@drawable/back_top"/>
+            <com.aries.common.widget.consecutiveScroller.ConsecutiveViewPager2
+                android:id="@+id/viewPager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
-    </RelativeLayout>
+        </com.aries.common.widget.consecutiveScroller.ConsecutiveScrollerLayout>
 
-</com.scwang.smart.refresh.layout.SmartRefreshLayout>
+    </com.scwang.smart.refresh.layout.SmartRefreshLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/backTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="20dp"
+        android:scaleType="fitXY"
+        app:fabSize="mini"
+        app:borderWidth="0dp"
+        app:elevation="@dimen/dp_10"
+        app:rippleColor="@color/font_6"
+        app:backgroundTint="@color/white"
+        android:visibility="gone"
+        android:src="@drawable/back_top"/>
+
+</RelativeLayout>

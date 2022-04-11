@@ -28,10 +28,8 @@ class  GoodsListFragment(var code: String): BaseFragment(R.layout.home_goods), M
             adapter = goodsListAdapter
             layoutManager = staggeredGridLayoutManager
         }
-        goodsLayout.run {
-            setOnLoadMoreListener {
-                viewModel.loadMoreGoodsList(code)
-            }
+        goodsListAdapter.loadMoreModule.setOnLoadMoreListener {
+            viewModel.loadMoreGoodsList(code)
         }
         addStateChangeListener()
     }
@@ -53,16 +51,17 @@ class  GoodsListFragment(var code: String): BaseFragment(R.layout.home_goods), M
                     ActionType.INIT -> {
                         if (goodsList.isNotEmpty()) {
                             goodsListAdapter.setList(goodsList)
+                            goodsListAdapter.loadMoreModule.loadMoreComplete()
                         }
                     }
                     ActionType.LOADMORE -> {
                         if (goodsList.isNotEmpty()) {
                             goodsListAdapter.addData(goodsListAdapter.data.size, goodsList)
                         }
-                        goodsLayout.run {
-                            if (currentPage <= totalPage) finishLoadMore()
-                            else finishLoadMoreWithNoMoreData()
-                        }
+                        if (currentPage <= totalPage)
+                            goodsListAdapter.loadMoreModule.loadMoreComplete()
+                        else
+                            goodsListAdapter.loadMoreModule.loadMoreEnd()
                     }
                 }
             }

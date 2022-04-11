@@ -33,7 +33,7 @@ class ConsecutiveScrollerLayout @JvmOverloads constructor(
     /**
      * 联动容器可滚动的范围
      */
-    private var mScrollRange = 0
+    var mScrollRange = 0
 
     /**
      * 联动容器滚动定位子view
@@ -1274,7 +1274,7 @@ class ConsecutiveScrollerLayout @JvmOverloads constructor(
      *
      * @param target
      */
-    private fun scrollChildContentToTop(target: View) {
+    fun scrollChildContentToTop(target: View) {
         var scrollY: Int
         do {
             scrollY = 0

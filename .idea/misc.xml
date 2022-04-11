@@ -187,7 +187,7 @@
         <entry key="moudle_home/src/main/res/drawable/text_bg.xml" value="0.3828125" />
         <entry key="moudle_home/src/main/res/layout/banner_layout.xml" value="0.23233695652173914" />
         <entry key="moudle_home/src/main/res/layout/fragment_banner.xml" value="0.23278985507246377" />
-        <entry key="moudle_home/src/main/res/layout/fragment_home.xml" value="0.18264379414732593" />
+        <entry key="moudle_home/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="moudle_home/src/main/res/layout/fragment_home_goods_item.xml" value="0.23278985507246377" />
         <entry key="moudle_home/src/main/res/layout/fragment_home_recyclerview_item.xml" value="0.24909420289855072" />
         <entry key="moudle_home/src/main/res/layout/fragment_list.xml" value="0.23278985507246377" />

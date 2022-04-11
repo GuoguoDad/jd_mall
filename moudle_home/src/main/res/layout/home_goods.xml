@@ -1,21 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.scwang.smart.refresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<com.aries.common.widget.consecutiveScroller.ConsecutiveScrollerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/goodsLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:srlEnableRefresh="false"
-    app:srlEnablePreviewInEditMode="true"
-    tools:ignore="MissingDefaultResource">
+    android:layout_height="match_parent">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingHorizontal="4dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        android:paddingHorizontal="4dp"/>
 
-</com.scwang.smart.refresh.layout.SmartRefreshLayout>
+</com.aries.common.widget.consecutiveScroller.ConsecutiveScrollerLayout>
