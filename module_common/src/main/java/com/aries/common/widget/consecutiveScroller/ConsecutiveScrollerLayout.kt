@@ -868,14 +868,23 @@ class ConsecutiveScrollerLayout @JvmOverloads constructor(
 
     override fun computeScroll() {
         if (mScrollToIndex != -1 && mSmoothScrollOffset != 0) {
-            if (mSmoothScrollOffset in 1..199) {
+            if (mSmoothScrollOffset in 1..1999) {
                 // 逐渐加速
-                mSmoothScrollOffset += 100
+                mSmoothScrollOffset += 500
             }
-            if (mSmoothScrollOffset < 0 && mSmoothScrollOffset > -200) {
+            if (mSmoothScrollOffset < 0 && mSmoothScrollOffset > -2000) {
                 // 逐渐加速
-                mSmoothScrollOffset -= 100
+                mSmoothScrollOffset -= 500
             }
+//
+//            if (mSmoothScrollOffset in 1..199) {
+//                // 逐渐加速
+//                mSmoothScrollOffset += 50
+//            }
+//            if (mSmoothScrollOffset < 0 && mSmoothScrollOffset > -200) {
+//                // 逐渐加速
+//                mSmoothScrollOffset -= 50
+//            }
 
             // 正在平滑滑动到某个子view
             dispatchScroll(mSmoothScrollOffset)
