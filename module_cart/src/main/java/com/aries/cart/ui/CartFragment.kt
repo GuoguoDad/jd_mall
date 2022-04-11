@@ -20,12 +20,11 @@ import com.aries.common.decoration.SpacesItemDecoration
 import com.aries.common.util.PixelUtil
 import com.aries.common.util.StatusBarUtil
 import com.aries.common.util.UnreadMsgUtil
-import com.google.android.material.appbar.AppBarLayout
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.enums.PopupAnimation
 import kotlinx.android.synthetic.main.bottom_all_select.*
 import kotlinx.android.synthetic.main.fragment_cart.*
-import kotlinx.android.synthetic.main.fragment_cart_content.*
+import kotlinx.android.synthetic.main.fragment_cart_content.view.*
 import kotlinx.android.synthetic.main.top_address.*
 import kotlinx.android.synthetic.main.top_filter.*
 import java.math.BigDecimal
@@ -42,8 +41,6 @@ class CartFragment : BaseFragment(R.layout.fragment_cart), MavericksView {
         StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
     }
 
-    private val topViewHeight = StatusBarUtil.getHeight() + PixelUtil.toPixelFromDIP(40f).toInt()
-
     override fun initView() {
         initStatusBarPlaceholder()
         //快捷菜单点点点 角标
@@ -51,25 +48,16 @@ class CartFragment : BaseFragment(R.layout.fragment_cart), MavericksView {
         //快捷菜单点击事件
         threePointsLayout.setOnClickListener { showQuickEntry() }
 
-        cartAppBarLayout.run {
-            addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { _, verticalOffset ->
-                if (verticalOffset <= -topViewHeight) {
-                    statusBarPlaceholder.visibility = View.VISIBLE
-                } else {
-                    statusBarPlaceholder.visibility = View.GONE
-                }
-            })
-        }
         //SmartRefreshLayout
-        smartRefreshLayout.run {
+        cartRefreshLayout.run {
+            setEnableLoadMore(false)
             setOnRefreshListener {
                 viewModel.queryCartGoodsList(true)
                 viewModel.initMaybeLikeList()
             }
-            setEnableAutoLoadMore(true)
-            setOnLoadMoreListener {
-                viewModel.loadMoreMaybeLikeList()
-            }
+        }
+        goodsListAdapter.loadMoreModule.setOnLoadMoreListener {
+            viewModel.loadMoreMaybeLikeList()
         }
         //购物车中的商品列表
         cartGoodsList.run {
@@ -117,8 +105,7 @@ class CartFragment : BaseFragment(R.layout.fragment_cart), MavericksView {
         }
         //返回顶部
         backTop.setOnClickListener {
-            nestedScrollView.smoothScrollTo(0, 0)
-            cartAppBarLayout.setExpanded(true, true)
+            consecutiveScrollerLayout.smoothScrollToChildWithOffset(consecutiveScrollerLayout.getChildAt(0), 0)
         }
         //全选
         totalCheckBox.setOnClickListener { checkAll() }
@@ -136,33 +123,29 @@ class CartFragment : BaseFragment(R.layout.fragment_cart), MavericksView {
             cartGoodsListCopy = it.cartGoodsList
             cartGoodsAdapter.setList(convertCartData(it.cartGoodsList))
             if (it.fetchType === "refresh") {
-                smartRefreshLayout.run { finishRefresh() }
+                cartRefreshLayout.run { finishRefresh() }
+                goodsListAdapter.loadMoreModule.loadMoreComplete()
             }
-
             if (it.goodsList.isNotEmpty()) {
                 goodsListAdapter.setList(it.goodsList)
-                smartRefreshLayout.run { resetNoMoreData() }
+                goodsListAdapter.loadMoreModule.loadMoreComplete()
             }
             if (it.nextPageGoodsList.isNotEmpty()) {
                 goodsListAdapter.addData(it.nextPageGoodsList)
 
-                smartRefreshLayout.run {
-                    if (it.currentPage <= it.totalPage) finishLoadMore()
-                    else finishLoadMoreWithNoMoreData()
-                }
+                if (it.currentPage <= it.totalPage)
+                    goodsListAdapter.loadMoreModule.loadMoreComplete()
+                else
+                    goodsListAdapter.loadMoreModule.loadMoreEnd()
             }
         }
     }
 
     //设置占位符高度
     private fun initStatusBarPlaceholder() {
-        topAddressLayout.setPadding(0, StatusBarUtil.getHeight(), 0 , 0)
         val layoutParams = statusBarPlaceholder.layoutParams
         layoutParams.height = StatusBarUtil.getHeight()
         statusBarPlaceholder.layoutParams = layoutParams
-        statusBarPlaceholder.visibility = View.GONE
-
-//        bottomAllSelectLayout.visibility = View.GONE
     }
 
     //顶部快捷入口

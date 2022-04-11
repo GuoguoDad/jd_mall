@@ -42,7 +42,7 @@ class CartViewModel(initialState: CartState): MavericksViewModel<CartState>(init
                 copy(
                     currentPage = if (state is Success) currentPage.plus(1) else currentPage,
                     goodsListResponse = state,
-                    goodsList = (state()?.data?.dataList ?: it.goodsList),
+                    goodsList = (state()?.data?.dataList ?: emptyList()),
                     totalPage = (state()?.data?.totalPageCount ?: 0)
                 )
             }

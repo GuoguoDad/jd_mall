@@ -15,5 +15,7 @@ interface RouterPaths {
         const val TAB_WATERFALL_ACTIVITY = "/main/tabWaterfallList"
 
         const val STEPPER_DEMO ="/main/stepperDemo"
+
+        const val STICKY_DEMO ="/main/stickyDemo"
     }
 }

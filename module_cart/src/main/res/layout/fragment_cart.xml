@@ -1,56 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/fragment_cart_bg">
+    android:layout_height="match_parent">
 
-    <LinearLayout
-        android:id="@+id/coordinatorLayout"
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/bottomAllSelectLayout">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/fragment_cart_bg">
 
-        <androidx.coordinatorlayout.widget.CoordinatorLayout
+        <com.scwang.smart.refresh.layout.SmartRefreshLayout
+            android:id="@+id/cartRefreshLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
-            <com.google.android.material.appbar.AppBarLayout
-                android:id="@+id/cartAppBarLayout"
+            <com.aries.common.widget.consecutiveScroller.ConsecutiveScrollerLayout
+                android:id="@+id/consecutiveScrollerLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:stateListAnimator="@drawable/appbar_elevation">
+                android:layout_height="match_parent"
+                app:isPermanent="true">
 
-                <com.google.android.material.appbar.CollapsingToolbarLayout
+                <!-- 状态栏占位符 -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/statusBarPlaceholder"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="@color/color_F6F6F6"
+                    app:layout_isSticky="true"/>
+
+                <include layout="@layout/top_address" />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:titleEnabled="false"
-                    app:layout_scrollFlags="scroll|exitUntilCollapsed">
+                    app:layout_isSticky="true">
 
-                    <!-- 顶部文字购物车 地址更改 快捷入口 -->
-                    <RelativeLayout
-                        android:id="@+id/topAddressLayout"
+                    <include layout="@layout/top_filter"/>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.core.widget.NestedScrollView
+                    android:id="@+id/nestedScrollView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
-                        <include layout="@layout/top_address" />
-                    </RelativeLayout>
+                        <!-- 购物车中的店铺商品二级列表 -->
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/cartGoodsList"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:overScrollMode="never"/>
 
-                </com.google.android.material.appbar.CollapsingToolbarLayout>
+                        <!-- 你可能还喜欢 或者 快点来看看 -->
+                        <TextView
+                            android:id="@+id/title"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:gravity="center"
+                            android:text="你可能还喜欢" />
 
-            </com.google.android.material.appbar.AppBarLayout>
+                        <!-- 你可能还喜欢列表 或者 快点来看看列表 -->
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/goodsList"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingHorizontal="4dp"
+                            android:overScrollMode="never"/>
 
-            <!-- 购物车中商品 和 你还可能喜欢列表-->
-            <include layout="@layout/fragment_cart_content" />
+                    </LinearLayout>
 
-        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+                </androidx.core.widget.NestedScrollView>
 
-    </LinearLayout>
+            </com.aries.common.widget.consecutiveScroller.ConsecutiveScrollerLayout>
 
-    <!-- 全选按钮和结算 -->
-    <include layout="@layout/bottom_all_select" />
+        </com.scwang.smart.refresh.layout.SmartRefreshLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <!-- 全选按钮和结算 -->
+        <include layout="@layout/bottom_all_select" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/backTop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="60dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/back_top"
+        app:backgroundTint="@color/white"
+        app:borderWidth="0dp"
+        app:elevation="@dimen/dp_10"
+        app:fabSize="mini"
+        app:rippleColor="@color/font_6" />
+
+</RelativeLayout>
+

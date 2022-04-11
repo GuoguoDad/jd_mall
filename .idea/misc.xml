@@ -107,7 +107,7 @@
         <entry key="module_cart/src/main/res/layout/quick_entry_gridvew.xml" value="0.18326693227091634" />
         <entry key="module_cart/src/main/res/layout/recommend_list.xml" value="0.25226449275362317" />
         <entry key="module_cart/src/main/res/layout/top_address.xml" value="0.1" />
-        <entry key="module_cart/src/main/res/layout/top_filter.xml" value="0.23233695652173914" />
+        <entry key="module_cart/src/main/res/layout/top_filter.xml" value="0.1" />
         <entry key="module_category/src/main/res/drawable/appbar_elevation.xml" value="0.39739583333333334" />
         <entry key="module_category/src/main/res/drawable/selector_tab_indicator.xml" value="0.39739583333333334" />
         <entry key="module_category/src/main/res/drawable/shape_corner_bottom2_right.xml" value="0.39739583333333334" />
@@ -145,6 +145,7 @@
         <entry key="module_main/src/main/res/drawable/selector_main_home.xml" value="0.39739583333333334" />
         <entry key="module_main/src/main/res/drawable/selector_tab_color.xml" value="0.39739583333333334" />
         <entry key="module_main/src/main/res/drawable/skipshape.xml" value="0.39739583333333334" />
+        <entry key="module_main/src/main/res/layout/activity_sink_sticky.xml" value="0.1" />
         <entry key="module_main/src/main/res/layout/badge_layout.xml" value="0.24048913043478262" />
         <entry key="module_main/src/main/res/layout/fragment_cart.xml" value="0.23233695652173914" />
         <entry key="module_main/src/main/res/layout/fragment_category.xml" value="0.2368659420289855" />
@@ -198,7 +199,7 @@
         <entry key="moudle_home/src/main/res/layout/home_goods_item.xml" value="0.22644927536231885" />
         <entry key="moudle_home/src/main/res/layout/home_goods_second_item.xml" value="0.24048913043478262" />
         <entry key="moudle_home/src/main/res/layout/home_search.xml" value="0.18264379414732593" />
-        <entry key="moudle_home/src/main/res/layout/home_top_view.xml" value="0.22644927536231885" />
+        <entry key="moudle_home/src/main/res/layout/home_top_view.xml" value="0.1" />
         <entry key="moudle_home/src/main/res/layout/nine_memu_gridview.xml" value="0.24048913043478262" />
         <entry key="moudle_home/src/main/res/layout/nine_memu_item.xml" value="0.24048913043478262" />
         <entry key="moudle_home/src/main/res/layout/nine_memu_main.xml" value="0.24048913043478262" />

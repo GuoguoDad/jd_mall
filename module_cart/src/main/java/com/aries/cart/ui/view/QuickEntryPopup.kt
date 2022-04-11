@@ -25,6 +25,8 @@ class QuickEntryPopup(context: Context): PositionPopupView(context) {
         quickEntryGridView.adapter = QuickEntryPopupAdapter(context, data)
 
         closeImg.setOnClickListener { dismiss() }
+
+
     }
 
     override fun getMaxWidth(): Int {
