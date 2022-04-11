@@ -50,7 +50,7 @@ class CartFragment : BaseFragment(R.layout.fragment_cart), MavericksView {
         //快捷菜单点击事件
         threePointsLayout.setOnClickListener { showQuickEntry() }
 
-        //SmartRefreshLayout
+        //下拉刷新
         cartRefreshLayout.run {
             setEnableLoadMore(false)
             setOnRefreshListener {

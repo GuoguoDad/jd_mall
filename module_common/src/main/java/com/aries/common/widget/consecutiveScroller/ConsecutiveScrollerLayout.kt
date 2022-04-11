@@ -75,7 +75,7 @@ class ConsecutiveScrollerLayout @JvmOverloads constructor(
      * 是否处于状态
      */
     private var mTouching = false
-    private var SCROLL_ORIENTATION = SCROLL_NONE
+    private var scrollOrientation = SCROLL_NONE
     /**
      * 滑动监听
      */
@@ -251,7 +251,7 @@ class ConsecutiveScrollerLayout @JvmOverloads constructor(
             // 测量底部view，并且需要自动调整高度时，计算吸顶部分占用的空间高度，作为测量子view的条件。
             val heightUsed: Int = getAdjustHeightForChild(child)
             measureChildWithMargins(child, widthMeasureSpec, 0, heightMeasureSpec, heightUsed)
-            contentWidth = Math.max(contentWidth, getContentWidth(child))
+            contentWidth = contentWidth.coerceAtLeast(getContentWidth(child))
             contentHeight += child.measuredHeight
         }
         setMeasuredDimension(measureSize(widthMeasureSpec,
@@ -326,7 +326,7 @@ class ConsecutiveScrollerLayout @JvmOverloads constructor(
                 result = result.coerceAtMost(specSize)
             }
         }
-        result = Math.max(result, suggestedMinimumWidth)
+        result = result.coerceAtLeast(suggestedMinimumWidth)
         result = resolveSizeAndState(result, measureSpec, 0)
         return result
     }
@@ -438,7 +438,7 @@ class ConsecutiveScrollerLayout @JvmOverloads constructor(
 
     override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
         val actionIndex = ev.actionIndex
-        if (SCROLL_ORIENTATION == SCROLL_HORIZONTAL) {
+        if (scrollOrientation == SCROLL_HORIZONTAL) {
             // 如果是横向滑动，设置ev的y坐标始终为开始的坐标，避免子view自己消费了垂直滑动事件。
             if (mActivePointerId != -1 && mFixedYMap[mActivePointerId] != null) {
                 val pointerIndex = ev.findPointerIndex(mActivePointerId)
@@ -461,7 +461,7 @@ class ConsecutiveScrollerLayout @JvmOverloads constructor(
                 stopScroll()
                 checkTargetsScroll(false, false)
                 mTouching = true
-                SCROLL_ORIENTATION = SCROLL_NONE
+                scrollOrientation = SCROLL_NONE
                 mActivePointerId = ev.getPointerId(actionIndex)
                 mFixedYMap[mActivePointerId] = ev.getY(actionIndex)
                 mEventY = ev.getY(actionIndex).toInt()
@@ -497,17 +497,17 @@ class ConsecutiveScrollerLayout @JvmOverloads constructor(
                 mAdjustVelocityTracker!!.addMovement(vtev)
                 val offsetY = ev.getY(pointerIndex).toInt() - mEventY
                 val offsetX = ev.getX(pointerIndex).toInt() - mEventX
-                if (SCROLL_ORIENTATION == SCROLL_NONE
+                if (scrollOrientation == SCROLL_NONE
                     && (isIntercept(ev) || isIntercept(mDownLocation[0], mDownLocation[1]))
                 ) {
                     if (isDisableChildHorizontalScroll) {
-                        if (Math.abs(offsetY) >= mTouchSlop) {
-                            SCROLL_ORIENTATION = SCROLL_VERTICAL
+                        if (abs(offsetY) >= mTouchSlop) {
+                            scrollOrientation = SCROLL_VERTICAL
                         }
                     } else {
-                        if (Math.abs(offsetX) > Math.abs(offsetY)) {
-                            if (Math.abs(offsetX) >= mTouchSlop) {
-                                SCROLL_ORIENTATION = SCROLL_HORIZONTAL
+                        if (abs(offsetX) > abs(offsetY)) {
+                            if (abs(offsetX) >= mTouchSlop) {
+                                scrollOrientation = SCROLL_HORIZONTAL
                                 // 如果是横向滑动，设置ev的y坐标始终为开始的坐标，避免子view自己消费了垂直滑动事件。
                                 if (mActivePointerId != -1 && mFixedYMap[mActivePointerId] != null) {
                                     val pointerIn = ev.findPointerIndex(mActivePointerId)
@@ -519,11 +519,11 @@ class ConsecutiveScrollerLayout @JvmOverloads constructor(
                             }
                         } else {
                             if (abs(offsetY) >= mTouchSlop) {
-                                SCROLL_ORIENTATION = SCROLL_VERTICAL
+                                scrollOrientation = SCROLL_VERTICAL
                             }
                         }
                     }
-                    if (SCROLL_ORIENTATION == SCROLL_NONE) {
+                    if (scrollOrientation == SCROLL_NONE) {
                         return true
                     }
                 }
@@ -557,7 +557,7 @@ class ConsecutiveScrollerLayout @JvmOverloads constructor(
                     val yVelocity = mAdjustVelocityTracker!!.yVelocity.toInt()
                     // 记录AdjustVelocity的fling速度
                     mAdjustYVelocity =
-                        Math.max(-mMaximumVelocity, Math.min(yVelocity, mMaximumVelocity))
+                        (-mMaximumVelocity).coerceAtLeast(yVelocity.coerceAtMost(mMaximumVelocity))
                     recycleAdjustVelocityTracker()
                     val touchX: Int = ScrollUtils.getRawX(this, ev, actionIndex)
                     val touchY: Int = ScrollUtils.getRawY(this, ev, actionIndex)
@@ -566,18 +566,18 @@ class ConsecutiveScrollerLayout @JvmOverloads constructor(
                         ScrollUtils.canScrollVertically(targetView)
                     val canScrollHorizontallyChild: Boolean =
                         ScrollUtils.isHorizontalScroll(this, touchX, touchY)
-                    if (SCROLL_ORIENTATION != SCROLL_VERTICAL && canScrollVerticallyChild
-                        && Math.abs(yVelocity) >= mMinimumVelocity && !canScrollHorizontallyChild
+                    if (scrollOrientation != SCROLL_VERTICAL && canScrollVerticallyChild
+                        && abs(yVelocity) >= mMinimumVelocity && !canScrollHorizontallyChild
                     ) {
                         //如果当前是横向滑动，但是触摸的控件可以垂直滑动，并且产生垂直滑动的fling事件，
                         // 为了不让这个控件垂直fling，把事件设置为MotionEvent.ACTION_CANCEL。
                         ev.action = MotionEvent.ACTION_CANCEL
                     }
-                    if (SCROLL_ORIENTATION != SCROLL_VERTICAL && !ScrollUtils.isConsecutiveScrollParent(
+                    if (scrollOrientation != SCROLL_VERTICAL && !ScrollUtils.isConsecutiveScrollParent(
                             this)
-                        && isIntercept(ev) && Math.abs(yVelocity) >= mMinimumVelocity
+                        && isIntercept(ev) && abs(yVelocity) >= mMinimumVelocity
                     ) {
-                        if (SCROLL_ORIENTATION == SCROLL_NONE || !canScrollHorizontallyChild) {
+                        if (scrollOrientation == SCROLL_NONE || !canScrollHorizontallyChild) {
                             fling(-mAdjustYVelocity)
                         }
                     }
@@ -594,7 +594,7 @@ class ConsecutiveScrollerLayout @JvmOverloads constructor(
         val dispatch = super.dispatchTouchEvent(ev)
         when (ev.actionMasked) {
             MotionEvent.ACTION_CANCEL, MotionEvent.ACTION_UP -> {
-                SCROLL_ORIENTATION = SCROLL_NONE
+                scrollOrientation = SCROLL_NONE
                 mAdjustYVelocity = 0
                 mFixedYMap.clear()
                 mActivePointerId = -1
@@ -614,14 +614,14 @@ class ConsecutiveScrollerLayout @JvmOverloads constructor(
             }
             MotionEvent.ACTION_MOVE ->
                 // 需要拦截事件
-                if (SCROLL_ORIENTATION != SCROLL_HORIZONTAL
+                if (scrollOrientation != SCROLL_HORIZONTAL
                     && (isIntercept(ev) || isIntercept(mDownLocation[0], mDownLocation[1]))
                 ) {
                     return true
                 }
             MotionEvent.ACTION_CANCEL, MotionEvent.ACTION_UP -> {
                 stopNestedScroll(ViewCompat.TYPE_TOUCH)
-                if (isBrake && SCROLL_ORIENTATION == SCROLL_NONE) {
+                if (isBrake && scrollOrientation == SCROLL_NONE) {
                     return true
                 }
             }
@@ -676,7 +676,7 @@ class ConsecutiveScrollerLayout @JvmOverloads constructor(
                 val oldScrollY = mSecondScrollY
                 if (mScrollState != SCROLL_STATE_DRAGGING) {
                     var startScroll = false
-                    if (canScrollVertically() && Math.abs(deltaY) > 0) {
+                    if (canScrollVertically() && abs(deltaY) > 0) {
                         startScroll = true
                     }
                     if (startScroll) {
@@ -690,7 +690,7 @@ class ConsecutiveScrollerLayout @JvmOverloads constructor(
                 if (scrolledDeltaY != 0) {
                     parent.requestDisallowInterceptTouchEvent(true)
                 }
-                deltaY = deltaY - scrolledDeltaY
+                deltaY -= scrolledDeltaY
                 if (dispatchNestedScroll(0, scrolledDeltaY, 0, deltaY, mScrollOffset,
                         ViewCompat.TYPE_TOUCH)
                 ) {
@@ -745,7 +745,8 @@ class ConsecutiveScrollerLayout @JvmOverloads constructor(
                     mVelocityTracker!!.addMovement(vtev)
                     mVelocityTracker!!.computeCurrentVelocity(1000, mMaximumVelocity.toFloat())
                     var yVelocity = mVelocityTracker!!.yVelocity.toInt()
-                    yVelocity = Math.max(-mMaximumVelocity, Math.min(yVelocity, mMaximumVelocity))
+                    yVelocity =
+                        (-mMaximumVelocity).coerceAtLeast(yVelocity.coerceAtMost(mMaximumVelocity))
                     if (yVelocity == 0 && mAdjustYVelocity != 0) {
                         // 如果VelocityTracker没有检测到fling速度，并且mAdjustYVelocity记录到速度，就已mAdjustYVelocity为准，
                         // 避免快速上下滑动时，fling失效。
@@ -849,7 +850,7 @@ class ConsecutiveScrollerLayout @JvmOverloads constructor(
         }
 
     private fun fling(velocityY: Int) {
-        if (Math.abs(velocityY) > mMinimumVelocity) {
+        if (abs(velocityY) > mMinimumVelocity) {
             if (!dispatchNestedPreFling(0f, velocityY.toFloat())) {
                 val canScroll = velocityY < 0 && !isScrollTop || velocityY > 0 && !isScrollBottom
                 dispatchNestedFling(0f, velocityY.toFloat(), canScroll)
@@ -867,13 +868,13 @@ class ConsecutiveScrollerLayout @JvmOverloads constructor(
 
     override fun computeScroll() {
         if (mScrollToIndex != -1 && mSmoothScrollOffset != 0) {
-            if (mSmoothScrollOffset > 0 && mSmoothScrollOffset < 200) {
+            if (mSmoothScrollOffset in 1..199) {
                 // 逐渐加速
-                mSmoothScrollOffset += 5
+                mSmoothScrollOffset += 100
             }
             if (mSmoothScrollOffset < 0 && mSmoothScrollOffset > -200) {
                 // 逐渐加速
-                mSmoothScrollOffset -= 5
+                mSmoothScrollOffset -= 100
             }
 
             // 正在平滑滑动到某个子view
@@ -1014,16 +1015,16 @@ class ConsecutiveScrollerLayout @JvmOverloads constructor(
                         }
                         scrollChild(firstVisibleView, scrollOffset)
                     } else {
-                        scrollOffset = Math.min(remainder,
-                            firstVisibleView.bottom - paddingTop - scrollY)
+                        scrollOffset =
+                            remainder.coerceAtMost(firstVisibleView.bottom - paddingTop - scrollY)
                         if (mScrollToIndex != -1) {
-                            scrollOffset = Math.min(scrollOffset,
-                                scrollAnchor - (scrollY + paddingTop + viewScrollOffset))
+                            scrollOffset =
+                                scrollOffset.coerceAtMost(scrollAnchor - (scrollY + paddingTop + viewScrollOffset))
                         }
                         scrollSelf(scrollY + scrollOffset)
                     }
                     mSecondScrollY += scrollOffset
-                    remainder = remainder - scrollOffset
+                    remainder -= scrollOffset
                 }
             }
         } while (scrollOffset > 0 && remainder > 0)
@@ -1067,25 +1068,25 @@ class ConsecutiveScrollerLayout @JvmOverloads constructor(
                     awakenScrollBars()
                     val childScrollOffset: Int = ScrollUtils.getScrollTopOffset(lastVisibleView)
                     if (childScrollOffset < 0) {
-                        scrollOffset = Math.max(remainder, childScrollOffset)
+                        scrollOffset = remainder.coerceAtLeast(childScrollOffset)
                         if (mScrollToIndex != -1) {
-                            scrollOffset = Math.max(scrollOffset,
-                                scrollAnchor - (scrollY + paddingTop + viewScrollOffset))
+                            scrollOffset =
+                                scrollOffset.coerceAtLeast(scrollAnchor - (scrollY + paddingTop + viewScrollOffset))
                         }
                         scrollChild(lastVisibleView, scrollOffset)
                     } else {
                         val scrollY = scrollY
-                        scrollOffset = Math.max(remainder,
-                            lastVisibleView.top + paddingBottom - scrollY - height)
-                        scrollOffset = Math.max(scrollOffset, -scrollY)
+                        scrollOffset =
+                            remainder.coerceAtLeast(lastVisibleView.top + paddingBottom - scrollY - height)
+                        scrollOffset = scrollOffset.coerceAtLeast(-scrollY)
                         if (mScrollToIndex != -1) {
-                            scrollOffset = Math.max(scrollOffset,
-                                scrollAnchor - (getScrollY() + paddingTop + viewScrollOffset))
+                            scrollOffset =
+                                scrollOffset.coerceAtLeast(scrollAnchor - (getScrollY() + paddingTop + viewScrollOffset))
                         }
                         scrollSelf(scrollY + scrollOffset)
                     }
                     mSecondScrollY += scrollOffset
-                    remainder = remainder - scrollOffset
+                    remainder -= scrollOffset
                 }
             }
         } while (scrollOffset < 0 && remainder < 0)
@@ -1203,7 +1204,7 @@ class ConsecutiveScrollerLayout @JvmOverloads constructor(
                 val bottomOffset: Int = ScrollUtils.getScrollBottomOffset(target)
                 val scrollTopOffset = target.top - scrollY
                 if (bottomOffset > 0 && scrollTopOffset < 0) {
-                    val offset = Math.min(bottomOffset, -scrollTopOffset)
+                    val offset = bottomOffset.coerceAtMost(-scrollTopOffset)
                     scrollSelf(scrollY - offset)
                     scrollChild(target, offset)
                 } else {
@@ -1521,7 +1522,7 @@ class ConsecutiveScrollerLayout @JvmOverloads constructor(
                 if (stickyView != null) {
                     var offset = 0
                     if (nextStickyView != null && !isSink(stickyView)) {
-                        offset = Math.max(0, stickyView.height - (nextStickyView.top - stickyY))
+                        offset = 0.coerceAtLeast(stickyView.height - (nextStickyView.top - stickyY))
                     }
                     stickyChild(stickyView, offset)
                 }
@@ -1546,7 +1547,7 @@ class ConsecutiveScrollerLayout @JvmOverloads constructor(
     }
 
     private fun clearCurrentStickyViews() {
-        if (!mCurrentStickyViews.isEmpty()) {
+        if (mCurrentStickyViews.isNotEmpty()) {
             mCurrentStickyViews.clear()
             permanentStickyChange(mCurrentStickyViews)
         }
@@ -1971,12 +1972,16 @@ class ConsecutiveScrollerLayout @JvmOverloads constructor(
             // 滑动方向。
             var scrollOrientation = 0
             if (offset >= 0) {
-                if (scrollY + paddingTop > scrollAnchor) {
-                    scrollOrientation = -1
-                } else if (scrollY + paddingTop < scrollAnchor) {
-                    scrollOrientation = 1
-                } else if (ScrollUtils.canScrollVertically(view, -1)) {
-                    scrollOrientation = -1
+                when {
+                    scrollY + paddingTop > scrollAnchor -> {
+                        scrollOrientation = -1
+                    }
+                    scrollY + paddingTop < scrollAnchor -> {
+                        scrollOrientation = 1
+                    }
+                    ScrollUtils.canScrollVertically(view, -1) -> {
+                        scrollOrientation = -1
+                    }
                 }
             } else {
                 val viewScrollOffset = getViewsScrollOffset(scrollToIndex)
@@ -2048,9 +2053,9 @@ class ConsecutiveScrollerLayout @JvmOverloads constructor(
                 mScrollToIndexWithOffset = offset
                 scrollState = SCROLL_STATE_SETTLING
                 mSmoothScrollOffset = if (scrollOrientation < 0) {
-                    -100
+                    -50
                 } else {
-                    100
+                    50
                 }
                 invalidate()
             }
@@ -2113,8 +2118,6 @@ class ConsecutiveScrollerLayout @JvmOverloads constructor(
 
     /**
      * 设置吸顶view到顶部的偏移量，允许吸顶view在距离顶部offset偏移量的地方吸顶停留。
-     *
-     * @param offset
      */
     var stickyOffset: Int
         get() = mStickyOffset
