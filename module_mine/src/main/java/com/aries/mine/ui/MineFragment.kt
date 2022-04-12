@@ -108,13 +108,8 @@ class MineFragment: BaseFragment(R.layout.layout_mine), MavericksView {
     private fun handleScroll(
         scrollY: Int
     ) {
-        //处理头像layout距离顶部的距离
-        val header2Top = (StatusBarUtil.getHeight() + PixelUtil.toPixelFromDIP(40f)).toInt()
-        val top = header2Top - scrollY
-
-        val fixedTop = StatusBarUtil.getHeight() + PixelUtil.toPixelFromDIP(10f).toInt()
-
-        if (top <= fixedTop) {
+        //处理背景色、用户信息显示与隐藏
+        if (scrollY >= StatusBarUtil.getHeight()) {
             userInfo.visibility = View.GONE
             headerLayout.setBackgroundColor(resources.getColor(R.color.white))
             mineTxt.setTextColor(resources.getColor(R.color.cl_000000))
@@ -128,11 +123,11 @@ class MineFragment: BaseFragment(R.layout.layout_mine), MavericksView {
         //用户信息Layout距离顶部距离
         val userInfoLayoutNewMarginTop = userInfoLayoutMaxMarginTop - scrollY
         val userInfoLp = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT)
-        if (userInfoLayoutNewMarginTop <= userInfoLayoutMinMarginTop)
+        if (userInfoLayoutNewMarginTop <= userInfoLayoutMinMarginTop){
             userInfoLp.topMargin = userInfoLayoutMinMarginTop.toInt()
-        else
+        } else {
             userInfoLp.topMargin = userInfoLayoutNewMarginTop.toInt()
-
+        }
         userInfoLinearLayout.layoutParams = userInfoLp
 
         //处理头像大小
