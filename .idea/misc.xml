@@ -132,6 +132,7 @@
         <entry key="module_common/src/main/res/drawable/gray_circular_bg.xml" value="0.2405" />
         <entry key="module_common/src/main/res/drawable/rounded_corners_white_10_bg.xml" value="0.224" />
         <entry key="module_common/src/main/res/drawable/selector_tab_indicator.xml" value="0.273" />
+        <entry key="module_common/src/main/res/drawable/shape_tab_indicator_selected.xml" value="0.295" />
         <entry key="module_common/src/main/res/drawable/step_add_sub_bg.xml" value="0.224" />
         <entry key="module_common/src/main/res/drawable/step_left_selector.xml" value="0.224" />
         <entry key="module_common/src/main/res/drawable/step_right_selector.xml" value="0.224" />
@@ -175,7 +176,7 @@
         <entry key="module_mine/src/main/res/layout/five_memu_gridview.xml" value="0.24320652173913043" />
         <entry key="module_mine/src/main/res/layout/five_memu_item.xml" value="0.24320652173913043" />
         <entry key="module_mine/src/main/res/layout/five_memu_main.xml" value="0.24320652173913043" />
-        <entry key="module_mine/src/main/res/layout/floating_header.xml" value="0.24320652173913043" />
+        <entry key="module_mine/src/main/res/layout/floating_header.xml" value="0.1" />
         <entry key="module_mine/src/main/res/layout/layout_goods_tabs.xml" value="0.264945652173913" />
         <entry key="module_mine/src/main/res/layout/layout_header.xml" value="0.24864130434782608" />
         <entry key="module_mine/src/main/res/layout/layout_mine.xml" value="0.1" />

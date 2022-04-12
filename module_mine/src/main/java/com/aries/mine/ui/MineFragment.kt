@@ -4,6 +4,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.airbnb.mvrx.MavericksView
 import com.airbnb.mvrx.activityViewModel
@@ -14,14 +15,13 @@ import com.aries.common.decoration.SpacesItemDecoration
 import com.aries.common.util.DisplayUtil
 import com.aries.common.util.PixelUtil
 import com.aries.common.util.StatusBarUtil
-import com.aries.common.widget.AnimationNestedScrollView
+import com.aries.common.widget.consecutiveScroller.ConsecutiveScrollerLayout
 import com.aries.mine.R
 import com.aries.mine.ui.view.FiveMenuView
 import com.google.android.material.tabs.TabLayout
 import com.orhanobut.logger.Logger
 import kotlinx.android.synthetic.main.floating_header.*
 import kotlinx.android.synthetic.main.layout_mine.*
-import kotlinx.android.synthetic.main.login_userinfo.*
 
 class MineFragment: BaseFragment(R.layout.layout_mine), MavericksView {
     private val viewModel: MineViewModal by activityViewModel()
@@ -34,7 +34,7 @@ class MineFragment: BaseFragment(R.layout.layout_mine), MavericksView {
     private val fiveMenuView: FiveMenuView by lazy { FiveMenuView(this.requireContext(), this@MineFragment) }
 
     override fun initView() {
-        fixPosition()
+        initStatusHeight()
 
         mineRefreshLayout.run {
             setEnableRefresh(false)
@@ -49,47 +49,20 @@ class MineFragment: BaseFragment(R.layout.layout_mine), MavericksView {
             addView(fiveMenuView)
         }
 
+        consecutiveLayout.setOnVerticalScrollChangeListener(object: ConsecutiveScrollerLayout.OnScrollChangeListener{
+            override fun onScrollChange(v: View?, scrollY: Int, oldScrollY: Int, scrollState: Int) {
+                handleScroll((scrollY * 0.65).toInt())
+            }
+        })
+
         recommendGoodsList.run {
 //            staggeredGridLayoutManager.gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_NONE //解决加载下一页后重新排列的问题
             addItemDecoration(SpacesItemDecoration(10))
             layoutManager = staggeredGridLayoutManager
             adapter = goodsListAdapter
         }
-
-        val marginLayoutParams = ViewGroup.MarginLayoutParams(userInfoLinearLayout.layoutParams)
-        mineNestedScrollView.setOnAnimationScrollListener(object : AnimationNestedScrollView.OnAnimationScrollChangeListener{
-            override fun onScrollChanged(dy: Float) {
-                onScrollChange(dy.toInt(), marginLayoutParams)
-            }
-        })
-
-        tabLayout.run {
-            addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
-                override fun onTabSelected(tab: TabLayout.Tab?) {
-                    val position = tab?.position
-                    if (position != null) {
-                        floatingTabLayout.selectTab(floatingTabLayout.getTabAt(position))
-                    }
-                }
-                override fun onTabUnselected(tab: TabLayout.Tab?) {}
-                override fun onTabReselected(tab: TabLayout.Tab?) {}
-            })
-        }
-        floatingTabLayout.run {
-            addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
-                override fun onTabSelected(tab: TabLayout.Tab?) {
-                    val position = tab?.position
-                    if (position != null) {
-                        tabLayout.selectTab(tabLayout.getTabAt(position))
-                    }
-                }
-                override fun onTabUnselected(tab: TabLayout.Tab?) {}
-                override fun onTabReselected(tab: TabLayout.Tab?) {}
-            })
-        }
-
         backTop.setOnClickListener {
-            mineNestedScrollView.smoothScrollTo(0,0)
+            consecutiveLayout.smoothScrollToChild(consecutiveLayout.getChildAt(0))
         }
     }
 
@@ -105,10 +78,8 @@ class MineFragment: BaseFragment(R.layout.layout_mine), MavericksView {
             }
             if (it.tabList.isNotEmpty()) {
                 tabLayout.removeAllTabs()
-                floatingTabLayout.removeAllTabs()
                 it.tabList.forEach { v ->
                     tabLayout.addTab(tabLayout.newTab().setText(v.name));
-                    floatingTabLayout.addTab(floatingTabLayout.newTab().setText(v.name))
                 }
             }
             if (it.goodsList.isNotEmpty()) {
@@ -125,51 +96,47 @@ class MineFragment: BaseFragment(R.layout.layout_mine), MavericksView {
         }
     }
 
-    private fun fixPosition(){
+    private fun initStatusHeight(){
         headerLayout.setPadding(0, StatusBarUtil.getHeight(), 0, 0)
-
-        val lp = FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT)
-        lp.height = (StatusBarUtil.getHeight() + PixelUtil.toPixelFromDIP(128f)).toInt()
-        bannerBg.layoutParams = lp
-
-        val floatingTabLayoutLP = FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT)
-        floatingTabLayoutLP.topMargin = (StatusBarUtil.getHeight() + PixelUtil.toPixelFromDIP(50f)).toInt()
-        floatingTabLayout.layoutParams = floatingTabLayoutLP
     }
 
-    private fun onScrollChange(
-        scrollY: Int,
-        marginLayoutParams: ViewGroup.MarginLayoutParams,
+    private val userInfoLayoutMaxMarginTop = PixelUtil.toPixelFromDIP(40f)
+    private val userInfoLayoutMinMarginTop = PixelUtil.toPixelFromDIP(10f)
+    private val maxHeight = PixelUtil.toPixelFromDIP(58f).toInt()
+    private val minHeight = PixelUtil.toPixelFromDIP(25f).toInt()
+
+    private fun handleScroll(
+        scrollY: Int
     ) {
         //处理头像layout距离顶部的距离
         val header2Top = (StatusBarUtil.getHeight() + PixelUtil.toPixelFromDIP(40f)).toInt()
         val top = header2Top - scrollY
 
-        val layoutLP = FrameLayout.LayoutParams(marginLayoutParams)
-
         val fixedTop = StatusBarUtil.getHeight() + PixelUtil.toPixelFromDIP(10f).toInt()
 
         if (top <= fixedTop) {
-            layoutLP.setMargins(0, fixedTop, 0, 0)
             userInfo.visibility = View.GONE
             headerLayout.setBackgroundColor(resources.getColor(R.color.white))
             mineTxt.setTextColor(resources.getColor(R.color.cl_000000))
             bannerBg.setBackgroundResource(R.drawable.banner_bg2)
         } else {
             userInfo.visibility = View.VISIBLE
-            layoutLP.setMargins(0, top, 0, 0)
             headerLayout.setBackgroundColor(resources.getColor(R.color.transparent))
             mineTxt.setTextColor(resources.getColor(R.color.transparent))
             bannerBg.setBackgroundResource(R.drawable.banner_bg)
         }
-        userInfoLinearLayout.layoutParams = layoutLP
+        //用户信息Layout距离顶部距离
+        val userInfoLayoutNewMarginTop = userInfoLayoutMaxMarginTop - scrollY
+        val userInfoLp = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT)
+        if (userInfoLayoutNewMarginTop <= userInfoLayoutMinMarginTop)
+            userInfoLp.topMargin = userInfoLayoutMinMarginTop.toInt()
+        else
+            userInfoLp.topMargin = userInfoLayoutNewMarginTop.toInt()
+
+        userInfoLinearLayout.layoutParams = userInfoLp
 
         //处理头像大小
-        val lp = LinearLayout.LayoutParams(marginLayoutParams)
-
-        val maxHeight = PixelUtil.toPixelFromDIP(58f).toInt()
-        val minHeight = PixelUtil.toPixelFromDIP(30f).toInt()
-
+        val lp = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
         val height =  if (maxHeight - scrollY < minHeight) minHeight else maxHeight - scrollY
 
         lp.height = height
@@ -178,31 +145,17 @@ class MineFragment: BaseFragment(R.layout.layout_mine), MavericksView {
 
         profileImage.layoutParams = lp
 
-        //设置NestedScrollView的marginTop
-        val scrollLP = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT)
-        val maxMarginTop = PixelUtil.toPixelFromDIP(54f).toInt()
-
-        val marginTop = if (scrollY < maxMarginTop) maxMarginTop - scrollY else 0
-        scrollLP.setMargins(0, marginTop, 0, 0)
-
-        mineNestedScrollView.layoutParams = scrollLP
-
-        //显示浮动的tab
-        val floatTab2Top = tabLayout.top - PixelUtil.toPixelFromDIP(54f).toInt() - tabLayout.height + 55
-//        Logger.i("tabLayout.height:${tabLayout.height}")
-//        Logger.i("scrollY:${scrollY}")
-//        Logger.i("floatTab2Top:${floatTab2Top}")
-        if (scrollY >= floatTab2Top) {
-            floatingTabLayout.visibility = View.VISIBLE
-        } else {
-            floatingTabLayout.visibility = View.GONE
-        }
-
         //显示backToTop
         if (scrollY >= DisplayUtil.getScreenHeight(this.requireContext())) {
             backTop.visibility = View.VISIBLE
         } else {
             backTop.visibility = View.GONE
+        }
+        //改变tabLayout背景色
+        if (consecutiveLayout.currentStickyViews.indexOfFirst { v -> v.id == R.id.tabLayout } == -1) {
+            tabLayout.setBackgroundResource(R.color.color_F5F5F5)
+        } else {
+            tabLayout.setBackgroundResource(R.color.white)
         }
     }
 }

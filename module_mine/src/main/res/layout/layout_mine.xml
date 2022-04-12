@@ -24,67 +24,55 @@
                 android:background="@drawable/banner_bg"
                 android:orientation="horizontal" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <include layout="@layout/floating_header" />
-
-                <com.aries.common.widget.AnimationNestedScrollView
-                    android:id="@+id/mineNestedScrollView"
+                <com.aries.common.widget.consecutiveScroller.ConsecutiveScrollerLayout
+                    android:id="@+id/consecutiveLayout"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="54dp">
+                    app:isPermanent="true">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/headerLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_isSticky="true">
+
+                        <include layout="@layout/floating_header" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
 
                     <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="@dimen/dp_10">
 
                         <include layout="@layout/order_card" />
-
-                        <androidx.appcompat.widget.LinearLayoutCompat
-                            android:id="@+id/functionList"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"/>
-
-                        <com.google.android.material.tabs.TabLayout
-                            android:id="@+id/tabLayout"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            app:tabMode="scrollable"
-                            app:tabIndicatorHeight="0dp"
-                            app:tabRippleColor="@color/transparent"
-                            app:tabTextColor="@color/color_404040"
-                            app:tabSelectedTextColor="@color/color_E33A3C"
-                            app:tabBackground="@drawable/selector_tab_indicator"/>
-
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/recommendGoodsList"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:overScrollMode="never"/>
-
                     </androidx.appcompat.widget.LinearLayoutCompat>
-                </com.aries.common.widget.AnimationNestedScrollView>
 
-            </LinearLayout>
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:id="@+id/functionList"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
 
-            <include layout="@layout/login_userinfo" />
+                    <com.google.android.material.tabs.TabLayout
+                        android:id="@+id/tabLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:tabMode="scrollable"
+                        app:tabIndicatorHeight="0dp"
+                        app:tabRippleColor="@color/transparent"
+                        app:tabTextColor="@color/color_404040"
+                        app:tabSelectedTextColor="@color/color_E33A3C"
+                        app:tabBackground="@drawable/selector_tab_indicator"
+                        app:layout_isSticky="true"/>
 
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/floatingTabLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                app:tabMode="scrollable"
-                app:tabIndicatorHeight="0dp"
-                android:visibility="gone"
-                app:tabRippleColor="@color/transparent"
-                app:tabTextColor="@color/color_404040"
-                app:tabSelectedTextColor="@color/color_E33A3C"
-                app:tabBackground="@drawable/selector_tab_indicator"/>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recommendGoodsList"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:overScrollMode="never"/>
+
+            </com.aries.common.widget.consecutiveScroller.ConsecutiveScrollerLayout>
         </FrameLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
