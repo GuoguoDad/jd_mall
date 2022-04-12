@@ -52,7 +52,7 @@ class BannerView: FrameLayout {
                         placeholder(R.drawable.default_img)
                     }
                     holder?.imageView?.setOnClickListener {
-                        ARouter.getInstance().build(RouterPaths.STICKY_DEMO).navigation()
+
                     }
                 }
             }

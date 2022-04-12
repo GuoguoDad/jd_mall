@@ -32,11 +32,6 @@ class WaterfallListActivity: BaseActivity(R.layout.layout_waterfall), MavericksV
     private val viewModel: WaterfallViewModel by viewModel()
 
     override fun initView() {
-        //返回
-        leftText.setOnClickListener {
-            finish()
-        }
-
         //下拉刷新
         waterfallLayout.setOnRefreshListener {
             run {

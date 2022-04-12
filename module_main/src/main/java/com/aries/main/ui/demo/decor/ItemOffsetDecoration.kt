@@ -1,4 +1,4 @@
-package com.aries.main.ui.mine.decor
+package com.aries.main.ui.demo.decor
 
 import android.graphics.Rect
 import android.view.View

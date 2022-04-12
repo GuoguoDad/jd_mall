@@ -9,8 +9,10 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.airbnb.mvrx.MavericksView
 import com.airbnb.mvrx.activityViewModel
 import com.airbnb.mvrx.withState
+import com.alibaba.android.arouter.launcher.ARouter
 import com.aries.common.adapter.GoodsListAdapter
 import com.aries.common.base.BaseFragment
+import com.aries.common.constants.RouterPaths
 import com.aries.common.decoration.SpacesItemDecoration
 import com.aries.common.util.DisplayUtil
 import com.aries.common.util.PixelUtil
@@ -63,6 +65,10 @@ class MineFragment: BaseFragment(R.layout.layout_mine), MavericksView {
         }
         backTop.setOnClickListener {
             consecutiveLayout.smoothScrollToChild(consecutiveLayout.getChildAt(0))
+        }
+
+        setting.setOnClickListener {
+            ARouter.getInstance().build(RouterPaths.DEMO_ACTIVITY).navigation()
         }
     }
 

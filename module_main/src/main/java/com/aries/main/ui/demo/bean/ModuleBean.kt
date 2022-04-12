@@ -1,4 +1,4 @@
-package com.aries.main.ui.mine.bean
+package com.aries.main.ui.demo.bean
 
 data class ModuleBean(
     var moduleName: String,

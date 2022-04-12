@@ -1,4 +1,4 @@
-package com.aries.main.ui.mine.holder
+package com.aries.main.ui.demo.holder
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView

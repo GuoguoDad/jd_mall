@@ -1,18 +1,19 @@
-package com.aries.main.ui.mine
+package com.aries.main.ui.demo
 
 import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.GridLayoutManager.SpanSizeLookup
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
-import com.aries.common.base.BaseFragment
+import com.aries.common.base.BaseActivity
 import com.aries.common.constants.RouterPaths
 import com.aries.main.R
 import com.aries.common.util.GsonUtil
-import com.aries.main.ui.mine.adapter.ModuleSelectionAdapter
-import com.aries.main.ui.mine.bean.ModuleBean
-import com.aries.main.ui.mine.bean.ModuleBeanWrapper
-import com.aries.main.ui.mine.decor.ItemOffsetDecoration
+import com.aries.main.ui.demo.adapter.ModuleSelectionAdapter
+import com.aries.main.ui.demo.bean.ModuleBean
+import com.aries.main.ui.demo.bean.ModuleBeanWrapper
+import com.aries.main.ui.demo.decor.ItemOffsetDecoration
 import kotlinx.android.synthetic.main.fragment_mine.*
 import java.io.BufferedReader
 import java.io.IOException
@@ -20,7 +21,8 @@ import java.io.InputStream
 import java.io.InputStreamReader
 import java.lang.StringBuilder
 
-class MineFragment : BaseFragment(R.layout.fragment_mine) {
+@Route(path = RouterPaths.DEMO_ACTIVITY)
+class DemoActivity : BaseActivity(R.layout.fragment_mine) {
     val titleItem = 0
     val galleryItem = 1
     private var moduleSelectionAdapter: ModuleSelectionAdapter? = null
@@ -43,8 +45,11 @@ class MineFragment : BaseFragment(R.layout.fragment_mine) {
                             "003" -> {
                                 ARouter.getInstance().build(RouterPaths.STEPPER_DEMO).navigation()
                             }
+                            "004" -> {
+                                ARouter.getInstance().build(RouterPaths.STICKY_DEMO).navigation()
+                            }
                             else -> {
-                                Toast.makeText(localThis.context ,bean?.name, Toast.LENGTH_SHORT).show()
+                                Toast.makeText(localThis ,bean?.name, Toast.LENGTH_SHORT).show()
                             }
                         }
                     }
@@ -52,7 +57,7 @@ class MineFragment : BaseFragment(R.layout.fragment_mine) {
             })
             contentLayout!!.adapter = moduleSelectionAdapter
 
-            val manager = GridLayoutManager(this.context, 6, GridLayoutManager.VERTICAL, false)
+            val manager = GridLayoutManager(this, 6, GridLayoutManager.VERTICAL, false)
             manager.spanSizeLookup = object : SpanSizeLookup() {
                 override fun getSpanSize(position: Int): Int {
                     return when (moduleSelectionAdapter!!.getItemViewType(position)) {
@@ -74,7 +79,7 @@ class MineFragment : BaseFragment(R.layout.fragment_mine) {
 
     private fun initListData(): ModuleBeanWrapper? {
         try {
-            val jsonIs: InputStream? = this.context?.assets?.open("module.json")
+            val jsonIs: InputStream = this.assets.open("module.json")
             val bufferedReader = BufferedReader(InputStreamReader(jsonIs))
             var str: String?
             val stringBuilder = StringBuilder()

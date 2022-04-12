@@ -1,4 +1,4 @@
-package com.aries.main.ui.mine.adapter
+package com.aries.main.ui.demo.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,10 +6,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.aries.main.R
-import com.aries.main.ui.mine.bean.ModuleBean
-import com.aries.main.ui.mine.bean.ModuleBeanWrapper
-import com.aries.main.ui.mine.holder.ModuleItemHolder
-import com.aries.main.ui.mine.holder.ModuleTitleHolder
+import com.aries.main.ui.demo.bean.ModuleBean
+import com.aries.main.ui.demo.bean.ModuleBeanWrapper
+import com.aries.main.ui.demo.holder.ModuleItemHolder
+import com.aries.main.ui.demo.holder.ModuleTitleHolder
 
 open class ModuleSelectionAdapter(wrapper: ModuleBeanWrapper): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val titleItem = 0

@@ -5,12 +5,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.aries.main.kit.header.Header
-        android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
-        app:title="@string/waterfall"
-        app:leftText="返回"/>
-
     <com.scwang.smart.refresh.layout.SmartRefreshLayout
         android:id="@+id/waterfallLayout"
         android:layout_width="match_parent"
