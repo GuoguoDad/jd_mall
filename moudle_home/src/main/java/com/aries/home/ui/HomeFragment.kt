@@ -37,7 +37,7 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
     }
 
     override fun initView() {
-        initFloatHeader()
+        initHeader()
         refreshView.run {
             setEnableLoadMore(false)
             setOnRefreshListener {
@@ -120,7 +120,7 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
         }
     }
 
-    private fun initFloatHeader() {
+    private fun initHeader() {
         searchLinearLayout.setPadding(0, StatusBarUtil.getHeight(), 0, 10)
     }
 

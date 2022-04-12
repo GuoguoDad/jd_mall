@@ -24,18 +24,25 @@
                 <include layout="@layout/home_top_view" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/collapsableContent"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" />
+                android:background="@color/color_FE0F22">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:id="@+id/collapsableContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/collapsable_bg"
+                    android:orientation="vertical"/>
+            </RelativeLayout>
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tabLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_isSticky="true"
                 android:background="@color/color_FAFAFA"
+                app:layout_isSticky="true"
                 app:tabBackground="@drawable/selector_tab_indicator"
                 app:tabIndicatorHeight="0dp"
                 app:tabMode="scrollable"

@@ -128,7 +128,14 @@
         <entry key="module_category/src/main/res/layout/main_right_grid.xml" value="0.22916666666666666" />
         <entry key="module_category/src/main/res/layout/main_right_grid_header.xml" value="0.23233695652173914" />
         <entry key="module_category/src/main/res/layout/serach.xml" value="0.165" />
+        <entry key="module_common/src/main/res/drawable/badge_bg.xml" value="0.2405" />
+        <entry key="module_common/src/main/res/drawable/gray_circular_bg.xml" value="0.2405" />
+        <entry key="module_common/src/main/res/drawable/rounded_corners_white_10_bg.xml" value="0.224" />
         <entry key="module_common/src/main/res/drawable/selector_tab_indicator.xml" value="0.273" />
+        <entry key="module_common/src/main/res/drawable/step_add_sub_bg.xml" value="0.224" />
+        <entry key="module_common/src/main/res/drawable/step_left_selector.xml" value="0.224" />
+        <entry key="module_common/src/main/res/drawable/step_right_selector.xml" value="0.224" />
+        <entry key="module_common/src/main/res/drawable/tag_bg.xml" value="0.224" />
         <entry key="module_common/src/main/res/layout/layout_goods_tabs.xml" value="0.264945652173913" />
         <entry key="module_main/src/main/res/drawable/appbar_elevation.xml" value="0.39739583333333334" />
         <entry key="module_main/src/main/res/drawable/ic_icon_main_category.xml" value="0.39739583333333334" />
@@ -176,8 +183,10 @@
         <entry key="module_mine/src/main/res/layout/login_userinfo.xml" value="0.1" />
         <entry key="module_mine/src/main/res/layout/nine_memu_item.xml" value="0.24320652173913043" />
         <entry key="module_mine/src/main/res/layout/order_card.xml" value="0.24320652173913043" />
+        <entry key="moudle_home/src/main/res/drawable/banner_bg.xml" value="0.224" />
         <entry key="moudle_home/src/main/res/drawable/enter_bg.xml" value="0.3828125" />
         <entry key="moudle_home/src/main/res/drawable/gray_circular_bg.xml" value="0.39739583333333334" />
+        <entry key="moudle_home/src/main/res/drawable/home_page_bg.xml" value="0.2405" />
         <entry key="moudle_home/src/main/res/drawable/normal_indicator.xml" value="0.3828125" />
         <entry key="moudle_home/src/main/res/drawable/rounded_corners_white_10_bg.xml" value="0.3828125" />
         <entry key="moudle_home/src/main/res/drawable/rounded_corners_white_bg.xml" value="0.3828125" />

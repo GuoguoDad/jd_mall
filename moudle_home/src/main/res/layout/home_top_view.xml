@@ -25,7 +25,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="10dp"
-            android:src="@drawable/ic_msg" />
+            android:src="@drawable/ic_message_white" />
 
         <ImageView
             android:id="@+id/iv_scan"
@@ -35,15 +35,6 @@
             android:layout_marginRight="10dp"
             android:layout_toLeftOf="@+id/iv_message"
             android:src="@drawable/ic_scan" />
-
-        <ImageView
-            android:id="@+id/iv_calendar"
-            android:layout_width="25dp"
-            android:layout_height="30dp"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="10dp"
-            android:layout_toLeftOf="@+id/iv_scan"
-            android:src="@drawable/ic_calendar" />
 
     </RelativeLayout>
 
