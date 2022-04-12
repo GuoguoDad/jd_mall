@@ -58,11 +58,6 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
 
         consecutiveScrollerLayout.setOnVerticalScrollChangeListener(object: ConsecutiveScrollerLayout.OnScrollChangeListener{
             override fun onScrollChange(v: View?, scrollY: Int, oldScrollY: Int, scrollState: Int) {
-                if (scrollY >= DisplayUtil.getScreenHeight(requireContext())) {
-                    backTop.visibility = View.VISIBLE
-                } else {
-                    backTop.visibility = View.GONE
-                }
                 searchHeaderOnScroll(scrollY)
             }
         })
@@ -154,6 +149,12 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
         val searchNewMarginTop = searchMaxMarginTop - scrollY * 0.5
         val searchNewMarginLeft = searchMinMargin + scrollY * 1.3
         val searchNewMarginRight = searchMinMargin + scrollY * 1.6
+
+        if (scrollY >= DisplayUtil.getScreenHeight(requireContext())) {
+            backTop.visibility = View.VISIBLE
+        } else {
+            backTop.visibility = View.GONE
+        }
 
         val containerLp = LinearLayoutCompat.LayoutParams(LinearLayoutCompat.LayoutParams.MATCH_PARENT, LinearLayoutCompat.LayoutParams.WRAP_CONTENT)
         val searchLp = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT)

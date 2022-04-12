@@ -158,7 +158,7 @@ class ConsecutiveScrollerLayout @JvmOverloads constructor(
     /**
      * 保存当前吸顶的view(普通吸顶模式中，正在吸顶的view只有一个)
      */
-    var currentStickyView: View? = null
+    private var currentStickyView: View? = null
         private set
 
     /**
@@ -459,7 +459,7 @@ class ConsecutiveScrollerLayout @JvmOverloads constructor(
 
                 // 停止滑动
                 stopScroll()
-                checkTargetsScroll(false, false)
+                checkTargetsScroll(isLayoutChange = false, isForce = false)
                 mTouching = true
                 scrollOrientation = SCROLL_NONE
                 mActivePointerId = ev.getPointerId(actionIndex)
@@ -937,7 +937,7 @@ class ConsecutiveScrollerLayout @JvmOverloads constructor(
             if (mScrollState == SCROLL_STATE_SETTLING && mScroller.isFinished) {
                 // 滚动结束，校验子view内容的滚动位置
                 stopNestedScroll(ViewCompat.TYPE_NON_TOUCH)
-                checkTargetsScroll(false, false)
+                checkTargetsScroll(isLayoutChange = false, isForce = false)
                 scrollState = SCROLL_STATE_IDLE
             }
         }
@@ -1167,7 +1167,7 @@ class ConsecutiveScrollerLayout @JvmOverloads constructor(
     }
 
     fun checkLayoutChange() {
-        postDelayed({ checkLayoutChange(false, true) }, 20)
+        postDelayed({ checkLayoutChange(changed = false, isForce = true) }, 20)
     }
 
     /**
@@ -2278,7 +2278,7 @@ class ConsecutiveScrollerLayout @JvmOverloads constructor(
 
     override fun onNestedScrollAccepted(child: View, target: View, axes: Int, type: Int) {
         mParentHelper.onNestedScrollAccepted(child, target, axes, type)
-        checkTargetsScroll(false, false)
+        checkTargetsScroll(isLayoutChange = false, isForce = false)
         startNestedScroll(ViewCompat.SCROLL_AXIS_VERTICAL, type)
     }
 
