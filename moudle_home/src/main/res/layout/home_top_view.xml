@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/searchLinearLayout"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/searchHeader"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/color_FE0F22"
-    android:orientation="vertical">
+    android:layout_height="80dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:paddingLeft="10dp"
-        android:paddingRight="10dp">
+        android:paddingRight="10dp"
+        android:layout_alignParentTop="true">
 
         <ImageView
             android:layout_width="45dp"
@@ -39,9 +38,11 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/include_home_top_rl_search"
+        android:id="@+id/search"
         android:layout_width="match_parent"
         android:layout_height="30dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="40dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:background="@drawable/rounded_corners_white_bg">
@@ -73,4 +74,4 @@
             android:src="@drawable/ic_camera" />
 
     </RelativeLayout>
-</androidx.appcompat.widget.LinearLayoutCompat>
+</RelativeLayout>

@@ -17,8 +17,10 @@
             app:isPermanent="true">
 
             <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/searchLinearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/color_FE0F22"
                 app:layout_isSticky="true">
 
                 <include layout="@layout/home_top_view" />

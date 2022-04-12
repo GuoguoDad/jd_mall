@@ -1,6 +1,9 @@
 package com.aries.home.ui
 
 import android.view.View
+import android.widget.RelativeLayout
+import androidx.appcompat.widget.LinearLayoutCompat
+import androidx.core.view.marginLeft
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.airbnb.mvrx.MavericksView
@@ -8,6 +11,7 @@ import com.airbnb.mvrx.activityViewModel
 import com.aries.common.base.BaseFragment
 import com.aries.common.dialog.LoadingDialog
 import com.aries.common.util.DisplayUtil
+import com.aries.common.util.PixelUtil
 import com.aries.common.util.StatusBarUtil
 import com.aries.common.widget.consecutiveScroller.ConsecutiveScrollerLayout
 import com.aries.home.R
@@ -59,6 +63,7 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
                 } else {
                     backTop.visibility = View.GONE
                 }
+                searchHeaderOnScroll(scrollY)
             }
         })
 
@@ -121,7 +126,7 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
     }
 
     private fun initHeader() {
-        searchLinearLayout.setPadding(0, StatusBarUtil.getHeight(), 0, 10)
+        searchLinearLayout.setPadding(0, StatusBarUtil.getHeight(), 0, 0)
     }
 
     private fun initTabViewPagerAdapter() {
@@ -132,5 +137,45 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
             }
         }
         viewPager.adapter = tabViewPagerAdapter
+    }
+
+
+    private val searchHeaderMaxHeight = PixelUtil.toPixelFromDIP(80f)
+    private val searchHeaderMinHeight = PixelUtil.toPixelFromDIP(50f)
+    private val searchMaxMarginTop = PixelUtil.toPixelFromDIP(40f)
+    private val searchMinMarginTop = PixelUtil.toPixelFromDIP(5f)
+    private val searchMaxMarginLeft = PixelUtil.toPixelFromDIP(55f)
+    private val searchMaxMarginRight = PixelUtil.toPixelFromDIP(90f)
+    private val searchMinMargin = PixelUtil.toPixelFromDIP(15f)
+    private val searchHeight = PixelUtil.toPixelFromDIP(30f)
+
+    private fun searchHeaderOnScroll(scrollY: Int) {
+        val containerNewHeight = searchHeaderMaxHeight - scrollY * 0.5
+        val searchNewMarginTop = searchMaxMarginTop - scrollY * 0.5
+        val searchNewMarginLeft = searchMinMargin + scrollY * 1.3
+        val searchNewMarginRight = searchMinMargin + scrollY * 1.6
+
+        val containerLp = LinearLayoutCompat.LayoutParams(LinearLayoutCompat.LayoutParams.MATCH_PARENT, LinearLayoutCompat.LayoutParams.WRAP_CONTENT)
+        val searchLp = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT)
+        searchLp.height = searchHeight.toInt()
+        if (searchNewMarginTop <= searchMinMarginTop) {
+            searchLp.topMargin = searchMinMarginTop.toInt()
+            containerLp.height = searchHeaderMinHeight.toInt()
+        } else {
+            searchLp.topMargin = searchNewMarginTop.toInt()
+            containerLp.height = containerNewHeight.toInt()
+        }
+        searchHeader.layoutParams = containerLp
+        if (searchNewMarginLeft >= searchMaxMarginLeft)
+            searchLp.leftMargin = searchMaxMarginLeft.toInt()
+        else
+            searchLp.leftMargin = searchNewMarginLeft.toInt()
+
+        if (searchNewMarginRight >= searchMaxMarginRight)
+            searchLp.rightMargin = searchMaxMarginRight.toInt()
+        else
+            searchLp.rightMargin = searchNewMarginRight.toInt()
+
+        search.layoutParams = searchLp
     }
 }
