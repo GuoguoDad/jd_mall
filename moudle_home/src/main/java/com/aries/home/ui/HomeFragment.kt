@@ -1,9 +1,9 @@
 package com.aries.home.ui
 
+import android.annotation.SuppressLint
 import android.view.View
 import android.widget.RelativeLayout
 import androidx.appcompat.widget.LinearLayoutCompat
-import androidx.core.view.marginLeft
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.airbnb.mvrx.MavericksView
@@ -109,6 +109,7 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
 
     override fun invalidate() {}
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun showTabLayout(list: List<TabBean>) {
         tabList.clear()
         tabList.addAll(list)

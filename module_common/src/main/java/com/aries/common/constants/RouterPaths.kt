@@ -19,5 +19,7 @@ interface RouterPaths {
         const val STEPPER_DEMO ="/main/stepperDemo"
 
         const val STICKY_DEMO ="/main/stickyDemo"
+
+        const val GOODS_DETAIL ="/detail/goodsDetail"
     }
 }

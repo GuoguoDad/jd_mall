@@ -1,0 +1,23 @@
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/dp_40"
+    android:layout_height="@dimen/dp_40"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:textSize="@dimen/tab_item_text_size"
+        android:textColor="@color/cl_000000"
+        android:text="详情"/>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/line"
+        android:layout_width="@dimen/dp_18"
+        android:layout_height="@dimen/dp_4"
+        android:layout_marginTop="@dimen/dp_4"/>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

@@ -3,8 +3,10 @@ package com.aries.home.ui.fragment
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.airbnb.mvrx.MavericksView
 import com.airbnb.mvrx.activityViewModel
+import com.alibaba.android.arouter.launcher.ARouter
 import com.aries.common.adapter.GoodsListAdapter
 import com.aries.common.base.BaseFragment
+import com.aries.common.constants.RouterPaths
 import com.aries.common.decoration.SpacesItemDecoration
 import com.aries.home.R
 import com.aries.home.ui.constants.ActionType
@@ -27,9 +29,13 @@ class  GoodsListFragment(var code: String): BaseFragment(R.layout.home_goods), M
             addItemDecoration(SpacesItemDecoration(10))
             adapter = goodsListAdapter
             layoutManager = staggeredGridLayoutManager
+            setOnClickListener {  }
         }
         goodsListAdapter.loadMoreModule.setOnLoadMoreListener {
             viewModel.loadMoreGoodsList(code)
+        }
+        goodsListAdapter.setOnItemClickListener { adapter, view, position ->
+            ARouter.getInstance().build(RouterPaths.GOODS_DETAIL).navigation()
         }
         addStateChangeListener()
     }
