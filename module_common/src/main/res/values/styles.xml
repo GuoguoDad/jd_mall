@@ -33,8 +33,10 @@
         <item name="android:windowTranslucentNavigation">false</item>
     </style>
 
-    <style name="TabLayoutTextStyle">
-        <item name="android:textSize">20sp</item>
+    <style name="TabLayoutItemBold">
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="TabLayoutItemNormal">
         <item name="android:textStyle">normal</item>
     </style>
 </resources>

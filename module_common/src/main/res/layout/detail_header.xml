@@ -39,7 +39,7 @@
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/detailHeaderTabLayout"
-                android:layout_width="@dimen/tab_layout_size"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/color_FAFAFA"
                 app:tabMode="fixed"
@@ -48,8 +48,7 @@
                 app:tabIndicator="@drawable/tab_indicator_shape"
                 app:tabRippleColor="@color/transparent"
                 app:tabTextColor="@color/cl_000000"
-                app:tabSelectedTextColor="@color/cl_000000"
-                app:tabTextAppearance="@style/TabLayoutTextStyle"/>
+                app:tabSelectedTextColor="@color/cl_000000"/>
 
         </LinearLayout>
         <LinearLayout
@@ -70,10 +69,7 @@
             <RelativeLayout
                 android:id="@+id/threePointsLayout"
                 android:layout_width="40dp"
-                android:layout_height="match_parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintLeft_toRightOf="@+id/addressLayout"
-                app:layout_constraintRight_toRightOf="parent">
+                android:layout_height="match_parent">
 
                 <ImageView
                     android:id="@+id/threePoints"
