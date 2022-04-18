@@ -37,6 +37,7 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        loadingDialog.dismiss()
         refreshView.removeAllViews()
     }
 

@@ -20,6 +20,6 @@ interface RouterPaths {
 
         const val STICKY_DEMO ="/main/stickyDemo"
 
-        const val GOODS_DETAIL ="/detail/goodsDetail"
+        const val GOODS_DETAIL ="/common/goodsDetail"
     }
 }

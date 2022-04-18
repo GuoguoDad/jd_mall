@@ -44,12 +44,14 @@
                 android:layout_height="wrap_content"
                 android:background="@color/color_FAFAFA"
                 app:layout_isSticky="true"
-                app:tabBackground="@drawable/selector_tab_indicator"
-                app:tabIndicatorHeight="0dp"
+                app:tabIndicatorHeight="2dp"
+                app:tabIndicatorColor="@color/color_E33A3C"
+                app:tabIndicator="@drawable/tab_indicator_shape"
                 app:tabMode="scrollable"
                 app:tabRippleColor="@color/transparent"
                 app:tabSelectedTextColor="@color/color_E33A3C"
-                app:tabTextColor="@color/color_404040" />
+                app:tabTextColor="@color/color_404040"
+                app:tabTextAppearance="@style/HomeTabLayoutTextStyle"/>
 
             <com.aries.common.widget.consecutiveScroller.ConsecutiveViewPager2
                 android:id="@+id/viewPager"

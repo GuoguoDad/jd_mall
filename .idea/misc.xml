@@ -129,6 +129,7 @@
         <entry key="module_category/src/main/res/layout/main_right_grid.xml" value="0.22916666666666666" />
         <entry key="module_category/src/main/res/layout/main_right_grid_header.xml" value="0.23233695652173914" />
         <entry key="module_category/src/main/res/layout/serach.xml" value="0.165" />
+        <entry key="module_common/src/main/res/drawable-v23/tab_indicator_shape.xml" value="0.2835" />
         <entry key="module_common/src/main/res/drawable/badge_bg.xml" value="0.2405" />
         <entry key="module_common/src/main/res/drawable/gray_circular_bg.xml" value="0.2405" />
         <entry key="module_common/src/main/res/drawable/rounded_corners_white_10_bg.xml" value="0.224" />
@@ -138,6 +139,7 @@
         <entry key="module_common/src/main/res/drawable/step_left_selector.xml" value="0.224" />
         <entry key="module_common/src/main/res/drawable/step_right_selector.xml" value="0.224" />
         <entry key="module_common/src/main/res/drawable/tag_bg.xml" value="0.224" />
+        <entry key="module_common/src/main/res/layout/activity_detail.xml" value="0.24365942028985507" />
         <entry key="module_common/src/main/res/layout/badge_layout.xml" value="0.24365942028985507" />
         <entry key="module_common/src/main/res/layout/goods_second_item.xml" value="0.1" />
         <entry key="module_common/src/main/res/layout/layout_goods_tabs.xml" value="0.264945652173913" />

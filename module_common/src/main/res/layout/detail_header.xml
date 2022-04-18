@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/detailHeaderLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -16,17 +17,17 @@
             android:layout_width="100dp"
             android:layout_height="match_parent"
             android:gravity="center_vertical|start"
-            android:paddingLeft="15dp"
-            android:orientation="horizontal">
+            android:paddingStart="15dp"
+            android:orientation="horizontal"
+            tools:ignore="RtlSymmetry">
 
             <ImageView
                 android:id="@+id/back"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:layout_centerInParent="true"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
                 android:scaleType="fitXY"
-                android:layout_marginRight="10dp"
-                android:src="@drawable/ic_back_grey" />
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/ic_back_black" />
 
         </LinearLayout>
         <LinearLayout
@@ -37,7 +38,7 @@
             android:orientation="horizontal">
 
             <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tabLayout"
+                android:id="@+id/detailHeaderTabLayout"
                 android:layout_width="@dimen/tab_layout_size"
                 android:layout_height="wrap_content"
                 android:background="@color/color_FAFAFA"
@@ -54,15 +55,15 @@
         <LinearLayout
             android:layout_width="100dp"
             android:layout_height="match_parent"
-            android:gravity="center_vertical|right"
-            android:paddingRight="15dp"
-            android:orientation="horizontal">
+            android:gravity="center_vertical|end"
+            android:paddingEnd="15dp"
+            android:orientation="horizontal"
+            tools:ignore="RtlSymmetry">
 
             <ImageView
                 android:id="@+id/shareIcon"
                 android:layout_width="18dp"
                 android:layout_height="18dp"
-                android:layout_centerInParent="true"
                 android:scaleType="fitXY"
                 android:src="@drawable/ic_share_black" />
 
@@ -86,7 +87,7 @@
                     android:id="@+id/threePointsBadgeNum"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
                     android:layout_alignParentTop="true"
                     android:background="@drawable/badge_bg"
                     android:minWidth="15dp"

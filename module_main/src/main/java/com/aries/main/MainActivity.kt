@@ -1,6 +1,8 @@
 package com.aries.main
 
 import android.annotation.SuppressLint
+import android.graphics.Color
+import android.os.Build
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
@@ -19,6 +21,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationItemView
 import kotlinx.android.synthetic.main.layout_main.*
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 import com.google.android.material.navigation.NavigationBarView
+import java.lang.reflect.Field
 
 @Route(path = RouterPaths.MAIN_ACTIVITY)
 class MainActivity: BaseActivity(R.layout.layout_main) {
@@ -28,6 +31,7 @@ class MainActivity: BaseActivity(R.layout.layout_main) {
     private val mineFragment: Fragment = MineFragment()
 
     override fun initView() {
+        StatusBarUtil.setBarTextModal(this, false)
         val navController = findNavController(R.id.container_fragment)
         navView.labelVisibilityMode = NavigationBarView.LABEL_VISIBILITY_LABELED
         navView.itemIconTintList = null //保留icon原图颜色
@@ -92,5 +96,4 @@ class MainActivity: BaseActivity(R.layout.layout_main) {
             itemView.addView(badgeView, lp)
         }
     }
-
 }
