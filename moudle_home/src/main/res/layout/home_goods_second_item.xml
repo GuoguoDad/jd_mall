@@ -16,7 +16,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/rounded_corners_white_10_bg"
+        android:background="@drawable/search_view_bg"
         android:padding="8dp">
 
         <TextView

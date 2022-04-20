@@ -7,6 +7,8 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.LinearLayoutCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import coil.ImageLoader
 import coil.load
 import com.airbnb.mvrx.MavericksView
@@ -15,10 +17,12 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.aries.common.R
 import com.aries.common.base.BaseActivity
 import com.aries.common.constants.RouterPaths
+import com.aries.common.ui.detail.adapter.ColorThumbListAdapter
 import com.aries.common.util.CoilUtil
 import com.aries.common.util.DisplayUtil
 import com.aries.common.util.StatusBarUtil
 import com.google.android.material.tabs.TabLayout
+import com.orhanobut.logger.Logger
 import com.youth.banner.adapter.BannerImageAdapter
 import com.youth.banner.holder.BannerImageHolder
 import com.youth.banner.indicator.CircleIndicator
@@ -34,10 +38,13 @@ class DetailActivity: BaseActivity(R.layout.activity_detail), MavericksView {
     private val tabs = arrayListOf("商品", "评价", "详情", "推荐")
     private var imageLoader: ImageLoader = CoilUtil.getImageLoader()
 
+    private val colorThumbListAdapter: ColorThumbListAdapter by lazy { ColorThumbListAdapter(R.layout.color_thumb_item, arrayListOf()) }
+
     private val viewModel: DetailViewModal by viewModel()
 
     override fun initView() {
         initLayout()
+        initColorThumb()
         back.setOnClickListener {
             finish()
         }
@@ -51,11 +58,15 @@ class DetailActivity: BaseActivity(R.layout.activity_detail), MavericksView {
 
     private fun addStateChangeListener() {
         viewModel.onEach(
-            DetailState::currentBanner
-        ) { currentBanner ->
+            DetailState::currentBanner,
+            DetailState::bannerList
+        ) { currentBanner, bannerList ->
             run {
                 if (currentBanner.imgList.isNotEmpty()) {
                     showGoodsImgBanner(currentBanner.imgList)
+                }
+                if (bannerList.isNotEmpty()) {
+                    colorThumbListAdapter.setList(bannerList)
                 }
             }
         }
@@ -119,4 +130,11 @@ class DetailActivity: BaseActivity(R.layout.activity_detail), MavericksView {
     }
 
     override fun invalidate() {}
+
+    private fun initColorThumb() {
+        colorThumbRv.run {
+            adapter = colorThumbListAdapter
+            layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false)
+        }
+    }
 }

@@ -5,7 +5,7 @@
     android:layout_height="30dp"
     android:layout_marginLeft="15dp"
     android:layout_marginRight="15dp"
-    android:background="@drawable/rounded_corners_white_10_bg">
+    android:background="@drawable/search_view_bg">
 
     <ImageView
         android:id="@+id/iv_search"

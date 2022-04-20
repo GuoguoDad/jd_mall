@@ -145,6 +145,7 @@
         <entry key="module_common/src/main/res/layout/activity_detail.xml" value="0.1" />
         <entry key="module_common/src/main/res/layout/activity_detail_goods.xml" value="0.1" />
         <entry key="module_common/src/main/res/layout/badge_layout.xml" value="0.24365942028985507" />
+        <entry key="module_common/src/main/res/layout/color_thumb_item.xml" value="0.10092592592592593" />
         <entry key="module_common/src/main/res/layout/detail_header.xml" value="0.1" />
         <entry key="module_common/src/main/res/layout/goods_second_item.xml" value="0.1" />
         <entry key="module_common/src/main/res/layout/layout_goods_tabs.xml" value="0.264945652173913" />
@@ -208,6 +209,7 @@
         <entry key="moudle_home/src/main/res/drawable/normal_indicator.xml" value="0.3828125" />
         <entry key="moudle_home/src/main/res/drawable/rounded_corners_white_10_bg.xml" value="0.3828125" />
         <entry key="moudle_home/src/main/res/drawable/rounded_corners_white_bg.xml" value="0.3828125" />
+        <entry key="moudle_home/src/main/res/drawable/search_view_bg.xml" value="0.239" />
         <entry key="moudle_home/src/main/res/drawable/selected_indicator.xml" value="0.3828125" />
         <entry key="moudle_home/src/main/res/drawable/similar_bg.xml" value="0.3828125" />
         <entry key="moudle_home/src/main/res/drawable/tag_bg.xml" value="0.39739583333333334" />
