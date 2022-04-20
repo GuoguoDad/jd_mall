@@ -20,6 +20,8 @@ class DetailActivity: BaseActivity(R.layout.activity_detail) {
     override fun initView() {
         StatusBarUtil.setBarTextModal(this, true)
         initTabLayout()
+
+
     }
 
     override fun initData() {

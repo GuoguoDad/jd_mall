@@ -868,15 +868,15 @@ class ConsecutiveScrollerLayout @JvmOverloads constructor(
 
     override fun computeScroll() {
         if (mScrollToIndex != -1 && mSmoothScrollOffset != 0) {
-            if (mSmoothScrollOffset in 1..1999) {
+            if (mSmoothScrollOffset in 1..799) {
                 // 逐渐加速
-                mSmoothScrollOffset += 500
+                mSmoothScrollOffset += 200
             }
-            if (mSmoothScrollOffset < 0 && mSmoothScrollOffset > -2000) {
+            if (mSmoothScrollOffset < 0 && mSmoothScrollOffset > -800) {
                 // 逐渐加速
-                mSmoothScrollOffset -= 500
+                mSmoothScrollOffset -= 200
             }
-//
+
 //            if (mSmoothScrollOffset in 1..199) {
 //                // 逐渐加速
 //                mSmoothScrollOffset += 50

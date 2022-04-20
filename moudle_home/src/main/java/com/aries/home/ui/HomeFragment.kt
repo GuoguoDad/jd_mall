@@ -138,7 +138,7 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
 
 
     private val searchHeaderMaxHeight = PixelUtil.toPixelFromDIP(80f)
-    private val searchHeaderMinHeight = PixelUtil.toPixelFromDIP(50f)
+    private val searchHeaderMinHeight = PixelUtil.toPixelFromDIP(40f)
     private val searchMaxMarginTop = PixelUtil.toPixelFromDIP(40f)
     private val searchMinMarginTop = PixelUtil.toPixelFromDIP(5f)
     private val searchMaxMarginLeft = PixelUtil.toPixelFromDIP(55f)

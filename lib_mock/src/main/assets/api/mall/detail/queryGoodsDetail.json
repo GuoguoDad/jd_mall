@@ -1,0 +1,57 @@
+{
+  "code": "0",
+  "msg": "",
+  "data": {
+    "colorList": [
+      {"colorName" : "黑灰色/红色",
+        "thumb": "https://m.360buyimg.com/n2/jfs/t1/212471/24/17530/169099/625d9642Eadb21db3/f5c28554c39fee6d.jpg",
+        "imgList": [
+          "https://m.360buyimg.com/mobilecms/s1080x1080_jfs/t1/212471/24/17530/169099/625d9642Eadb21db3/f5c28554c39fee6d.jpg!q70.jpg.webp",
+          "https://m.360buyimg.com/mobilecms/s1080x1080_jfs/t1/223092/16/13147/109176/623043b7Ec33b6057/8dff30acead53213.jpg!q70.jpg.webp",
+          "https://m.360buyimg.com/mobilecms/s1080x1080_jfs/t1/217344/6/14891/89067/623043b7E49c2bf31/1c8f4ba0ccf38c9e.jpg!q70.jpg.webp",
+          "https://m.360buyimg.com/mobilecms/s1080x1080_jfs/t1/145881/30/24164/150428/623043b7E8fb57fea/44bdb9081eaec2be.jpg!q70.jpg.webp",
+          "https://m.360buyimg.com/mobilecms/s1080x1080_jfs/t1/85372/28/21455/69456/623043b7Ef403bd0a/8ca83cf7694ebd07.jpg!q70.jpg.webp",
+          "https://m.360buyimg.com/mobilecms/s1080x1080_jfs/t1/87488/39/23761/210846/623043b8E15396993/e71af88949e071ed.jpg!q70.jpg.webp",
+          "https://m.360buyimg.com/mobilecms/s1080x1080_jfs/t1/185539/31/21780/117681/6230217cE99cb7265/4de912b7b8ae3bfe.jpg!q70.jpg.webp"
+        ]
+      },
+      {
+        "colorName" : "蓝色/黄色",
+        "thumb": "",
+        "imgList": [
+          "https://m.360buyimg.com/mobilecms/s1080x1080_jfs/t1/185796/23/23365/154983/625d9644E96e93807/0e30192ad676f8a8.jpg!q70.jpg.webp",
+          "https://m.360buyimg.com/mobilecms/s1080x1080_jfs/t1/117422/24/20800/87701/62295f18Edbec5730/a1a9fae9bed57523.jpg!q70.jpg.webp",
+          "https://m.360buyimg.com/mobilecms/s1080x1080_jfs/t1/122414/38/23345/79829/62295f18E274d9ffa/b9d2b41d33493999.jpg!q70.jpg.webp",
+          "https://m.360buyimg.com/mobilecms/s1080x1080_jfs/t1/147359/11/22931/135736/62295f19Edd661297/4cac5b0ea0c5a0da.jpg!q70.jpg.webp",
+          "https://m.360buyimg.com/mobilecms/s1080x1080_jfs/t1/89066/12/22981/53911/62295f19Eff96ea37/a93e6f167964bcfb.jpg!q70.jpg.webp",
+          "https://m.360buyimg.com/mobilecms/s1080x1080_jfs/t1/214240/2/14478/182817/62295f19Eb7afb2f5/11e72ba025a0da3c.jpg!q70.jpg.webp",
+          "https://m.360buyimg.com/mobilecms/s1080x1080_jfs/t1/97439/8/24039/117681/622842a3E760fbb99/e4ad2acca9283634.jpg!q70.jpg.webp"
+        ]
+      }
+    ],
+    "detailInfo": {
+      "hdzq": "https://img13.360buyimg.com/cms/jfs/t1/197792/33/22051/102624/625d0076Ef4252b55/fdf3b1d52374f37d.jpg.dpg",
+      "dnyx": "https://img11.360buyimg.com/cms/jfs/t1/131411/22/20981/284862/6259240fE7980bcbe/b2b9db04abe679f9.jpg.dpg",
+      "introductionList": [
+        "https://img30.360buyimg.com/popWareDetail/jfs/t1/130765/11/26608/146901/624d5c6aEe590921f/b8bfe5686b57e194.jpg.dpg",
+        "https://img30.360buyimg.com/popWareDetail/jfs/t1/129566/36/28066/71317/624d5c69E0b9ba09c/a5f6f70467c6b0a6.jpg.dpg",
+        "https://img30.360buyimg.com/popWareDetail/jfs/t1/109170/17/27071/49050/624d5c69Ed53303f8/bec3690c3ea0ed3a.jpg.dpg",
+        "https://img30.360buyimg.com/popWareDetail/jfs/t1/189785/35/22461/262616/624d5c69Ee2835623/e6377e50fa1e1b2f.jpg.dpg",
+        "https://img30.360buyimg.com/popWareDetail/jfs/t1/121994/38/26242/215472/624d5c69E93b2b771/9eb4e5c1dced910f.jpg.dpg",
+        "https://img30.360buyimg.com/popWareDetail/jfs/t1/200046/18/20726/293757/624d5c69Ea7628ea7/47fa0c49693dcc71.jpg.dpg",
+        "https://img30.360buyimg.com/popWareDetail/jfs/t1/116482/24/23676/268365/624d5c69Eeb48ab6c/4e6006511b0cc5d6.jpg.dpg",
+        "https://img30.360buyimg.com/popWareDetail/jfs/t1/99540/22/26782/8746/624d5c68E08308a06/404b26a0d0a18103.jpg.dpg",
+        "https://img30.360buyimg.com/popWareDetail/jfs/t1/205726/37/20745/137848/624d5c68E0daebe01/afd9b75c4ff05764.jpg.dpg",
+        "https://img30.360buyimg.com/popWareDetail/jfs/t1/205726/37/20745/137848/624d5c68E0daebe01/afd9b75c4ff05764.jpg.dpg",
+        "https://img30.360buyimg.com/popWareDetail/jfs/t1/216582/30/16606/127427/624d5c68E619d2d6d/c8cf40cac78e0532.jpg.dpg",
+        "https://img30.360buyimg.com/popWareDetail/jfs/t1/166575/9/22244/214537/624d5c69E28b09fb7/1e52c37e4d539d0b.jpg.dpg",
+        "https://img30.360buyimg.com/popWareDetail/jfs/t1/87859/27/25402/137998/624d5c68E6d8dc293/e0dc610050c48363.jpg.dpg",
+        "https://img30.360buyimg.com/popWareDetail/jfs/t1/213761/40/16381/110431/624d5c68Eb09a4fca/acc39177f635cb84.jpg.dpg",
+        "https://img30.360buyimg.com/popWareDetail/jfs/t1/213761/40/16381/110431/624d5c68Eb09a4fca/acc39177f635cb84.jpg.dpg"
+      ],
+      "serviceList": [
+        "https://img30.360buyimg.com/sku/jfs/t1/118720/15/16298/415064/5f487872E0d237cd1/283084254c9e270a.jpg.dpg"
+      ]
+    }
+  }
+}

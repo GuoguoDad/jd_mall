@@ -7,15 +7,15 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
+        android:layout_alignParentTop="true"
         android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:layout_alignParentTop="true">
+        android:paddingRight="10dp">
 
         <ImageView
             android:layout_width="45dp"
             android:layout_height="40dp"
             android:layout_centerVertical="true"
-            android:src="@drawable/ic_jd" />
+            android:src="@drawable/ic_pet" />
 
         <ImageView
             android:id="@+id/iv_message"
@@ -42,8 +42,8 @@
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="40dp"
         android:layout_marginLeft="15dp"
+        android:layout_marginTop="40dp"
         android:layout_marginRight="15dp"
         android:background="@drawable/rounded_corners_white_bg">
 

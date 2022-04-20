@@ -1,8 +1,6 @@
 package com.aries.mine.ui
 
 import android.view.View
-import android.view.ViewGroup
-import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -20,8 +18,6 @@ import com.aries.common.util.StatusBarUtil
 import com.aries.common.widget.consecutiveScroller.ConsecutiveScrollerLayout
 import com.aries.mine.R
 import com.aries.mine.ui.view.FiveMenuView
-import com.google.android.material.tabs.TabLayout
-import com.orhanobut.logger.Logger
 import kotlinx.android.synthetic.main.floating_header.*
 import kotlinx.android.synthetic.main.layout_mine.*
 
@@ -64,7 +60,7 @@ class MineFragment: BaseFragment(R.layout.layout_mine), MavericksView {
             adapter = goodsListAdapter
         }
         backTop.setOnClickListener {
-            consecutiveLayout.smoothScrollToChild(consecutiveLayout.getChildAt(0))
+            consecutiveLayout.smoothScrollToChildWithOffset(consecutiveLayout.getChildAt(0),0)
         }
 
         setting.setOnClickListener {
@@ -85,7 +81,7 @@ class MineFragment: BaseFragment(R.layout.layout_mine), MavericksView {
             if (it.tabList.isNotEmpty()) {
                 tabLayout.removeAllTabs()
                 it.tabList.forEach { v ->
-                    tabLayout.addTab(tabLayout.newTab().setText(v.name));
+                    tabLayout.addTab(tabLayout.newTab().setText(v.name))
                 }
             }
             if (it.goodsList.isNotEmpty()) {
@@ -119,12 +115,12 @@ class MineFragment: BaseFragment(R.layout.layout_mine), MavericksView {
             userInfo.visibility = View.GONE
             headerLayout.setBackgroundColor(resources.getColor(R.color.white))
             mineTxt.setTextColor(resources.getColor(R.color.cl_000000))
-            bannerBg.setBackgroundResource(R.drawable.banner_bg2)
+            bannerBg.setBackgroundResource(R.drawable.banner_bg)
         } else {
             userInfo.visibility = View.VISIBLE
             headerLayout.setBackgroundColor(resources.getColor(R.color.transparent))
             mineTxt.setTextColor(resources.getColor(R.color.transparent))
-            bannerBg.setBackgroundResource(R.drawable.banner_bg)
+            bannerBg.setBackgroundResource(R.drawable.mine_top_bg)
         }
         //用户信息Layout距离顶部距离
         val userInfoLayoutNewMarginTop = userInfoLayoutMaxMarginTop - scrollY
@@ -145,18 +141,18 @@ class MineFragment: BaseFragment(R.layout.layout_mine), MavericksView {
         lp.leftMargin = PixelUtil.toPixelFromDIP(20f).toInt()
 
         profileImage.layoutParams = lp
+        //改变tabLayout背景色
+        if (consecutiveLayout.currentStickyViews.indexOfFirst { v -> v.id == R.id.tabLayout } == -1) {
+            tabLayout.setBackgroundResource(R.color.color_F5F5F5)
+        } else {
+            tabLayout.setBackgroundResource(R.color.white)
+        }
 
         //显示backToTop
         if (scrollY >= DisplayUtil.getScreenHeight(this.requireContext())) {
             backTop.visibility = View.VISIBLE
         } else {
             backTop.visibility = View.GONE
-        }
-        //改变tabLayout背景色
-        if (consecutiveLayout.currentStickyViews.indexOfFirst { v -> v.id == R.id.tabLayout } == -1) {
-            tabLayout.setBackgroundResource(R.color.color_F5F5F5)
-        } else {
-            tabLayout.setBackgroundResource(R.color.white)
         }
     }
 }
