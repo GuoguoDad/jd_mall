@@ -132,7 +132,10 @@
         <entry key="module_common/src/main/res/drawable-v23/tab_indicator_shape.xml" value="0.2835" />
         <entry key="module_common/src/main/res/drawable/badge_bg.xml" value="0.2405" />
         <entry key="module_common/src/main/res/drawable/gray_circular_bg.xml" value="0.2405" />
+        <entry key="module_common/src/main/res/drawable/normal_indicator.xml" value="0.2425" />
         <entry key="module_common/src/main/res/drawable/rounded_corners_white_10_bg.xml" value="0.224" />
+        <entry key="module_common/src/main/res/drawable/rounded_corners_white_bg.xml" value="0.2425" />
+        <entry key="module_common/src/main/res/drawable/selected_indicator.xml" value="0.2535" />
         <entry key="module_common/src/main/res/drawable/selector_tab_indicator.xml" value="0.273" />
         <entry key="module_common/src/main/res/drawable/shape_tab_indicator_selected.xml" value="0.295" />
         <entry key="module_common/src/main/res/drawable/step_add_sub_bg.xml" value="0.224" />
@@ -140,6 +143,7 @@
         <entry key="module_common/src/main/res/drawable/step_right_selector.xml" value="0.224" />
         <entry key="module_common/src/main/res/drawable/tag_bg.xml" value="0.224" />
         <entry key="module_common/src/main/res/layout/activity_detail.xml" value="0.1" />
+        <entry key="module_common/src/main/res/layout/activity_detail_goods.xml" value="0.1" />
         <entry key="module_common/src/main/res/layout/badge_layout.xml" value="0.24365942028985507" />
         <entry key="module_common/src/main/res/layout/detail_header.xml" value="0.1" />
         <entry key="module_common/src/main/res/layout/goods_second_item.xml" value="0.1" />

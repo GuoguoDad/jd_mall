@@ -41,7 +41,6 @@
                 android:id="@+id/detailHeaderTabLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/color_FAFAFA"
                 app:tabMode="fixed"
                 app:tabIndicatorHeight="2dp"
                 app:tabIndicatorColor="@color/color_E33A3C"

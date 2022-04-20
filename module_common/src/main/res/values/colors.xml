@@ -29,6 +29,7 @@
     <color name="color_E74737">#E74737</color>
     <color name="color_FFD3D8">#FFD3D8</color>
     <color name="color_F6F6F6">#F6F6F6</color>
+    <color name="color_676767">#676767</color>
     <color name="color_DDDDDD">#DDDDDD</color>
     <color name="color_CFCFCF">#CFCFCF</color>
     <color name="color_FE0F22">#FE0F22</color>
@@ -42,6 +43,8 @@
     <color name="theme_color">#FF1520</color>
 
     <color name="divider">#D3D2D3</color>
+
+    <color name="money_red">#E6422E</color>
 
     <color name="material_amber_200">#FFE082</color>
     <color name="material_amber_300">#FFD54F</color>

@@ -8,8 +8,6 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import coil.ImageLoader
 import coil.load
-import com.alibaba.android.arouter.launcher.ARouter
-import com.aries.common.constants.RouterPaths
 import com.aries.common.util.CoilUtil
 import com.aries.home.R
 import com.aries.home.ui.BannerBean
@@ -50,9 +48,6 @@ class BannerView: FrameLayout {
                     holder?.imageView?.load(data?.imgUrl, imageLoader ) {
                         crossfade(true)
                         placeholder(R.drawable.default_img)
-                    }
-                    holder?.imageView?.setOnClickListener {
-
                     }
                 }
             }

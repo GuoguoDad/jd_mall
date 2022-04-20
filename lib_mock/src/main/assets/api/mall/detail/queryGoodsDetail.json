@@ -2,8 +2,10 @@
   "code": "0",
   "msg": "",
   "data": {
-    "colorList": [
-      {"colorName" : "黑灰色/红色",
+    "bannerList": [
+      {
+        "colorId": "color1",
+        "colorName" : "黑灰色/红色",
         "thumb": "https://m.360buyimg.com/n2/jfs/t1/212471/24/17530/169099/625d9642Eadb21db3/f5c28554c39fee6d.jpg",
         "imgList": [
           "https://m.360buyimg.com/mobilecms/s1080x1080_jfs/t1/212471/24/17530/169099/625d9642Eadb21db3/f5c28554c39fee6d.jpg!q70.jpg.webp",
@@ -16,6 +18,7 @@
         ]
       },
       {
+        "colorId": "color2",
         "colorName" : "蓝色/黄色",
         "thumb": "",
         "imgList": [
