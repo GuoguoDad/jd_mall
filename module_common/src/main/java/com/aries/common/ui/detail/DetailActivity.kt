@@ -1,7 +1,9 @@
 package com.aries.common.ui.detail
 
 import android.os.Build
+import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -17,10 +19,13 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.aries.common.R
 import com.aries.common.base.BaseActivity
 import com.aries.common.constants.RouterPaths
+import com.aries.common.ui.detail.ConvertUtil.setDefaultSelect
 import com.aries.common.ui.detail.adapter.ColorThumbListAdapter
 import com.aries.common.util.CoilUtil
 import com.aries.common.util.DisplayUtil
 import com.aries.common.util.StatusBarUtil
+import com.chad.library.adapter.base.BaseQuickAdapter
+import com.chad.library.adapter.base.listener.OnItemClickListener
 import com.google.android.material.tabs.TabLayout
 import com.orhanobut.logger.Logger
 import com.youth.banner.adapter.BannerImageAdapter
@@ -55,19 +60,21 @@ class DetailActivity: BaseActivity(R.layout.activity_detail), MavericksView {
         viewModel.queryGoodsDetail()
     }
 
-
     private fun addStateChangeListener() {
         viewModel.onEach(
             DetailState::currentBanner,
-            DetailState::bannerList
-        ) { currentBanner, bannerList ->
+            DetailState::bannerList,
+            DetailState::goodsInfo
+        ) { currentBanner, bannerList, goodsInfo ->
             run {
                 if (currentBanner.imgList.isNotEmpty()) {
                     showGoodsImgBanner(currentBanner.imgList)
                 }
                 if (bannerList.isNotEmpty()) {
                     colorThumbListAdapter.setList(bannerList)
+                    colorOptionTv.text = "${bannerList.size}色可选"
                 }
+                showGoodsInfo(goodsInfo)
             }
         }
     }
@@ -136,5 +143,26 @@ class DetailActivity: BaseActivity(R.layout.activity_detail), MavericksView {
             adapter = colorThumbListAdapter
             layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false)
         }
+        colorThumbListAdapter.setOnItemClickListener { adapter, _, position ->
+            val list: MutableList<BannerBean> = adapter.data as MutableList<BannerBean>
+            val banner = list[position]
+            val flag = banner.select!!
+
+            for (i in list.indices) {
+                list[i].select = false
+            }
+            list[position].select = true
+
+            if (!flag) {
+                viewModel.updateSelectColorThumb(list, banner)
+            }
+        }
+    }
+
+    private fun showGoodsInfo(goodsInfo: GoodsInfo) {
+        if (goodsInfo.originalPrice.isNotEmpty()) {
+            originalPriceTv.text = "￥${goodsInfo.originalPrice}"
+        }
+        goodsNameTv.text = goodsInfo.goodsName
     }
 }

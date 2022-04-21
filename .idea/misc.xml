@@ -131,6 +131,9 @@
         <entry key="module_category/src/main/res/layout/serach.xml" value="0.165" />
         <entry key="module_common/src/main/res/drawable-v23/tab_indicator_shape.xml" value="0.2835" />
         <entry key="module_common/src/main/res/drawable/badge_bg.xml" value="0.2405" />
+        <entry key="module_common/src/main/res/drawable/detail_color_thumb_select.xml" value="0.239" />
+        <entry key="module_common/src/main/res/drawable/detail_color_thumb_unselect.xml" value="0.239" />
+        <entry key="module_common/src/main/res/drawable/four_corners_white_14_bg.xml" value="0.239" />
         <entry key="module_common/src/main/res/drawable/gray_circular_bg.xml" value="0.2405" />
         <entry key="module_common/src/main/res/drawable/normal_indicator.xml" value="0.2425" />
         <entry key="module_common/src/main/res/drawable/rounded_corners_white_10_bg.xml" value="0.224" />

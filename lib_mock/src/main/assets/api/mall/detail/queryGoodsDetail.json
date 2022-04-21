@@ -32,6 +32,12 @@
         ]
       }
     ],
+    "goodsInfo": {
+      "originalPrice": "890.00",
+      "specialPrice": "810",
+      "tagList": ["买满300减40", "满199减20", "满49减1"],
+      "goodsName": "ASICS亚瑟士 2022春夏男鞋稳定支持经典跑鞋舒适回弹运动鞋 GT-2000 10 蓝色/黄色"
+    },
     "detailInfo": {
       "hdzq": "https://img13.360buyimg.com/cms/jfs/t1/197792/33/22051/102624/625d0076Ef4252b55/fdf3b1d52374f37d.jpg.dpg",
       "dnyx": "https://img11.360buyimg.com/cms/jfs/t1/131411/22/20981/284862/6259240fE7980bcbe/b2b9db04abe679f9.jpg.dpg",
