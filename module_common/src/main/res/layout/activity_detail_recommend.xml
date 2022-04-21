@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@drawable/four_corners_white_14_bg"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginTop="@dimen/dp_10">
+
+        <TextView
+            android:id="@+id/storeGoodsTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp_12"
+            android:layout_margin="@dimen/dp_10"
+            android:textColor="@color/color_676767"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/storeGoodsRv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10"
+            android:overScrollMode="never"/>
+
+    </LinearLayout>
+
+</LinearLayout>

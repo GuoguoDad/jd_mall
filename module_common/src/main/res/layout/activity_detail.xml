@@ -16,7 +16,19 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <include layout="@layout/activity_detail_goods" />
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/dp_10">
+
+                <include layout="@layout/activity_detail_goods" />
+
+                <include layout="@layout/activity_detail_des" />
+
+                <include layout="@layout/activity_detail_recommend" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
 
         </com.aries.common.widget.AnimationNestedScrollView>
 
@@ -43,7 +55,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="@dimen/dp_60"
         android:background="@color/white">
     </LinearLayout>
 

@@ -10,7 +10,7 @@ data class GoodsInfo(var originalPrice: String,var specialPrice: String, var tag
 data class DetailInfo(var hdzq: String, var dnyx: String, var introductionList: List<String>, var serviceList: List<String>)
 data class GoodsDetailInfoResponse(var bannerList: List<BannerBean>, var goodsInfo: GoodsInfo, var detailInfo: DetailInfo)
 
-data class QueryGoodsListParams(var storeCode: String ,var currentPage: Number, var pageSize: Number)
+data class QueryGoodsListParams(var currentPage: Int, var pageSize: Int)
 data class GoodsListResponse(var dataList: MutableList<GoodsBean>, var totalCount: Int, var totalPageCount: Int)
 
 interface ApiService {

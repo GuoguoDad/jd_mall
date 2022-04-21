@@ -3,79 +3,121 @@ package com.aries.common.ui.detail
 import android.os.Build
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import coil.ImageLoader
 import coil.load
 import com.airbnb.mvrx.MavericksView
 import com.airbnb.mvrx.viewModel
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.aries.common.R
+import com.aries.common.adapter.GoodsListAdapter
 import com.aries.common.base.BaseActivity
 import com.aries.common.constants.RouterPaths
-import com.aries.common.ui.detail.ConvertUtil.setDefaultSelect
 import com.aries.common.ui.detail.adapter.ColorThumbListAdapter
+import com.aries.common.ui.detail.adapter.GoodsDesImgListAdapter
 import com.aries.common.util.CoilUtil
 import com.aries.common.util.DisplayUtil
 import com.aries.common.util.StatusBarUtil
-import com.chad.library.adapter.base.BaseQuickAdapter
-import com.chad.library.adapter.base.listener.OnItemClickListener
+import com.aries.common.widget.AnimationNestedScrollView
 import com.google.android.material.tabs.TabLayout
-import com.orhanobut.logger.Logger
 import com.youth.banner.adapter.BannerImageAdapter
 import com.youth.banner.holder.BannerImageHolder
-import com.youth.banner.indicator.CircleIndicator
 import com.youth.banner.indicator.RectangleIndicator
-import com.youth.banner.indicator.RoundLinesIndicator
 import com.youth.banner.transformer.AlphaPageTransformer
 import kotlinx.android.synthetic.main.activity_detail.*
+import kotlinx.android.synthetic.main.activity_detail_des.*
 import kotlinx.android.synthetic.main.activity_detail_goods.*
+import kotlinx.android.synthetic.main.activity_detail_recommend.*
 import kotlinx.android.synthetic.main.detail_header.*
 
 @Route(path = RouterPaths.GOODS_DETAIL)
 class DetailActivity: BaseActivity(R.layout.activity_detail), MavericksView {
     private val tabs = arrayListOf("商品", "评价", "详情", "推荐")
     private var imageLoader: ImageLoader = CoilUtil.getImageLoader()
+    private val viewModel: DetailViewModal by viewModel()
 
     private val colorThumbListAdapter: ColorThumbListAdapter by lazy { ColorThumbListAdapter(R.layout.color_thumb_item, arrayListOf()) }
-
-    private val viewModel: DetailViewModal by viewModel()
+    private val goodsDesImgListAdapter: GoodsDesImgListAdapter by lazy { GoodsDesImgListAdapter(R.layout.activity_detail_des_img, arrayListOf()) }
+    private val goodsListAdapter by lazy { GoodsListAdapter(arrayListOf()) }
+    private val staggeredGridLayoutManager: StaggeredGridLayoutManager by lazy {
+        StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+    }
 
     override fun initView() {
         initLayout()
         initColorThumb()
+        scrollerLayout.setOnAnimationScrollListener(object : AnimationNestedScrollView.OnAnimationScrollChangeListener{
+            override fun onScrollChanged(dy: Float) {
+                handleScroll(dy)
+            }
+        })
         back.setOnClickListener {
             finish()
+        }
+        backTop.setOnClickListener {
+            scrollerLayout.smoothScrollTo(0, 0, 1000)
         }
         addStateChangeListener()
     }
 
     override fun initData() {
         viewModel.queryGoodsDetail()
+        viewModel.initRecommendList()
     }
 
     private fun addStateChangeListener() {
         viewModel.onEach(
-            DetailState::currentBanner,
             DetailState::bannerList,
-            DetailState::goodsInfo
-        ) { currentBanner, bannerList, goodsInfo ->
+            DetailState::goodsInfo,
+            DetailState::detailInfo,
+            DetailState::goodsList,
+            DetailState::nextPageGoodsList,
+            DetailState::currentPage,
+            DetailState::totalPage
+        ) { bannerList, goodsInfo, detailInfo, goodsList, nextPageGoodsList, currentPage, totalPage ->
             run {
-                if (currentBanner.imgList.isNotEmpty()) {
-                    showGoodsImgBanner(currentBanner.imgList)
-                }
                 if (bannerList.isNotEmpty()) {
+                    val current = bannerList.find { m -> m.select == true }
+                    showGoodsImgBanner(current!!.imgList)
                     colorThumbListAdapter.setList(bannerList)
-                    colorOptionTv.text = "${bannerList.size}色可选"
+                    "${bannerList.size}色可选".also { colorOptionTv.text = it }
                 }
                 showGoodsInfo(goodsInfo)
+                showDetailInfo(detailInfo)
+                if (goodsList.isNotEmpty()) {
+                    storeGoodsTv.text = "同店好货"
+                    goodsListAdapter.setList(goodsList)
+                }
+                if (nextPageGoodsList.isNotEmpty()) {
+                    goodsListAdapter.addData(nextPageGoodsList)
+                    if (currentPage <= totalPage)
+                        goodsListAdapter.loadMoreModule.loadMoreComplete()
+                    else
+                        goodsListAdapter.loadMoreModule.loadMoreEnd()
+                }
             }
+        }
+    }
+
+    private fun handleScroll(dy: Float) {
+        if (dy >= DisplayUtil.getScreenHeight(this)) {
+            backTop.visibility = View.VISIBLE
+        } else {
+            backTop.visibility = View.GONE
+        }
+
+        if (dy >= StatusBarUtil.getHeight()) {
+            detailHeaderLayout.setBackgroundResource(R.color.white)
+            detailHeaderTabLayout.visibility = View.VISIBLE
+        } else {
+            detailHeaderLayout.setBackgroundResource(R.color.transparent)
+            detailHeaderTabLayout.visibility = View.GONE
         }
     }
 
@@ -131,9 +173,23 @@ class DetailActivity: BaseActivity(R.layout.activity_detail), MavericksView {
         }
 
         val lp = LinearLayoutCompat.LayoutParams(LinearLayoutCompat.LayoutParams.MATCH_PARENT, LinearLayoutCompat.LayoutParams.WRAP_CONTENT)
-        lp.height = DisplayUtil.getScreenWidth(this)
-        lp.topMargin = StatusBarUtil.getHeight()
+        lp.height = DisplayUtil.getScreenWidth(this) + StatusBarUtil.getHeight()
         goodsImgBanner.layoutParams = lp
+        goodsImgBanner.setPadding(0, StatusBarUtil.getHeight(), 0, 0)
+
+        goodsDesImgList.run {
+            adapter = goodsDesImgListAdapter
+            layoutManager = LinearLayoutManager(this.context)
+        }
+
+        storeGoodsRv.run {
+            adapter = goodsListAdapter
+            layoutManager = staggeredGridLayoutManager
+        }
+
+        goodsListAdapter.loadMoreModule.setOnLoadMoreListener{
+            viewModel.loadMoreRecommendList()
+        }
     }
 
     override fun invalidate() {}
@@ -154,15 +210,30 @@ class DetailActivity: BaseActivity(R.layout.activity_detail), MavericksView {
             list[position].select = true
 
             if (!flag) {
-                viewModel.updateSelectColorThumb(list, banner)
+                viewModel.updateSelectColorThumb(list)
+                colorThumbListAdapter.setList(list)
+                showGoodsImgBanner(banner.imgList)
             }
         }
     }
 
     private fun showGoodsInfo(goodsInfo: GoodsInfo) {
         if (goodsInfo.originalPrice.isNotEmpty()) {
-            originalPriceTv.text = "￥${goodsInfo.originalPrice}"
+            "￥${goodsInfo.originalPrice}".also { originalPriceTv.text = it }
         }
         goodsNameTv.text = goodsInfo.goodsName
+    }
+
+    private fun showDetailInfo(detailInfo: DetailInfo) {
+        hdzqTv.text = "活动专区"
+        hdzqIv.load(detailInfo.hdzq, imageLoader ) {
+            crossfade(true)
+        }
+        dnyxTv.text = "店内优选"
+        dnyxIv.load(detailInfo.dnyx, imageLoader ) {
+            crossfade(true)
+        }
+        spjsTv.text = "商品介绍"
+        goodsDesImgListAdapter.setList(detailInfo.introductionList)
     }
 }

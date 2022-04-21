@@ -9,6 +9,7 @@
     <com.youth.banner.Banner
         android:id="@+id/goodsImgBanner"
         android:layout_width="match_parent"
+        android:background="@color/white"
         android:layout_height="360dp" />
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -17,7 +18,7 @@
         android:orientation="vertical"
         android:background="@drawable/four_corners_white_14_bg"
         android:layout_marginVertical="@dimen/dp_10"
-        android:layout_marginHorizontal="@dimen/dp_10"
+        android:layout_marginHorizontal="8dp"
         android:padding="@dimen/dp_10">
 
         <androidx.appcompat.widget.LinearLayoutCompat
@@ -36,7 +37,7 @@
                 android:id="@+id/colorThumbRv"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:layout_height="54dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp_10"/>
 
         </androidx.appcompat.widget.LinearLayoutCompat>

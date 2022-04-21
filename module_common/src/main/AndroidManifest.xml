@@ -3,5 +3,6 @@
 
     <application>
         <activity android:name="com.aries.common.ui.detail.DetailActivity" />
+        <activity android:name="com.aries.common.ui.test.StoreGoodsActivity" />
     </application>
 </manifest>
