@@ -21,6 +21,7 @@ import com.aries.common.R
 import com.aries.common.adapter.GoodsListAdapter
 import com.aries.common.base.BaseActivity
 import com.aries.common.constants.RouterPaths
+import com.aries.common.dialog.LoadingDialog
 import com.aries.common.ui.detail.adapter.AppraiseListSectionAdapter
 import com.aries.common.ui.detail.adapter.ColorThumbListAdapter
 import com.aries.common.ui.detail.adapter.GoodsDesImgListAdapter
@@ -29,7 +30,6 @@ import com.aries.common.util.DisplayUtil
 import com.aries.common.util.PixelUtil
 import com.aries.common.util.StatusBarUtil
 import com.google.android.material.tabs.TabLayout
-import com.orhanobut.logger.Logger
 import com.youth.banner.adapter.BannerImageAdapter
 import com.youth.banner.holder.BannerImageHolder
 import com.youth.banner.indicator.RectangleIndicator
@@ -45,6 +45,8 @@ import kotlinx.android.synthetic.main.detail_header.*
 class DetailActivity: BaseActivity(R.layout.activity_detail), MavericksView {
     private val tabs = arrayListOf("商品", "评价", "详情", "推荐")
     private var imageLoader: ImageLoader = CoilUtil.getImageLoader()
+    private val loadingDialog: LoadingDialog by lazy { LoadingDialog(this) }
+
     private var statusBarHeight: Int = 0
     private val viewModel: DetailViewModal by viewModel()
     //颜色选择缩略图adapter
@@ -108,8 +110,10 @@ class DetailActivity: BaseActivity(R.layout.activity_detail), MavericksView {
         //商品图片列表 banner
         val lp = LinearLayoutCompat.LayoutParams(LinearLayoutCompat.LayoutParams.MATCH_PARENT, LinearLayoutCompat.LayoutParams.WRAP_CONTENT)
         lp.height = DisplayUtil.getScreenWidth(this) + StatusBarUtil.getHeight()
-        goodsImgBanner.layoutParams = lp
-        goodsImgBanner.setPadding(0, StatusBarUtil.getHeight(), 0, 0)
+        goodsImgBanner.run {
+            layoutParams = lp
+            setPadding(0, StatusBarUtil.getHeight(), 0, 0)
+        }
 
         //颜色缩略图选择列表
         colorThumbRv.run {
@@ -170,6 +174,7 @@ class DetailActivity: BaseActivity(R.layout.activity_detail), MavericksView {
     }
 
     override fun initData() {
+        loadingDialog.show()
         viewModel.queryGoodsDetail()
         viewModel.initRecommendList()
     }
@@ -186,6 +191,7 @@ class DetailActivity: BaseActivity(R.layout.activity_detail), MavericksView {
         ) { bannerList, goodsInfo, detailInfo, goodsList, nextPageGoodsList, currentPage, totalPage ->
             run {
                 if (bannerList.isNotEmpty()) {
+                    loadingDialog.dismiss()
                     val current = bannerList.find { m -> m.select == true }
                     showGoodsImgBanner(current!!.imgList)
                     colorThumbListAdapter.setList(bannerList)
