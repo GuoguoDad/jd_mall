@@ -24,4 +24,6 @@ class SectionQuickAdapter(sectionHeadResId: Int, layoutResId: Int, data: Mutable
         }
         holder.setText(R.id.text_content, item.categoryName)
     }
+
+
 }

@@ -126,11 +126,13 @@
         <entry key="module_category/src/main/res/layout/fragment_main.xml" value="0.2269021739130435" />
         <entry key="module_category/src/main/res/layout/main_left_item.xml" value="0.24048913043478262" />
         <entry key="module_category/src/main/res/layout/main_right.xml" value="0.2269021739130435" />
-        <entry key="module_category/src/main/res/layout/main_right_grid.xml" value="0.22916666666666666" />
+        <entry key="module_category/src/main/res/layout/main_right_grid.xml" value="0.1" />
         <entry key="module_category/src/main/res/layout/main_right_grid_header.xml" value="0.23233695652173914" />
         <entry key="module_category/src/main/res/layout/serach.xml" value="0.165" />
         <entry key="module_common/src/main/res/drawable-v23/tab_indicator_shape.xml" value="0.2835" />
         <entry key="module_common/src/main/res/drawable/badge_bg.xml" value="0.2405" />
+        <entry key="module_common/src/main/res/drawable/detail_appraisa_more_bg.xml" value="0.24" />
+        <entry key="module_common/src/main/res/drawable/detail_appraise_more_bg.xml" value="0.24" />
         <entry key="module_common/src/main/res/drawable/detail_color_thumb_select.xml" value="0.239" />
         <entry key="module_common/src/main/res/drawable/detail_color_thumb_unselect.xml" value="0.239" />
         <entry key="module_common/src/main/res/drawable/four_corners_white_14_bg.xml" value="0.239" />
@@ -146,6 +148,9 @@
         <entry key="module_common/src/main/res/drawable/step_right_selector.xml" value="0.224" />
         <entry key="module_common/src/main/res/drawable/tag_bg.xml" value="0.224" />
         <entry key="module_common/src/main/res/layout/activity_detail.xml" value="0.1" />
+        <entry key="module_common/src/main/res/layout/activity_detail_appraise.xml" value="0.1" />
+        <entry key="module_common/src/main/res/layout/activity_detail_appraise_header.xml" value="0.1" />
+        <entry key="module_common/src/main/res/layout/activity_detail_appraise_item.xml" value="0.1" />
         <entry key="module_common/src/main/res/layout/activity_detail_des.xml" value="0.1" />
         <entry key="module_common/src/main/res/layout/activity_detail_des_img.xml" value="0.22554347826086957" />
         <entry key="module_common/src/main/res/layout/activity_detail_goods.xml" value="0.1" />

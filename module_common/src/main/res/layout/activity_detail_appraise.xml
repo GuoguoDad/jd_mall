@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/detailAppraiseLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:visibility="gone"
+    android:background="@drawable/four_corners_white_14_bg"
+    android:layout_marginHorizontal="8dp"
+    android:layout_marginTop="@dimen/dp_10">
+
+    <TextView
+        android:id="@+id/appraiseTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_10"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@color/cl_000000"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/appraiseRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/dp_10"
+        android:overScrollMode="never"/>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/dp_5"
+        android:layout_marginBottom="@dimen/dp_18"
+        android:background="@drawable/detail_appraise_more_bg">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/dp_5"
+            android:layout_marginHorizontal="@dimen/dp_18"
+            android:textSize="12sp"
+            android:textColor="@color/cl_000000"
+            android:text="查看全部评价"/>
+
+    </LinearLayout>
+
+</LinearLayout>
+

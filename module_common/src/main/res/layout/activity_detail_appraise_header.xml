@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="@dimen/dp_10"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/commentatorImg"
+            android:layout_width="36dp"
+            android:layout_height="36dp"/>
+
+        <TextView
+            android:id="@+id/commentatorTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp_12"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:textColor="@color/color_676767"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/contentTxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:textSize="@dimen/sp_12"
+        android:layout_marginTop="@dimen/dp_5"
+        android:textColor="@color/cl_000000"/>
+
+    <TextView
+        android:id="@+id/modelTxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_2"
+        android:textSize="12sp"
+        android:textColor="@color/cl_000000"/>
+
+</LinearLayout>
+

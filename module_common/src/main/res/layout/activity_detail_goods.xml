@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/detailGoodsLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    tools:ignore="MissingDefaultResource">
+    android:visibility="gone"
+    android:orientation="vertical">
 
     <com.youth.banner.Banner
         android:id="@+id/goodsImgBanner"
@@ -17,8 +17,8 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="@drawable/four_corners_white_14_bg"
-        android:layout_marginVertical="@dimen/dp_10"
         android:layout_marginHorizontal="8dp"
+        android:layout_marginTop="@dimen/dp_10"
         android:padding="@dimen/dp_10">
 
         <androidx.appcompat.widget.LinearLayoutCompat

@@ -9,7 +9,7 @@ import com.aries.common.bean.GoodsBean
 data class DetailState(
     val hasCodeFlag: Int = 0,
     val bannerList: List<BannerBean> = emptyList(),
-    val goodsInfo: GoodsInfo = GoodsInfo("","", emptyList(), ""),
+    val goodsInfo: GoodsInfo = GoodsInfo("","", emptyList(), "", emptyList()),
     val detailInfo: DetailInfo = DetailInfo("","", emptyList(), emptyList()),
     val detailInfoResponse: Async<BaseResponse<GoodsDetailInfoResponse>> = Uninitialized,
 
