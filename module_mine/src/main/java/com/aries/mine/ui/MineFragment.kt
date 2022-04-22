@@ -59,6 +59,9 @@ class MineFragment: BaseFragment(R.layout.layout_mine), MavericksView {
             layoutManager = staggeredGridLayoutManager
             adapter = goodsListAdapter
         }
+        goodsListAdapter.setOnItemClickListener { adapter, view, position ->
+            ARouter.getInstance().build(RouterPaths.GOODS_DETAIL).navigation()
+        }
         backTop.setOnClickListener {
             consecutiveLayout.smoothScrollToChildWithOffset(consecutiveLayout.getChildAt(0),0)
         }

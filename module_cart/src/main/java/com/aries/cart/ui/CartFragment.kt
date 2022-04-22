@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.airbnb.mvrx.MavericksView
 import com.airbnb.mvrx.activityViewModel
 import com.airbnb.mvrx.withState
+import com.alibaba.android.arouter.launcher.ARouter
 import com.aries.common.base.BaseFragment
 import com.aries.cart.R
 import com.aries.cart.ui.ConvertUtil.convertCartData
@@ -16,6 +17,7 @@ import com.aries.cart.ui.listener.OnCartItemChangeListener
 import com.aries.cart.ui.listener.OnStepperChangeListener
 import com.aries.cart.ui.view.QuickEntryPopup
 import com.aries.common.adapter.GoodsListAdapter
+import com.aries.common.constants.RouterPaths
 import com.aries.common.decoration.SpacesItemDecoration
 import com.aries.common.util.DisplayUtil
 import com.aries.common.util.PixelUtil
@@ -60,6 +62,9 @@ class CartFragment : BaseFragment(R.layout.fragment_cart), MavericksView {
         }
         goodsListAdapter.loadMoreModule.setOnLoadMoreListener {
             viewModel.loadMoreMaybeLikeList()
+        }
+        goodsListAdapter.setOnItemClickListener { adapter, view, position ->
+            ARouter.getInstance().build(RouterPaths.GOODS_DETAIL).navigation()
         }
         //购物车中的商品列表
         cartGoodsList.run {
