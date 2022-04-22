@@ -164,7 +164,7 @@ class DetailActivity: BaseActivity(R.layout.activity_detail), MavericksView {
         }
         //返回顶部
         backTop.setOnClickListener {
-            scrollerLayout.smoothScrollTo(0, 0, 1000)
+            scrollerLayout.smoothScrollTo(0, 0, 500)
         }
         addStateChangeListener()
     }

@@ -55,10 +55,6 @@
             android:contentDescription="@string/backTop" />
     </RelativeLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_60"
-        android:background="@color/white">
-    </LinearLayout>
+    <include layout="@layout/activity_detail_footer" />
 
 </LinearLayout>

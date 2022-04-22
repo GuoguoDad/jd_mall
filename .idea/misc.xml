@@ -131,10 +131,14 @@
         <entry key="module_category/src/main/res/layout/serach.xml" value="0.165" />
         <entry key="module_common/src/main/res/drawable-v23/tab_indicator_shape.xml" value="0.2835" />
         <entry key="module_common/src/main/res/drawable/badge_bg.xml" value="0.2405" />
+        <entry key="module_common/src/main/res/drawable/btn_buy_bg.xml" value="0.206" />
+        <entry key="module_common/src/main/res/drawable/btn_cart_bg.xml" value="0.206" />
         <entry key="module_common/src/main/res/drawable/detail_appraisa_more_bg.xml" value="0.24" />
         <entry key="module_common/src/main/res/drawable/detail_appraise_more_bg.xml" value="0.24" />
         <entry key="module_common/src/main/res/drawable/detail_color_thumb_select.xml" value="0.239" />
         <entry key="module_common/src/main/res/drawable/detail_color_thumb_unselect.xml" value="0.239" />
+        <entry key="module_common/src/main/res/drawable/enter_bg.xml" value="0.206" />
+        <entry key="module_common/src/main/res/drawable/footer_bg.xml" value="0.206" />
         <entry key="module_common/src/main/res/drawable/four_corners_white_14_bg.xml" value="0.239" />
         <entry key="module_common/src/main/res/drawable/gray_circular_bg.xml" value="0.2405" />
         <entry key="module_common/src/main/res/drawable/normal_indicator.xml" value="0.2425" />
@@ -143,6 +147,7 @@
         <entry key="module_common/src/main/res/drawable/selected_indicator.xml" value="0.2535" />
         <entry key="module_common/src/main/res/drawable/selector_tab_indicator.xml" value="0.273" />
         <entry key="module_common/src/main/res/drawable/shape_tab_indicator_selected.xml" value="0.295" />
+        <entry key="module_common/src/main/res/drawable/similar_bg.xml" value="0.206" />
         <entry key="module_common/src/main/res/drawable/step_add_sub_bg.xml" value="0.224" />
         <entry key="module_common/src/main/res/drawable/step_left_selector.xml" value="0.224" />
         <entry key="module_common/src/main/res/drawable/step_right_selector.xml" value="0.224" />
@@ -153,6 +158,8 @@
         <entry key="module_common/src/main/res/layout/activity_detail_appraise_item.xml" value="0.1" />
         <entry key="module_common/src/main/res/layout/activity_detail_des.xml" value="0.1" />
         <entry key="module_common/src/main/res/layout/activity_detail_des_img.xml" value="0.22554347826086957" />
+        <entry key="module_common/src/main/res/layout/activity_detail_flooter.xml" value="0.2368659420289855" />
+        <entry key="module_common/src/main/res/layout/activity_detail_footer.xml" value="0.1" />
         <entry key="module_common/src/main/res/layout/activity_detail_goods.xml" value="0.1" />
         <entry key="module_common/src/main/res/layout/activity_detail_recommend.xml" value="0.1" />
         <entry key="module_common/src/main/res/layout/activity_detail_recommnd_list.xml" value="0.1" />
