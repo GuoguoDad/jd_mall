@@ -11,7 +11,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/lib_mock" />
+            <option value="$PROJECT_DIR$/local_mock" />
             <option value="$PROJECT_DIR$/module_cart" />
             <option value="$PROJECT_DIR$/module_category" />
             <option value="$PROJECT_DIR$/module_common" />
