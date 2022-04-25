@@ -48,6 +48,9 @@ class DemoActivity : BaseActivity(R.layout.fragment_mine) {
                             "004" -> {
                                 ARouter.getInstance().build(RouterPaths.STICKY_DEMO).navigation()
                             }
+                            "005" -> {
+                                ARouter.getInstance().build(RouterPaths.RN_PAGE).navigation()
+                            }
                             else -> {
                                 Toast.makeText(localThis ,bean?.name, Toast.LENGTH_SHORT).show()
                             }

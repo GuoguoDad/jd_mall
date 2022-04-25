@@ -1,0 +1,15 @@
+{
+  "code": 0,
+  "data": {
+    "ossUrl": "https://tuicr.oss-cn-hangzhou.aliyuncs.com/jsbundle/bundle.zip",
+    "lowestAppVersion": "1.0",
+    "isOldMode": "0",
+    "name": "DEMO_APP",
+    "userId": "0000000",
+    "lowestIosVersion": "1.0",
+    "iconUrl": "https://ww4.sinaimg.cn/mw2000/006ffvM6jw8ex9l3z71ioj3050050a9z.jpg",
+    "version": "21",
+    "md5code": "6028ce7df9a43156046af5c1832e206b"
+  },
+  "message": "success"
+}

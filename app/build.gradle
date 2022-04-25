@@ -41,5 +41,6 @@ android {
 
 dependencies {
     api project(path: ':module_main')
+    api project(path: ':module_rn')
     testImplementation 'junit:junit:4.12'
 }
