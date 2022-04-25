@@ -9,7 +9,6 @@ import android.os.Message;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.aries.common.constants.RouterPaths;
@@ -43,7 +42,6 @@ import static com.aries.rn.maskhub.Constants.LOAD_EVENT_RELOAD_INSTALLED;
 import static com.aries.rn.maskhub.Constants.LOAD_EVENT_RELOAD_JS_BUNDLE;
 import static com.aries.rn.maskhub.Constants.LOAD_EVENT_RE_CREATE;
 import static com.aries.rn.maskhub.Constants.PAGE_NAME;
-
 
 @Route(path = RouterPaths.RN_PAGE)
 public class LoadReactActivity extends LazyLoadReactActivity {

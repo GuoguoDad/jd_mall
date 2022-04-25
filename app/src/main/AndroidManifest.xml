@@ -29,14 +29,6 @@
             </intent-filter>
         </activity>
 
-<!--        <activity-->
-<!--            android:name=".alive.OnePxActivity"-->
-<!--            android:theme="@style/OnePxActStyle"-->
-<!--            android:configChanges="keyboardHidden|orientation|screenSize|navigation|keyboard"-->
-<!--            android:excludeFromRecents="true"-->
-<!--            android:finishOnTaskLaunch="false"-->
-<!--            android:launchMode="singleInstance"/>-->
-
         <provider
             android:name="com.aries.common.provider.ShareContentProvider"
             android:authorities="${applicationId}.contextprovider"

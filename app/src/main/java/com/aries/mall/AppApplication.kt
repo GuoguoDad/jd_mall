@@ -1,9 +1,6 @@
 package com.aries.mall
 
-import android.content.Intent
-import android.content.IntentFilter
 import com.aries.common.BaseApplication
-import com.aries.mall.alive.OnePixelReceiver
 import com.aries.rn.maskhub.Constants
 import com.aries.rn.maskhub.Options
 import com.aries.rn.maskhub.SnMiniAppVersionCheckDelegate
@@ -14,16 +11,10 @@ import com.facebook.react.ReactPackage
 import com.facebook.react.shell.MainReactPackage
 import com.facebook.soloader.SoLoader
 import java.io.File
-import java.util.*
 
 class AppApplication: BaseApplication(), ReactApplication {
 
-    override fun init() {
-//        var intentFilter = IntentFilter()
-//        intentFilter.addAction(Intent.ACTION_SCREEN_ON)
-//        intentFilter.addAction(Intent.ACTION_SCREEN_OFF)
-//        registerReceiver(OnePixelReceiver(), intentFilter)
-    }
+    override fun init() {}
 
     private val mReactNativeHost: ReactNativeHost = object : ReactNativeHost(this) {
         override fun getUseDeveloperSupport(): Boolean {
