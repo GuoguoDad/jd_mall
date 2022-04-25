@@ -4,7 +4,7 @@ dependencyResolutionManagement {
         maven { url 'https://www.jitpack.io' }
         google()
         mavenCentral()
-        jcenter() // Warning: this repository is going to shut down soon
+        jcenter()
     }
 }
 rootProject.name = "android_mall"
@@ -16,3 +16,5 @@ include ':module_main'
 include ':module_category'
 include ':module_cart'
 include ':module_mine'
+include ':module_rn'
+

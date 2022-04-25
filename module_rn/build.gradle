@@ -1,0 +1,60 @@
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
+}
+
+android {
+    compileSdk rootProject.ext.compileSdk
+
+    defaultConfig {
+        minSdk rootProject.ext.defaultConfigMinSdk
+        targetSdk rootProject.ext.defaultConfigTargetSdk
+        versionCode rootProject.ext.defaultConfigVersionCode
+        versionName rootProject.ext.defaultConfigVersionName
+
+        kapt {
+            arguments {
+                arg("AROUTER_MODULE_NAME", project.getName())
+            }
+        }
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility rootProject.ext.compileOptionsSourceCompatibility
+        targetCompatibility rootProject.ext.compileOptionsTargetCompatibility
+    }
+    kotlinOptions {
+        jvmTarget = rootProject.ext.kotlinOptionsJvmTarget
+    }
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+    api project(path: ':module_common')
+    api fileTree(include: ['*.aar'], dir: 'libs')
+    api 'com.facebook.infer.annotation:infer-annotation:0.11.2'
+    api 'com.facebook.yoga:proguard-annotations:1.14.1'
+    api 'javax.inject:javax.inject:1'
+    api 'com.facebook.fresco:fresco:2.0.0'
+    api 'com.facebook.fresco:imagepipeline-okhttp3:2.0.0'
+    api 'com.facebook.soloader:soloader:0.9.0'
+    api 'com.google.code.findbugs:jsr305:3.0.2'
+    api 'com.squareup.okhttp3:okhttp-urlconnection:3.12.12'
+    api 'com.squareup.okio:okio:1.17.5'
+    api 'com.facebook.fbjni:fbjni-java-only:0.0.3'
+
+    kapt 'com.alibaba:arouter-compiler:1.5.2'
+}

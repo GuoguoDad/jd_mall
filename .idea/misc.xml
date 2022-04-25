@@ -4,6 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.4083333333333333" />
+        <entry key="../../.gradle/caches/transforms-3/fcb8b7c14eef4fa780c2fb68672a0b96/transformed/jetified-react-native-0.64.0/res/drawable/redbox_top_border_background.xml" value="0.178" />
+        <entry key="../../.gradle/caches/transforms-3/fcb8b7c14eef4fa780c2fb68672a0b96/transformed/jetified-react-native-0.64.0/res/xml/rn_dev_preferences.xml" value="0.1" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.3828125" />
         <entry key="app/src/main/res/drawable/ic_address_book.xml" value="0.39739583333333334" />
         <entry key="app/src/main/res/drawable/ic_con_contacts.xml" value="0.39739583333333334" />
@@ -268,7 +270,7 @@
   <component name="VisualizationToolProject">
     <option name="state">
       <ProjectState>
-        <option name="scale" value="0.23550724637681159" />
+        <option name="scale" value="0.22644927536231885" />
       </ProjectState>
     </option>
   </component>
