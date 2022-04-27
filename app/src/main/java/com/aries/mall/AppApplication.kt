@@ -3,7 +3,8 @@ package com.aries.mall
 import com.aries.common.BaseApplication
 import com.aries.rn.maskhub.Constants
 import com.aries.rn.maskhub.Options
-import com.aries.rn.maskhub.SnMiniAppVersionCheckDelegate
+import com.aries.rn.maskhub.MiniAppVersionCheckDelegate
+import com.aries.rn.maskhub.navigate.NavigatePackage
 import com.aries.rn.maskhub.utils.MaskLog
 import com.facebook.react.ReactApplication
 import com.facebook.react.ReactNativeHost
@@ -23,7 +24,8 @@ class AppApplication: BaseApplication(), ReactApplication {
 
         override fun getPackages(): List<ReactPackage> {
             return listOf(
-                MainReactPackage()
+                MainReactPackage(),
+                NavigatePackage()
             )
         }
 
@@ -42,7 +44,7 @@ class AppApplication: BaseApplication(), ReactApplication {
             .contextDir(File(this.filesDir, Constants.BUNDLE_FOLDER_PREFIX).absolutePath)
             .debug(BuildConfig.DEBUG)
             .log(MaskLog.AndroidLog()) //                .assetsBundleFileName("index.android.jsbundle")
-            .delegate(SnMiniAppVersionCheckDelegate(this))
+            .delegate(MiniAppVersionCheckDelegate(this))
             .reactInstanceManager(mReactNativeHost.reactInstanceManager)
         SoLoader.init(this,  /* native exopackage */false)
     }

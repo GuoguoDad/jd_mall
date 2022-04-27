@@ -10,7 +10,9 @@ import android.os.Message;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.aries.common.constants.RouterPaths;
 import com.aries.common.dialog.LoadingDialog;
 import com.aries.rn.maskhub.BundleEntity;
@@ -51,21 +53,26 @@ public class LoadReactActivity extends LazyLoadReactActivity {
 
     private Page mPage;
 
+    @Autowired
+    public String bundleName;
+
+    @Autowired
+    public String initRouteUrl;
+
+    @Autowired
+    public String url;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ARouter.getInstance().inject(this);
         initViews();
         Options options = Options.me();
 
         mReactJsBundleFactory = new ReactJsBundleFactory(this, options.contextDir());
         mReload = new RootViewReload(this, getReactInstanceManager());
-        mPage = (Page) getIntent().getParcelableExtra(KEY_INTENT_PAGE);
+        mPage = new Page().url(url).name(bundleName).extras("initRouteUrl", initRouteUrl);
 
-        // 测试代码
-        if (null == mPage) {
-            mPage = new Page().name("app");
-            mPage.url("rn://app/index.android.jsbundle");
-        }
         toEvent(LOAD_EVENT_JS_BUNDLE_CHECK_VERSION, null);
     }
 
@@ -170,11 +177,13 @@ public class LoadReactActivity extends LazyLoadReactActivity {
                         public void onComplete(String downloadFile) {
                             bundleData.setFilePath(downloadFile);
                             String md5 = Md5Utils.getFileMD5(new File(downloadFile));
-                            if (Objects.equals(md5, bundleData.getVerifyCode())) {
+                            MaskLog.w("md51:" + md5);
+                            MaskLog.w("md52:" + bundleData.getVerifyCode());
+//                            if (Objects.equals(md5, bundleData.getVerifyCode())) {
                                 toEvent(LOAD_EVENT_DOWNLOADED, bundleData);
-                            } else {
-                                MaskLog.w("downloadFile md5 is Bad.");
-                            }
+//                            } else {
+//                                MaskLog.w("downloadFile md5 is Bad.");
+//                            }
                         }
 
                         @Override

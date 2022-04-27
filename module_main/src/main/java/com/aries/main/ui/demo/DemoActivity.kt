@@ -46,10 +46,18 @@ class DemoActivity : BaseActivity(R.layout.fragment_mine) {
                                 ARouter.getInstance().build(RouterPaths.STEPPER_DEMO).navigation()
                             }
                             "004" -> {
-                                ARouter.getInstance().build(RouterPaths.STICKY_DEMO).navigation()
+                                ARouter.getInstance().build(RouterPaths.RN_PAGE)
+                                    .withString("bundleName", "app")
+                                    .withString("initRouteUrl","https://com.aries.com?pageCode=rn&bundleName=app&initRouteName=UnKnowPage")
+                                    .withString("url","rn://app/index.android.jsbundle")
+                                    .navigation()
                             }
                             "005" -> {
-                                ARouter.getInstance().build(RouterPaths.RN_PAGE).navigation()
+                                ARouter.getInstance().build(RouterPaths.RN_PAGE)
+                                    .withString("bundleName", "app")
+                                    .withString("initRouteUrl","https://com.aries.com?pageCode=rn&bundleName=app&initRouteName=UserSetting")
+                                    .withString("url","rn://app/index.android.jsbundle")
+                                    .navigation()
                             }
                             else -> {
                                 Toast.makeText(localThis ,bean?.name, Toast.LENGTH_SHORT).show()

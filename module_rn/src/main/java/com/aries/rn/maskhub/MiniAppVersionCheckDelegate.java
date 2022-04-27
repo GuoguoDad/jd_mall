@@ -24,22 +24,24 @@ import okhttp3.Response;
 import static com.aries.rn.maskhub.Constants.FAILURE;
 import static com.aries.rn.maskhub.Constants.SUCCESS;
 
-public class SnMiniAppVersionCheckDelegate implements VersionCheckerDelegate {
+public class MiniAppVersionCheckDelegate implements VersionCheckerDelegate {
 
     private final Context mContext;
 
     private final OkHttpClient client = new OkHttpClient();
     private final Gson gson = new Gson();
 
-    public SnMiniAppVersionCheckDelegate(Context context) {
+    public MiniAppVersionCheckDelegate(Context context) {
         this.mContext = context;
     }
 
     @Override
     public void processCheckResult(Map<String, Object> params, Callback callback) {
         Request request = new Request.Builder()
-                .url("https://tuicr.oss-cn-hangzhou.aliyuncs.com/jsbundle/demo/data.json")
+//                .url("https://tuicr.oss-cn-hangzhou.aliyuncs.com/jsbundle/demo/data.json")
+                .url("http://razuea19w.hd-bkt.clouddn.com/index20220427123.json")
                 .build();
+
 
         client.newCall(request).enqueue(new okhttp3.Callback() {
             @Override
