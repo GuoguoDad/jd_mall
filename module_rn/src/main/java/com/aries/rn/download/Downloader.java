@@ -1,4 +1,4 @@
-package com.aries.rn.maskhub.download;
+package com.aries.rn.download;
 
 import android.content.Context;
 import android.os.Build;
@@ -6,8 +6,8 @@ import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 
-import com.aries.rn.maskhub.Constants;
-import com.aries.rn.maskhub.utils.MaskLog;
+import com.aries.rn.Constants;
+import com.aries.rn.utils.MaskLog;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;

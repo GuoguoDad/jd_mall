@@ -1,11 +1,11 @@
 package com.aries.mall
 
 import com.aries.common.BaseApplication
-import com.aries.rn.maskhub.Constants
-import com.aries.rn.maskhub.Options
-import com.aries.rn.maskhub.MiniAppVersionCheckDelegate
-import com.aries.rn.maskhub.navigate.NavigatePackage
-import com.aries.rn.maskhub.utils.MaskLog
+import com.aries.rn.Constants
+import com.aries.rn.Options
+import com.aries.rn.MiniAppVersionCheckDelegate
+import com.aries.rn.navigate.NavigatePackage
+import com.aries.rn.utils.MaskLog
 import com.facebook.react.ReactApplication
 import com.facebook.react.ReactNativeHost
 import com.facebook.react.ReactPackage

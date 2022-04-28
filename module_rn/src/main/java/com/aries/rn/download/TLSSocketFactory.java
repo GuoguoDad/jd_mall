@@ -1,14 +1,11 @@
-package com.aries.rn.maskhub.download;
-
+package com.aries.rn.download;
 
 import androidx.annotation.NonNull;
-
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
-
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSocket;
 import javax.net.ssl.SSLSocketFactory;

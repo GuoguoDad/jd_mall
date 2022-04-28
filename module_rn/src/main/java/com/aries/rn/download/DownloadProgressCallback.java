@@ -1,4 +1,4 @@
-package com.aries.rn.maskhub.download;
+package com.aries.rn.download;
 
 
 public interface DownloadProgressCallback {

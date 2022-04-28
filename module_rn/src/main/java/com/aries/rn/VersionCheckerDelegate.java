@@ -1,5 +1,4 @@
-package com.aries.rn.maskhub;
-
+package com.aries.rn;
 
 import androidx.annotation.Nullable;
 

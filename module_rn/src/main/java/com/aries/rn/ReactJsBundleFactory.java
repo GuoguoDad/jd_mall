@@ -1,8 +1,8 @@
-package com.aries.rn.maskhub;
+package com.aries.rn;
 
 import android.content.Context;
 
-import com.aries.rn.maskhub.utils.FileUtils;
+import com.aries.rn.utils.FileUtils;
 
 import java.io.File;
 import java.io.IOException;

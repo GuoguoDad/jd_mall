@@ -1,7 +1,5 @@
 package com.aries.mine.ui
 
-import android.content.Intent
-import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
@@ -20,9 +18,6 @@ import com.aries.common.util.StatusBarUtil
 import com.aries.common.widget.consecutiveScroller.ConsecutiveScrollerLayout
 import com.aries.mine.R
 import com.aries.mine.ui.view.FiveMenuView
-import com.aries.rn.maskhub.Constants
-import com.aries.rn.maskhub.Page
-import com.aries.rn.maskhub.activity.LoadReactActivity
 import kotlinx.android.synthetic.main.floating_header.*
 import kotlinx.android.synthetic.main.layout_mine.*
 

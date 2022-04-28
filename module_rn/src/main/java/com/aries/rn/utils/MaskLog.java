@@ -1,4 +1,4 @@
-package com.aries.rn.maskhub.utils;
+package com.aries.rn.utils;
 
 import android.util.Log;
 

@@ -1,4 +1,4 @@
-package com.aries.rn.maskhub.navigate;
+package com.aries.rn.navigate;
 
 import androidx.annotation.NonNull;
 import com.facebook.react.ReactPackage;

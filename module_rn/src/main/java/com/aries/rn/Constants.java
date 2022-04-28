@@ -1,4 +1,4 @@
-package com.aries.rn.maskhub;
+package com.aries.rn;
 
 public interface Constants {
     String ASSETS_BUNDLE_PREFIX = "assets://";

@@ -1,4 +1,4 @@
-package com.aries.rn.maskhub.activity;
+package com.aries.rn.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,18 +15,18 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.aries.common.constants.RouterPaths;
 import com.aries.common.dialog.LoadingDialog;
-import com.aries.rn.maskhub.BundleEntity;
-import com.aries.rn.maskhub.Options;
-import com.aries.rn.maskhub.Page;
-import com.aries.rn.maskhub.ReactJsBundleFactory;
-import com.aries.rn.maskhub.RootViewReload;
-import com.aries.rn.maskhub.VersionCheckerDelegate;
-import com.aries.rn.maskhub.download.DownloadProgress;
-import com.aries.rn.maskhub.download.DownloadProgressCallback;
-import com.aries.rn.maskhub.download.Downloader;
-import com.aries.rn.maskhub.download.Request;
-import com.aries.rn.maskhub.utils.MaskLog;
-import com.aries.rn.maskhub.utils.Md5Utils;
+import com.aries.rn.BundleEntity;
+import com.aries.rn.Options;
+import com.aries.rn.Page;
+import com.aries.rn.ReactJsBundleFactory;
+import com.aries.rn.RootViewReload;
+import com.aries.rn.VersionCheckerDelegate;
+import com.aries.rn.download.DownloadProgress;
+import com.aries.rn.download.DownloadProgressCallback;
+import com.aries.rn.download.Downloader;
+import com.aries.rn.download.Request;
+import com.aries.rn.utils.MaskLog;
+import com.aries.rn.utils.Md5Utils;
 
 import java.io.File;
 import java.io.IOException;
@@ -34,16 +34,16 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-import static com.aries.rn.maskhub.Constants.DEFAULT_COMPONENT_NAME;
-import static com.aries.rn.maskhub.Constants.JS_BUNDLE_ON_PROGRESS;
-import static com.aries.rn.maskhub.Constants.KEY_INTENT_PAGE;
-import static com.aries.rn.maskhub.Constants.LOAD_EVENT_DOWNLOADED;
-import static com.aries.rn.maskhub.Constants.LOAD_EVENT_JS_BUNDLE_CHECK_VERSION;
-import static com.aries.rn.maskhub.Constants.LOAD_EVENT_JS_BUNDLE_DOWNLOADING;
-import static com.aries.rn.maskhub.Constants.LOAD_EVENT_RELOAD_INSTALLED;
-import static com.aries.rn.maskhub.Constants.LOAD_EVENT_RELOAD_JS_BUNDLE;
-import static com.aries.rn.maskhub.Constants.LOAD_EVENT_RE_CREATE;
-import static com.aries.rn.maskhub.Constants.PAGE_NAME;
+import static com.aries.rn.Constants.DEFAULT_COMPONENT_NAME;
+import static com.aries.rn.Constants.JS_BUNDLE_ON_PROGRESS;
+import static com.aries.rn.Constants.KEY_INTENT_PAGE;
+import static com.aries.rn.Constants.LOAD_EVENT_DOWNLOADED;
+import static com.aries.rn.Constants.LOAD_EVENT_JS_BUNDLE_CHECK_VERSION;
+import static com.aries.rn.Constants.LOAD_EVENT_JS_BUNDLE_DOWNLOADING;
+import static com.aries.rn.Constants.LOAD_EVENT_RELOAD_INSTALLED;
+import static com.aries.rn.Constants.LOAD_EVENT_RELOAD_JS_BUNDLE;
+import static com.aries.rn.Constants.LOAD_EVENT_RE_CREATE;
+import static com.aries.rn.Constants.PAGE_NAME;
 
 @Route(path = RouterPaths.RN_PAGE)
 public class LoadReactActivity extends LazyLoadReactActivity {
@@ -120,7 +120,9 @@ public class LoadReactActivity extends LazyLoadReactActivity {
 
     private void initViews() {
         loadingDialog = new LoadingDialog(this);
-        loadingDialog.show();
+        if (!loadingDialog.isShowing()){
+            loadingDialog.show();
+        }
     }
 
 

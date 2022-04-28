@@ -1,4 +1,4 @@
-package com.aries.rn.maskhub.navigate;
+package com.aries.rn.navigate;
 
 import android.app.Activity;
 import android.content.Context;

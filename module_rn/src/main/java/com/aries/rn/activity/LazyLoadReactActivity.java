@@ -1,4 +1,4 @@
-package com.aries.rn.maskhub.activity;
+package com.aries.rn.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,7 +18,7 @@ import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler;
 import com.facebook.react.modules.core.DeviceEventManagerModule;
 import com.facebook.react.modules.core.PermissionAwareActivity;
 import com.facebook.react.modules.core.PermissionListener;
-import com.aries.rn.maskhub.LoadReactDelegate;
+import com.aries.rn.LoadReactDelegate;
 
 public abstract class LazyLoadReactActivity extends AppCompatActivity implements DefaultHardwareBackBtnHandler, PermissionAwareActivity {
 

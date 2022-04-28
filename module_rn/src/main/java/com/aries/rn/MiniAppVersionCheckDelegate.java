@@ -1,4 +1,4 @@
-package com.aries.rn.maskhub;
+package com.aries.rn;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -7,8 +7,8 @@ import androidx.annotation.Nullable;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.aries.rn.maskhub.BundleEntity;
-import com.aries.rn.maskhub.VersionCheckerDelegate;
+import com.aries.rn.BundleEntity;
+import com.aries.rn.VersionCheckerDelegate;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -21,8 +21,8 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-import static com.aries.rn.maskhub.Constants.FAILURE;
-import static com.aries.rn.maskhub.Constants.SUCCESS;
+import static com.aries.rn.Constants.FAILURE;
+import static com.aries.rn.Constants.SUCCESS;
 
 public class MiniAppVersionCheckDelegate implements VersionCheckerDelegate {
 

@@ -1,4 +1,4 @@
-package com.aries.rn.maskhub;
+package com.aries.rn;
 
 
 import com.facebook.react.ReactInstanceManager;

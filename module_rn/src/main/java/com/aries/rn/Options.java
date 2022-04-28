@@ -1,9 +1,9 @@
-package com.aries.rn.maskhub;
+package com.aries.rn;
 
 import androidx.annotation.Nullable;
 
 import com.facebook.react.ReactInstanceManager;
-import com.aries.rn.maskhub.utils.MaskLog;
+import com.aries.rn.utils.MaskLog;
 
 import java.io.File;
 

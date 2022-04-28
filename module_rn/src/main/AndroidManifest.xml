@@ -3,8 +3,8 @@
     package="com.aries.rn">
 
     <application>
-        <activity android:name=".maskhub.activity.LoadReactActivity"/>
-        <activity android:name=".maskhub.activity.LazyLoadReactActivity"/>
+        <activity android:name=".activity.LoadReactActivity"/>
+        <activity android:name=".activity.LazyLoadReactActivity"/>
     </application>
 
 </manifest>

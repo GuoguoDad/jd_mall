@@ -1,5 +1,4 @@
-package com.aries.rn.maskhub.utils;
-
+package com.aries.rn.utils;
 
 import java.io.File;
 import java.io.FileInputStream;

@@ -1,4 +1,4 @@
-package com.aries.rn.maskhub;
+package com.aries.rn;
 
 import android.os.Bundle;
 import android.os.Parcel;

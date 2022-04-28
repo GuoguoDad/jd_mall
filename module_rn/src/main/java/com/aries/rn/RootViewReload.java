@@ -1,4 +1,4 @@
-package com.aries.rn.maskhub;
+package com.aries.rn;
 
 import android.app.Activity;
 import android.os.Handler;
@@ -12,12 +12,12 @@ import com.facebook.react.ReactRootView;
 import com.facebook.react.bridge.CatalystInstance;
 import com.facebook.react.bridge.JSBundleLoader;
 import com.facebook.react.bridge.ReactContext;
-import com.aries.rn.maskhub.utils.MaskLog;
+import com.aries.rn.utils.MaskLog;
 
 import java.lang.reflect.Field;
 import java.util.List;
 
-import static com.aries.rn.maskhub.Constants.ASSETS_BUNDLE_PREFIX;
+import static com.aries.rn.Constants.ASSETS_BUNDLE_PREFIX;
 
 public class RootViewReload {
 
