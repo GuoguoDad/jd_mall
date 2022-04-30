@@ -67,7 +67,11 @@ class MineFragment: BaseFragment(R.layout.layout_mine), MavericksView {
         }
 
         setting.setOnClickListener {
-            ARouter.getInstance().build(RouterPaths.DEMO_ACTIVITY).navigation()
+            ARouter.getInstance().build(RouterPaths.RN_PAGE)
+                .withString("bundleName", "app")
+                .withString("initRouteUrl","https://com.aries.com?pageCode=rn&bundleName=app&initRouteName=UserSetting")
+                .withString("url","rn://app/index.android.jsbundle")
+                .navigation()
         }
     }
 
