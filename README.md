@@ -27,7 +27,7 @@ android_mall 仿京东商城项目具有完整的结构。代码整洁规范，�
 <img src="images/mine.gif" title="" alt="image" width="351">
 
 # 我的-设置(rn页面-拉取远程的bundle)
-<img src="images/userSetting.gif" title="" alt="image" width="351">
+<img src="images/setting.gif" title="" alt="image" width="351">
 
 # 项目目录结构
 <img src="images/project.png" title="" alt="image" width="351">
