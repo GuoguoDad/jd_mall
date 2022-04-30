@@ -16,6 +16,8 @@ android_mall 仿京东商城项目具有完整的结构。代码整洁规范，�
 
 7. [alibaba ARouter](https://github.com/alibaba/ARouter/tree/master)
 
+8. 集成RN热更功能， 用户设置为rn写的页面，[rn工程请见](https://github.com/liuaries/rn_mall.git)
+
 # 项目展示
 
 <img src="images/home.gif" title="" alt="image" width="351">
@@ -25,3 +27,5 @@ android_mall 仿京东商城项目具有完整的结构。代码整洁规范，�
 <img src="images/cart.gif" title="" alt="image" width="351">
 
 <img src="images/mine.gif" title="" alt="image" width="351">
+
+<img src="images/userSetting.gif" title="" alt="image" width="351">

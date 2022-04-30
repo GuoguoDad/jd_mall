@@ -32,7 +32,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 import static com.aries.rn.Constants.DEFAULT_COMPONENT_NAME;
 import static com.aries.rn.Constants.JS_BUNDLE_ON_PROGRESS;
@@ -179,8 +178,6 @@ public class LoadReactActivity extends LazyLoadReactActivity {
                         public void onComplete(String downloadFile) {
                             bundleData.setFilePath(downloadFile);
                             String md5 = Md5Utils.getFileMD5(new File(downloadFile));
-                            MaskLog.w("md51:" + md5);
-                            MaskLog.w("md52:" + bundleData.getVerifyCode());
 //                            if (Objects.equals(md5, bundleData.getVerifyCode())) {
                                 toEvent(LOAD_EVENT_DOWNLOADED, bundleData);
 //                            } else {
