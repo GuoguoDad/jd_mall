@@ -29,3 +29,10 @@ android_mall 仿京东商城项目具有完整的结构。代码整洁规范，�
 <img src="images/mine.gif" title="" alt="image" width="351">
 
 <img src="images/userSetting.gif" title="" alt="image" width="351">
+
+# 免责声明
+⚠️本APP仅限于学习交流使用，项目中使用的图片及字体等资源如有侵权请联系作者删除
+
+⚠️本APP接口数据均为mock，请勿用于其它商业目的
+
+⚠️如使用本项目代码造成侵权与作者无关
