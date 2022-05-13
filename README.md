@@ -1,12 +1,12 @@
 # 前言
-高仿京东商城项目具有完整的结构，代码整洁规范，结构清晰，集成React-Native热更功能，功能还在持续更新中。。。
+高仿京东商城项目具有完整的结构，代码整洁规范，结构清晰，集成React-Native热更功能，功能还在持续更新中...如果对你有帮助，给个star
 1. kotlin 、 retrofit2 + okhttp3 网络请求 、多模块
 2. [leakcanary 内存泄漏检测](https://github.com/square/leakcanary)
 3. [基于MVI架构airbnb的Mavericks](https://airbnb.io/mavericks/#/README)
 4. [本地mock](https://github.com/mirrajabi/okhttp-json-mock)
 5. [alibaba ARouter](https://github.com/alibaba/ARouter/tree/master)
 6. 集成RN热更功能， 用户设置为rn写的页面，[rn工程请见](https://github.com/liuaries/rn_mall.git)
-如果对你有帮助，给个star
+
 
 # MVI架构
 <img src="images/framework.png" title="" alt="image" width="800">
