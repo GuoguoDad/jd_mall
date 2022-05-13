@@ -5,13 +5,13 @@
     android:layout_height="wrap_content"
     android:visibility="gone"
     android:orientation="vertical">
-
+    <!--顶部图片banner-->
     <com.youth.banner.Banner
         android:id="@+id/goodsImgBanner"
         android:layout_width="match_parent"
         android:background="@color/white"
         android:layout_height="360dp" />
-
+    <!--banner选择颜色-->
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -61,6 +61,154 @@
             android:textColor="@color/cl_000000"
             android:textSize="16sp"
             android:textStyle="bold"/>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <!--选择颜色、尺寸、收货地址、运费信息、-->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/four_corners_white_14_bg"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginTop="@dimen/dp_10"
+        android:paddingVertical="@dimen/dp_20"
+        android:paddingHorizontal="@dimen/dp_10">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/cl_919191"
+                android:textSize="@dimen/sp_14"
+                android:text="选择"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingHorizontal="@dimen/dp_12"
+                android:textColor="@color/cl_000000"
+                android:textSize="@dimen/sp_14"
+                android:text="已选：黑灰色/红色，41.5，1件"/>
+
+            <ImageView
+                android:layout_width="@dimen/dp_12"
+                android:layout_height="@dimen/dp_18"
+                android:scaleType="fitXY"
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_arrow_right"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/dp_20">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/cl_919191"
+                android:textSize="@dimen/sp_14"
+                android:text="送至"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:paddingHorizontal="@dimen/dp_12"
+                android:textColor="@color/cl_919191"
+                android:textSize="@dimen/sp_14"
+                android:text="江苏省南京市江宁区东山街道丰泽路118号中粮鸿云"/>
+
+            <ImageView
+                android:layout_width="@dimen/dp_12"
+                android:layout_height="@dimen/dp_18"
+                android:scaleType="fitXY"
+                android:adjustViewBounds="true"
+                android:src="@drawable/ic_arrow_right"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/cl_000000"
+            android:textSize="@dimen/sp_14"
+            android:layout_marginLeft="@dimen/dp_40"
+            android:text="现货，今天17:00前完成下单，预计明天送达"/>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/dp_20">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/cl_919191"
+                android:textSize="@dimen/sp_14"
+                android:text="运费"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingHorizontal="@dimen/dp_12"
+                android:textColor="@color/cl_000000"
+                android:textSize="@dimen/sp_14"
+                android:text="店铺单笔订单不满199元，收费5元(请以提交订单时为准)"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/dp_20">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/cl_919191"
+                android:textSize="@dimen/sp_12"
+                android:layout_marginRight="@dimen/dp_16"
+                android:text="100%正品"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/cl_919191"
+                android:textSize="@dimen/sp_12"
+                android:layout_marginRight="@dimen/dp_16"
+                android:text="店铺发货&amp;售后"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/cl_919191"
+                android:textSize="@dimen/sp_12"
+                android:layout_marginRight="@dimen/dp_16"
+                android:text="7天保价"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/cl_919191"
+                android:textSize="@dimen/sp_12"
+                android:text="7天无理由退货"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

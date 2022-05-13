@@ -58,12 +58,12 @@
                             android:overScrollMode="never"/>
 
                         <!-- 你可能还喜欢 或者 快点来看看 -->
-                        <TextView
-                            android:id="@+id/title"
+                        <ImageView
                             android:layout_width="match_parent"
-                            android:layout_height="40dp"
-                            android:gravity="center"
-                            android:text="你可能还喜欢" />
+                            android:layout_height="wrap_content"
+                            android:scaleType="fitXY"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/probably_like"/>
 
                         <!-- 你可能还喜欢列表 或者 快点来看看列表 -->
                         <androidx.recyclerview.widget.RecyclerView
