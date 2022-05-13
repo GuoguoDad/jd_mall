@@ -8,6 +8,15 @@
 6. 集成RN热更功能， 用户设置为rn写的页面，[rn工程请见](https://github.com/liuaries/rn_mall.git)
 如果对你有帮助，给个star
 
+# MVI架构
+<img src="images/framework.png" title="" alt="image" width="420">
+
+MVI即Model-View-Intent，它受前端框架的启发，提倡一种单向数据流的设计思想，非常适合数据驱动型的UI展示项目：
+
+-- Model: 与其他MVVM中的Model不同的是，MVI的Model主要指UI状态（State）。当前界面展示的内容无非就是UI状态的一个快照：例如数据加载过程、控件位置等都是一种UI状态
+-- View: 与其他MVX中的View一致，可能是一个Activity、Fragment或者任意UI承载单元。MVI中的View通过订阅Intent的变化实现界面刷新（不是Activity的Intent、后面介绍）
+-- Intent: 此Intent不是Activity的Intent，用户的任何操作都被包装成Intent后发送给Model进行数据请求
+
 # 下载
 
 ##Apk下载链接： [Apk下载链接](https://www.pgyer.com/FYfa)
