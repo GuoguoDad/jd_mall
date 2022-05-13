@@ -15,3 +15,5 @@
 .cxx
 local.properties
 /moudle_rn/rnlib/node_modules
+/app/debug
+/app/release
