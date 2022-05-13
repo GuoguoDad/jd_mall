@@ -9,7 +9,7 @@
 如果对你有帮助，给个star
 
 # MVI架构
-<img src="images/framework.png" title="" alt="image" width="600">
+<img src="images/framework.png" title="" alt="image" width="800">
 
 MVI即Model-View-Intent，它受前端框架的启发，提倡一种单向数据流的设计思想，非常适合数据驱动型的UI展示项目：
 
