@@ -1,5 +1,5 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
     id 'kotlin-android'
     id 'kotlin-android-extensions'
     id 'kotlin-kapt'
@@ -9,7 +9,6 @@ android {
     compileSdk rootProject.ext.compileSdk
 
     defaultConfig {
-        applicationId rootProject.ext.defalutConfigApplicationId
         minSdk rootProject.ext.defaultConfigMinSdk
         targetSdk rootProject.ext.defaultConfigTargetSdk
         versionCode rootProject.ext.defaultConfigVersionCode
@@ -22,6 +21,7 @@ android {
         }
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -37,11 +37,13 @@ android {
     kotlinOptions {
         jvmTarget = rootProject.ext.kotlinOptionsJvmTarget
     }
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 dependencies {
-    api project(path: ':module_main')
-    api project(path: ':module_rn')
-    api project(path: ':module_webview')
-    testImplementation 'junit:junit:4.12'
+    api project(path: ':module_common')
+
+    kapt 'com.alibaba:arouter-compiler:1.5.2'
 }

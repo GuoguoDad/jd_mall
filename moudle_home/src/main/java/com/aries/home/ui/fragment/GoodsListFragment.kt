@@ -35,7 +35,13 @@ class  GoodsListFragment(var code: String): BaseFragment(R.layout.home_goods), M
             viewModel.loadMoreGoodsList(code)
         }
         goodsListAdapter.setOnItemClickListener { adapter, view, position ->
-            ARouter.getInstance().build(RouterPaths.GOODS_DETAIL).navigation()
+            when (goodsListAdapter.data[position].type) {
+                "1" -> ARouter.getInstance().build(RouterPaths.GOODS_DETAIL).navigation()
+                "2" -> ARouter.getInstance().build(RouterPaths.WebView_ACTIVITY)
+                    .withBoolean("isDarkTheme", false)
+                    .withString("url","https://shop.m.jd.com/?shopId=17529")
+                    .navigation()
+            }
         }
         addStateChangeListener()
     }

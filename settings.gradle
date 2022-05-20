@@ -18,3 +18,4 @@ include ':module_cart'
 include ':module_mine'
 include ':module_rn'
 
+include ':module_webview'

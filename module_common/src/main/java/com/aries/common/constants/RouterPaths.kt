@@ -23,5 +23,7 @@ interface RouterPaths {
         const val GOODS_DETAIL ="/common/goodsDetail"
 
         const val RN_PAGE ="/rn/commonPage"
+
+        const val WebView_ACTIVITY = "/webView/main"
     }
 }
