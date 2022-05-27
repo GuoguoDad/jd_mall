@@ -44,7 +44,8 @@ android {
 
 dependencies {
     api project(path: ':module_common')
-    api fileTree(include: ['*.aar'], dir: 'libs')
+    api project(path: ':local_lib:rn')
+
     api 'com.facebook.infer.annotation:infer-annotation:0.11.2'
     api 'com.facebook.yoga:proguard-annotations:1.14.1'
     api 'javax.inject:javax.inject:1'
