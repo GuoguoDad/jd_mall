@@ -6,7 +6,7 @@ plugins {
 }
 
 static def releaseTime() {
-    return new Date().format("yyyyMMdd_HH:mm:ss", TimeZone.getTimeZone("UTC"))
+    return new Date().format("yyyyMMdd_HH:mm:ss", TimeZone.getTimeZone("GMT+08:00"))
 }
 
 android {
@@ -54,5 +54,6 @@ dependencies {
     api project(path: ':module_main')
     api project(path: ':module_rn')
     api project(path: ':module_webview')
+
     testImplementation 'junit:junit:4.12'
 }
