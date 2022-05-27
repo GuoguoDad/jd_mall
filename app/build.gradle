@@ -5,6 +5,10 @@ plugins {
     id 'kotlin-kapt'
 }
 
+static def releaseTime() {
+    return new Date().format("yyyyMMdd_HH:mm:ss", TimeZone.getTimeZone("UTC"))
+}
+
 android {
     compileSdk rootProject.ext.compileSdk
 
@@ -36,6 +40,13 @@ android {
     }
     kotlinOptions {
         jvmTarget = rootProject.ext.kotlinOptionsJvmTarget
+    }
+    //修改打包后的apk名称
+    android.applicationVariants.all {
+        variant ->
+            variant.outputs.all {
+                outputFileName = "mall_${variant.buildType.name}_${defaultConfig.versionName}_${releaseTime()}.apk"
+            }
     }
 }
 
