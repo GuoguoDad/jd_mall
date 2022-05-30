@@ -5,7 +5,7 @@ ext {
     defaultConfigMinSdk = 21
     defaultConfigTargetSdk = 31
     defaultConfigVersionCode = 1
-    defaultConfigVersionName = "1.0"
+    defaultConfigVersionName = "0.0.1"
 
     compileOptionsSourceCompatibility = JavaVersion.VERSION_1_8
     compileOptionsTargetCompatibility = JavaVersion.VERSION_1_8
