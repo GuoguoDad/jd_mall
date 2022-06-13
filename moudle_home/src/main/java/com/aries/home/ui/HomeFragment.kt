@@ -80,7 +80,8 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
             HomeState::bannerList,
             HomeState::tabList,
             HomeState::adUrl,
-            HomeState::nineMenuList
+            HomeState::nineMenuList,
+            deliveryMode = uniqueOnly()
         ) { isLoading, fetchType, bannerList, tabList, adUrl, nineMenuList ->
             run {
                 when (isLoading) {

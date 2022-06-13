@@ -43,7 +43,7 @@ class MainActivity: BaseActivity(R.layout.layout_main) {
         supportFragmentManager.beginTransaction().add(R.id.container_fragment, categoryFragment, "3").hide(categoryFragment).commit()
         supportFragmentManager.beginTransaction().add(R.id.container_fragment, mineFragment, "4").hide(mineFragment).commit()
 
-        navView.setOnNavigationItemSelectedListener {
+        navView.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.navigation_home -> {
                     supportFragmentManager.beginTransaction().hide(active).show(homeFragment).commit()
@@ -66,7 +66,7 @@ class MainActivity: BaseActivity(R.layout.layout_main) {
                     active = mineFragment
                 }
             }
-            return@setOnNavigationItemSelectedListener true
+            return@setOnItemSelectedListener true
         }
     }
 

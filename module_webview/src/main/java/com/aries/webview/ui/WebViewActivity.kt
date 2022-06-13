@@ -1,5 +1,6 @@
 package com.aries.webview.ui
 
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.webkit.*
 import androidx.appcompat.app.AppCompatActivity
@@ -9,7 +10,12 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.aries.common.constants.RouterPaths
 import com.aries.common.util.StatusBarUtil
 import com.aries.webview.R
+import com.aries.webview.bridge.Callback
+import com.aries.webview.bridge.ConsolePipe
+import com.aries.webview.bridge.Handler
+import com.aries.webview.bridge.WebViewJavascriptBridge
 import kotlinx.android.synthetic.main.activity_webview.*
+import java.lang.reflect.InvocationTargetException
 
 @Route(path = RouterPaths.WebView_ACTIVITY)
 class WebViewActivity: AppCompatActivity() {
@@ -20,6 +26,8 @@ class WebViewActivity: AppCompatActivity() {
     @Autowired
     @JvmField
     var url: String = ""
+
+    private var bridge: WebViewJavascriptBridge? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +50,8 @@ class WebViewActivity: AppCompatActivity() {
     }
 
     private fun initView() {
+        bridge = WebViewJavascriptBridge(this, webView )
+        setAllowUniversalAccessFromFileURLs(webView)
         StatusBarUtil.setBarTextModal(this, isDarkTheme)
         webView.settings.run {
             true.also { javaScriptEnabled = it }
@@ -54,30 +64,56 @@ class WebViewActivity: AppCompatActivity() {
             defaultTextEncodingName = "utf-8"
         }
 
-        webView.loadUrl(url)
+//        webView.loadUrl(url)
+        webView.loadUrl("file:///android_asset/Demo.html")
 
         webView.webViewClient = object: WebViewClient(){
             @Deprecated("Deprecated in Java")
             override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
-                webView.loadUrl(url!!)
-                return true
+                println("shouldOverrideUrlLoading")
+                return false
             }
+            override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
+                println("onPageStarted")
+                bridge?.injectJavascript()
+            }
+            override fun onPageFinished(view: WebView?, url: String?) {
+                println("onPageFinished")
+            }
+        }
 
-            override fun onReceivedHttpError(
-                view: WebView?,
-                request: WebResourceRequest?,
-                errorResponse: WebResourceResponse?,
-            ) {
-//                super.onReceivedHttpError(view, request, errorResponse)
+        bridge?.consolePipe = object : ConsolePipe {
+            override fun post(string : String){
+                println("Next line is javascript console.log->>>")
+                println(string)
             }
+        }
+        bridge?.register("DeviceLoadJavascriptSuccess",object : Handler {
+            override fun handler(map: HashMap<String, Any>?, callback: Callback) {
+                println("Next line is javascript data->>>")
+                println(map)
+                val result = HashMap<String, Any>()
+                result["result"] = "Android"
+                callback.call(result)
+            }
+        })
+    }
 
-            override fun onReceivedError(
-                view: WebView?,
-                request: WebResourceRequest?,
-                error: WebResourceError?,
-            ) {
-//                super.onReceivedError(view, request, error)
-            }
+    private fun setAllowUniversalAccessFromFileURLs(webView: WebView) {
+        try {
+            val clazz: Class<*> = webView.settings.javaClass
+            val method = clazz.getMethod(
+                "setAllowUniversalAccessFromFileURLs", Boolean::class.javaPrimitiveType
+            )
+            method.invoke(webView.settings, true)
+        } catch (e: IllegalArgumentException) {
+            e.printStackTrace()
+        } catch (e: NoSuchMethodException) {
+            e.printStackTrace()
+        } catch (e: IllegalAccessException) {
+            e.printStackTrace()
+        } catch (e: InvocationTargetException) {
+            e.printStackTrace()
         }
     }
 }
