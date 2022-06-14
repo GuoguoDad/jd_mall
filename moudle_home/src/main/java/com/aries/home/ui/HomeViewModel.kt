@@ -30,41 +30,4 @@ class HomeViewModel(initialState: HomeState): MavericksViewModel<HomeState>(init
             }
         }
     }
-
-    fun initGoodsList(code: String) {
-        setState { copy(currentPage = 1) }
-        withState {
-            if (it.goodsListResponse is Loading) return@withState
-
-            suspend {
-                apiService.queryGoodsListByPage(QueryGoodsListParams(code, it.currentPage, it.pageSize))
-            }.execute(Dispatchers.IO) { state ->
-                copy(
-                    currentPage = if (state is Success) currentPage.plus(1) else currentPage,
-                    goodsListResponse = state,
-                    goodsListFetchType = ActionType.INIT,
-                    goodsList = (state()?.data?.dataList ?: it.goodsList),
-                    totalPage = (state()?.data?.totalPageCount ?: 0)
-                )
-            }
-        }
-    }
-
-    fun loadMoreGoodsList(code: String) {
-        withState {
-            if (it.goodsListResponse is Loading) return@withState
-
-            suspend {
-                apiService.queryGoodsListByPage(QueryGoodsListParams(code, it.currentPage, it.pageSize))
-            }.execute(Dispatchers.IO) { state ->
-                copy(
-                    goodsListResponse = state,
-                    goodsListFetchType = ActionType.LOADMORE,
-                    goodsList = goodsList + (state()?.data?.dataList ?: arrayListOf()),
-                    currentPage = if (state is Success) currentPage.plus(1) else currentPage,
-                    totalPage = (state()?.data?.totalPageCount ?: 0)
-                )
-            }
-        }
-    }
 }

@@ -1,21 +1,19 @@
-package com.aries.home.ui.fragment
+package com.aries.home.ui.fragment.goods
 
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.airbnb.mvrx.MavericksView
 import com.airbnb.mvrx.activityViewModel
+import com.airbnb.mvrx.withState
 import com.alibaba.android.arouter.launcher.ARouter
 import com.aries.common.adapter.GoodsListAdapter
 import com.aries.common.base.BaseFragment
 import com.aries.common.constants.RouterPaths
 import com.aries.common.decoration.SpacesItemDecoration
 import com.aries.home.R
-import com.aries.home.ui.constants.ActionType
-import com.aries.home.ui.HomeState
-import com.aries.home.ui.HomeViewModel
 import kotlinx.android.synthetic.main.home_goods.*
 
 class  GoodsListFragment(var code: String): BaseFragment(R.layout.home_goods), MavericksView {
-    private val viewModel: HomeViewModel by activityViewModel()
+    private val viewModel: GoodsViewModel by activityViewModel()
 
     private val goodsListAdapter by lazy { GoodsListAdapter(arrayListOf()) }
     private val staggeredGridLayoutManager: StaggeredGridLayoutManager by lazy {
@@ -43,42 +41,26 @@ class  GoodsListFragment(var code: String): BaseFragment(R.layout.home_goods), M
                     .navigation()
             }
         }
-        addStateChangeListener()
     }
 
     override fun initData() {
         viewModel.initGoodsList(code)
     }
 
+    override fun invalidate() {
+        withState(viewModel) {
+            if (it.goodsList.isNotEmpty()) {
+                goodsListAdapter.setList(it.goodsList)
+                goodsListAdapter.loadMoreModule.loadMoreComplete()
+            }
+            if (it.nextPageGoodsList.isNotEmpty()) {
+                goodsListAdapter.addData(goodsListAdapter.data.size, it.goodsList)
 
-    private fun addStateChangeListener() {
-        viewModel.onEach(
-            HomeState::goodsList,
-            HomeState::goodsListFetchType,
-            HomeState::currentPage,
-            HomeState::totalPage
-        ) { goodsList, goodsListFetchType, currentPage, totalPage ->
-            run {
-                when (goodsListFetchType) {
-                    ActionType.INIT -> {
-                        if (goodsList.isNotEmpty()) {
-                            goodsListAdapter.setList(goodsList)
-                            goodsListAdapter.loadMoreModule.loadMoreComplete()
-                        }
-                    }
-                    ActionType.LOADMORE -> {
-                        if (goodsList.isNotEmpty()) {
-                            goodsListAdapter.addData(goodsListAdapter.data.size, goodsList)
-                        }
-                        if (currentPage <= totalPage)
-                            goodsListAdapter.loadMoreModule.loadMoreComplete()
-                        else
-                            goodsListAdapter.loadMoreModule.loadMoreEnd()
-                    }
-                }
+                if (it.currentPage <= it.totalPage)
+                    goodsListAdapter.loadMoreModule.loadMoreComplete()
+                else
+                    goodsListAdapter.loadMoreModule.loadMoreEnd()
             }
         }
     }
-
-    override fun invalidate() {}
 }

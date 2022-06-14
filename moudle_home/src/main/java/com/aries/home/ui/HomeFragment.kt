@@ -16,7 +16,7 @@ import com.aries.common.util.StatusBarUtil
 import com.aries.common.widget.consecutiveScroller.ConsecutiveScrollerLayout
 import com.aries.home.R
 import com.aries.home.ui.constants.ActionType
-import com.aries.home.ui.fragment.GoodsListFragment
+import com.aries.home.ui.fragment.goods.GoodsListFragment
 import com.aries.home.ui.view.BannerView
 import kotlinx.android.synthetic.main.fragment_home.*
 import com.google.android.material.tabs.TabLayoutMediator
@@ -90,6 +90,7 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
                         loadingDialog.hide()
                         if (fetchType === ActionType.REFRESH) {
                             refreshView.run { finishRefresh() }
+                            initTabViewPagerAdapter()
                         }
                         if (bannerList.isNotEmpty()) {
                             banner.setData(bannerList)

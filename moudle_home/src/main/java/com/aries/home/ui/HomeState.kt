@@ -4,7 +4,6 @@ import com.airbnb.mvrx.Async
 import com.airbnb.mvrx.MavericksState
 import com.airbnb.mvrx.Uninitialized
 import com.aries.common.base.BaseResponse
-import com.aries.common.bean.GoodsBean
 import com.aries.home.ui.constants.ActionType
 
 data class HomeState(
@@ -14,12 +13,5 @@ data class HomeState(
     val tabList: List<TabBean> = emptyList(),
     val adUrl: String = "",
     val nineMenuList: List<MenuBean> = emptyList(),
-    val homeInfoResponse: Async<BaseResponse<HomeInfoResponse>> = Uninitialized,
-
-    val goodsListFetchType: ActionType = ActionType.INIT,
-    val goodsList: List<GoodsBean> = emptyList(),
-    val goodsListResponse: Async<BaseResponse<GoodsListResponse>> = Uninitialized,
-    val currentPage: Int = 1,
-    val pageSize: Int = 10,
-    val totalPage: Int = 0
+    val homeInfoResponse: Async<BaseResponse<HomeInfoResponse>> = Uninitialized
 ): MavericksState
