@@ -154,6 +154,9 @@ class MineFragment: BaseFragment(R.layout.layout_mine), MavericksView {
         } else {
             tabLayout.setBackgroundResource(R.color.white)
         }
+        if (scrollY == 0) {
+            tabLayout.setBackgroundResource(R.color.color_F5F5F5)
+        }
 
         //显示backToTop
         if (scrollY >= DisplayUtil.getScreenHeight(this.requireContext())) {
