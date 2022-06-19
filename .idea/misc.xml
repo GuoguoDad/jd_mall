@@ -137,6 +137,7 @@
         <entry key="module_common/src/main/res/drawable/btn_cart_bg.xml" value="0.206" />
         <entry key="module_common/src/main/res/drawable/detail_appraisa_more_bg.xml" value="0.24" />
         <entry key="module_common/src/main/res/drawable/detail_appraise_more_bg.xml" value="0.24" />
+        <entry key="module_common/src/main/res/drawable/detail_banner_number_indicator_bg.xml" value="0.332" />
         <entry key="module_common/src/main/res/drawable/detail_color_thumb_select.xml" value="0.239" />
         <entry key="module_common/src/main/res/drawable/detail_color_thumb_unselect.xml" value="0.239" />
         <entry key="module_common/src/main/res/drawable/enter_bg.xml" value="0.206" />

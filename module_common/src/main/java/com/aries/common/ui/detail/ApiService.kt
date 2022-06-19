@@ -3,6 +3,7 @@ package com.aries.common.ui.detail
 import com.aries.common.base.BaseResponse
 import com.aries.common.bean.GoodsBean
 import com.chad.library.adapter.base.entity.SectionEntity
+import com.stx.xhb.androidx.entity.BaseBannerInfo
 import retrofit2.http.Body
 import retrofit2.http.POST
 
@@ -25,6 +26,16 @@ data class GoodsDetailInfoResponse(var bannerList: List<BannerBean>, var goodsIn
 
 data class QueryGoodsListParams(var currentPage: Int, var pageSize: Int)
 data class GoodsListResponse(var dataList: MutableList<GoodsBean>, var totalCount: Int, var totalPageCount: Int)
+
+data class TopBanner(var url: String, var title: String): BaseBannerInfo {
+    override fun getXBannerUrl(): Any {
+        return url
+    }
+
+    override fun getXBannerTitle(): String {
+        return title
+    }
+}
 
 interface ApiService {
     @POST("mall/detail/queryGoodsDetail")

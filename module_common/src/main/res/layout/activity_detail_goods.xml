@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/detailGoodsLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:visibility="gone"
     android:orientation="vertical">
     <!--顶部图片banner-->
-    <com.youth.banner.Banner
+    <com.stx.xhb.androidx.XBanner
         android:id="@+id/goodsImgBanner"
         android:layout_width="match_parent"
-        android:background="@color/white"
-        android:layout_height="360dp" />
+        android:layout_height="360dp"
+        app:isAutoPlay="false"
+        app:isHandLoop="true"
+        android:scaleType="fitXY"
+        app:pointsPosition="RIGHT"
+        app:tipTextSize="@dimen/sp_12"
+        app:numberIndicatorBacgroud="@drawable/detail_banner_number_indicator_bg"
+        app:isShowNumberIndicator="true"
+        app:isShowIndicatorOnlyOne="true"/>
+
     <!--banner选择颜色-->
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"

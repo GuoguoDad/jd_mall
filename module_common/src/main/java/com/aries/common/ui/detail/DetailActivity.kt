@@ -30,6 +30,7 @@ import com.aries.common.util.DisplayUtil
 import com.aries.common.util.PixelUtil
 import com.aries.common.util.StatusBarUtil
 import com.google.android.material.tabs.TabLayout
+import com.stx.xhb.androidx.XBanner
 import com.youth.banner.adapter.BannerImageAdapter
 import com.youth.banner.holder.BannerImageHolder
 import com.youth.banner.indicator.RectangleIndicator
@@ -254,24 +255,13 @@ class DetailActivity: BaseActivity(R.layout.activity_detail), MavericksView {
 
     private fun showGoodsImgBanner(data: List<String>) {
         goodsImgBanner.run {
-            adapter = object : BannerImageAdapter<String>(data) {
-                override fun onCreateHolder(parent: ViewGroup?, viewType: Int): BannerImageHolder {
-                    val imageView = ImageView(parent?.context)
-                    imageView.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
-                    imageView.scaleType = ImageView.ScaleType.FIT_XY
-                    return BannerImageHolder(imageView)
-                }
-                override fun onBindView(holder: BannerImageHolder?, data: String?, position: Int, size: Int) {
-                    holder?.imageView?.load(data!!, imageLoader ) {
-                        crossfade(true)
-                        placeholder(R.drawable.default_img)
-                    }
+            val list = data.map { v -> TopBanner(v,"") }
+            setBannerData(list)
+            loadImage { _, _, view, position ->
+                (view as ImageView).load(data[position]!!, imageLoader) {
+                    crossfade(true)
                 }
             }
-            indicator = RectangleIndicator(this.context)
-            setPageTransformer(AlphaPageTransformer())
-            setIndicatorSelectedColorRes(R.color.theme_color)
-            isAutoLoop(false)
         }
     }
 
