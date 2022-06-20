@@ -14,7 +14,7 @@
         android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="100dp"
+            android:layout_width="80dp"
             android:layout_height="match_parent"
             android:gravity="center_vertical|start"
             android:paddingStart="15dp"
@@ -42,14 +42,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
-                app:tabMinWidth="40dp"
+                app:tabMinWidth="50dp"
                 app:tabMode="fixed"
                 app:tabIndicatorHeight="2dp"
                 app:tabIndicatorColor="@color/color_E33A3C"
                 app:tabIndicator="@drawable/tab_indicator_shape"
                 app:tabRippleColor="@color/transparent"
                 app:tabTextColor="@color/cl_000000"
-                app:tabSelectedTextColor="@color/cl_000000"/>
+                app:tabSelectedTextColor="@color/color_E33A3C"/>
 
         </LinearLayout>
         <LinearLayout

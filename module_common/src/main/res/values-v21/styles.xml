@@ -6,4 +6,11 @@
         <!--Android 5.x开始需要把颜色设置透明，否则导航栏会呈现系统默认的浅灰色-->
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
+
+    <style name="TabLayoutItemBold">
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="TabLayoutItemNormal">
+        <item name="android:textStyle">normal</item>
+    </style>
 </resources>

@@ -46,6 +46,7 @@
                 android:id="@+id/colorThumbRv"
                 android:layout_width="0dp"
                 android:layout_weight="1"
+                android:overScrollMode="never"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/dp_10"/>
 

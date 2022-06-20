@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import coil.ImageLoader
 import coil.load
+import com.airbnb.mvrx.DeliveryMode
 import com.airbnb.mvrx.MavericksView
 import com.airbnb.mvrx.viewModel
 import com.alibaba.android.arouter.facade.annotation.Route
@@ -76,37 +77,33 @@ class DetailActivity: BaseActivity(R.layout.activity_detail), MavericksView {
             @RequiresApi(Build.VERSION_CODES.M)
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 if (tab != null) {
-                    val title: TextView =  ((detailHeaderTabLayout.getChildAt(0) as LinearLayout).getChildAt(tab.position) as LinearLayout).getChildAt(1) as TextView
-                    title.textSize = 20F
-                    title.setTextAppearance(R.style.TabLayoutItemBold)
+//                    val title: TextView =  ((detailHeaderTabLayout.getChildAt(0) as LinearLayout).getChildAt(tab.position) as LinearLayout).getChildAt(1) as TextView
+//                    title.textSize = 20F
+//                    title.setTextAppearance(R.style.TabLayoutItemBold)
+                    // 根据选中的tab滚动 页面至对应的模块
+                    scrollToPositionByTab(tab.position)
                 }
             }
             @RequiresApi(Build.VERSION_CODES.M)
             override fun onTabUnselected(tab: TabLayout.Tab?) {
+//                if (tab != null) {
+//                    val title: TextView =
+//                        ((detailHeaderTabLayout.getChildAt(0) as LinearLayout).getChildAt(tab.position) as LinearLayout).getChildAt(
+//                            1) as TextView
+//                    title.textSize = 18F
+//                    title.setTextAppearance(R.style.TabLayoutItemNormal)
+//                }
+            }
+            override fun onTabReselected(tab: TabLayout.Tab?) {
                 if (tab != null) {
-                    val title: TextView =  ((detailHeaderTabLayout.getChildAt(0) as LinearLayout).getChildAt(tab.position) as LinearLayout).getChildAt(1) as TextView
-                    title.textSize = 18F
-                    title.setTextAppearance(R.style.TabLayoutItemNormal)
+                    // 根据选中的tab滚动 页面至对应的模块
+                    scrollToPositionByTab(tab.position)
                 }
             }
-            override fun onTabReselected(tab: TabLayout.Tab?) {}
         })
         tabs.forEach { v ->
             detailHeaderTabLayout.addTab(detailHeaderTabLayout.newTab().setText(v))
         }
-        //点击顶部tab滚动页面到响应位置
-        detailHeaderTabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
-            override fun onTabSelected(tab: TabLayout.Tab?) {
-                when (tab?.position) {
-                    0 -> scrollerLayout.smoothScrollTo(0, 0, 1000)
-                    1 -> scrollerLayout.smoothScrollTo(0, detailAppraiseLayout.top - statusBarHeight - PixelUtil.toPixelFromDIP(50f).toInt() , 1000)
-                    2 -> scrollerLayout.smoothScrollTo(0, detailDesLayout.top - statusBarHeight - PixelUtil.toPixelFromDIP(50f).toInt(), 1000)
-                    3 -> scrollerLayout.smoothScrollTo(0, detailRecommend.top - statusBarHeight - PixelUtil.toPixelFromDIP(50f).toInt(), 1000)
-                }
-            }
-            override fun onTabUnselected(tab: TabLayout.Tab?) {}
-            override fun onTabReselected(tab: TabLayout.Tab?) {}
-        })
 
         //商品图片列表 banner
         val lp = LinearLayoutCompat.LayoutParams(LinearLayoutCompat.LayoutParams.MATCH_PARENT, LinearLayoutCompat.LayoutParams.WRAP_CONTENT)
@@ -155,11 +152,12 @@ class DetailActivity: BaseActivity(R.layout.activity_detail), MavericksView {
             adapter = goodsListAdapter
             layoutManager = staggeredGridLayoutManager
         }
+        //同店好货 监听加载更多
         goodsListAdapter.loadMoreModule.setOnLoadMoreListener{
             viewModel.loadMoreRecommendList()
         }
 
-        //监听滚动处理顶部tab选择
+        //监听滚动处理顶部tab选中
         scrollerLayout.setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { _, _, scrollY, _, _ ->
             handleScroll(scrollY)
         })
@@ -258,7 +256,7 @@ class DetailActivity: BaseActivity(R.layout.activity_detail), MavericksView {
             val list = data.map { v -> TopBanner(v,"") }
             setBannerData(list)
             loadImage { _, _, view, position ->
-                (view as ImageView).load(data[position]!!, imageLoader) {
+                (view as ImageView).load(data[position], imageLoader) {
                     crossfade(true)
                 }
             }
@@ -289,6 +287,18 @@ class DetailActivity: BaseActivity(R.layout.activity_detail), MavericksView {
             detailDesLayout.visibility = View.VISIBLE
             goodsDesImgListAdapter.setList(detailInfo.introductionList)
             appraiseTxt.text = "评价"
+        }
+    }
+
+    /**
+     * 根据选中tab滚动页面至指定模块
+     */
+    private fun scrollToPositionByTab(position: Int) {
+        when (position) {
+            0 -> scrollerLayout.smoothScrollTo(0, 0, 200)
+            1 -> scrollerLayout.smoothScrollTo(0, detailAppraiseLayout.top - statusBarHeight - PixelUtil.toPixelFromDIP(50f).toInt() , 200)
+            2 -> scrollerLayout.smoothScrollTo(0, detailDesLayout.top - statusBarHeight - PixelUtil.toPixelFromDIP(50f).toInt(), 200)
+            3 -> scrollerLayout.smoothScrollTo(0, detailRecommend.top - statusBarHeight - PixelUtil.toPixelFromDIP(50f).toInt(), 200)
         }
     }
 }
