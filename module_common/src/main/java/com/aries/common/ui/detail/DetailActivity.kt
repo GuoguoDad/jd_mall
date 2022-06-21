@@ -77,23 +77,12 @@ class DetailActivity: BaseActivity(R.layout.activity_detail), MavericksView {
             @RequiresApi(Build.VERSION_CODES.M)
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 if (tab != null) {
-//                    val title: TextView =  ((detailHeaderTabLayout.getChildAt(0) as LinearLayout).getChildAt(tab.position) as LinearLayout).getChildAt(1) as TextView
-//                    title.textSize = 20F
-//                    title.setTextAppearance(R.style.TabLayoutItemBold)
                     // 根据选中的tab滚动 页面至对应的模块
                     scrollToPositionByTab(tab.position)
                 }
             }
             @RequiresApi(Build.VERSION_CODES.M)
-            override fun onTabUnselected(tab: TabLayout.Tab?) {
-//                if (tab != null) {
-//                    val title: TextView =
-//                        ((detailHeaderTabLayout.getChildAt(0) as LinearLayout).getChildAt(tab.position) as LinearLayout).getChildAt(
-//                            1) as TextView
-//                    title.textSize = 18F
-//                    title.setTextAppearance(R.style.TabLayoutItemNormal)
-//                }
-            }
+            override fun onTabUnselected(tab: TabLayout.Tab?) { }
             override fun onTabReselected(tab: TabLayout.Tab?) {
                 if (tab != null) {
                     // 根据选中的tab滚动 页面至对应的模块
@@ -233,7 +222,7 @@ class DetailActivity: BaseActivity(R.layout.activity_detail), MavericksView {
             detailHeaderTabLayout.visibility = View.VISIBLE
         } else {
             detailHeaderLayout.setBackgroundResource(R.color.transparent)
-            detailHeaderTabLayout.visibility = View.GONE
+            detailHeaderTabLayout.visibility = View.INVISIBLE
         }
         val appraiseToTop = detailAppraiseLayout.top - statusBarHeight - PixelUtil.toPixelFromDIP(50f)
         val goodsDesToTop = detailDesLayout.top - statusBarHeight - PixelUtil.toPixelFromDIP(50f)

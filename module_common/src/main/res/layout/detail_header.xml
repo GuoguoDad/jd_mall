@@ -41,14 +41,18 @@
                 android:id="@+id/detailHeaderTabLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="gone"
-                app:tabMinWidth="50dp"
+                android:visibility="invisible"
                 app:tabMode="fixed"
-                app:tabIndicatorHeight="2dp"
+                app:tabMaxWidth="@dimen/dp_50"
+                app:tabMinWidth="@dimen/dp_40"
+                app:tabPaddingStart="@dimen/dp_8"
+                app:tabPaddingEnd="@dimen/dp_8"
+                app:tabIndicatorHeight="0dp"
                 app:tabIndicatorColor="@color/color_E33A3C"
                 app:tabIndicator="@drawable/tab_indicator_shape"
                 app:tabRippleColor="@color/transparent"
                 app:tabTextColor="@color/cl_000000"
+                app:tabTextAppearance="@style/tabItem"
                 app:tabSelectedTextColor="@color/color_E33A3C"/>
 
         </LinearLayout>
