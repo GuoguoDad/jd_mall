@@ -10,5 +10,6 @@
         <activity android:name="com.aries.main.ui.coordinator.ScrollTabActivity"/>
         <activity android:name="com.aries.main.ui.stepper.StepperActivity"/>
         <activity android:name="com.aries.main.ui.stick.SinkStickActivity"/>
+        <activity android:name="com.aries.main.activity.CartActivity" />
     </application>
 </manifest>

@@ -96,6 +96,7 @@
         <entry key="module_cart/src/main/res/drawable/fragment_cart_bg.xml" value="0.39739583333333334" />
         <entry key="module_cart/src/main/res/drawable/quick_entry_bg.xml" value="0.39739583333333334" />
         <entry key="module_cart/src/main/res/drawable/text_grey_bg.xml" value="0.39739583333333334" />
+        <entry key="module_cart/src/main/res/layout/activity_cart.xml" value="0.1" />
         <entry key="module_cart/src/main/res/layout/bottom_all_select.xml" value="0.1" />
         <entry key="module_cart/src/main/res/layout/cart_content.xml" value="0.1" />
         <entry key="module_cart/src/main/res/layout/cart_quick_entry_gridvew_item.xml" value="0.23233695652173914" />
@@ -155,6 +156,7 @@
         <entry key="module_common/src/main/res/drawable/step_left_selector.xml" value="0.224" />
         <entry key="module_common/src/main/res/drawable/step_right_selector.xml" value="0.224" />
         <entry key="module_common/src/main/res/drawable/tag_bg.xml" value="0.224" />
+        <entry key="module_common/src/main/res/layout/activity_cart.xml" value="0.23369565217391305" />
         <entry key="module_common/src/main/res/layout/activity_detail.xml" value="0.1" />
         <entry key="module_common/src/main/res/layout/activity_detail_appraise.xml" value="0.1" />
         <entry key="module_common/src/main/res/layout/activity_detail_appraise_header.xml" value="0.1" />
@@ -193,6 +195,7 @@
         <entry key="module_main/src/main/res/drawable/selector_main_home.xml" value="0.39739583333333334" />
         <entry key="module_main/src/main/res/drawable/selector_tab_color.xml" value="0.39739583333333334" />
         <entry key="module_main/src/main/res/drawable/skipshape.xml" value="0.39739583333333334" />
+        <entry key="module_main/src/main/res/layout/activity_cart.xml" value="0.23369565217391305" />
         <entry key="module_main/src/main/res/layout/activity_sink_sticky.xml" value="0.1" />
         <entry key="module_main/src/main/res/layout/badge_layout.xml" value="0.24048913043478262" />
         <entry key="module_main/src/main/res/layout/fragment_cart.xml" value="0.23233695652173914" />

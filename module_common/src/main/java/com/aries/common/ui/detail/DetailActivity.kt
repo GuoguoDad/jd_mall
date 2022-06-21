@@ -18,6 +18,7 @@ import com.airbnb.mvrx.DeliveryMode
 import com.airbnb.mvrx.MavericksView
 import com.airbnb.mvrx.viewModel
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.alibaba.android.arouter.launcher.ARouter
 import com.aries.common.R
 import com.aries.common.adapter.GoodsListAdapter
 import com.aries.common.base.BaseActivity
@@ -39,6 +40,7 @@ import com.youth.banner.transformer.AlphaPageTransformer
 import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.android.synthetic.main.activity_detail_appraise.*
 import kotlinx.android.synthetic.main.activity_detail_des.*
+import kotlinx.android.synthetic.main.activity_detail_footer.*
 import kotlinx.android.synthetic.main.activity_detail_goods.*
 import kotlinx.android.synthetic.main.activity_detail_recommend.*
 import kotlinx.android.synthetic.main.detail_header.*
@@ -157,6 +159,10 @@ class DetailActivity: BaseActivity(R.layout.activity_detail), MavericksView {
         //返回顶部
         backTop.setOnClickListener {
             scrollerLayout.smoothScrollTo(0, 0, 500)
+        }
+        //底部跳转购物车
+        detailCartLayout.setOnClickListener {
+            ARouter.getInstance().build(RouterPaths.CART_ACTIVITY).navigation()
         }
         addStateChangeListener()
     }
