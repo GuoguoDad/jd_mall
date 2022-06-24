@@ -78,7 +78,7 @@ public class LoadReactActivity extends LazyLoadReactActivity {
     @Nullable
     @Override
     protected String getMainComponentName() {
-        return null;
+        return bundleName;
     }
 
 

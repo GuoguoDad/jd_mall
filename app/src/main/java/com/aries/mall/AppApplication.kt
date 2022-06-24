@@ -6,6 +6,7 @@ import com.aries.rn.Options
 import com.aries.rn.MiniAppVersionCheckDelegate
 import com.aries.rn.navigate.NavigatePackage
 import com.aries.rn.utils.MaskLog
+import com.facebook.react.BuildConfig
 import com.facebook.react.ReactApplication
 import com.facebook.react.ReactNativeHost
 import com.facebook.react.ReactPackage
