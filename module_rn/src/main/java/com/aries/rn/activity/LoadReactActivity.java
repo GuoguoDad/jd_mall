@@ -27,6 +27,7 @@ import com.aries.rn.download.Downloader;
 import com.aries.rn.download.Request;
 import com.aries.rn.utils.MaskLog;
 import com.aries.rn.utils.Md5Utils;
+import com.gyf.immersionbar.ImmersionBar;
 
 import java.io.File;
 import java.io.IOException;
@@ -118,6 +119,7 @@ public class LoadReactActivity extends LazyLoadReactActivity {
 
 
     private void initViews() {
+        ImmersionBar.with(this).transparentStatusBar().statusBarDarkFont(true).init();
         loadingDialog = new LoadingDialog(this);
         if (!loadingDialog.isShowing()){
             loadingDialog.show();
