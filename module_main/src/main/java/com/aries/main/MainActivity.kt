@@ -1,8 +1,6 @@
 package com.aries.main
 
 import android.annotation.SuppressLint
-import android.graphics.Color
-import android.os.Build
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
@@ -13,7 +11,6 @@ import com.aries.cart.ui.CartFragment
 import com.aries.category.ui.CategoryFragment
 import com.aries.common.constants.RouterPaths
 import com.aries.common.base.BaseActivity
-import com.aries.common.util.StatusBarUtil
 import com.aries.common.util.UnreadMsgUtil
 import com.aries.home.ui.HomeFragment
 import com.aries.mine.ui.MineFragment
@@ -21,7 +18,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationItemView
 import kotlinx.android.synthetic.main.layout_main.*
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 import com.google.android.material.navigation.NavigationBarView
-import java.lang.reflect.Field
+import com.gyf.immersionbar.ImmersionBar
 
 @Route(path = RouterPaths.MAIN_ACTIVITY)
 class MainActivity: BaseActivity(R.layout.layout_main) {
@@ -30,39 +27,53 @@ class MainActivity: BaseActivity(R.layout.layout_main) {
     private val cartFragment: Fragment = CartFragment()
     private val mineFragment: Fragment = MineFragment()
 
+    private var isCategoryFragmentAdd: Boolean = false
+    private var isCartFragmentAdd: Boolean = false
+    private var isMineFragmentAdd: Boolean = false
+
     override fun initView() {
-        StatusBarUtil.setBarTextModal(this, false)
         val navController = findNavController(R.id.container_fragment)
         navView.labelVisibilityMode = NavigationBarView.LABEL_VISIBILITY_LABELED
         navView.itemIconTintList = null //保留icon原图颜色
         navView.setupWithNavController(navController)
 
-        var active = homeFragment
-        supportFragmentManager.beginTransaction().add(R.id.container_fragment, homeFragment, "1").commit()
-        supportFragmentManager.beginTransaction().add(R.id.container_fragment, cartFragment, "2").hide(cartFragment).commit()
-        supportFragmentManager.beginTransaction().add(R.id.container_fragment, categoryFragment, "3").hide(categoryFragment).commit()
-        supportFragmentManager.beginTransaction().add(R.id.container_fragment, mineFragment, "4").hide(mineFragment).commit()
+        supportFragmentManager.beginTransaction().add(R.id.container_fragment, homeFragment, "1").show(homeFragment).commit()
 
+        var active = homeFragment
         navView.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.navigation_home -> {
                     supportFragmentManager.beginTransaction().hide(active).show(homeFragment).commit()
-                    StatusBarUtil.setBarTextModal(this, false)
                     active = homeFragment
                 }
                 R.id.navigation_category -> {
-                    supportFragmentManager.beginTransaction().hide(active).show(categoryFragment).commit()
-                    StatusBarUtil.setBarTextModal(this, false)
+                    when(isCategoryFragmentAdd) {
+                        false -> {
+                            supportFragmentManager.beginTransaction().add(R.id.container_fragment, categoryFragment, "3").hide(active).show(categoryFragment).commit()
+                            isCategoryFragmentAdd = true
+                        }
+                        true -> supportFragmentManager.beginTransaction().hide(active).show(categoryFragment).commit()
+                    }
                     active = categoryFragment
                 }
                 R.id.navigation_cart -> {
-                    supportFragmentManager.beginTransaction().hide(active).show(cartFragment).commit()
-                    StatusBarUtil.setBarTextModal(this, true)
+                    when(isCartFragmentAdd) {
+                        false -> {
+                            supportFragmentManager.beginTransaction().add(R.id.container_fragment, cartFragment, "2").hide(active).show(cartFragment).commit()
+                            isCartFragmentAdd = true
+                        }
+                        true -> supportFragmentManager.beginTransaction().hide(active).show(cartFragment).commit()
+                    }
                     active = cartFragment
                 }
                 R.id.navigation_mine -> {
-                    supportFragmentManager.beginTransaction().hide(active).show(mineFragment).commit()
-                    StatusBarUtil.setBarTextModal(this, true)
+                    when(isMineFragmentAdd) {
+                        false -> {
+                            supportFragmentManager.beginTransaction().add(R.id.container_fragment, mineFragment, "4").hide(active).show(mineFragment).commit()
+                            isMineFragmentAdd = true
+                        }
+                        true -> supportFragmentManager.beginTransaction().hide(active).show(mineFragment).commit()
+                    }
                     active = mineFragment
                 }
             }

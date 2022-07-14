@@ -24,6 +24,7 @@ import com.aries.common.util.PixelUtil
 import com.aries.common.util.StatusBarUtil
 import com.aries.common.util.UnreadMsgUtil
 import com.aries.common.widget.consecutiveScroller.ConsecutiveScrollerLayout
+import com.gyf.immersionbar.ImmersionBar
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.enums.PopupAnimation
 import kotlinx.android.synthetic.main.bottom_all_select.*
@@ -131,6 +132,18 @@ class CartFragment : BaseFragment(R.layout.fragment_cart), MavericksView {
     override fun initData() {
         viewModel.queryCartGoodsList(false)
         viewModel.initMaybeLikeList()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        ImmersionBar.with(this).transparentStatusBar().statusBarDarkFont(true).init()
+    }
+
+    override fun onHiddenChanged(hidden: Boolean) {
+        super.onHiddenChanged(hidden)
+        if(!hidden) {
+            ImmersionBar.with(this).transparentStatusBar().statusBarDarkFont(true).init()
+        }
     }
 
     override fun invalidate() {

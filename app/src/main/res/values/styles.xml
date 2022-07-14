@@ -1,7 +1,6 @@
 <resources>
     <style name="SplashActivityTheme" parent="TranslucentTheme">
         <item name="android:windowBackground">@drawable/splash</item>
-
     </style>
 
     <style name="OnePxActStyle">

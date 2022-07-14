@@ -9,6 +9,7 @@ import com.airbnb.mvrx.withState
 import com.aries.category.R
 import com.aries.category.ui.adapter.CategoryListAdapter
 import com.aries.common.base.BaseFragment
+import com.gyf.immersionbar.ImmersionBar
 import kotlinx.android.synthetic.main.fragment_main.*
 
 class CategoryFragment : BaseFragment(R.layout.fragment_main), MavericksView {
@@ -55,6 +56,18 @@ class CategoryFragment : BaseFragment(R.layout.fragment_main), MavericksView {
                     rightViewModel.queryContentByCate(brandList[0].code)
                 }
             }
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        ImmersionBar.with(this).transparentStatusBar().init()
+    }
+
+    override fun onHiddenChanged(hidden: Boolean) {
+        super.onHiddenChanged(hidden)
+        if(!hidden) {
+            ImmersionBar.with(this).transparentStatusBar().init()
         }
     }
 

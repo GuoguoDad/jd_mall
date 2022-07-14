@@ -32,6 +32,7 @@ import com.aries.common.util.DisplayUtil
 import com.aries.common.util.PixelUtil
 import com.aries.common.util.StatusBarUtil
 import com.google.android.material.tabs.TabLayout
+import com.gyf.immersionbar.ImmersionBar
 import com.stx.xhb.androidx.XBanner
 import com.youth.banner.adapter.BannerImageAdapter
 import com.youth.banner.holder.BannerImageHolder
@@ -69,6 +70,7 @@ class DetailActivity: BaseActivity(R.layout.activity_detail), MavericksView {
     }
 
     override fun initView() {
+        ImmersionBar.with(this).transparentStatusBar().statusBarDarkFont(true).init()
         statusBarHeight = StatusBarUtil.getHeight()
         //设置状态栏颜色深色个
         StatusBarUtil.setBarTextModal(this, true)

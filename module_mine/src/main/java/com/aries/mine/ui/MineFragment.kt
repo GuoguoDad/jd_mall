@@ -18,6 +18,7 @@ import com.aries.common.util.StatusBarUtil
 import com.aries.common.widget.consecutiveScroller.ConsecutiveScrollerLayout
 import com.aries.mine.R
 import com.aries.mine.ui.view.FiveMenuView
+import com.gyf.immersionbar.ImmersionBar
 import kotlinx.android.synthetic.main.floating_header.*
 import kotlinx.android.synthetic.main.layout_mine.*
 
@@ -78,6 +79,18 @@ class MineFragment: BaseFragment(R.layout.layout_mine), MavericksView {
     override fun initData() {
         viewModel.queryMineInfo()
         viewModel.initRecommendList()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        ImmersionBar.with(this).transparentStatusBar().statusBarDarkFont(true).init()
+    }
+
+    override fun onHiddenChanged(hidden: Boolean) {
+        super.onHiddenChanged(hidden)
+        if(!hidden) {
+            ImmersionBar.with(this).transparentStatusBar().statusBarDarkFont(true).init()
+        }
     }
 
     override fun invalidate() {

@@ -22,17 +22,22 @@ import kotlinx.android.synthetic.main.fragment_home.*
 import com.google.android.material.tabs.TabLayoutMediator
 import com.aries.home.ui.view.AdView
 import com.aries.home.ui.view.NineMenuView
+import com.gyf.immersionbar.ImmersionBar
 import kotlinx.android.synthetic.main.home_top_view.*
 
 class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
     private val viewModel: HomeViewModel by activityViewModel()
+    //loading 对话框
     private val loadingDialog: LoadingDialog by lazy { LoadingDialog(this.requireActivity()) }
-
+    //分类tabLayout
     private var tabList: ArrayList<TabBean> = arrayListOf()
     private lateinit var tabViewPagerAdapter: FragmentStateAdapter
 
+    //顶部滚动banner
     private val banner: BannerView by lazy { BannerView(this.requireContext()) }
+    //顶部banner下面的广告
     private val adView: AdView by lazy { AdView(this.requireContext()) }
+    //顶部九格宫功能菜单
     private val nineMenuView: NineMenuView by lazy { NineMenuView(this.requireContext(), this@HomeFragment) }
 
     override fun onDestroyView() {
@@ -43,6 +48,7 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
 
     override fun initView() {
         initHeader()
+        //下拉刷新
         refreshView.run {
             setEnableLoadMore(false)
             setOnRefreshListener {
@@ -56,7 +62,7 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
             addView(nineMenuView)
         }
         initTabViewPagerAdapter()
-
+        //监听页面滚动
         consecutiveScrollerLayout.setOnVerticalScrollChangeListener(object: ConsecutiveScrollerLayout.OnScrollChangeListener{
             override fun onScrollChange(v: View?, scrollY: Int, oldScrollY: Int, scrollState: Int) {
                 searchHeaderOnScroll(scrollY)
@@ -71,6 +77,18 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
 
     override fun initData() {
         viewModel.init(false)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        ImmersionBar.with(this).transparentStatusBar().init()
+    }
+
+    override fun onHiddenChanged(hidden: Boolean) {
+        super.onHiddenChanged(hidden)
+        if(!hidden) {
+            ImmersionBar.with(this).transparentStatusBar().init()
+        }
     }
 
     private fun addStateChangeListener() {
