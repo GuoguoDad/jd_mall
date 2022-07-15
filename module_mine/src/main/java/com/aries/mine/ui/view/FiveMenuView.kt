@@ -2,6 +2,7 @@ package com.aries.mine.ui.view
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.ImageView
@@ -11,7 +12,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.aries.mine.R
 import com.aries.mine.ui.MenuBean
 import com.aries.mine.ui.adapter.FiveViewPagerAdapter
-import kotlinx.android.synthetic.main.five_memu_main.view.*
+import kotlinx.android.synthetic.main.five_menu_main.view.*
 import kotlin.math.ceil
 
 class FiveMenuView(var content: Context, fragment: Fragment): FrameLayout(content) {
@@ -23,13 +24,13 @@ class FiveMenuView(var content: Context, fragment: Fragment): FrameLayout(conten
     private val fiveViewPagerAdapter: FiveViewPagerAdapter by lazy { FiveViewPagerAdapter(fragment, menuList, pageSize) }
 
     init {
-        LayoutInflater.from(context).inflate(R.layout.five_memu_main, this, true)
+        LayoutInflater.from(context).inflate(R.layout.five_menu_main, this, true)
         fiveViewPager.adapter = fiveViewPagerAdapter
     }
 
     fun setData(data: List<MenuBean>) {
         var totalPage = ceil(data.size * 1.0 / pageSize).toInt()
-
+        fiveMemuLayout.visibility = View.VISIBLE
         menuList.clear()
         menuList.addAll(data)
         fiveViewPagerAdapter.notifyDataSetChanged()

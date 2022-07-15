@@ -157,6 +157,7 @@ class CartFragment : BaseFragment(R.layout.fragment_cart), MavericksView {
                 goodsListAdapter.loadMoreModule.loadMoreComplete()
             }
             if (it.goodsList.isNotEmpty()) {
+                mabeLikeBanner.visibility = View.VISIBLE
                 goodsListAdapter.setList(it.goodsList)
                 goodsListAdapter.loadMoreModule.loadMoreComplete()
             }

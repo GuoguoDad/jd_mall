@@ -22,7 +22,7 @@ class FiveGridAdapter(var context: Context, var data: MutableList<MenuBean>, var
 
         var convertView = p1
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.five_memu_item, parent, false)
+            convertView = LayoutInflater.from(context).inflate(R.layout.five_menu_item, parent, false)
         }
         var holder = ViewHolder(convertView!!)
         convertView.tag = holder

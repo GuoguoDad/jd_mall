@@ -5,6 +5,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.MotionEvent
+import android.view.View
 import android.widget.FrameLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -96,6 +97,7 @@ class CategoryRightView: FrameLayout {
 
     fun setData(data: ContentCateResponse) {
         dataCopy = data
+        topImg.visibility = View.VISIBLE
         topImg.load(data.bannerUrl, imageLoader)  {
             crossfade(true)
         }

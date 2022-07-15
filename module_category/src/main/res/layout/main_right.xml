@@ -27,6 +27,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:scaleType="fitXY"
+                android:adjustViewBounds="true"
+                android:visibility="gone"
                 app:layout_collapseMode="pin"/>
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>

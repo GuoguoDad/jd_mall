@@ -59,10 +59,12 @@
 
                         <!-- 你可能还喜欢 或者 快点来看看 -->
                         <ImageView
+                            android:id="@+id/mabeLikeBanner"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:scaleType="fitXY"
                             android:adjustViewBounds="true"
+                            android:visibility="gone"
                             android:src="@drawable/probably_like"/>
 
                         <!-- 你可能还喜欢列表 或者 快点来看看列表 -->

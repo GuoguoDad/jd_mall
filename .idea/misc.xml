@@ -126,7 +126,7 @@
         <entry key="module_category/src/main/res/layout/fragment_categroy_right.xml" value="0.22040816326530613" />
         <entry key="module_category/src/main/res/layout/fragment_categroy_right_item.xml" value="0.2269021739130435" />
         <entry key="module_category/src/main/res/layout/fragment_categroy_right_item_header.xml" value="0.22040816326530613" />
-        <entry key="module_category/src/main/res/layout/fragment_main.xml" value="0.2269021739130435" />
+        <entry key="module_category/src/main/res/layout/fragment_main.xml" value="0.1" />
         <entry key="module_category/src/main/res/layout/main_left_item.xml" value="0.24048913043478262" />
         <entry key="module_category/src/main/res/layout/main_right.xml" value="0.2269021739130435" />
         <entry key="module_category/src/main/res/layout/main_right_grid.xml" value="0.1" />
@@ -220,6 +220,7 @@
         <entry key="module_mine/src/main/res/layout/five_memu_gridview.xml" value="0.24320652173913043" />
         <entry key="module_mine/src/main/res/layout/five_memu_item.xml" value="0.24320652173913043" />
         <entry key="module_mine/src/main/res/layout/five_memu_main.xml" value="0.24320652173913043" />
+        <entry key="module_mine/src/main/res/layout/five_menu_item.xml" value="0.254981884057971" />
         <entry key="module_mine/src/main/res/layout/floating_header.xml" value="0.1" />
         <entry key="module_mine/src/main/res/layout/layout_goods_tabs.xml" value="0.264945652173913" />
         <entry key="module_mine/src/main/res/layout/layout_header.xml" value="0.24864130434782608" />
