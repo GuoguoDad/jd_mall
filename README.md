@@ -5,7 +5,7 @@
 3. [基于MVI架构airbnb的Mavericks](https://airbnb.io/mavericks/#/README)
 4. [本地mock](https://github.com/mirrajabi/okhttp-json-mock)
 5. [alibaba ARouter](https://github.com/alibaba/ARouter/tree/master)
-6. 集成RN热更功能， 用户设置为rn写的页面，[rn工程请见](https://github.com/liuaries/rn_mall.git)
+6. 集成RN热更功能， 用户设置为rn写的页面，[rn工程请见](https://github.com/GuoguoDad/jd_mall_rn.git)
 
 
 # MVI架构
