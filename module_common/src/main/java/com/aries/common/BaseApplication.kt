@@ -23,15 +23,6 @@ abstract class BaseApplication : MultiDexApplication(), IBaseApplication {
 
         Logger.addLogAdapter(AndroidLogAdapter())
 
-//        val threadPolicy = StrictMode.ThreadPolicy.Builder()
-//            .detectNetwork()
-//            .penaltyDialog()
-//            .build()
-
-//        val viewModelConfigFactory = MavericksViewModelConfigFactory(this,
-//            storeContextOverride = if (BuildConfig.DEBUG) threadPolicy.asContextElement() else EmptyCoroutineContext
-//        )
-
         val viewModelConfigFactory = MavericksViewModelConfigFactory(this,
             storeContextOverride = EmptyCoroutineContext
         )

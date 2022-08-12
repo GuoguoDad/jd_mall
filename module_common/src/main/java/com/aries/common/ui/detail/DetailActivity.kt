@@ -2,10 +2,7 @@ package com.aries.common.ui.detail
 
 import android.os.Build
 import android.view.View
-import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.core.widget.NestedScrollView
@@ -14,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import coil.ImageLoader
 import coil.load
-import com.airbnb.mvrx.DeliveryMode
 import com.airbnb.mvrx.MavericksView
 import com.airbnb.mvrx.viewModel
 import com.alibaba.android.arouter.facade.annotation.Route
@@ -33,11 +29,6 @@ import com.aries.common.util.PixelUtil
 import com.aries.common.util.StatusBarUtil
 import com.google.android.material.tabs.TabLayout
 import com.gyf.immersionbar.ImmersionBar
-import com.stx.xhb.androidx.XBanner
-import com.youth.banner.adapter.BannerImageAdapter
-import com.youth.banner.holder.BannerImageHolder
-import com.youth.banner.indicator.RectangleIndicator
-import com.youth.banner.transformer.AlphaPageTransformer
 import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.android.synthetic.main.activity_detail_appraise.*
 import kotlinx.android.synthetic.main.activity_detail_des.*
@@ -70,10 +61,9 @@ class DetailActivity: BaseActivity(R.layout.activity_detail), MavericksView {
     }
 
     override fun initView() {
+        //设置状态栏颜色深色个
         ImmersionBar.with(this).transparentStatusBar().statusBarDarkFont(true).init()
         statusBarHeight = StatusBarUtil.getHeight()
-        //设置状态栏颜色深色个
-        StatusBarUtil.setBarTextModal(this, true)
         //顶部tabLayout
         detailHeaderLayout.setPadding(0, StatusBarUtil.getHeight(), 0 , 0)
         detailHeaderTabLayout.removeAllTabs()

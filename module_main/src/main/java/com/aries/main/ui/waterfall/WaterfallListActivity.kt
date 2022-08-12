@@ -11,6 +11,7 @@ import com.aries.common.decoration.SpacesItemDecoration
 import com.aries.main.R
 import com.aries.common.dialog.LoadingDialog
 import com.aries.common.dialog.PreviewPictureDialog
+import com.gyf.immersionbar.ImmersionBar
 import kotlinx.android.synthetic.main.layout_header.*
 import kotlinx.android.synthetic.main.layout_waterfall.*
 import java.lang.reflect.Method
@@ -32,6 +33,8 @@ class WaterfallListActivity: BaseActivity(R.layout.layout_waterfall), MavericksV
     private val viewModel: WaterfallViewModel by viewModel()
 
     override fun initView() {
+        ImmersionBar.with(this).transparentStatusBar().statusBarDarkFont(false).init()
+
         //下拉刷新
         waterfallLayout.setOnRefreshListener {
             run {

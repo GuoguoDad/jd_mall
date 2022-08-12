@@ -74,6 +74,9 @@ class MineFragment: BaseFragment(R.layout.layout_mine), MavericksView {
                 .withString("url","rn://app/index.android.jsbundle")
                 .navigation()
         }
+        message.setOnClickListener{
+            ARouter.getInstance().build(RouterPaths.DEMO_ACTIVITY).navigation()
+        }
     }
 
     override fun initData() {
