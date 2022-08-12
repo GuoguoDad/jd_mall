@@ -5,13 +5,13 @@ buildscript {
     apply from: rootProject.file('common.gradle')
     repositories {
         maven { url "https://jitpack.io" }
-        maven {
-            url 'https://maven.cnsuning.com/content/groups/public'
-            content {
-                includeGroup "com.cnsuning"
-                includeGroup "com.suning"
-            }
-        }
+//        maven {
+//            url 'https://maven.cnsuning.com/content/groups/public'
+//            content {
+//                includeGroup "com.cnsuning"
+//                includeGroup "com.suning"
+//            }
+//        }
         maven { url 'https://maven.aliyun.com/repository/public' }
         maven { url 'https://maven.aliyun.com/repository/jcenter' }
         maven { url 'https://maven.aliyun.com/repository/google' }
