@@ -18,3 +18,5 @@ local.properties
 /app/debug
 /app/release
 /local_lib/rn/build
+/local_lib/hermes/build
+/local_lib/jsc/build

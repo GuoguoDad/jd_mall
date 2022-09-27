@@ -1,0 +1,2 @@
+configurations.maybeCreate("default")
+artifacts.add("default", file('hermes-engine-0.70.1-release.aar'))

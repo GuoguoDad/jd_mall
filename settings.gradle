@@ -10,6 +10,8 @@ dependencyResolutionManagement {
 rootProject.name = "android_mall"
 include ':app'
 include ':local_mock'
+include ':local_lib:hermes'
+include ':local_lib:jsc'
 include ':local_lib:rn'
 include ':module_common'
 include ':moudle_home'

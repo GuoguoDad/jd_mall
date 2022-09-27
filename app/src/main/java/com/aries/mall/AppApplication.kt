@@ -47,6 +47,6 @@ class AppApplication: BaseApplication(), ReactApplication {
             .log(MaskLog.AndroidLog()) //                .assetsBundleFileName("index.android.jsbundle")
             .delegate(MiniAppVersionCheckDelegate(this))
             .reactInstanceManager(mReactNativeHost.reactInstanceManager)
-        SoLoader.init(this,  /* native exopackage */false)
+        SoLoader.init(this, /* native exopackage */ false);
     }
 }

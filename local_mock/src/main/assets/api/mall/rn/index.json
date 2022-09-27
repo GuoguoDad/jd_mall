@@ -1,14 +1,14 @@
 {
   "code": 0,
   "data": {
-    "ossUrl": "https://oss.suning.com/sffe/sffe/aries/69/20220701_150537.zip",
-    "lowestAppVersion": "1.0",
+    "ossUrl": "https://oss.suning.com/sffe/sffe/singlePage/20220926_163508.zip",
+    "lowestAppVersion": "1.2",
     "isOldMode": "0",
     "name": "DEMO_APP",
     "userId": "0000000",
-    "lowestIosVersion": "1.0",
-    "iconUrl": "https://ww4.sinaimg.cn/mw2000/006ffvM6jw8ex9l3z71ioj3050050a9z.jpg",
-    "version": "21",
+    "lowestIosVersion": "1.2",
+    "iconUrl": "",
+    "version": "23",
     "md5code": "6028ce7df9a43156046af5c1832e206b"
   },
   "message": "success"
