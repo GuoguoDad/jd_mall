@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- The primary branding color for the app. By default, this is the color applied to the
+             action bar background. -->
+    <attr format="color" name="colorPrimary"/>
+</resources>

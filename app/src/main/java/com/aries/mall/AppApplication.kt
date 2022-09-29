@@ -2,8 +2,8 @@ package com.aries.mall
 
 import com.aries.common.BaseApplication
 import com.aries.rn.Constants
-import com.aries.rn.Options
 import com.aries.rn.MiniAppVersionCheckDelegate
+import com.aries.rn.Options
 import com.aries.rn.navigate.NavigatePackage
 import com.aries.rn.utils.MaskLog
 import com.facebook.react.BuildConfig
@@ -12,6 +12,9 @@ import com.facebook.react.ReactNativeHost
 import com.facebook.react.ReactPackage
 import com.facebook.react.shell.MainReactPackage
 import com.facebook.soloader.SoLoader
+import com.swmansion.gesturehandler.RNGestureHandlerPackage
+import com.swmansion.rnscreens.RNScreensPackage
+import com.th3rdwave.safeareacontext.SafeAreaContextPackage
 import java.io.File
 
 class AppApplication: BaseApplication(), ReactApplication {
@@ -26,7 +29,10 @@ class AppApplication: BaseApplication(), ReactApplication {
         override fun getPackages(): List<ReactPackage> {
             return listOf(
                 MainReactPackage(),
-                NavigatePackage()
+                NavigatePackage(),
+                RNGestureHandlerPackage(),
+                SafeAreaContextPackage(),
+                RNScreensPackage()
             )
         }
 

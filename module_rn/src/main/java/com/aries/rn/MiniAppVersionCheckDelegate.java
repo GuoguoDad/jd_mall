@@ -39,7 +39,7 @@ public class MiniAppVersionCheckDelegate implements VersionCheckerDelegate {
     public void processCheckResult(Map<String, Object> params, Callback callback) {
         Request request = new Request.Builder()
 //                .url("https://oss.suning.com/sffe/sffe/aries/index.json")
-                .url("https://oss.suning.com/sffe/sffe/70/index.json")
+                .url("https://oss.suning.com/sffe/sffe/70new/index.json")
                 .build();
 
         client.newCall(request).enqueue(new okhttp3.Callback() {
