@@ -12,6 +12,7 @@ import com.facebook.react.ReactNativeHost
 import com.facebook.react.ReactPackage
 import com.facebook.react.shell.MainReactPackage
 import com.facebook.soloader.SoLoader
+import com.masteratul.exceptionhandler.ReactNativeExceptionHandlerPackage
 import com.swmansion.gesturehandler.RNGestureHandlerPackage
 import com.swmansion.rnscreens.RNScreensPackage
 import com.th3rdwave.safeareacontext.SafeAreaContextPackage
@@ -32,7 +33,8 @@ class AppApplication: BaseApplication(), ReactApplication {
                 NavigatePackage(),
                 RNGestureHandlerPackage(),
                 SafeAreaContextPackage(),
-                RNScreensPackage()
+                RNScreensPackage(),
+                ReactNativeExceptionHandlerPackage()
             )
         }
 

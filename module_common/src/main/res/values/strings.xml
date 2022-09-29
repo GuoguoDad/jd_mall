@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="backTop">backTop</string>
+    <string name="show_error_details"><u>SHOW ERROR DETAILS</u></string>
 </resources>

@@ -170,6 +170,7 @@
         <entry key="module_common/src/main/res/layout/activity_detail_recommnd_list.xml" value="0.1" />
         <entry key="module_common/src/main/res/layout/badge_layout.xml" value="0.24365942028985507" />
         <entry key="module_common/src/main/res/layout/color_thumb_item.xml" value="0.10092592592592593" />
+        <entry key="module_common/src/main/res/layout/default_error_screen.xml" value="0.23233695652173914" />
         <entry key="module_common/src/main/res/layout/detail_header.xml" value="0.1" />
         <entry key="module_common/src/main/res/layout/goods_item.xml" value="0.22554347826086957" />
         <entry key="module_common/src/main/res/layout/goods_second_item.xml" value="0.1" />
