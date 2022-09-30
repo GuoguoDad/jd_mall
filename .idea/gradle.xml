@@ -13,7 +13,6 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/local_lib" />
             <option value="$PROJECT_DIR$/local_lib/hermes" />
-            <option value="$PROJECT_DIR$/local_lib/jsc" />
             <option value="$PROJECT_DIR$/local_lib/rn" />
             <option value="$PROJECT_DIR$/local_mock" />
             <option value="$PROJECT_DIR$/module_cart" />
