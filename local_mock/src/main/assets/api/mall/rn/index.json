@@ -1,14 +1,14 @@
 {
   "code": 0,
   "data": {
-    "ossUrl": "https://oss.suning.com/sffe/sffe/70new/20220929_165500.zip",
-    "lowestAppVersion": "1.4",
+    "ossUrl": "https://oss.suning.com/srcfews/lsypc/test/20221007_142209.zip",
+    "lowestAppVersion": "1.5",
     "isOldMode": "0",
-    "name": "DEMO_APP",
+    "name": "app",
     "userId": "0000000",
-    "lowestIosVersion": "1.4",
+    "lowestIosVersion": "1.5",
     "iconUrl": "",
-    "version": "25",
+    "version": "26",
     "md5code": "6028ce7df9a43156046af5c1832e206b"
   },
   "message": "success"
