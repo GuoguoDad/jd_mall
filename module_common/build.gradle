@@ -45,7 +45,7 @@ android {
 dependencies {
     api project(path: ':local_mock')
     api 'androidx.core:core-ktx:1.8.0'
-    api 'androidx.appcompat:appcompat:1.4.1'
+    api 'androidx.appcompat:appcompat:1.5.0'
     api 'androidx.multidex:multidex:2.0.1'
     api 'androidx.constraintlayout:constraintlayout:2.1.4'  //约束布局
     api 'androidx.coordinatorlayout:coordinatorlayout:1.2.0'  //协调者布局
@@ -58,7 +58,7 @@ dependencies {
     api 'com.youth.banner:banner:2.1.0'
     api 'com.github.xiaohaibin:XBanner:androidx_v1.2.8'
 
-    api 'com.airbnb.android:mavericks:2.7.0'
+    api 'com.airbnb.android:mavericks:3.0.1'
 
     api 'com.google.android.material:material:1.5.0'
     api 'com.google.code.gson:gson:2.9.0'
