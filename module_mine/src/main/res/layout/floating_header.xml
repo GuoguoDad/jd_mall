@@ -97,7 +97,7 @@
                 android:textColor="@color/cl_000000"
                 android:textStyle="bold"
                 android:textSize="16sp"
-                android:text="楠色星辰"/>
+                android:text="GuoguoDad"/>
 
             <LinearLayout
                 android:layout_width="match_parent"

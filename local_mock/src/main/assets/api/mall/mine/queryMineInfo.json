@@ -5,17 +5,17 @@
     "functionList": [
       {
         "menuIcon": "https://m15.360buyimg.com/mobilecms/jfs/t1/104637/39/25735/190791/622f3682E168960d2/2dbfbaf4147134c1.gif",
-        "menuName": "京东国际",
+        "menuName": "国际",
         "menuCode": "m11"
       },
       {
         "menuIcon": "https://m15.360buyimg.com/mobilecms/jfs/t1/146555/27/19306/16865/60ac616bEd519445a/bfbb2c0ba8206259.png!q70.jpg",
-        "menuName": "京东到家",
+        "menuName": "到家",
         "menuCode": "m12"
       },
       {
         "menuIcon": "https://m15.360buyimg.com/mobilecms/jfs/t1/189533/37/5319/12852/60b05d59Eb3b3fd29/4c478e3347507e51.png!q70.jpg",
-        "menuName": "京东生鲜",
+        "menuName": "生鲜",
         "menuCode": "m13"
       },
       {
@@ -25,7 +25,7 @@
       },
       {
         "menuIcon": "https://m15.360buyimg.com/mobilecms/jfs/t1/192361/9/5316/11815/60b05d25Eec7f6b5e/5555dcc59d99428d.png!q70.jpg",
-        "menuName": "京东旅行",
+        "menuName": "旅行",
         "menuCode": "m15"
       },
       {
@@ -45,7 +45,7 @@
       },
       {
         "menuIcon": "https://m15.360buyimg.com/mobilecms/jfs/t1/184718/8/4051/11977/609e5222Ea2816259/d29fec6d4d8558f1.png!q70.jpg",
-        "menuName": "京东萌宠",
+        "menuName": "萌宠",
         "menuCode": "m19"
       },
       {
