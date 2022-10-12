@@ -18,7 +18,7 @@
 * View: 与其他MVX中的View一致，可能是一个Activity、Fragment或者任意UI承载单元。MVI中的View通过订阅Intent的变化实现界面刷新（不是Activity的Intent、后面介绍）
 * Intent: 此Intent不是Activity的Intent，用户的任何操作都被包装成Intent后发送给Model进行数据请求
 
-# 下载
+# 下载（已废弃，需自己下载源码编译）
 
 ##Apk下载链接： [Apk下载链接](https://www.pgyer.com/FYfa)
 
