@@ -18,6 +18,25 @@
 * View: 与其他MVX中的View一致，可能是一个Activity、Fragment或者任意UI承载单元。MVI中的View通过订阅Intent的变化实现界面刷新（不是Activity的Intent、后面介绍）
 * Intent: 此Intent不是Activity的Intent，用户的任何操作都被包装成Intent后发送给Model进行数据请求
 
+# 热更新
+热更新也叫动态更新，一种和web更新方式很类似。对比App的版本更新，热更新能及时修复线上存在的问题，大幅提升业务迭代效率。
+
+热更流程:
+
+1，上传 Bundle 到源站，也就是 OSS
+先在将本地打包好 Bundle 文件上传到 OSS ，同时生成MD5值。此时理论上，只要 Bundle 内容发生了变化，那么生成 MD5 值就是不一样的，用 MD5 作为文件的命名能保证文件的唯一性。
+
+2，正式发版上线
+当需要正式上线时，我们只需要上传前面生成的bundle包，然后将服务最新的线上 Bundle 的名字修改成最新的，这时版本服务会在内部通过 mysql 或 redis 把线上最新文件名给记录下来。
+(这里项目使用json文件记录)
+
+3，React Native App 发起版本请求
+由于只有一个版本服务，不会存在 CDN 上千个节点在某一时刻不同步的问题，版本服务会直接把最新的 Bundle 名字告诉 React Native 应用。
+
+4，React Native 发起 CDN 资源请求
+资源请求会先询问某个 CDN 的边缘节点，如果该边缘节点没有缓存，则会去源站拉取；如果该边缘节点有缓存，则直接返回。
+
+
 # 下载（已废弃，需自己下载源码编译）
 
 ##Apk下载链接： [Apk下载链接](https://www.pgyer.com/FYfa)
