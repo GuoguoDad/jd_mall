@@ -23,6 +23,8 @@
 
 热更流程:
 
+<img src="images/process.png" title="" alt="image">
+
 1，上传 Bundle 到源站，也就是 OSS
 先在将本地打包好 Bundle 文件上传到 OSS ，同时生成MD5值。此时理论上，只要 Bundle 内容发生了变化，那么生成 MD5 值就是不一样的，用 MD5 作为文件的命名能保证文件的唯一性。
 
