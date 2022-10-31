@@ -11,8 +11,6 @@
         android:layout_height="0dp"
         android:layout_weight="1">
 
-        <include layout="@layout/detail_header" />
-
         <androidx.core.widget.NestedScrollView
             android:id="@+id/scrollerLayout"
             android:layout_width="match_parent"
@@ -35,6 +33,8 @@
             </androidx.appcompat.widget.LinearLayoutCompat>
 
         </androidx.core.widget.NestedScrollView>
+
+        <include layout="@layout/detail_header" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/backTop"
