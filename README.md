@@ -24,15 +24,12 @@
 
 <img src="images/process.png" title="" alt="image">
 
-1，上传 Bundle 到源站，也就是 OSS
-先在将本地打包好 Bundle 文件上传到 OSS ，同时生成MD5值。此时理论上，只要 Bundle 内容发生了变化，那么生成 MD5 值就是不一样的，用 MD5 作为文件的命名能保证文件的唯一性。
+1，将本地打包好 Bundle 文件上传到 OSS ，同时生成MD5值。只要 Bundle 内容发生了变化，那么生成 MD5 值就是不一样的，用 MD5 保证文件的唯一性。
 
-2，正式发版上线
-当需要正式上线时，我们只需要上传前面生成的bundle包，然后将服务最新的线上 Bundle 的名字修改成最新的，这时版本服务会在内部通过 mysql 或 redis 把线上最新文件名给记录下来。
+2，上传前面生成的bundle包，然后将服务最新的线上 Bundle 修改成最新的，这时版本服务会在内部通过 mysql 或 redis 把线上最新文件给记录下来。
 (这里项目使用json文件记录)
 
-3，React Native App 发起版本请求
-由于只有一个版本服务，不会存在 CDN 上千个节点在某一时刻不同步的问题，版本服务会直接把最新的 Bundle 名字告诉 React Native 应用。
+3，React Native App 发起版本请求，版本服务会直接把最新的 Bundle 告诉 React Native 应用。
 
 4，React Native 发起 CDN 资源请求
 资源请求会先询问某个 CDN 的边缘节点，如果该边缘节点没有缓存，则会去源站拉取；如果该边缘节点有缓存，则直接返回。
