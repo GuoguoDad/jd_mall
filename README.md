@@ -45,21 +45,27 @@
 
 # 首页
 <img src="images/home.gif" title="" alt="image" width="351">
+<img src="images/home.png" title="" alt="image" width="800">
 
 # 分类
 <img src="images/category.gif" title="" alt="image" width="351">
+<img src="images/category.png" title="" alt="image" width="800">
 
 # 购物车
 <img src="images/cart.gif" title="" alt="image" width="351">
+<img src="images/cart.png" title="" alt="image" width="800">
 
 # 我的
 <img src="images/mine.gif" title="" alt="image" width="351">
+<img src="images/mine.png" title="" alt="image" width="800">
 
 # 商品详情
 <img src="images/detail.gif" title="" alt="image" width="351">
+<img src="images/detail.png" title="" alt="image" width="800">
 
 # 账户设置(rn页面-拉取远程的bundle)
 <img src="images/setting.gif" title="" alt="image" width="351">
+<img src="images/setting.png" title="" alt="image" width="800">
 
 # 第三方库
 | 库                       | 功能                      |
