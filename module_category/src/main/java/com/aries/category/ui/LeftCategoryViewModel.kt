@@ -18,7 +18,7 @@ class LeftCategoryViewModel(initialState: LeftCategoryState): MavericksViewModel
             }.execute(Dispatchers.IO) { state ->
                 copy(
                     brandListResponse = state,
-                    brandList = if (state is Success) state()?.data else it.brandList
+                    brandList = if (state is Success) state()?.data!! else it.brandList
                 )
             }
         }

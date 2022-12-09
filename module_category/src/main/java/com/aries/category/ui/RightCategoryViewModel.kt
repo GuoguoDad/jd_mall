@@ -19,7 +19,7 @@ class RightCategoryViewModel(initialState: RightCategoryState): MavericksViewMod
             }.execute(Dispatchers.IO) { state ->
                 copy(
                     contentResponse = state,
-                    content = if (state is Success) state()?.data else it.content
+                    content = if (state is Success) state()?.data!! else it.content
                 )
             }
         }

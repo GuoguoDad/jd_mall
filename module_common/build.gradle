@@ -45,7 +45,7 @@ android {
 dependencies {
     api project(path: ':local_mock')
     api 'androidx.core:core-ktx:1.8.0'
-    api 'androidx.appcompat:appcompat:1.5.0'
+    api 'androidx.appcompat:appcompat:1.5.1'
     api 'androidx.multidex:multidex:2.0.1'
     api 'androidx.constraintlayout:constraintlayout:2.1.4'  //约束布局
     api 'androidx.coordinatorlayout:coordinatorlayout:1.2.0'  //协调者布局
