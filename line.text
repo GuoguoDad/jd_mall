@@ -1,0 +1,6 @@
+
+
+./gradlew assembleRelease
+
+
+./gradlew app:dependencies --configuration releaseRuntimeClasspath
