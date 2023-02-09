@@ -15,7 +15,7 @@ import com.aries.common.decoration.SpacesItemDecoration
 import com.aries.common.util.DisplayUtil
 import com.aries.common.util.PixelUtil
 import com.aries.common.util.StatusBarUtil
-import com.aries.common.widget.consecutiveScroller.ConsecutiveScrollerLayout
+import com.donkingliang.consecutivescroller.ConsecutiveScrollerLayout
 import com.aries.mine.R
 import com.aries.mine.ui.view.FiveMenuView
 import com.gyf.immersionbar.ImmersionBar
@@ -48,11 +48,8 @@ class MineFragment: BaseFragment(R.layout.layout_mine), MavericksView {
             addView(fiveMenuView)
         }
 
-        consecutiveLayout.setOnVerticalScrollChangeListener(object: ConsecutiveScrollerLayout.OnScrollChangeListener{
-            override fun onScrollChange(v: View?, scrollY: Int, oldScrollY: Int, scrollState: Int) {
-                handleScroll((scrollY * 0.65).toInt())
-            }
-        })
+        consecutiveLayout.onVerticalScrollChangeListener =
+            ConsecutiveScrollerLayout.OnScrollChangeListener { _, scrollY, _, _ -> handleScroll((scrollY * 0.65).toInt()) }
 
         recommendGoodsList.run {
 //            staggeredGridLayoutManager.gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_NONE //解决加载下一页后重新排列的问题

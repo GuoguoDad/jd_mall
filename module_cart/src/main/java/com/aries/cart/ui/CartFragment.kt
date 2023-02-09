@@ -23,7 +23,7 @@ import com.aries.common.util.DisplayUtil
 import com.aries.common.util.PixelUtil
 import com.aries.common.util.StatusBarUtil
 import com.aries.common.util.UnreadMsgUtil
-import com.aries.common.widget.consecutiveScroller.ConsecutiveScrollerLayout
+import com.donkingliang.consecutivescroller.ConsecutiveScrollerLayout
 import com.gyf.immersionbar.ImmersionBar
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.enums.PopupAnimation
@@ -105,15 +105,14 @@ class CartFragment : BaseFragment(R.layout.fragment_cart), MavericksView {
             })
         }
         //监听页面滚动显示与隐藏backTop按钮
-        consecutiveScrollerLayout.setOnVerticalScrollChangeListener(object : ConsecutiveScrollerLayout.OnScrollChangeListener{
-            override fun onScrollChange(v: View?, scrollY: Int, oldScrollY: Int, scrollState: Int) {
+        consecutiveScrollerLayout.onVerticalScrollChangeListener =
+            ConsecutiveScrollerLayout.OnScrollChangeListener { v, scrollY, oldScrollY, scrollState ->
                 if (scrollY >= DisplayUtil.getScreenHeight(requireContext())) {
                     backTop.visibility = View.VISIBLE
                 } else {
                     backTop.visibility = View.GONE
                 }
             }
-        })
 
         //你可能还喜欢 或者 快点来看看 商品列表
         goodsList.run {

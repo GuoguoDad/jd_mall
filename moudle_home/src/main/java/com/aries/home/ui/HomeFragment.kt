@@ -13,7 +13,7 @@ import com.aries.common.dialog.LoadingDialog
 import com.aries.common.util.DisplayUtil
 import com.aries.common.util.PixelUtil
 import com.aries.common.util.StatusBarUtil
-import com.aries.common.widget.consecutiveScroller.ConsecutiveScrollerLayout
+import com.donkingliang.consecutivescroller.ConsecutiveScrollerLayout
 import com.aries.home.R
 import com.aries.home.ui.constants.ActionType
 import com.aries.home.ui.fragment.goods.GoodsListFragment
@@ -137,7 +137,7 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
         tabViewPagerAdapter.notifyDataSetChanged()
 
         viewPager.offscreenPageLimit = list.size
-        viewPager.getViewPager2?.let {
+        viewPager.viewPager2?.let {
             TabLayoutMediator(tabLayout, it) { tab, position -> tab.text = list[position].name }.attach()
         }
     }

@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.aries.common.widget.consecutiveScroller.ConsecutiveScrollerLayout
+        <com.donkingliang.consecutivescroller.ConsecutiveScrollerLayout
             android:id="@+id/consecutiveScrollerLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -53,12 +53,12 @@
                 app:tabTextAppearance="@style/HomeTabLayoutTextStyle"
                 app:tabTextColor="@color/color_404040" />
 
-            <com.aries.common.widget.consecutiveScroller.ConsecutiveViewPager2
+            <com.donkingliang.consecutivescroller.ConsecutiveViewPager2
                 android:id="@+id/viewPager"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
-        </com.aries.common.widget.consecutiveScroller.ConsecutiveScrollerLayout>
+        </com.donkingliang.consecutivescroller.ConsecutiveScrollerLayout>
 
     </com.scwang.smart.refresh.layout.SmartRefreshLayout>
 

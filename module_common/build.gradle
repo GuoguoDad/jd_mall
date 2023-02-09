@@ -74,6 +74,9 @@ dependencies {
     api 'io.github.scwang90:refresh-layout-kernel:2.0.5'
     api 'io.github.scwang90:refresh-header-classics:2.0.5'
 
+
+    api 'com.github.donkingliang:ConsecutiveScroller:4.6.4'
+
     api 'io.coil-kt:coil:2.2.1' //加载网图
     api 'io.coil-kt:coil-gif:2.2.1'
     api 'io.coil-kt:coil-video:2.2.1'
