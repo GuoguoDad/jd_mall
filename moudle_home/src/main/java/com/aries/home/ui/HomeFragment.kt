@@ -63,14 +63,11 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
         }
         initTabViewPagerAdapter()
         //监听页面滚动
-        consecutiveScrollerLayout.setOnVerticalScrollChangeListener(object: ConsecutiveScrollerLayout.OnScrollChangeListener{
-            override fun onScrollChange(v: View?, scrollY: Int, oldScrollY: Int, scrollState: Int) {
-                searchHeaderOnScroll(scrollY)
-            }
-        })
+        consecutiveScrollerLayout.onVerticalScrollChangeListener =
+            ConsecutiveScrollerLayout.OnScrollChangeListener { _, scrollY, _, _ -> searchHeaderOnScroll(scrollY) }
 
         backTop.setOnClickListener {
-            consecutiveScrollerLayout.smoothScrollToChild(consecutiveScrollerLayout.getChildAt(0))
+            consecutiveScrollerLayout.scrollToChild(consecutiveScrollerLayout.getChildAt(0))
         }
         addStateChangeListener()
     }

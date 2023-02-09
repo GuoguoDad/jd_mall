@@ -122,7 +122,7 @@ class CartFragment : BaseFragment(R.layout.fragment_cart), MavericksView {
         }
         //返回顶部
         backTop.setOnClickListener {
-            consecutiveScrollerLayout.smoothScrollToChild(consecutiveScrollerLayout.getChildAt(0))
+            consecutiveScrollerLayout.scrollToChild(consecutiveScrollerLayout.getChildAt(0))
         }
         //全选
         totalCheckBox.setOnClickListener { checkAll() }

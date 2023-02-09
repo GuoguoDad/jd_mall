@@ -61,7 +61,7 @@ class MineFragment: BaseFragment(R.layout.layout_mine), MavericksView {
             ARouter.getInstance().build(RouterPaths.GOODS_DETAIL).navigation()
         }
         backTop.setOnClickListener {
-            consecutiveLayout.smoothScrollToChildWithOffset(consecutiveLayout.getChildAt(0),0)
+            consecutiveLayout.scrollToChild(consecutiveLayout.getChildAt(0))
         }
 
         setting.setOnClickListener {
