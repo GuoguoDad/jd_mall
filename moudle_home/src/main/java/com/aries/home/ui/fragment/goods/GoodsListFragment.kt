@@ -1,18 +1,23 @@
 package com.aries.home.ui.fragment.goods
 
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.airbnb.mvrx.MavericksView
 import com.airbnb.mvrx.activityViewModel
 import com.airbnb.mvrx.withState
 import com.alibaba.android.arouter.launcher.ARouter
 import com.aries.common.adapter.GoodsListAdapter
-import com.aries.common.base.BaseFragment
 import com.aries.common.constants.RouterPaths
 import com.aries.common.decoration.SpacesItemDecoration
-import com.aries.home.R
-import kotlinx.android.synthetic.main.home_goods.*
+import com.aries.home.databinding.HomeGoodsBinding
 
-class  GoodsListFragment(var code: String): BaseFragment(R.layout.home_goods), MavericksView {
+class  GoodsListFragment(var code: String): Fragment(), MavericksView {
+    private lateinit var binding:  HomeGoodsBinding
+
     private val viewModel: GoodsViewModel by activityViewModel()
 
     private val goodsListAdapter by lazy { GoodsListAdapter(arrayListOf()) }
@@ -20,10 +25,25 @@ class  GoodsListFragment(var code: String): BaseFragment(R.layout.home_goods), M
         StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
     }
 
-    override fun initView() {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
+    ): View {
+        binding = HomeGoodsBinding.inflate(LayoutInflater.from(this.context))
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initView()
+        initData()
+    }
+
+    fun initView() {
         staggeredGridLayoutManager.gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_NONE //解决加载下一页后重新排列的问题
 
-        recyclerView.run {
+        binding.recyclerView.run {
             addItemDecoration(SpacesItemDecoration(10))
             adapter = goodsListAdapter
             layoutManager = staggeredGridLayoutManager
@@ -43,7 +63,7 @@ class  GoodsListFragment(var code: String): BaseFragment(R.layout.home_goods), M
         }
     }
 
-    override fun initData() {
+    fun initData() {
         viewModel.initGoodsList(code)
     }
 

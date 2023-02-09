@@ -2,17 +2,23 @@ package com.aries.category.ui
 
 import android.annotation.SuppressLint
 import android.graphics.Rect
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.airbnb.mvrx.MavericksView
 import com.airbnb.mvrx.activityViewModel
 import com.airbnb.mvrx.withState
 import com.aries.category.R
+import com.aries.category.databinding.FragmentMainBinding
 import com.aries.category.ui.adapter.CategoryListAdapter
-import com.aries.common.base.BaseFragment
 import com.gyf.immersionbar.ImmersionBar
-import kotlinx.android.synthetic.main.fragment_main.*
 
-class CategoryFragment : BaseFragment(R.layout.fragment_main), MavericksView {
+class CategoryFragment : Fragment(), MavericksView {
+    private lateinit var binding: FragmentMainBinding
+
     private val leftViewModel: LeftCategoryViewModel by activityViewModel()
     private val rightViewModel: RightCategoryViewModel by activityViewModel()
 
@@ -21,14 +27,30 @@ class CategoryFragment : BaseFragment(R.layout.fragment_main), MavericksView {
 
     private var visualHeight = -1 //recyclerView 可视区域高度 - 当前点击item的高度
 
-    override fun initView() {
-        categoryList.run {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
+    ): View {
+        binding = FragmentMainBinding.inflate(LayoutInflater.from(this.context))
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initView()
+        initData()
+    }
+
+
+     fun initView() {
+        binding.categoryList.run {
             setHasFixedSize(true)
             layoutManager = categoryLayoutManager
             adapter = categoryListAdapter
             categoryListAdapter.setOnItemClickListener{ _, item, position ->
                 var rect = Rect()
-                categoryList.getGlobalVisibleRect(rect)
+                binding.categoryList.getGlobalVisibleRect(rect)
                 visualHeight = rect.bottom - rect.top - item.height
 
                 setSelectCategory(position)
@@ -36,7 +58,7 @@ class CategoryFragment : BaseFragment(R.layout.fragment_main), MavericksView {
                 rightViewModel.queryContentByCate(categoryListAdapter.data[position].code)
             }
         }
-        rightContainer.run {
+         binding.rightContainer.run {
             setEnableRefresh(false)
             setEnableLoadMore(false)
 //            setEnableAutoLoadMore(false)
@@ -45,10 +67,10 @@ class CategoryFragment : BaseFragment(R.layout.fragment_main), MavericksView {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        rightContainer.removeAllViews()
+        binding.rightContainer.removeAllViews()
     }
 
-    override fun initData() {
+     fun initData() {
         leftViewModel.initBrandList()
         leftViewModel.onEach(LeftCategoryState::brandList) {
                 brandList -> run {
@@ -78,7 +100,7 @@ class CategoryFragment : BaseFragment(R.layout.fragment_main), MavericksView {
                 categoryListAdapter.setList(left.brandList)
             }
             if (right.content.cateList.isNotEmpty()) {
-                categoryRightView.setData(right.content)
+                binding.categoryRightView.setData(right.content)
             }
         }
     }
@@ -121,10 +143,10 @@ class CategoryFragment : BaseFragment(R.layout.fragment_main), MavericksView {
     private fun scrollToMiddle(position: Int) {
         var firstPosition = categoryLayoutManager.findFirstVisibleItemPosition()
         //当前点击的item距离 recyclerview 顶部的距离
-        var top = categoryList.getChildAt(position - firstPosition).top
+        var top = binding.categoryList.getChildAt(position - firstPosition).top
         //recyclerView可视区域高度-当前点击item的高度 的一半高度
         var half = visualHeight/2
 
-        categoryList.smoothScrollBy(0, top - half)
+        binding.categoryList.smoothScrollBy(0, top - half)
     }
 }

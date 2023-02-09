@@ -37,7 +37,7 @@
                         android:orientation="vertical"
                         app:layout_isSticky="true">
 
-                        <include layout="@layout/floating_header" />
+                        <include android:id="@+id/include_floating_header" layout="@layout/floating_header" />
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
                     <androidx.appcompat.widget.LinearLayoutCompat

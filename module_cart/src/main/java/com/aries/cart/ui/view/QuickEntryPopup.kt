@@ -1,15 +1,17 @@
 package com.aries.cart.ui.view
 
 import android.content.Context
+import android.view.LayoutInflater
 import com.aries.cart.R
+import com.aries.cart.databinding.QuickEntryGridvewBinding
 import com.aries.cart.ui.QuickMenuBean
 import com.aries.cart.ui.adapter.QuickEntryPopupAdapter
 import com.aries.common.util.DisplayUtil
 import com.aries.common.util.StatusBarUtil
 import com.lxj.xpopup.core.PositionPopupView
-import kotlinx.android.synthetic.main.quick_entry_gridvew.view.*
 
 class QuickEntryPopup(context: Context): PositionPopupView(context) {
+    private lateinit var binding: QuickEntryGridvewBinding
     private var data: ArrayList<QuickMenuBean> = arrayListOf()
 
     override fun getImplLayoutId(): Int {
@@ -18,13 +20,14 @@ class QuickEntryPopup(context: Context): PositionPopupView(context) {
 
     override fun onCreate() {
         super.onCreate()
+        binding = QuickEntryGridvewBinding.inflate(LayoutInflater.from(context))
         initData()
 
-        quickEntryLayout.setPadding(15, StatusBarUtil.getHeight(), 15, 28)
+        binding.quickEntryLayout.setPadding(15, StatusBarUtil.getHeight(), 15, 28)
 
-        quickEntryGridView.adapter = QuickEntryPopupAdapter(context, data)
+        binding.quickEntryGridView.adapter = QuickEntryPopupAdapter(context, data)
 
-        closeImg.setOnClickListener { dismiss() }
+        binding.closeImg.setOnClickListener { dismiss() }
 
 
     }

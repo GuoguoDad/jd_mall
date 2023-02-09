@@ -4,12 +4,7 @@
 
     <application>
         <activity android:name="com.aries.main.MainActivity" />
-        <activity android:name="com.aries.main.ui.adv.AdvertiseActivity" />
-        <activity android:name="com.aries.main.ui.demo.DemoActivity"/>
-        <activity android:name="com.aries.main.ui.waterfall.WaterfallListActivity" />
-        <activity android:name="com.aries.main.ui.coordinator.ScrollTabActivity"/>
         <activity android:name="com.aries.main.ui.stepper.StepperActivity"/>
-        <activity android:name="com.aries.main.ui.stick.SinkStickActivity"/>
         <activity android:name="com.aries.main.activity.CartActivity" />
     </application>
 </manifest>

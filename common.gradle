@@ -4,8 +4,8 @@ ext {
     defalutConfigApplicationId = "com.aries.mall"
     defaultConfigMinSdk = 21
     defaultConfigTargetSdk = 31
-    defaultConfigVersionCode = 1
-    defaultConfigVersionName = "1.0.0"
+    defaultConfigVersionCode = 2
+    defaultConfigVersionName = "1.2.0"
 
     compileOptionsSourceCompatibility = JavaVersion.VERSION_1_8
     compileOptionsTargetCompatibility = JavaVersion.VERSION_1_8

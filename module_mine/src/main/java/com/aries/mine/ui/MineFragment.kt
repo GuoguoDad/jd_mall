@@ -1,15 +1,18 @@
 package com.aries.mine.ui
 
+import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.airbnb.mvrx.MavericksView
 import com.airbnb.mvrx.activityViewModel
 import com.airbnb.mvrx.withState
 import com.alibaba.android.arouter.launcher.ARouter
 import com.aries.common.adapter.GoodsListAdapter
-import com.aries.common.base.BaseFragment
 import com.aries.common.constants.RouterPaths
 import com.aries.common.decoration.SpacesItemDecoration
 import com.aries.common.util.DisplayUtil
@@ -17,12 +20,13 @@ import com.aries.common.util.PixelUtil
 import com.aries.common.util.StatusBarUtil
 import com.donkingliang.consecutivescroller.ConsecutiveScrollerLayout
 import com.aries.mine.R
+import com.aries.mine.databinding.LayoutMineBinding
 import com.aries.mine.ui.view.FiveMenuView
 import com.gyf.immersionbar.ImmersionBar
-import kotlinx.android.synthetic.main.floating_header.*
-import kotlinx.android.synthetic.main.layout_mine.*
 
-class MineFragment: BaseFragment(R.layout.layout_mine), MavericksView {
+class MineFragment: Fragment(), MavericksView {
+    private lateinit var binding: LayoutMineBinding
+
     private val viewModel: MineViewModal by activityViewModel()
 
     private val goodsListAdapter by lazy { GoodsListAdapter(arrayListOf()) }
@@ -32,26 +36,41 @@ class MineFragment: BaseFragment(R.layout.layout_mine), MavericksView {
 
     private val fiveMenuView: FiveMenuView by lazy { FiveMenuView(this.requireContext(), this@MineFragment) }
 
-    override fun initView() {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
+    ): View {
+        binding = LayoutMineBinding.inflate(LayoutInflater.from(this.context))
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initView()
+        initData()
+    }
+
+
+     fun initView() {
         initStatusHeight()
 
-        mineRefreshLayout.run {
+        binding.mineRefreshLayout.run {
             setEnableRefresh(false)
             setEnableLoadMore(false)
         }
         goodsListAdapter.loadMoreModule.setOnLoadMoreListener{
             viewModel.loadMoreRecommendList()
         }
-
-        functionList.run {
+        binding.functionList.run {
             removeAllViews()
             addView(fiveMenuView)
         }
 
-        consecutiveLayout.onVerticalScrollChangeListener =
+        binding.consecutiveLayout.onVerticalScrollChangeListener =
             ConsecutiveScrollerLayout.OnScrollChangeListener { _, scrollY, _, _ -> handleScroll((scrollY * 0.65).toInt()) }
 
-        recommendGoodsList.run {
+        binding.recommendGoodsList.run {
 //            staggeredGridLayoutManager.gapStrategy = StaggeredGridLayoutManager.GAP_HANDLING_NONE //解决加载下一页后重新排列的问题
             addItemDecoration(SpacesItemDecoration(10))
             layoutManager = staggeredGridLayoutManager
@@ -60,23 +79,22 @@ class MineFragment: BaseFragment(R.layout.layout_mine), MavericksView {
         goodsListAdapter.setOnItemClickListener { adapter, view, position ->
             ARouter.getInstance().build(RouterPaths.GOODS_DETAIL).navigation()
         }
-        backTop.setOnClickListener {
-            consecutiveLayout.scrollToChild(consecutiveLayout.getChildAt(0))
+        binding.backTop.setOnClickListener {
+            binding.consecutiveLayout.scrollToChild(binding.consecutiveLayout.getChildAt(0))
         }
-
-        setting.setOnClickListener {
+        binding.includeFloatingHeader.setting.setOnClickListener {
             ARouter.getInstance().build(RouterPaths.RN_PAGE)
                 .withString("bundleName", "app")
                 .withString("initRouteUrl","https://com.aries.com?pageCode=rn&bundleName=app&initRouteName=UserSetting")
                 .withString("url","rn://app/index.android.jsbundle")
                 .navigation()
         }
-        message.setOnClickListener{
+        binding.includeFloatingHeader.message.setOnClickListener{
             ARouter.getInstance().build(RouterPaths.DEMO_ACTIVITY).navigation()
         }
     }
 
-    override fun initData() {
+    fun initData() {
         viewModel.queryMineInfo()
         viewModel.initRecommendList()
     }
@@ -99,9 +117,9 @@ class MineFragment: BaseFragment(R.layout.layout_mine), MavericksView {
                 fiveMenuView.setData(it.fiveMenuList)
             }
             if (it.tabList.isNotEmpty()) {
-                tabLayout.removeAllTabs()
+                binding.tabLayout.removeAllTabs()
                 it.tabList.forEach { v ->
-                    tabLayout.addTab(tabLayout.newTab().setText(v.name))
+                    binding.tabLayout.addTab(binding.tabLayout.newTab().setText(v.name))
                 }
             }
             if (it.goodsList.isNotEmpty()) {
@@ -119,7 +137,7 @@ class MineFragment: BaseFragment(R.layout.layout_mine), MavericksView {
     }
 
     private fun initStatusHeight(){
-        headerLayout.setPadding(0, StatusBarUtil.getHeight(), 0, 0)
+        binding.headerLayout.setPadding(0, StatusBarUtil.getHeight(), 0, 0)
     }
 
     private val userInfoLayoutMaxMarginTop = PixelUtil.toPixelFromDIP(40f)
@@ -132,15 +150,15 @@ class MineFragment: BaseFragment(R.layout.layout_mine), MavericksView {
     ) {
         //处理背景色、用户信息显示与隐藏
         if (scrollY >= StatusBarUtil.getHeight()) {
-            userInfo.visibility = View.GONE
-            headerLayout.setBackgroundColor(resources.getColor(R.color.white))
-            mineTxt.setTextColor(resources.getColor(R.color.cl_000000))
-            bannerBg.setBackgroundResource(R.drawable.banner_bg)
+            binding.includeFloatingHeader.userInfo.visibility = View.GONE
+            binding.headerLayout.setBackgroundColor(resources.getColor(R.color.white))
+            binding.includeFloatingHeader.mineTxt.setTextColor(resources.getColor(R.color.cl_000000))
+            binding.bannerBg.setBackgroundResource(R.drawable.banner_bg)
         } else {
-            userInfo.visibility = View.VISIBLE
-            headerLayout.setBackgroundColor(resources.getColor(R.color.transparent))
-            mineTxt.setTextColor(resources.getColor(R.color.transparent))
-            bannerBg.setBackgroundResource(R.drawable.mine_top_bg)
+            binding.includeFloatingHeader.userInfo.visibility = View.VISIBLE
+            binding.headerLayout.setBackgroundColor(resources.getColor(R.color.transparent))
+            binding.includeFloatingHeader.mineTxt.setTextColor(resources.getColor(R.color.transparent))
+            binding.bannerBg.setBackgroundResource(R.drawable.mine_top_bg)
         }
         //用户信息Layout距离顶部距离
         val userInfoLayoutNewMarginTop = userInfoLayoutMaxMarginTop - scrollY
@@ -150,7 +168,7 @@ class MineFragment: BaseFragment(R.layout.layout_mine), MavericksView {
         } else {
             userInfoLp.topMargin = userInfoLayoutNewMarginTop.toInt()
         }
-        userInfoLinearLayout.layoutParams = userInfoLp
+        binding.includeFloatingHeader.userInfoLinearLayout.layoutParams = userInfoLp
 
         //处理头像大小
         val lp = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
@@ -160,22 +178,22 @@ class MineFragment: BaseFragment(R.layout.layout_mine), MavericksView {
         lp.width = height
         lp.leftMargin = PixelUtil.toPixelFromDIP(20f).toInt()
 
-        profileImage.layoutParams = lp
+        binding.includeFloatingHeader.profileImage.layoutParams = lp
         //改变tabLayout背景色
-        if (consecutiveLayout.currentStickyViews.indexOfFirst { v -> v.id == R.id.tabLayout } == -1) {
-            tabLayout.setBackgroundResource(R.color.color_F5F5F5)
+        if (binding.consecutiveLayout.currentStickyViews.indexOfFirst { v -> v.id == R.id.tabLayout } == -1) {
+            binding.tabLayout.setBackgroundResource(R.color.color_F5F5F5)
         } else {
-            tabLayout.setBackgroundResource(R.color.white)
+            binding.tabLayout.setBackgroundResource(R.color.white)
         }
         if (scrollY == 0) {
-            tabLayout.setBackgroundResource(R.color.color_F5F5F5)
+            binding.tabLayout.setBackgroundResource(R.color.color_F5F5F5)
         }
 
         //显示backToTop
         if (scrollY >= DisplayUtil.getScreenHeight(this.requireContext())) {
-            backTop.visibility = View.VISIBLE
+            binding.backTop.visibility = View.VISIBLE
         } else {
-            backTop.visibility = View.GONE
+            binding.backTop.visibility = View.GONE
         }
     }
 }

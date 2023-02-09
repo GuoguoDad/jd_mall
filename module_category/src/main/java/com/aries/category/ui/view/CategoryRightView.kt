@@ -12,14 +12,15 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.aries.category.ui.ContentCateResponse
 import com.aries.category.R
+import com.aries.category.databinding.MainRightBinding
 import com.aries.category.ui.adapter.SectionQuickAdapter
 import com.aries.category.ui.modal.CategoryModal
 import com.aries.common.util.CoilUtil
 import com.google.android.material.tabs.TabLayout
-import kotlinx.android.synthetic.main.fragment_main.*
-import kotlinx.android.synthetic.main.main_right.view.*
 
 class CategoryRightView: FrameLayout {
+    private lateinit var binding: MainRightBinding
+
     private val imageLoader = CoilUtil.getImageLoader()
     private lateinit var sectionQuickAdapter: SectionQuickAdapter
     private lateinit var gridLayoutManager: GridLayoutManager
@@ -44,13 +45,13 @@ class CategoryRightView: FrameLayout {
 
     @SuppressLint("ClickableViewAccessibility")
     private fun initView(context: Context) {
-        LayoutInflater.from(context).inflate(R.layout.main_right, this, true)
+        binding = MainRightBinding.inflate(LayoutInflater.from(this.context), this, true)
 
         gridLayoutManager = GridLayoutManager(context, 3)
         sectionQuickAdapter = SectionQuickAdapter(R.layout.main_right_grid_header, R.layout.main_right_grid, arrayListOf())
 
-        val thisTabLayout = tabLayout
-        categoryRecyclerView.run {
+        val thisTabLayout = binding.tabLayout
+        binding.categoryRecyclerView.run {
             layoutManager = gridLayoutManager
             adapter = sectionQuickAdapter
 
@@ -80,7 +81,7 @@ class CategoryRightView: FrameLayout {
                 }
             })
         }
-        tabLayout.run {
+        binding.tabLayout.run {
             addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
                 override fun onTabSelected(tab: TabLayout.Tab?) {
                     val position = tab?.position
@@ -97,12 +98,12 @@ class CategoryRightView: FrameLayout {
 
     fun setData(data: ContentCateResponse) {
         dataCopy = data
-        topImg.visibility = View.VISIBLE
-        topImg.load(data.bannerUrl, imageLoader)  {
+        binding.topImg.visibility = View.VISIBLE
+        binding.topImg.load(data.bannerUrl, imageLoader)  {
             crossfade(true)
         }
-        tabLayout.removeAllTabs()
-        data.cateList.forEach { v -> tabLayout.addTab(tabLayout.newTab().setText(v.categoryName)) }
+        binding.tabLayout.removeAllTabs()
+        data.cateList.forEach { v -> binding.tabLayout.addTab(binding.tabLayout.newTab().setText(v.categoryName)) }
 
         val list: ArrayList<CategoryModal> = arrayListOf()
         data.cateList.forEach { v ->
@@ -128,19 +129,19 @@ class CategoryRightView: FrameLayout {
 
         if (position < firstPosition) {
             // 如果跳转位置在第一个可见位置之前，就smoothScrollToPosition可以直接跳转
-            categoryRecyclerView.smoothScrollToPosition(position)
+            binding.categoryRecyclerView.smoothScrollToPosition(position)
         } else if (position <= lastPosition){
             // 跳转位置在第一个可见项之后，最后一个可见项之前
             // smoothScrollToPosition根本不会动，此时调用smoothScrollBy来滑动到指定位置
             val movePosition = position - firstPosition
-            if (movePosition >=0 && movePosition < categoryRecyclerView.childCount) {
-                val scrollY = categoryRecyclerView.getChildAt(position - firstPosition).top
-                categoryRecyclerView.smoothScrollBy(0, scrollY)
+            if (movePosition >=0 && movePosition < binding.categoryRecyclerView.childCount) {
+                val scrollY = binding.categoryRecyclerView.getChildAt(position - firstPosition).top
+                binding.categoryRecyclerView.smoothScrollBy(0, scrollY)
             }
         } else {
             // 如果要跳转的位置在最后可见项之后，则先调用smoothScrollToPosition将要跳转的位置滚动到可见位置
             // 再通过onScrollStateChanged控制再次调用smoothMoveToPosition，执行上一个判断中的方法
-            categoryRecyclerView.smoothScrollToPosition(position)
+            binding.categoryRecyclerView.smoothScrollToPosition(position)
             mToPosition = position
             mShouldScroll = true
         }

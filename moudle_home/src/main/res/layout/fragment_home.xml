@@ -22,7 +22,7 @@
                 android:background="@color/color_FE0F22"
                 app:layout_isSticky="true">
 
-                <include layout="@layout/home_top_view" />
+                <include android:id="@+id/include_home_top_view" layout="@layout/home_top_view" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <RelativeLayout

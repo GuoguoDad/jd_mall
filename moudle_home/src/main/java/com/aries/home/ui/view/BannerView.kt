@@ -10,14 +10,15 @@ import coil.ImageLoader
 import coil.load
 import com.aries.common.util.CoilUtil
 import com.aries.home.R
+import com.aries.home.databinding.HomeBannerBinding
 import com.aries.home.ui.BannerBean
 import com.youth.banner.adapter.BannerImageAdapter
 import com.youth.banner.holder.BannerImageHolder
 import com.youth.banner.indicator.CircleIndicator
 import com.youth.banner.transformer.AlphaPageTransformer
-import kotlinx.android.synthetic.main.home_banner.view.*
 
 class BannerView: FrameLayout {
+    private lateinit var binding: HomeBannerBinding
     private var imageLoader: ImageLoader = CoilUtil.getImageLoader()
     constructor(context: Context) : this(context, null)
 
@@ -32,11 +33,11 @@ class BannerView: FrameLayout {
     }
 
     private fun init(context: Context) {
-        LayoutInflater.from(context).inflate(R.layout.home_banner, this, true)
+        binding = HomeBannerBinding.inflate(LayoutInflater.from(this.context), this, true)
     }
 
     fun setData(data: List<BannerBean>) {
-        banner.run {
+        binding.banner.run {
             adapter = object : BannerImageAdapter<BannerBean>(data) {
                 override fun onCreateHolder(parent: ViewGroup?, viewType: Int): BannerImageHolder {
                     val imageView = ImageView(parent?.context)

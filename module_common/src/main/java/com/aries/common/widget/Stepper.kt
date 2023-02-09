@@ -6,12 +6,14 @@ import android.text.TextWatcher
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import com.aries.common.R
-import kotlinx.android.synthetic.main.layout_stepper.view.*
 import java.lang.NumberFormatException
 import android.text.method.DigitsKeyListener
 import androidx.appcompat.widget.LinearLayoutCompat
+import com.aries.common.databinding.LayoutStepperBinding
 
 open class Stepper: LinearLayoutCompat {
+    private lateinit var binding: LayoutStepperBinding
+
     constructor(context: Context) : this(context, null)
     constructor(context: Context, attributeSet: AttributeSet?) : this(context, attributeSet, 0)
     constructor(context: Context, attributeSet: AttributeSet?, defStyleAttr: Int) : super(
@@ -38,7 +40,7 @@ open class Stepper: LinearLayoutCompat {
     private var onChangeValueListener: OnChangeValueListener? = null
 
     private fun init(context: Context, attrs: AttributeSet?) {
-        LayoutInflater.from(context).inflate(R.layout.layout_stepper, this, true)
+        binding = LayoutStepperBinding.inflate(LayoutInflater.from(this.context), this, true)
 
         if (attrs != null) {
             val typedArray = context.obtainStyledAttributes(attrs, R.styleable.Stepper)
@@ -51,7 +53,7 @@ open class Stepper: LinearLayoutCompat {
             setEditable(editable)
         }
 
-        numberEt.addTextChangedListener(object : TextWatcher {
+        binding.numberEt.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
@@ -60,20 +62,20 @@ open class Stepper: LinearLayoutCompat {
             override fun afterTextChanged(s: Editable?) {}
         })
 
-        plusImage.setOnClickListener {
+        binding.plusImage.setOnClickListener {
             if (inputValue <= maxBuy.coerceAtMost(inventory)) {
                 inputValue += step
                 //正常添加
-                numberEt.setText("$inputValue")
+                binding.numberEt.setText("$inputValue")
             }
         }
-        minusImage.setOnClickListener {
+        binding.minusImage.setOnClickListener {
             if (inputValue > minBuy) {
                 inputValue -= step
-                numberEt.setText("$inputValue")
+                binding.numberEt.setText("$inputValue")
             }
         }
-        numberEt.setOnClickListener { numberEt.setSelection(numberEt.text.length) }
+        binding.numberEt.setOnClickListener { binding.numberEt.setSelection(binding.numberEt.text.length) }
     }
 
     /**
@@ -85,7 +87,7 @@ open class Stepper: LinearLayoutCompat {
         if (count < minBuy) {
             //手动输入
             inputValue = minBuy
-            numberEt.setText("$inputValue")
+            binding.numberEt.setText("$inputValue")
             onChangeValueListener?.onChangeValue("$inputValue")
             return
         }
@@ -110,10 +112,10 @@ open class Stepper: LinearLayoutCompat {
      */
     open fun getNumber(): Int {
         try {
-            return numberEt.text.toString().toInt()
+            return binding.numberEt.text.toString().toInt()
         } catch (e: NumberFormatException) {
         }
-        numberEt.setText(minBuy.toString())
+        binding.numberEt.setText(minBuy.toString())
         return minBuy
     }
 
@@ -147,7 +149,7 @@ open class Stepper: LinearLayoutCompat {
     }
 
     open fun setInputValue(value: Int) {
-        numberEt.setText(value.toString())
+        binding.numberEt.setText(value.toString())
         this.inputValue = value
     }
 
@@ -165,11 +167,11 @@ open class Stepper: LinearLayoutCompat {
 
     private fun setEditable(editable: Boolean) {
         if (editable) {
-            numberEt.isFocusable = true
-            numberEt.keyListener = DigitsKeyListener()
+            binding.numberEt.isFocusable = true
+            binding.numberEt.keyListener = DigitsKeyListener()
         } else {
-            numberEt.isFocusable = false
-            numberEt.keyListener = null
+            binding.numberEt.isFocusable = false
+            binding.numberEt.keyListener = null
         }
     }
 

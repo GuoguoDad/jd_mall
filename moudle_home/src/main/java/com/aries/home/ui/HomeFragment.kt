@@ -1,31 +1,33 @@
 package com.aries.home.ui
 
 import android.annotation.SuppressLint
+import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.RelativeLayout
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.airbnb.mvrx.MavericksView
 import com.airbnb.mvrx.activityViewModel
-import com.aries.common.base.BaseFragment
 import com.aries.common.dialog.LoadingDialog
 import com.aries.common.util.DisplayUtil
 import com.aries.common.util.PixelUtil
 import com.aries.common.util.StatusBarUtil
 import com.donkingliang.consecutivescroller.ConsecutiveScrollerLayout
-import com.aries.home.R
+import com.aries.home.databinding.FragmentHomeBinding
 import com.aries.home.ui.constants.ActionType
 import com.aries.home.ui.fragment.goods.GoodsListFragment
 import com.aries.home.ui.view.BannerView
-import kotlinx.android.synthetic.main.fragment_home.*
 import com.google.android.material.tabs.TabLayoutMediator
 import com.aries.home.ui.view.AdView
 import com.aries.home.ui.view.NineMenuView
 import com.gyf.immersionbar.ImmersionBar
-import kotlinx.android.synthetic.main.home_top_view.*
 
-class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
+class HomeFragment : Fragment(), MavericksView {
+    private lateinit var binding: FragmentHomeBinding
+
     private val viewModel: HomeViewModel by activityViewModel()
     //loading 对话框
     private val loadingDialog: LoadingDialog by lazy { LoadingDialog(this.requireActivity()) }
@@ -40,40 +42,26 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
     //顶部九格宫功能菜单
     private val nineMenuView: NineMenuView by lazy { NineMenuView(this.requireContext(), this@HomeFragment) }
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
+    ): View {
+        binding = FragmentHomeBinding.inflate(LayoutInflater.from(this.context))
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initView()
+        initData()
+    }
+
+
     override fun onDestroyView() {
         super.onDestroyView()
         loadingDialog.dismiss()
-        refreshView.removeAllViews()
-    }
-
-    override fun initView() {
-        initHeader()
-        //下拉刷新
-        refreshView.run {
-            setEnableLoadMore(false)
-            setOnRefreshListener {
-                viewModel.init(true)
-            }
-        }
-        collapsableContent.run {
-            removeAllViews()
-            addView(banner)
-            addView(adView)
-            addView(nineMenuView)
-        }
-        initTabViewPagerAdapter()
-        //监听页面滚动
-        consecutiveScrollerLayout.onVerticalScrollChangeListener =
-            ConsecutiveScrollerLayout.OnScrollChangeListener { _, scrollY, _, _ -> searchHeaderOnScroll(scrollY) }
-
-        backTop.setOnClickListener {
-            consecutiveScrollerLayout.scrollToChild(consecutiveScrollerLayout.getChildAt(0))
-        }
-        addStateChangeListener()
-    }
-
-    override fun initData() {
-        viewModel.init(false)
+        binding.refreshView.removeAllViews()
     }
 
     override fun onResume() {
@@ -87,6 +75,37 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
             ImmersionBar.with(this).transparentStatusBar().init()
         }
     }
+
+    fun initView() {
+        initHeader()
+        //下拉刷新
+        binding.refreshView.run {
+            setEnableLoadMore(false)
+            setOnRefreshListener {
+                viewModel.init(true)
+            }
+        }
+        binding.collapsableContent.run {
+            removeAllViews()
+            addView(banner)
+            addView(adView)
+            addView(nineMenuView)
+        }
+        initTabViewPagerAdapter()
+        //监听页面滚动
+        binding.consecutiveScrollerLayout.onVerticalScrollChangeListener =
+            ConsecutiveScrollerLayout.OnScrollChangeListener { _, scrollY, _, _ -> searchHeaderOnScroll(scrollY) }
+
+        binding.backTop.setOnClickListener {
+            binding.consecutiveScrollerLayout.scrollToChild(binding.consecutiveScrollerLayout.getChildAt(0))
+        }
+        addStateChangeListener()
+    }
+
+    fun initData() {
+        viewModel.init(false)
+    }
+
 
     private fun addStateChangeListener() {
         viewModel.onEach(
@@ -104,7 +123,7 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
                     false -> {
                         loadingDialog.hide()
                         if (fetchType === ActionType.REFRESH) {
-                            refreshView.run { finishRefresh() }
+                            binding.refreshView.run { finishRefresh() }
                             initTabViewPagerAdapter()
                         }
                         if (bannerList.isNotEmpty()) {
@@ -133,14 +152,14 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
         tabList.addAll(list)
         tabViewPagerAdapter.notifyDataSetChanged()
 
-        viewPager.offscreenPageLimit = list.size
-        viewPager.viewPager2?.let {
-            TabLayoutMediator(tabLayout, it) { tab, position -> tab.text = list[position].name }.attach()
+        binding.viewPager.offscreenPageLimit = list.size
+        binding.viewPager.viewPager2?.let {
+            TabLayoutMediator(binding.tabLayout, it) { tab, position -> tab.text = list[position].name }.attach()
         }
     }
 
     private fun initHeader() {
-        searchLinearLayout.setPadding(0, StatusBarUtil.getHeight(), 0, 0)
+        binding.searchLinearLayout.setPadding(0, StatusBarUtil.getHeight(), 0, 0)
     }
 
     private fun initTabViewPagerAdapter() {
@@ -150,7 +169,7 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
                 return GoodsListFragment(tabList[position].code)
             }
         }
-        viewPager.adapter = tabViewPagerAdapter
+        binding.viewPager.adapter = tabViewPagerAdapter
     }
 
 
@@ -170,9 +189,9 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
         val searchNewMarginRight = searchMinMargin + scrollY * 1.6
 
         if (scrollY >= DisplayUtil.getScreenHeight(requireContext())) {
-            backTop.visibility = View.VISIBLE
+            binding.backTop.visibility = View.VISIBLE
         } else {
-            backTop.visibility = View.GONE
+            binding.backTop.visibility = View.GONE
         }
 
         val containerLp = LinearLayoutCompat.LayoutParams(LinearLayoutCompat.LayoutParams.MATCH_PARENT, LinearLayoutCompat.LayoutParams.WRAP_CONTENT)
@@ -185,7 +204,8 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
             searchLp.topMargin = searchNewMarginTop.toInt()
             containerLp.height = containerNewHeight.toInt()
         }
-        searchHeader.layoutParams = containerLp
+
+        binding.includeHomeTopView.searchHeader.layoutParams = containerLp
         if (searchNewMarginLeft >= searchMaxMarginLeft)
             searchLp.leftMargin = searchMaxMarginLeft.toInt()
         else
@@ -196,6 +216,6 @@ class HomeFragment : BaseFragment(R.layout.fragment_home), MavericksView {
         else
             searchLp.rightMargin = searchNewMarginRight.toInt()
 
-        search.layoutParams = searchLp
+        binding.includeHomeTopView.search.layoutParams = searchLp
     }
 }

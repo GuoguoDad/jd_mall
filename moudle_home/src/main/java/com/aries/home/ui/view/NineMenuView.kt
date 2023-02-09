@@ -1,5 +1,6 @@
 package com.aries.home.ui.view
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,12 +10,15 @@ import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.aries.home.R
+import com.aries.home.databinding.NineMemuMainBinding
 import com.aries.home.ui.MenuBean
 import com.aries.home.ui.adapter.NineViewPagerAdapter
-import kotlinx.android.synthetic.main.nine_memu_main.view.*
 import kotlin.math.ceil
 
 class NineMenuView(var content: Context, fragment: Fragment): FrameLayout(content) {
+    private var binding: NineMemuMainBinding =
+        NineMemuMainBinding.inflate(LayoutInflater.from(context), this, true)
+
     private val pageSize: Int = 10
     private var points: ArrayList<ImageView> = arrayListOf()
     private var menuList: ArrayList<MenuBean> = arrayListOf()
@@ -23,10 +27,10 @@ class NineMenuView(var content: Context, fragment: Fragment): FrameLayout(conten
     private val nineViewPagerAdapter: NineViewPagerAdapter by lazy { NineViewPagerAdapter(fragment, menuList, pageSize) }
 
     init {
-        LayoutInflater.from(context).inflate(R.layout.nine_memu_main, this, true)
-        nineViewPager.adapter = nineViewPagerAdapter
+        binding.nineViewPager.adapter = nineViewPagerAdapter
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setData(data: List<MenuBean>) {
         var totalPage = ceil(data.size * 1.0 / pageSize).toInt()
 
@@ -34,7 +38,7 @@ class NineMenuView(var content: Context, fragment: Fragment): FrameLayout(conten
         menuList.addAll(data)
         nineViewPagerAdapter.notifyDataSetChanged()
 
-        nineViewPager.registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback(){
+        binding.nineViewPager.registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback(){
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 selectedPoints(position + 1)
@@ -55,7 +59,7 @@ class NineMenuView(var content: Context, fragment: Fragment): FrameLayout(conten
                     imageView.setBackgroundResource(R.drawable.normal_indicator)
                 }
                 points.add(imageView)
-                pointsLayout.addView(imageView, layoutParams)
+                binding.pointsLayout.addView(imageView, layoutParams)
             }
         }
     }

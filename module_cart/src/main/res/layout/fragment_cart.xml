@@ -30,14 +30,14 @@
                     android:background="@color/color_F6F6F6"
                     app:layout_isSticky="true"/>
 
-                <include layout="@layout/top_address" />
+                <include android:id="@+id/include_top_address" layout="@layout/top_address" />
 
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layout_isSticky="true">
 
-                    <include layout="@layout/top_filter"/>
+                    <include android:id="@+id/include_top_filter" layout="@layout/top_filter"/>
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
                 <androidx.core.widget.NestedScrollView
@@ -84,7 +84,7 @@
         </com.scwang.smart.refresh.layout.SmartRefreshLayout>
 
         <!-- 全选按钮和结算 -->
-        <include layout="@layout/bottom_all_select" />
+        <include android:id="@+id/include_btn_all" layout="@layout/bottom_all_select" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

@@ -22,19 +22,19 @@
                 android:orientation="vertical"
                 android:paddingBottom="@dimen/dp_10">
                 <!--商品-->
-                <include layout="@layout/activity_detail_goods" />
+                <include android:id="@+id/include_detail_goods" layout="@layout/activity_detail_goods" />
                 <!--评价-->
-                <include layout="@layout/activity_detail_appraise" />
+                <include android:id="@+id/include_detail_appraise" layout="@layout/activity_detail_appraise" />
                 <!--详情-->
-                <include layout="@layout/activity_detail_des" />
+                <include android:id="@+id/include_detail_des" layout="@layout/activity_detail_des" />
                 <!--推荐-->
-                <include layout="@layout/activity_detail_recommend" />
+                <include android:id="@+id/include_detail_recommend" layout="@layout/activity_detail_recommend" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
         </androidx.core.widget.NestedScrollView>
 
-        <include layout="@layout/detail_header" />
+        <include android:id="@+id/include_header" layout="@layout/detail_header" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/backTop"
@@ -55,6 +55,6 @@
             android:contentDescription="@string/backTop" />
     </RelativeLayout>
 
-    <include layout="@layout/activity_detail_footer" />
+    <include android:id="@+id/detail_footer" layout="@layout/activity_detail_footer" />
 
 </LinearLayout>

@@ -4,19 +4,22 @@ import android.app.Dialog
 import android.content.Context
 import com.aries.common.R
 import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.Window
 
 import android.view.WindowManager
 import android.view.animation.Animation
 import android.view.animation.LinearInterpolator
 import android.view.animation.RotateAnimation
-import kotlinx.android.synthetic.main.loading_dialog.*
+import com.aries.common.databinding.LoadingDialogBinding
 
-open class LoadingDialog(context: Context) : Dialog(context, R.style.Loading) {
+class LoadingDialog(context: Context) : Dialog(context, R.style.Loading) {
+    private var binding: LoadingDialogBinding = LoadingDialogBinding.inflate(LayoutInflater.from(context))
+
     private var loadingAnimation: Animation
 //    private var spinner: AnimationDrawable
     init {
-        setContentView(R.layout.loading_dialog)
+        setContentView(binding.root)
 
         loadingAnimation = RotateAnimation(0f, 360f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f)
         loadingAnimation.duration = 1500
@@ -43,7 +46,7 @@ open class LoadingDialog(context: Context) : Dialog(context, R.style.Loading) {
 
     override fun show() {
         super.show()
-        loading_img.startAnimation(loadingAnimation)
+        binding.loadingImg.startAnimation(loadingAnimation)
 //        spinner.start()
     }
 }

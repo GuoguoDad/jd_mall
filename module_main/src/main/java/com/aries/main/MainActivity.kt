@@ -1,6 +1,7 @@
 package com.aries.main
 
 import android.annotation.SuppressLint
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
@@ -10,18 +11,19 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.aries.cart.ui.CartFragment
 import com.aries.category.ui.CategoryFragment
 import com.aries.common.constants.RouterPaths
-import com.aries.common.base.BaseActivity
+import com.aries.common.base.CommonActivity
 import com.aries.common.util.UnreadMsgUtil
 import com.aries.home.ui.HomeFragment
+import com.aries.main.databinding.LayoutMainBinding
 import com.aries.mine.ui.MineFragment
 import com.google.android.material.bottomnavigation.BottomNavigationItemView
-import kotlinx.android.synthetic.main.layout_main.*
 import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 import com.google.android.material.navigation.NavigationBarView
-import com.gyf.immersionbar.ImmersionBar
 
 @Route(path = RouterPaths.MAIN_ACTIVITY)
-class MainActivity: BaseActivity(R.layout.layout_main) {
+class MainActivity: CommonActivity() {
+    private lateinit var binding: LayoutMainBinding
+
     private val homeFragment: Fragment = HomeFragment()
     private val categoryFragment: Fragment = CategoryFragment()
     private val cartFragment: Fragment = CartFragment()
@@ -31,16 +33,26 @@ class MainActivity: BaseActivity(R.layout.layout_main) {
     private var isCartFragmentAdd: Boolean = false
     private var isMineFragmentAdd: Boolean = false
 
-    override fun initView() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setTransparentStatusBar()
+        binding = LayoutMainBinding.inflate(LayoutInflater.from(this))
+        setContentView(binding.root)
+
+        initView()
+        initData()
+    }
+
+    fun initView() {
         val navController = findNavController(R.id.container_fragment)
-        navView.labelVisibilityMode = NavigationBarView.LABEL_VISIBILITY_LABELED
-        navView.itemIconTintList = null //保留icon原图颜色
-        navView.setupWithNavController(navController)
+        binding.navView.labelVisibilityMode = NavigationBarView.LABEL_VISIBILITY_LABELED
+        binding.navView.itemIconTintList = null //保留icon原图颜色
+        binding.navView.setupWithNavController(navController)
 
         supportFragmentManager.beginTransaction().add(R.id.container_fragment, homeFragment, "1").show(homeFragment).commit()
 
         var active = homeFragment
-        navView.setOnItemSelectedListener {
+        binding.navView.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.navigation_home -> {
                     supportFragmentManager.beginTransaction().hide(active).show(homeFragment).commit()
@@ -81,7 +93,7 @@ class MainActivity: BaseActivity(R.layout.layout_main) {
         }
     }
 
-    override fun initData() {
+    fun initData() {
         showBadgeView(2, 3)
     }
 
@@ -93,7 +105,7 @@ class MainActivity: BaseActivity(R.layout.layout_main) {
      */
     @SuppressLint("RestrictedApi")
     private fun showBadgeView(viewIndex: Int, showNumber: Int) {
-        val menuView = navView.getChildAt(0) as BottomNavigationMenuView
+        val menuView = binding.navView.getChildAt(0) as BottomNavigationMenuView
         if (viewIndex < menuView.childCount) {
             val itemView: BottomNavigationItemView = menuView.getChildAt(viewIndex) as BottomNavigationItemView
             var badgeView = LayoutInflater.from(this).inflate(com.aries.common.R.layout.badge_layout, itemView, false)

@@ -7,16 +7,17 @@ import coil.ImageLoader
 import coil.load
 import com.aries.common.util.CoilUtil
 import com.aries.home.R
-import kotlinx.android.synthetic.main.home_ad.view.*
+import com.aries.home.databinding.HomeAdBinding
 
 class AdView(context: Context): FrameLayout(context) {
+    private var binding: HomeAdBinding
     private var imageLoader: ImageLoader = CoilUtil.getImageLoader()
     init {
-        LayoutInflater.from(context).inflate(R.layout.home_ad, this, true)
+        binding = HomeAdBinding.inflate(LayoutInflater.from(context))
     }
 
     fun setData(url: String) {
-        adImg.load(url, imageLoader ) {
+        binding.adImg.load(url, imageLoader ) {
             crossfade(true)
             placeholder(R.drawable.default_img)
             error(R.drawable.default_img)

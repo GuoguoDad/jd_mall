@@ -4,12 +4,13 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
-import com.aries.category.R
+import com.aries.category.databinding.SerachBinding
 import com.aries.common.util.PixelUtil
 import com.aries.common.util.StatusBarUtil
-import kotlinx.android.synthetic.main.serach.view.*
 
 class SearchHeaderView: FrameLayout {
+    private lateinit var binding: SerachBinding
+
     constructor(context: Context) : this(context, null)
     constructor(context: Context, attributeSet: AttributeSet?) : this(context, attributeSet, 0)
     constructor(context: Context, attributeSet: AttributeSet?, defStyleAttr: Int) : super(
@@ -21,11 +22,11 @@ class SearchHeaderView: FrameLayout {
     }
 
     private fun init(context: Context) {
-        LayoutInflater.from(context).inflate(R.layout.serach, this, true)
+        binding = SerachBinding.inflate(LayoutInflater.from(this.context), this, true)
         var statusHeight = StatusBarUtil.getHeight()
 
         var padding = PixelUtil.toPixelFromDIP(8f).toInt()
-        searchOuterView.setPadding(
+        binding.searchOuterView.setPadding(
             0,
             statusHeight + padding,
             0,
