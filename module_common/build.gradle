@@ -48,10 +48,10 @@ dependencies {
     api 'androidx.multidex:multidex:2.0.1'
     api 'androidx.constraintlayout:constraintlayout:2.1.4'  //约束布局
     api 'androidx.coordinatorlayout:coordinatorlayout:1.2.0'  //协调者布局
-    api 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
+    api 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.1'
     api 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
-    api 'androidx.navigation:navigation-fragment-ktx:2.3.5'
-    api 'androidx.navigation:navigation-ui-ktx:2.3.5'
+    api 'androidx.navigation:navigation-fragment-ktx:2.4.1'
+    api 'androidx.navigation:navigation-ui-ktx:2.4.1'
     api 'androidx.recyclerview:recyclerview:1.2.1'
 
     api 'com.youth.banner:banner:2.1.0'
@@ -63,7 +63,7 @@ dependencies {
     api 'com.google.code.gson:gson:2.9.0'
 
     //引入 kotlin-reflect 解决调用fastjson JSON.parseObject报“default constructor not found”错误
-    api 'org.jetbrains.kotlin:kotlin-reflect:1.7.10'
+    api 'org.jetbrains.kotlin:kotlin-reflect:1.7.21'
 
     api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.7'
     api 'com.github.chrisbanes:PhotoView:2.3.0'
