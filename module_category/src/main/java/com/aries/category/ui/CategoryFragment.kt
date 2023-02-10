@@ -3,6 +3,7 @@ package com.aries.category.ui
 import android.annotation.SuppressLint
 import android.graphics.Rect
 import android.view.LayoutInflater
+import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.airbnb.mvrx.MavericksView
 import com.airbnb.mvrx.activityViewModel
@@ -22,8 +23,8 @@ class CategoryFragment: BaseFragment<FragmentMainBinding>(), MavericksView {
 
     private var visualHeight = -1 //recyclerView 可视区域高度 - 当前点击item的高度
 
-    override fun getViewBinding(): FragmentMainBinding {
-        return FragmentMainBinding.inflate(LayoutInflater.from(this.context))
+    override fun getViewBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentMainBinding {
+        return FragmentMainBinding.inflate(inflater, container, false)
     }
 
     override fun initView() {

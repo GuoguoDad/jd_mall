@@ -3,6 +3,7 @@ package com.aries.cart.ui
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -42,8 +43,8 @@ class CartFragment: BaseFragment<FragmentCartBinding>(), MavericksView {
         StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
     }
 
-    override fun getViewBinding(): FragmentCartBinding {
-        return FragmentCartBinding.inflate(LayoutInflater.from(this.context))
+    override fun getViewBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentCartBinding {
+        return FragmentCartBinding.inflate(inflater, container, false)
     }
 
     override fun initView() {

@@ -2,6 +2,7 @@ package com.aries.mine.ui
 
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -32,8 +33,8 @@ class MineFragment: BaseFragment<LayoutMineBinding>(), MavericksView {
 
     private val fiveMenuView: FiveMenuView by lazy { FiveMenuView(this.requireContext(), this@MineFragment) }
 
-    override fun getViewBinding(): LayoutMineBinding {
-        return LayoutMineBinding.inflate(LayoutInflater.from(this.context))
+    override fun getViewBinding(inflater: LayoutInflater, container: ViewGroup?): LayoutMineBinding {
+        return LayoutMineBinding.inflate(inflater, container, false)
     }
 
     override fun initView() {

@@ -3,6 +3,7 @@ package com.aries.home.ui
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.RelativeLayout
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.fragment.app.Fragment
@@ -39,8 +40,8 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>(), MavericksView {
     //顶部九格宫功能菜单
     private val nineMenuView: NineMenuView by lazy { NineMenuView(this.requireContext(), this@HomeFragment) }
 
-    override fun getViewBinding(): FragmentHomeBinding {
-        return FragmentHomeBinding.inflate(LayoutInflater.from(this.context))
+    override fun getViewBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentHomeBinding {
+        return FragmentHomeBinding.inflate(inflater, container, false)
     }
 
     override fun onDestroyView() {

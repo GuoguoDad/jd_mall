@@ -1,6 +1,7 @@
 package com.aries.home.ui.fragment.goods
 
 import android.view.LayoutInflater
+import android.view.ViewGroup
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.airbnb.mvrx.MavericksView
 import com.airbnb.mvrx.activityViewModel
@@ -20,8 +21,8 @@ class  GoodsListFragment(private var code: String): BaseFragment<HomeGoodsBindin
         StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
     }
 
-    override fun getViewBinding(): HomeGoodsBinding {
-        return HomeGoodsBinding.inflate(LayoutInflater.from(this.context))
+    override fun getViewBinding(inflater: LayoutInflater, container: ViewGroup?): HomeGoodsBinding {
+        return HomeGoodsBinding.inflate(inflater, container, false)
     }
 
     override fun initView() {
