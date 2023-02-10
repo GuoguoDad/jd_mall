@@ -1,7 +1,6 @@
 package com.aries.common.ui.detail
 
 import android.os.Build
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
@@ -19,7 +18,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.aries.common.R
 import com.aries.common.adapter.GoodsListAdapter
-import com.aries.common.base.CommonActivity
+import com.aries.common.base.BaseActivity
 import com.aries.common.constants.RouterPaths
 import com.aries.common.databinding.ActivityDetailBinding
 import com.aries.common.dialog.LoadingDialog
@@ -34,9 +33,7 @@ import com.google.android.material.tabs.TabLayout
 import com.gyf.immersionbar.ImmersionBar
 
 @Route(path = RouterPaths.GOODS_DETAIL)
-class DetailActivity: CommonActivity(), MavericksView {
-    private lateinit var binding: ActivityDetailBinding
-
+class DetailActivity: BaseActivity<ActivityDetailBinding>(), MavericksView {
     private val tabs = arrayListOf("商品", "评价", "详情", "推荐")
     private var imageLoader: ImageLoader = CoilUtil.getImageLoader()
     private val loadingDialog: LoadingDialog by lazy { LoadingDialog(this) }
@@ -58,19 +55,13 @@ class DetailActivity: CommonActivity(), MavericksView {
         StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setTransparentStatusBar()
-        binding = ActivityDetailBinding.inflate(LayoutInflater.from(this))
-        setContentView(binding.root)
-        //设置状态栏颜色深色个
-        ImmersionBar.with(this).transparentStatusBar().statusBarDarkFont(true).init()
-
-        initView()
-        initData()
+    override fun getViewBinding(): ActivityDetailBinding {
+        return ActivityDetailBinding.inflate(LayoutInflater.from(this))
     }
 
-    fun initView() {
+    override fun initView() {
+        //设置状态栏颜色深色个
+        ImmersionBar.with(this).transparentStatusBar().statusBarDarkFont(true).init()
         statusBarHeight = StatusBarUtil.getHeight()
         //顶部tabLayout
         binding.includeHeader.detailHeaderLayout.setPadding(0, StatusBarUtil.getHeight(), 0 , 0)
@@ -169,7 +160,7 @@ class DetailActivity: CommonActivity(), MavericksView {
         addStateChangeListener()
     }
 
-    fun initData() {
+    override fun initData() {
         loadingDialog.show()
         viewModel.queryGoodsDetail()
         viewModel.initRecommendList()

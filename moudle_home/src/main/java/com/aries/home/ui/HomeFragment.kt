@@ -1,16 +1,15 @@
 package com.aries.home.ui
 
 import android.annotation.SuppressLint
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.RelativeLayout
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.airbnb.mvrx.MavericksView
 import com.airbnb.mvrx.activityViewModel
+import com.aries.common.base.BaseFragment
 import com.aries.common.dialog.LoadingDialog
 import com.aries.common.util.DisplayUtil
 import com.aries.common.util.PixelUtil
@@ -25,9 +24,7 @@ import com.aries.home.ui.view.AdView
 import com.aries.home.ui.view.NineMenuView
 import com.gyf.immersionbar.ImmersionBar
 
-class HomeFragment : Fragment(), MavericksView {
-    private lateinit var binding: FragmentHomeBinding
-
+class HomeFragment: BaseFragment<FragmentHomeBinding>(), MavericksView {
     private val viewModel: HomeViewModel by activityViewModel()
     //loading 对话框
     private val loadingDialog: LoadingDialog by lazy { LoadingDialog(this.requireActivity()) }
@@ -42,21 +39,9 @@ class HomeFragment : Fragment(), MavericksView {
     //顶部九格宫功能菜单
     private val nineMenuView: NineMenuView by lazy { NineMenuView(this.requireContext(), this@HomeFragment) }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View {
-        binding = FragmentHomeBinding.inflate(LayoutInflater.from(this.context))
-        return binding.root
+    override fun getViewBinding(): FragmentHomeBinding {
+        return FragmentHomeBinding.inflate(LayoutInflater.from(this.context))
     }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        initView()
-        initData()
-    }
-
 
     override fun onDestroyView() {
         super.onDestroyView()
@@ -76,7 +61,7 @@ class HomeFragment : Fragment(), MavericksView {
         }
     }
 
-    fun initView() {
+    override fun initView() {
         initHeader()
         //下拉刷新
         binding.refreshView.run {
@@ -102,7 +87,7 @@ class HomeFragment : Fragment(), MavericksView {
         addStateChangeListener()
     }
 
-    fun initData() {
+    override fun initData() {
         viewModel.init(false)
     }
 

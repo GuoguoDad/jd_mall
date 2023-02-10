@@ -2,11 +2,7 @@ package com.aries.category.ui
 
 import android.annotation.SuppressLint
 import android.graphics.Rect
-import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.airbnb.mvrx.MavericksView
 import com.airbnb.mvrx.activityViewModel
@@ -14,11 +10,10 @@ import com.airbnb.mvrx.withState
 import com.aries.category.R
 import com.aries.category.databinding.FragmentMainBinding
 import com.aries.category.ui.adapter.CategoryListAdapter
+import com.aries.common.base.BaseFragment
 import com.gyf.immersionbar.ImmersionBar
 
-class CategoryFragment : Fragment(), MavericksView {
-    private lateinit var binding: FragmentMainBinding
-
+class CategoryFragment: BaseFragment<FragmentMainBinding>(), MavericksView {
     private val leftViewModel: LeftCategoryViewModel by activityViewModel()
     private val rightViewModel: RightCategoryViewModel by activityViewModel()
 
@@ -27,29 +22,17 @@ class CategoryFragment : Fragment(), MavericksView {
 
     private var visualHeight = -1 //recyclerView 可视区域高度 - 当前点击item的高度
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View {
-        binding = FragmentMainBinding.inflate(LayoutInflater.from(this.context))
-        return binding.root
+    override fun getViewBinding(): FragmentMainBinding {
+        return FragmentMainBinding.inflate(LayoutInflater.from(this.context))
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        initView()
-        initData()
-    }
-
-
-     fun initView() {
+    override fun initView() {
         binding.categoryList.run {
             setHasFixedSize(true)
             layoutManager = categoryLayoutManager
             adapter = categoryListAdapter
             categoryListAdapter.setOnItemClickListener{ _, item, position ->
-                var rect = Rect()
+                val rect = Rect()
                 binding.categoryList.getGlobalVisibleRect(rect)
                 visualHeight = rect.bottom - rect.top - item.height
 
@@ -70,7 +53,7 @@ class CategoryFragment : Fragment(), MavericksView {
         binding.rightContainer.removeAllViews()
     }
 
-     fun initData() {
+    override fun initData() {
         leftViewModel.initBrandList()
         leftViewModel.onEach(LeftCategoryState::brandList) {
                 brandList -> run {
@@ -108,7 +91,7 @@ class CategoryFragment : Fragment(), MavericksView {
     @SuppressLint("NotifyDataSetChanged")
     private fun setSelectCategory(selectIndex: Int) {
         categoryListAdapter.run {
-            var preSelectIndex = data.indexOfFirst { v -> v.isSelect == true }
+            val preSelectIndex = data.indexOfFirst { v -> v.isSelect == true }
 
             var preStart = preSelectIndex
             var preCount = 1
@@ -141,11 +124,11 @@ class CategoryFragment : Fragment(), MavericksView {
     }
 
     private fun scrollToMiddle(position: Int) {
-        var firstPosition = categoryLayoutManager.findFirstVisibleItemPosition()
+        val firstPosition = categoryLayoutManager.findFirstVisibleItemPosition()
         //当前点击的item距离 recyclerview 顶部的距离
-        var top = binding.categoryList.getChildAt(position - firstPosition).top
+        val top = binding.categoryList.getChildAt(position - firstPosition).top
         //recyclerView可视区域高度-当前点击item的高度 的一半高度
-        var half = visualHeight/2
+        val half = visualHeight/2
 
         binding.categoryList.smoothScrollBy(0, top - half)
     }

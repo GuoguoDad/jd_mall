@@ -1,12 +1,9 @@
 package com.aries.cart.ui
 
 import android.graphics.Color
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.airbnb.mvrx.MavericksView
@@ -21,6 +18,7 @@ import com.aries.cart.ui.listener.OnCartItemChangeListener
 import com.aries.cart.ui.listener.OnStepperChangeListener
 import com.aries.cart.ui.view.QuickEntryPopup
 import com.aries.common.adapter.GoodsListAdapter
+import com.aries.common.base.BaseFragment
 import com.aries.common.constants.RouterPaths
 import com.aries.common.decoration.SpacesItemDecoration
 import com.aries.common.util.DisplayUtil
@@ -32,9 +30,7 @@ import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.enums.PopupAnimation
 import java.math.BigDecimal
 
-class CartFragment : Fragment(), MavericksView {
-    private lateinit var binding: FragmentCartBinding
-
+class CartFragment: BaseFragment<FragmentCartBinding>(), MavericksView {
     private val viewModel: CartViewModel by activityViewModel()
 
     //购物车中店铺商品列表adapter
@@ -46,22 +42,11 @@ class CartFragment : Fragment(), MavericksView {
         StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View {
-        binding = FragmentCartBinding.inflate(LayoutInflater.from(this.context))
-        return binding.root
+    override fun getViewBinding(): FragmentCartBinding {
+        return FragmentCartBinding.inflate(LayoutInflater.from(this.context))
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        initView()
-        initData()
-    }
-
-     fun initView() {
+    override fun initView() {
         initStatusBarPlaceholder()
         //快捷菜单点点点 角标
         UnreadMsgUtil.show(binding.includeTopAddress.threePointsBadgeNum, 2)
@@ -143,7 +128,7 @@ class CartFragment : Fragment(), MavericksView {
          binding.includeBtnAll.totalCheckBox.setOnClickListener { checkAll() }
     }
 
-    fun initData() {
+    override fun initData() {
         viewModel.queryCartGoodsList(false)
         viewModel.initMaybeLikeList()
     }

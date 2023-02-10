@@ -1,7 +1,6 @@
 package com.aries.main
 
 import android.annotation.SuppressLint
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
@@ -10,8 +9,8 @@ import androidx.navigation.ui.setupWithNavController
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.aries.cart.ui.CartFragment
 import com.aries.category.ui.CategoryFragment
+import com.aries.common.base.BaseActivity
 import com.aries.common.constants.RouterPaths
-import com.aries.common.base.CommonActivity
 import com.aries.common.util.UnreadMsgUtil
 import com.aries.home.ui.HomeFragment
 import com.aries.main.databinding.LayoutMainBinding
@@ -21,9 +20,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationMenuView
 import com.google.android.material.navigation.NavigationBarView
 
 @Route(path = RouterPaths.MAIN_ACTIVITY)
-class MainActivity: CommonActivity() {
-    private lateinit var binding: LayoutMainBinding
-
+class MainActivity: BaseActivity<LayoutMainBinding>() {
     private val homeFragment: Fragment = HomeFragment()
     private val categoryFragment: Fragment = CategoryFragment()
     private val cartFragment: Fragment = CartFragment()
@@ -33,17 +30,11 @@ class MainActivity: CommonActivity() {
     private var isCartFragmentAdd: Boolean = false
     private var isMineFragmentAdd: Boolean = false
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setTransparentStatusBar()
-        binding = LayoutMainBinding.inflate(LayoutInflater.from(this))
-        setContentView(binding.root)
-
-        initView()
-        initData()
+    override fun getViewBinding(): LayoutMainBinding {
+        return LayoutMainBinding.inflate(LayoutInflater.from(this))
     }
 
-    fun initView() {
+    override fun initView() {
         val navController = findNavController(R.id.container_fragment)
         binding.navView.labelVisibilityMode = NavigationBarView.LABEL_VISIBILITY_LABELED
         binding.navView.itemIconTintList = null //保留icon原图颜色
@@ -93,7 +84,7 @@ class MainActivity: CommonActivity() {
         }
     }
 
-    fun initData() {
+    override fun initData() {
         showBadgeView(2, 3)
     }
 

@@ -5,17 +5,24 @@ import android.os.Build
 import android.os.Bundle
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.viewbinding.ViewBinding
 import java.lang.reflect.Field
 
+abstract class BaseActivity<T: ViewBinding> : AppCompatActivity() {
+    private lateinit var _binding: T
+    protected val binding get() = _binding
 
-abstract class BaseActivity(@LayoutRes val layoutResId: Int) : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setTransparentStatusBar()
-        setContentView(layoutResId)
+        _binding = getViewBinding()
+        setContentView(_binding.root)
+
         initView()
         initData()
     }
+
+    protected abstract fun getViewBinding(): T
 
     abstract fun initView()
 

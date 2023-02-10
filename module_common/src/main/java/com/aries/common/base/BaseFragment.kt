@@ -8,9 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
+import androidx.viewbinding.ViewBinding
 
-abstract class BaseFragment(@LayoutRes val layoutResId: Int): Fragment()  {
-    private var rootView: View? = null
+abstract class BaseFragment<T: ViewBinding>: Fragment()  {
+    private lateinit var _binding: T
+    protected val binding get() = _binding
 
     protected var mContext: Context? = null
 
@@ -26,10 +28,8 @@ abstract class BaseFragment(@LayoutRes val layoutResId: Int): Fragment()  {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        if (rootView == null) {
-            rootView = inflater.inflate(layoutResId, null)
-        }
-        return rootView
+        _binding = getViewBinding()
+        return _binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -38,13 +38,14 @@ abstract class BaseFragment(@LayoutRes val layoutResId: Int): Fragment()  {
         initData()
     }
 
+    protected abstract fun getViewBinding(): T
+
     abstract fun initView()
 
     abstract fun initData()
 
     override fun onDestroyView() {
         super.onDestroyView()
-        rootView = null
         mContext = null
     }
 }

@@ -2,6 +2,7 @@ package com.aries.webview.ui
 
 import android.graphics.Bitmap
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.webkit.*
 import androidx.appcompat.app.AppCompatActivity
 import com.alibaba.android.arouter.facade.annotation.Autowired
@@ -9,16 +10,17 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.aries.common.constants.RouterPaths
 import com.aries.common.util.StatusBarUtil
-import com.aries.webview.R
 import com.aries.webview.bridge.Callback
 import com.aries.webview.bridge.ConsolePipe
 import com.aries.webview.bridge.Handler
 import com.aries.webview.bridge.WebViewJavascriptBridge
-import kotlinx.android.synthetic.main.activity_webview.*
+import com.aries.webview.databinding.ActivityWebviewBinding
 import java.lang.reflect.InvocationTargetException
 
 @Route(path = RouterPaths.WebView_ACTIVITY)
 class WebViewActivity: AppCompatActivity() {
+    private lateinit var binding: ActivityWebviewBinding
+
     @Autowired
     @JvmField
     var isDarkTheme: Boolean = false
@@ -32,28 +34,29 @@ class WebViewActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         ARouter.getInstance().inject(this)
-        setContentView(R.layout.activity_webview)
+        binding = ActivityWebviewBinding.inflate(LayoutInflater.from(this))
+        setContentView(binding.root)
         initView()
     }
 
     override fun onBackPressed() {
-        if (webView.canGoBack()) {
-            webView.goBack()
+        if (binding.webView.canGoBack()) {
+            binding.webView.goBack()
         } else {
             finish()
         }
     }
 
     override fun onDestroy() {
-        webView.destroy()
+        binding.webView.destroy()
         super.onDestroy()
     }
 
     private fun initView() {
-        bridge = WebViewJavascriptBridge(this, webView )
-        setAllowUniversalAccessFromFileURLs(webView)
+        bridge = WebViewJavascriptBridge(this, binding.webView )
+        setAllowUniversalAccessFromFileURLs(binding.webView)
         StatusBarUtil.setBarTextModal(this, isDarkTheme)
-        webView.settings.run {
+        binding.webView.settings.run {
             true.also { javaScriptEnabled = it }
             useWideViewPort = true
             loadWithOverviewMode = true
@@ -65,9 +68,9 @@ class WebViewActivity: AppCompatActivity() {
         }
 
 //        webView.loadUrl(url)
-        webView.loadUrl("file:///android_asset/Demo.html")
+        binding.webView.loadUrl("file:///android_asset/Demo.html")
 
-        webView.webViewClient = object: WebViewClient(){
+        binding.webView.webViewClient = object: WebViewClient(){
             @Deprecated("Deprecated in Java")
             override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
                 println("shouldOverrideUrlLoading")

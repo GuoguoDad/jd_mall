@@ -1,18 +1,16 @@
 package com.aries.mine.ui
 
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.airbnb.mvrx.MavericksView
 import com.airbnb.mvrx.activityViewModel
 import com.airbnb.mvrx.withState
 import com.alibaba.android.arouter.launcher.ARouter
 import com.aries.common.adapter.GoodsListAdapter
+import com.aries.common.base.BaseFragment
 import com.aries.common.constants.RouterPaths
 import com.aries.common.decoration.SpacesItemDecoration
 import com.aries.common.util.DisplayUtil
@@ -24,9 +22,7 @@ import com.aries.mine.databinding.LayoutMineBinding
 import com.aries.mine.ui.view.FiveMenuView
 import com.gyf.immersionbar.ImmersionBar
 
-class MineFragment: Fragment(), MavericksView {
-    private lateinit var binding: LayoutMineBinding
-
+class MineFragment: BaseFragment<LayoutMineBinding>(), MavericksView {
     private val viewModel: MineViewModal by activityViewModel()
 
     private val goodsListAdapter by lazy { GoodsListAdapter(arrayListOf()) }
@@ -36,23 +32,11 @@ class MineFragment: Fragment(), MavericksView {
 
     private val fiveMenuView: FiveMenuView by lazy { FiveMenuView(this.requireContext(), this@MineFragment) }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View {
-        binding = LayoutMineBinding.inflate(LayoutInflater.from(this.context))
-        return binding.root
+    override fun getViewBinding(): LayoutMineBinding {
+        return LayoutMineBinding.inflate(LayoutInflater.from(this.context))
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        initView()
-        initData()
-    }
-
-
-     fun initView() {
+    override fun initView() {
         initStatusHeight()
 
         binding.mineRefreshLayout.run {
@@ -94,7 +78,7 @@ class MineFragment: Fragment(), MavericksView {
         }
     }
 
-    fun initData() {
+    override fun initData() {
         viewModel.queryMineInfo()
         viewModel.initRecommendList()
     }
