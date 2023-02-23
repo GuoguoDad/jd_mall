@@ -1,9 +1,9 @@
 ext {
-    compileSdk = 32
+    compileSdk = 33
 
     defalutConfigApplicationId = "com.aries.mall"
     defaultConfigMinSdk = 21
-    defaultConfigTargetSdk = 31
+    defaultConfigTargetSdk = 33
     defaultConfigVersionCode = 2
     defaultConfigVersionName = "1.2.0"
 
