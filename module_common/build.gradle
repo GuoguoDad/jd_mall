@@ -43,8 +43,8 @@ android {
 
 dependencies {
     api project(path: ':local_mock')
-    api 'androidx.core:core-ktx:1.8.0'
-    api 'androidx.appcompat:appcompat:1.5.1'
+    api 'androidx.core:core-ktx:1.9.0'
+    api 'androidx.appcompat:appcompat:1.6.0'
     api 'androidx.multidex:multidex:2.0.1'
     api 'androidx.constraintlayout:constraintlayout:2.1.4'  //约束布局
     api 'androidx.coordinatorlayout:coordinatorlayout:1.2.0'  //协调者布局
@@ -98,6 +98,6 @@ dependencies {
 //    debugApi 'com.squareup.leakcanary:leakcanary-android:2.9.1'
 
     testApi 'junit:junit:4.+'
-    androidTestApi 'androidx.test.ext:junit:1.1.2'
-    androidTestApi 'androidx.test.espresso:espresso-core:3.3.0'
+    androidTestApi 'androidx.test.ext:junit:1.1.3'
+    androidTestApi 'androidx.test.espresso:espresso-core:3.4.0'
 }
