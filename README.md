@@ -36,7 +36,7 @@
 
 
 # 下载
-<img src="images/download.png" title="" alt="image" width="450">
+<img src="images/download.png" title="" alt="image" width="300">
 
 # 首页
 <img src="images/home.gif" title="" alt="image" width="351">
