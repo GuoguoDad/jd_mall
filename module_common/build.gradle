@@ -98,6 +98,6 @@ dependencies {
 //    debugApi 'com.squareup.leakcanary:leakcanary-android:2.9.1'
 
     testApi 'junit:junit:4.+'
-    androidTestApi 'androidx.test.ext:junit:1.1.2'
-    androidTestApi 'androidx.test.espresso:espresso-core:3.3.0'
+    androidTestApi 'androidx.test.ext:junit:1.1.3'
+    androidTestApi 'androidx.test.espresso:espresso-core:3.4.0'
 }
