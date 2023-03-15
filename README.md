@@ -35,13 +35,8 @@
 资源请求会先询问某个 CDN 的边缘节点，如果该边缘节点没有缓存，则会去源站拉取；如果该边缘节点有缓存，则直接返回。
 
 
-# 下载（已废弃，需自己下载源码编译）
-
-##Apk下载链接： [Apk下载链接](https://www.pgyer.com/FYfa)
-
-##Apk二维码
-
-![](./images/download.png)
+# 下载
+<img src="images/download.png" title="" alt="image" width="450">
 
 # 首页
 <img src="images/home.gif" title="" alt="image" width="351">
