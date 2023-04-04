@@ -13,6 +13,7 @@ import com.facebook.react.ReactNativeHost
 import com.facebook.react.ReactPackage
 import com.facebook.react.shell.MainReactPackage
 import com.facebook.soloader.SoLoader
+import com.imagepicker.ImagePickerPackage
 import com.masteratul.exceptionhandler.ReactNativeExceptionHandlerPackage
 import com.swmansion.gesturehandler.RNGestureHandlerPackage
 import com.swmansion.rnscreens.RNScreensPackage
@@ -36,7 +37,8 @@ class AppApplication: BaseApplication(), ReactApplication {
                 SafeAreaContextPackage(),
                 RNScreensPackage(),
                 ReactNativeExceptionHandlerPackage(),
-                FastImageViewPackage()
+                FastImageViewPackage(),
+                ImagePickerPackage()
             )
         }
 

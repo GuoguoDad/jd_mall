@@ -5,6 +5,16 @@
     <application>
         <activity android:name=".activity.LoadReactActivity"/>
         <activity android:name=".activity.LazyLoadReactActivity"/>
+
+        <provider
+            android:name="com.imagepicker.ImagePickerProvider"
+            android:authorities="${applicationId}.imagepickerprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/imagepicker_provider_paths" />
+        </provider>
     </application>
 
 </manifest>

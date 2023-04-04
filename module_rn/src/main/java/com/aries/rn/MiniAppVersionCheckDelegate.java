@@ -38,8 +38,7 @@ public class MiniAppVersionCheckDelegate implements VersionCheckerDelegate {
     @Override
     public void processCheckResult(Map<String, Object> params, Callback callback) {
         Request request = new Request.Builder()
-//                .url("https://oss.suning.com/sffe/sffe/aries/mall_release_1.2.1.apk")
-                .url("https://oss.suning.com/srcfews/lsypc/test/index.json")
+                .url("https://oss.suning.com/srcfews/lsypc/test/aries/index.json")
                 .build();
 
         client.newCall(request).enqueue(new okhttp3.Callback() {
