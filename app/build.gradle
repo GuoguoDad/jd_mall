@@ -64,7 +64,7 @@ android {
         variant ->
             variant.outputs.all {
                 if (variant.buildType.name === 'release')
-                    outputFileName = "mall_release.apk"
+                    outputFileName = "jdMall_release.apk"
                 else
                     outputFileName = "mall_${variant.buildType.name}_${defaultConfig.versionName}_${releaseTime()}.apk"
             }

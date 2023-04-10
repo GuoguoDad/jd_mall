@@ -31,6 +31,6 @@ jobs:
       - name: Create Release
         uses: ncipollo/release-action@v1.12.0
         with:
-            artifacts: "app/build/outputs/apk/release/mall_release.apk"
+            artifacts: "app/build/outputs/apk/release/jdMall_release.apk"
             token: ${{ secrets.GITHUB_TOKEN }}
 
