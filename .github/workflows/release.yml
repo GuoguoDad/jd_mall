@@ -19,7 +19,7 @@ jobs:
         with:
           java-version: 1.8
       - name: Build with Gradle
-          run: bash ./gradlew assembleRelease
+          run: ./gradlew assembleRelease
       - name: Create Release
         uses: actions/create-release@v1
         env:
