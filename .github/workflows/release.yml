@@ -21,7 +21,8 @@ jobs:
       - name: Build with Gradle
           run: bash ./gradlew assembleRelease
       - name: Create Release
-        uses: ncipollo/release-action@v1
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           artifacts: "app/build/outputs/apk/release/mall_release.apk"
-          token: ${{ secrets.GITHUB_TOKEN }}
