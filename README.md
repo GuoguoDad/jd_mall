@@ -34,10 +34,6 @@
 4，React Native 发起 CDN 资源请求
 资源请求会先询问某个 CDN 的边缘节点，如果该边缘节点没有缓存，则会去源站拉取；如果该边缘节点有缓存，则直接返回。
 
-
-# 下载
-<img src="images/download.png" title="" alt="image" width="300">
-
 # 首页
 <img src="images/home.gif" title="" alt="image" width="351">
 <img src="images/home.png" title="" alt="image" width="800">
