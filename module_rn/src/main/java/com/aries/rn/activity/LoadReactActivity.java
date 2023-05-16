@@ -71,7 +71,7 @@ public class LoadReactActivity extends LazyLoadReactActivity {
 
         mReactJsBundleFactory = new ReactJsBundleFactory(this, options.contextDir());
         mReload = new RootViewReload(this, getReactInstanceManager());
-        mPage = new Page().url(url).name(bundleName).extras("initRouteUrl", initRouteUrl);
+        mPage = new Page().url(url).name(bundleName);
 
         toEvent(LOAD_EVENT_JS_BUNDLE_CHECK_VERSION, null);
     }

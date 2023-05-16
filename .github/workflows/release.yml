@@ -1,12 +1,9 @@
-name: Android CI
+name: Release
 
 on:
   push:
     tags:
       - v*
-    pull_request:
-      tags:
-        - v*
 
 jobs:
   build:
@@ -31,6 +28,7 @@ jobs:
       - name: Create Release
         uses: ncipollo/release-action@v1.12.0
         with:
-            artifacts: "app/build/outputs/apk/release/jdMall_release.apk"
+            artifacts: "app/build/outputs/apk/release/mall_*.apk"
             token: ${{ secrets.GITHUB_TOKEN }}
+            generateReleaseNotes: true
 

@@ -8,6 +8,8 @@
 6. [采用ARouter路由管理](https://github.com/alibaba/ARouter/tree/master)
 7. 集成RN热更功能，[rn工程请见](https://github.com/GuoguoDad/mall_page.git)
 
+* ### 同款Flutter版本（ https://github.com/GuoguoDad/jd_mall_flutter.git ）
+
 # MVI架构
 <img src="images/framework.png" title="" alt="image" width="800">
 

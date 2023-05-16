@@ -7,8 +7,8 @@ ext {
     defaultConfigVersionCode = 2
     defaultConfigVersionName = "1.2.2"
 
-    compileOptionsSourceCompatibility = JavaVersion.VERSION_1_8
-    compileOptionsTargetCompatibility = JavaVersion.VERSION_1_8
+    compileOptionsSourceCompatibility = JavaVersion.VERSION_11
+    compileOptionsTargetCompatibility = JavaVersion.VERSION_11
 
     kotlinOptionsJvmTarget = '1.8'
 }
