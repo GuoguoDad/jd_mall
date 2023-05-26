@@ -13,7 +13,7 @@ class AdView(context: Context): FrameLayout(context) {
     private var binding: HomeAdBinding
     private var imageLoader: ImageLoader = CoilUtil.getImageLoader()
     init {
-        binding = HomeAdBinding.inflate(LayoutInflater.from(context))
+        binding = HomeAdBinding.inflate(LayoutInflater.from(context), this, true)
     }
 
     fun setData(url: String) {
