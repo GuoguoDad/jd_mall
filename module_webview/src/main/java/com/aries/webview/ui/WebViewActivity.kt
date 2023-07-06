@@ -15,6 +15,8 @@ import com.aries.webview.bridge.ConsolePipe
 import com.aries.webview.bridge.Handler
 import com.aries.webview.bridge.WebViewJavascriptBridge
 import com.aries.webview.databinding.ActivityWebviewBinding
+import com.aries.webview.databinding.FloatingHeaderBinding
+import com.gyf.immersionbar.ImmersionBar
 import java.lang.reflect.InvocationTargetException
 
 @Route(path = RouterPaths.WebView_ACTIVITY)
@@ -27,6 +29,10 @@ class WebViewActivity: AppCompatActivity() {
 
     @Autowired
     @JvmField
+    var title: String = ""
+
+    @Autowired
+    @JvmField
     var url: String = ""
 
     private var bridge: WebViewJavascriptBridge? = null
@@ -34,11 +40,13 @@ class WebViewActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         ARouter.getInstance().inject(this)
+        ImmersionBar.with(this).transparentStatusBar().init()
         binding = ActivityWebviewBinding.inflate(LayoutInflater.from(this))
         setContentView(binding.root)
         initView()
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         if (binding.webView.canGoBack()) {
             binding.webView.goBack()
@@ -54,6 +62,11 @@ class WebViewActivity: AppCompatActivity() {
 
     private fun initView() {
         bridge = WebViewJavascriptBridge(this, binding.webView )
+        binding.floatingHeaderLayout.setPadding(0, StatusBarUtil.getHeight(), 0 , 0)
+        binding.floatingHeaderBack.setOnClickListener{
+            finish()
+        }
+        binding.floatingHeaderTxt.text = title;
         setAllowUniversalAccessFromFileURLs(binding.webView)
         StatusBarUtil.setBarTextModal(this, isDarkTheme)
         binding.webView.settings.run {
@@ -67,8 +80,8 @@ class WebViewActivity: AppCompatActivity() {
             defaultTextEncodingName = "utf-8"
         }
 
-//        webView.loadUrl(url)
-        binding.webView.loadUrl("file:///android_asset/Demo.html")
+        binding.webView.loadUrl(url)
+//        binding.webView.loadUrl("file:///android_asset/Demo.html")
 
         binding.webView.webViewClient = object: WebViewClient(){
             @Deprecated("Deprecated in Java")

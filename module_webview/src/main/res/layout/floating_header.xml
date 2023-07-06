@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/floatingHeaderLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/transparent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="80dp"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical|start"
+            android:paddingStart="15dp"
+            android:orientation="horizontal"
+            tools:ignore="RtlSymmetry">
+
+            <ImageView
+                android:id="@+id/floatingHeaderBack"
+                android:layout_width="26dp"
+                android:layout_height="26dp"
+                android:scaleType="fitXY"
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/ic_back_black" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical|end"
+            android:paddingEnd="15dp"
+            android:orientation="horizontal"
+            tools:ignore="RtlSymmetry">
+
+            <ImageView
+                android:id="@+id/shareIcon"
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_share_black" />
+
+            <RelativeLayout
+                android:id="@+id/threePointsLayout"
+                android:layout_width="40dp"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/threePoints"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_centerInParent="true"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_ellipsis_black" />
+
+                <TextView
+                    android:id="@+id/threePointsBadgeNum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentTop="true"
+                    android:background="@drawable/badge_bg"
+                    android:minWidth="15dp"
+                    android:minHeight="15dp"
+                    android:gravity="center"
+                    android:layout_marginTop="8dp"
+                    android:textColor="@color/white"
+                    android:visibility="visible"
+                    android:textSize="9sp"
+                    android:text="4"/>
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

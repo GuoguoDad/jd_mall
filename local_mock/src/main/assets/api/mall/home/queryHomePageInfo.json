@@ -25,17 +25,49 @@
       {
         "menuIcon": "https://m15.360buyimg.com/mobilecms/jfs/t1/102632/18/20350/13255/61e131feE788947ef/c391b8590cdf427e.png!q70.jpg",
         "menuName": "超市",
-        "menuCode": "m01"
+        "menuCode": "m01",
+        "h5url": "https://prodev.m.jd.com/mall/active/3xhqjGH1wMz5FaMgrfYhR22sFvqz/index.html"
+      },
+      {
+        "menuIcon": "https://m15.360buyimg.com/mobilecms/jfs/t1/146216/7/22157/182757/622f37e8Ec2445bac/658b95154cb12771.gif",
+        "menuName": "电器",
+        "menuCode": "m02",
+        "h5url": "https://prodev.m.jd.com/mall/active/8tHNdJLcqwqhkLNA8hqwNRaNu5f/index.html"
+      },
+      {
+        "menuIcon": "https://m15.360buyimg.com/mobilecms/jfs/t1/104637/39/25735/190791/622f3682E168960d2/2dbfbaf4147134c1.gif",
+        "menuName": "国际",
+        "menuCode": "m11",
+        "h5url": "https://gmart.jd.com"
       },
       {
         "menuIcon": "https://m15.360buyimg.com/mobilecms/jfs/t1/172178/32/9487/10851/609d18e0Ed273eec1/a1e099f1601c8cc2.png!q70.jpg",
         "menuName": "服饰",
-        "menuCode": "m03"
+        "menuCode": "m03",
+        "h5url": "https://h5.m.jd.com/pb/014076750/48qPXkwvatBBCAhdeTXG5WQam4yq/index.html"
       },
       {
         "menuIcon": "https://m15.360buyimg.com/mobilecms/jfs/t1/193038/4/3881/13295/60a4b6a7E4124dc9e/fdd2934e97eab3ac.png!q70.jpg",
         "menuName": "免费水果",
         "menuCode": "m04"
+      },
+      {
+        "menuIcon": "https://m15.360buyimg.com/mobilecms/jfs/t1/107776/17/21311/9709/61e12b6eEa79cbefa/bd0bb902e126fafb.png!q70.jpg",
+        "menuName": "会员",
+        "menuCode": "m10",
+        "h5url": "https://shop.m.jd.com/shop/home?shopId=1000343263&utm_source=iosapp&utm_medium=appshare&utm_campaign=t_335139774&utm_term=Wxfriends&ad_od=share&utm_user=plusmember&gx=RnAomTM2bjTfycsT-YNzCTmOd9y9Fa0&gxd=RnAokmcIOjONmssR_YNyCIMKIb4Xa5DwoYs6Qbze_4h9aUHPDecui7HTjqAWskU"
+      },
+      {
+        "menuIcon": "https://m15.360buyimg.com/mobilecms/jfs/t1/189533/37/5319/12852/60b05d59Eb3b3fd29/4c478e3347507e51.png!q70.jpg",
+        "menuName": "生鲜",
+        "menuCode": "m13",
+        "h5url": "https://pro.m.jd.com/mall/active/4P9a2T9osR9JvtzHVaYTPvsecRtg/index.html"
+      },
+      {
+        "menuIcon": "https://m15.360buyimg.com/mobilecms/jfs/t1/188405/35/3707/11116/60a26055Ef91c306d/1ba7aa3b9328e35e.png!q70.jpg",
+        "menuName": "拍拍二手",
+        "menuCode": "m17",
+        "h5url": "https://prodev.m.jd.com/mall/active/LHGZv1DrGkva1jNpUkKFuNFN6oo/index.html"
       },
       {
         "menuIcon": "https://m15.360buyimg.com/mobilecms/jfs/t1/181856/30/3968/10274/609e3d99E07c63af4/cb0d5b21c461b07f.png!q70.jpg",
@@ -63,26 +95,6 @@
         "menuCode": "m09"
       },
       {
-        "menuIcon": "https://m15.360buyimg.com/mobilecms/jfs/t1/107776/17/21311/9709/61e12b6eEa79cbefa/bd0bb902e126fafb.png!q70.jpg",
-        "menuName": "会员",
-        "menuCode": "m10"
-      },
-      {
-        "menuIcon": "https://m15.360buyimg.com/mobilecms/jfs/t1/104637/39/25735/190791/622f3682E168960d2/2dbfbaf4147134c1.gif",
-        "menuName": "国际",
-        "menuCode": "m11"
-      },
-      {
-        "menuIcon": "https://m15.360buyimg.com/mobilecms/jfs/t1/146216/7/22157/182757/622f37e8Ec2445bac/658b95154cb12771.gif",
-        "menuName": "电器",
-        "menuCode": "m02"
-      },
-      {
-        "menuIcon": "https://m15.360buyimg.com/mobilecms/jfs/t1/189533/37/5319/12852/60b05d59Eb3b3fd29/4c478e3347507e51.png!q70.jpg",
-        "menuName": "生鲜",
-        "menuCode": "m13"
-      },
-      {
         "menuIcon": "https://m15.360buyimg.com/mobilecms/jfs/t1/129902/19/16911/11005/60b05dd8Edad29a3f/ca6b3ea0f67e1826.png!q70.jpg",
         "menuName": "沃尔玛",
         "menuCode": "m14"
@@ -96,11 +108,6 @@
         "menuIcon": "https://m15.360buyimg.com/mobilecms/jfs/t1/109159/13/17721/9654/60b05d73Eefa154db/3a4a46ef2755c622.png!q70.jpg",
         "menuName": "看病购药",
         "menuCode": "m16"
-      },
-      {
-        "menuIcon": "https://m15.360buyimg.com/mobilecms/jfs/t1/188405/35/3707/11116/60a26055Ef91c306d/1ba7aa3b9328e35e.png!q70.jpg",
-        "menuName": "拍拍二手",
-        "menuCode": "m17"
       },
       {
         "menuIcon": "https://m15.360buyimg.com/mobilecms/jfs/t1/177688/12/4847/7352/60a39a9bEe0a7e4f8/1a8efe458d1c3ee2.png!q70.jpg",

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageView
+import android.widget.LinearLayout
 import androidx.recyclerview.widget.RecyclerView
 import coil.ImageLoader
 import coil.load
@@ -13,9 +14,11 @@ import com.aries.home.R
 import com.aries.home.ui.MenuBean
 import android.widget.TextView
 import com.aries.common.util.CoilUtil
+import com.aries.home.ui.listener.OnGridItemClickListener
 
 class NineGridAdapter(var context: Context, var data: MutableList<MenuBean>, var index: Int, var pageSize: Int): BaseAdapter()  {
     private var imageLoader: ImageLoader = CoilUtil.getImageLoader()
+    private var mOnGridItemClickListener: OnGridItemClickListener? = null
 
     override fun getView(position: Int, p1: View?, parent: ViewGroup?): View {
         var menuBean = getItem(position)
@@ -24,7 +27,7 @@ class NineGridAdapter(var context: Context, var data: MutableList<MenuBean>, var
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.nine_memu_item, parent, false)
         }
-        var holder = ViewHolder(convertView!!)
+        val holder = ViewHolder(convertView!!)
         convertView.tag = holder
         holder.itemView.findViewById<ImageView>(R.id.menuIcon).load(menuBean.menuIcon, imageLoader ) {
             crossfade(true)
@@ -32,8 +35,14 @@ class NineGridAdapter(var context: Context, var data: MutableList<MenuBean>, var
             error(R.drawable.default_img)
         }
         holder.itemView.findViewById<TextView>(R.id.menuName).text = menuBean.menuName
+        holder.itemView.findViewById<LinearLayout>(R.id.nineMenuLayout).setOnClickListener{
+            this.mOnGridItemClickListener?.onItemClick(menuBean)
+        }
+        return convertView
+    }
 
-        return convertView!!
+    open fun setOnGridItemClickListener(onGridItemClickListener: OnGridItemClickListener) {
+        this.mOnGridItemClickListener = onGridItemClickListener
     }
 
     override fun getCount(): Int {
