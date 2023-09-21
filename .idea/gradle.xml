@@ -10,6 +10,9 @@
         <option name="gradleJvm" value="jbr-17" />
         <option name="modules">
           <set>
+            <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/connectivity_plus-4.0.2/android" />
+            <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/path_provider_android-2.2.0/android" />
+            <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/sqflite-2.3.0/android" />
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/local_lib" />
@@ -19,6 +22,7 @@
             <option value="$PROJECT_DIR$/module_cart" />
             <option value="$PROJECT_DIR$/module_category" />
             <option value="$PROJECT_DIR$/module_common" />
+            <option value="$PROJECT_DIR$/module_flutter/.android/Flutter" />
             <option value="$PROJECT_DIR$/module_main" />
             <option value="$PROJECT_DIR$/module_mine" />
             <option value="$PROJECT_DIR$/module_rn" />

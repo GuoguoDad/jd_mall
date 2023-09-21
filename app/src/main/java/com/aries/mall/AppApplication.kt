@@ -18,6 +18,9 @@ import com.masteratul.exceptionhandler.ReactNativeExceptionHandlerPackage
 import com.swmansion.gesturehandler.RNGestureHandlerPackage
 import com.swmansion.rnscreens.RNScreensPackage
 import com.th3rdwave.safeareacontext.SafeAreaContextPackage
+import io.flutter.embedding.engine.FlutterEngine
+import io.flutter.embedding.engine.FlutterEngineCache
+import io.flutter.embedding.engine.dart.DartExecutor
 import java.io.File
 
 class AppApplication: BaseApplication(), ReactApplication {
@@ -60,5 +63,9 @@ class AppApplication: BaseApplication(), ReactApplication {
             .delegate(MiniAppVersionCheckDelegate(this))
             .reactInstanceManager(mReactNativeHost.reactInstanceManager)
         SoLoader.init(this, /* native exopackage */ false);
+    }
+
+    override fun onTerminate() {
+        super.onTerminate()
     }
 }

@@ -3,5 +3,7 @@
 
     <application>
         <activity android:name="com.aries.common.ui.detail.DetailActivity" />
+
+        <activity android:name="com.aries.common.base.FlutterAppActivity" />
     </application>
 </manifest>

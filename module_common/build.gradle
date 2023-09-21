@@ -43,6 +43,8 @@ android {
 
 dependencies {
     api project(path: ':local_mock')
+    api project(':flutter')
+
     api 'androidx.core:core-ktx:1.9.0'
     api 'androidx.appcompat:appcompat:1.6.1'
     api 'androidx.multidex:multidex:2.0.1'

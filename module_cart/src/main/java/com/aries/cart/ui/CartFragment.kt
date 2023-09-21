@@ -1,5 +1,6 @@
 package com.aries.cart.ui
 
+import android.content.Intent
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
@@ -20,6 +21,7 @@ import com.aries.cart.ui.listener.OnStepperChangeListener
 import com.aries.cart.ui.view.QuickEntryPopup
 import com.aries.common.adapter.GoodsListAdapter
 import com.aries.common.base.BaseFragment
+import com.aries.common.base.FlutterAppActivity
 import com.aries.common.constants.RouterPaths
 import com.aries.common.decoration.SpacesItemDecoration
 import com.aries.common.util.DisplayUtil
@@ -29,6 +31,8 @@ import com.donkingliang.consecutivescroller.ConsecutiveScrollerLayout
 import com.gyf.immersionbar.ImmersionBar
 import com.lxj.xpopup.XPopup
 import com.lxj.xpopup.enums.PopupAnimation
+import io.flutter.embedding.android.FlutterActivity
+import io.flutter.embedding.android.FlutterActivityLaunchConfigs
 import java.math.BigDecimal
 
 class CartFragment: BaseFragment<FragmentCartBinding>(), MavericksView {
@@ -127,6 +131,12 @@ class CartFragment: BaseFragment<FragmentCartBinding>(), MavericksView {
         }
         //全选
          binding.includeBtnAll.totalCheckBox.setOnClickListener { checkAll() }
+
+         binding.includeBtnAll.btnGoOrder.setOnClickListener {
+             val intent = Intent(this.requireActivity(), FlutterAppActivity::class.java)
+             intent.putExtra("routeName","/generateOrder?key1=value1&key2=value2")
+             startActivity(intent)
+         }
     }
 
     override fun initData() {

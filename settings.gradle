@@ -1,5 +1,7 @@
+import org.gradle.api.initialization.resolve.RepositoriesMode
+
 dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositoriesMode.set(RepositoriesMode.PREFER_PROJECT)
     repositories {
         maven { url 'https://www.jitpack.io' }
         google()
@@ -7,8 +9,12 @@ dependencyResolutionManagement {
         jcenter()
     }
 }
+
 rootProject.name = "android_mall"
 include ':app'
+setBinding(new Binding([gradle: this]))
+evaluate(new File(settingsDir, 'module_flutter/.android/include_flutter.groovy'))
+
 include ':local_mock'
 include ':local_lib:hermes'
 include ':local_lib:rn'
@@ -19,5 +25,4 @@ include ':module_category'
 include ':module_cart'
 include ':module_mine'
 include ':module_rn'
-
 include ':module_webview'

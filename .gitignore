@@ -25,3 +25,16 @@ local.properties
 /local_lib/rn/build
 /local_lib/hermes/build
 /local_lib/jsc/build
+
+/module_flutter/build
+/module_flutter/.android/.gradle
+/module_flutter/.android/build
+/module_flutter/.android/flutter/build
+/module_flutter/.android/plugins_build_output
+/module_flutter/.dart_tool/flutter_build
+
+/module_flutter/.idea
+/module_flutter/.dart_tool
+
+/module_flutter/.ios/Pods
+/module_flutter/.ios/.symlinks

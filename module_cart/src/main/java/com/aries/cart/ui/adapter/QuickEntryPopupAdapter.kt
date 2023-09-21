@@ -25,7 +25,7 @@ class QuickEntryPopupAdapter(var context: Context, var data: ArrayList<QuickMenu
         holder.itemView.findViewById<ImageView>(R.id.menuIcon).setImageResource(menuBean.menuIcon)
         holder.itemView.findViewById<TextView>(R.id.menuName).text = menuBean.menuName
 
-        return convertView!!
+        return convertView
     }
 
     override fun getCount(): Int {

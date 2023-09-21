@@ -1,5 +1,6 @@
 # 前言
-高仿京东商城项目具有完整的结构，代码整洁规范，结构清晰，集成React-Native热更功能，功能还在持续更新中...如果对你有帮助，给个star
+高仿京东商城混合App，具有完整的结构，代码整洁规范，结构清晰，集成React-Native热更功能，集成Flutter模块，填写订单页由flutter编写, module_flutter可单独运行，
+功能还在持续更新中...如果对你有帮助，给个star
 1. 使用kotlin语言开发，项目使用模块化开发，降低了耦合性
 2. 网络使用 retrofit2 + okhttp3方式，进行了高度的封装
 3. [使用leakcanary 内存泄漏检测](https://github.com/square/leakcanary)
@@ -7,8 +8,11 @@
 5. [使用本地mock模拟服务端](https://github.com/mirrajabi/okhttp-json-mock)
 6. [采用ARouter路由管理](https://github.com/alibaba/ARouter/tree/master)
 7. 集成RN热更功能，[rn工程请见](https://github.com/GuoguoDad/mall_page.git)
+8. 集成Flutter模块，填写订单页由flutter编写, module_flutter可单独运行
 
 * ### 同款Flutter版本（ https://github.com/GuoguoDad/jd_mall_flutter.git ）
+
+# **** 运行要求，Android环境，flutter环境， rn为热更的页面，无需rn环境 ***
 
 # MVI架构
 <img src="images/framework.png" title="" alt="image" width="800">
@@ -59,6 +63,9 @@
 # 账户设置(rn页面-拉取远程的bundle)
 <img src="images/setting.gif" title="" alt="image" width="351">
 <img src="images/setting.png" title="" alt="image" width="800">
+
+# 填写订单(flutter模块，混合)
+<img src="images/generateOrder.gif" title="" alt="image" width="351">
 
 # 第三方库
 | 库                       | 功能                      |

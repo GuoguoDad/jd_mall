@@ -24,6 +24,12 @@ android {
         versionCode rootProject.ext.defaultConfigVersionCode
         versionName rootProject.ext.defaultConfigVersionName
 
+        ndk {
+            // Filter for architectures supported by Flutter.
+            //noinspection ChromeOsAbiSupport
+            abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86_64'
+        }
+
         kapt {
             arguments {
                 arg("AROUTER_MODULE_NAME", project.getName())
@@ -72,6 +78,7 @@ dependencies {
     api project(path: ':module_main')
     api project(path: ':module_rn')
     api project(path: ':module_webview')
+    implementation project(':flutter')
 
     testImplementation 'junit:junit:4.12'
 }

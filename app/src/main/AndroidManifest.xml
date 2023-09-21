@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/TranslucentTheme"
         tools:targetApi="n"
-        tools:ignore="AllowBackup">
+        tools:ignore="AllowBackup,Instantiatable">
 
         <!--适配华为（huawei）刘海屏-->
         <meta-data
@@ -38,6 +38,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name="io.flutter.embedding.android.FlutterActivity"
+            android:theme="@style/TranslucentTheme"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+            android:hardwareAccelerated="true"
+            android:windowSoftInputMode="adjustResize"
+            />
 
         <provider
             android:name="com.aries.common.provider.ShareContentProvider"
