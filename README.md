@@ -12,7 +12,7 @@
 
 * ### 同款Flutter版本（ https://github.com/GuoguoDad/jd_mall_flutter.git ）
 
-# **** 运行要求，Android环境，flutter环境， rn为热更的页面，无需rn环境 ***
+# **** 运行要求，Android环境，flutter环境， rn为热更的页面，无需rn环境 ****
 
 # MVI架构
 <img src="images/framework.png" title="" alt="image" width="800">
