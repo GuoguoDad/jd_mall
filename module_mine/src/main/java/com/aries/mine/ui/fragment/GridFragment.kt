@@ -17,7 +17,7 @@ class GridFragment(data: MutableList<MenuBean>, index: Int, pageSize: Int): Base
 
     override fun initView() {
         binding.gridView.run {
-            adapter = nineGridAdapter as ListAdapter
+            adapter = nineGridAdapter
         }
     }
 

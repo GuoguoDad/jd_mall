@@ -14,7 +14,7 @@ class FlutterAppActivity: FlutterActivity() {
         intent.getStringExtra("routeName")?.let { flutterEngine.navigationChannel.setInitialRoute(it) }
         flutterEngine.dartExecutor.executeDartEntrypoint(DartExecutor.DartEntrypoint.createDefault())
 
-        return  flutterEngine;
+        return  flutterEngine
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

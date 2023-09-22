@@ -13,7 +13,7 @@ data class HomeInfoResponse(var bannerList: MutableList<BannerBean>, var tabList
 data class QueryGoodsListParams(var code: String ,var currentPage: Number, var pageSize: Number)
 data class GoodsListResponse(var dataList: MutableList<GoodsBean>, var totalCount: Int, var totalPageCount: Int)
 
-open interface ApiService {
+interface ApiService {
 
     @POST("mall/home/queryHomePageInfo")
     suspend fun queryHomePageInfo(): BaseResponse<HomeInfoResponse>

@@ -61,7 +61,7 @@ class MineFragment: BaseFragment<LayoutMineBinding>(), MavericksView {
             layoutManager = staggeredGridLayoutManager
             adapter = goodsListAdapter
         }
-        goodsListAdapter.setOnItemClickListener { adapter, view, position ->
+        goodsListAdapter.setOnItemClickListener { _, _, _ ->
             ARouter.getInstance().build(RouterPaths.GOODS_DETAIL).navigation()
         }
         binding.backTop.setOnClickListener {

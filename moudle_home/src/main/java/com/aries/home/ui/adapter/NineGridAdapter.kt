@@ -16,7 +16,7 @@ import android.widget.TextView
 import com.aries.common.util.CoilUtil
 import com.aries.home.ui.listener.OnGridItemClickListener
 
-class NineGridAdapter(var context: Context, var data: MutableList<MenuBean>, var index: Int, var pageSize: Int): BaseAdapter()  {
+open class NineGridAdapter(var context: Context, var data: MutableList<MenuBean>, var index: Int, var pageSize: Int): BaseAdapter()  {
     private var imageLoader: ImageLoader = CoilUtil.getImageLoader()
     private var mOnGridItemClickListener: OnGridItemClickListener? = null
 

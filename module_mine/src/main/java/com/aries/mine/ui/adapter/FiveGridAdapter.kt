@@ -33,7 +33,7 @@ class FiveGridAdapter(var context: Context, var data: MutableList<MenuBean>, var
         }
         holder.itemView.findViewById<TextView>(R.id.menuName).text = menuBean.menuName
 
-        return convertView!!
+        return convertView
     }
 
     override fun getCount(): Int {

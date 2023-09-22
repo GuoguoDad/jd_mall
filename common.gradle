@@ -4,11 +4,11 @@ ext {
     defalutConfigApplicationId = "com.aries.mall"
     defaultConfigMinSdk = 21
     defaultConfigTargetSdk = 33
-    defaultConfigVersionCode = 4
-    defaultConfigVersionName = "1.2.4"
+    defaultConfigVersionCode = 5
+    defaultConfigVersionName = "1.2.5"
 
     compileOptionsSourceCompatibility = JavaVersion.VERSION_11
     compileOptionsTargetCompatibility = JavaVersion.VERSION_11
 
-    kotlinOptionsJvmTarget = '1.8'
+    kotlinOptionsJvmTarget = '11'
 }
