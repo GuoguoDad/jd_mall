@@ -1,18 +1,17 @@
 # 前言
-高仿京东商城混合App，具有完整的结构，代码整洁规范，结构清晰，集成React-Native热更功能，集成Flutter模块，填写订单页由flutter编写, module_flutter可单独运行，
-功能还在持续更新中...如果对你有帮助，给个star
+高仿京东商城App，具有完整的结构，代码整洁规范，结构清晰，集成Flutter模块，具备React-Native热更功能，...如果对你有帮助，给个star
 1. 使用kotlin语言开发，项目使用模块化开发，降低了耦合性
 2. 网络使用 retrofit2 + okhttp3方式，进行了高度的封装
 3. [使用leakcanary 内存泄漏检测](https://github.com/square/leakcanary)
 4. [基于MVI架构(airbnb的Mavericks)开发](https://airbnb.io/mavericks/#/README)
 5. [使用本地mock模拟服务端](https://github.com/mirrajabi/okhttp-json-mock)
 6. [采用ARouter路由管理](https://github.com/alibaba/ARouter/tree/master)
-7. 集成RN热更功能，[rn工程请见](https://github.com/GuoguoDad/mall_page.git)
-8. 集成Flutter模块，填写订单页由flutter编写, module_flutter可单独运行
+7. 集成Flutter模块，填写订单页由flutter编写, module_flutter可单独运行
+8. 集成RN热更功能，[rn工程请见](https://github.com/GuoguoDad/mall_page.git)
 
-* ### 同款Flutter版本（ https://github.com/GuoguoDad/jd_mall_flutter.git ）
+* ### 高仿京东商城App同款Flutter版本（ https://github.com/GuoguoDad/jd_mall_flutter.git ）
 
-# **** 运行要求，Android环境，flutter环境， rn为热更的页面，无需rn环境 ****
+# **** 运行要求，Android环境，flutter环境， rn为热更，无需rn环境 ****
 
 # MVI架构
 <img src="images/framework.png" title="" alt="image" width="800">
@@ -22,6 +21,15 @@
 * Model: 与其他MVVM中的Model不同的是，MVI的Model主要指UI状态（State）。当前界面展示的内容无非就是UI状态的一个快照：例如数据加载过程、控件位置等都是一种UI状态
 * View: 与其他MVX中的View一致，可能是一个Activity、Fragment或者任意UI承载单元。MVI中的View通过订阅Intent的变化实现界面刷新（不是Activity的Intent、后面介绍）
 * Intent: 此Intent不是Activity的Intent，用户的任何操作都被包装成Intent后发送给Model进行数据请求
+
+# Flutter module 作为依赖项
+#### 方案 A - 依赖 Android Archive (AAR)
+- 这种方式会将 Flutter 库打包成由 AAR 和 POM artifacts 组成的本地 Maven 存储库。这种方案可以不需要安装 Flutter SDK 即可编译宿主应用。
+
+#### 方案 B - 依赖模块的源码
+- 该方式可以使你的 Android 项目和 Flutter 项目能够同步一键式构建。当你需要同时在这两个项目中进行快速迭代时，这种方案非常方便。必须安装 Flutter SDK 才能构建宿主应用程序。
+
+本项目采用的方案B，[细节详见](https://flutter.cn/docs/development/add-to-app)
 
 # 热更新
 热更新也叫动态更新，一种和web更新方式很类似。对比App的版本更新，热更新能及时修复线上存在的问题，大幅提升业务迭代效率。
@@ -40,32 +48,27 @@
 4，React Native 发起 CDN 资源请求
 资源请求会先询问某个 CDN 的边缘节点，如果该边缘节点没有缓存，则会去源站拉取；如果该边缘节点有缓存，则直接返回。
 
-# 首页
+# 效果
+### 首页
 <img src="images/home.gif" title="" alt="image" width="351">
-<img src="images/home.png" title="" alt="image" width="800">
 
-# 分类
+### 分类
 <img src="images/category.gif" title="" alt="image" width="351">
-<img src="images/category.png" title="" alt="image" width="800">
 
-# 购物车
+### 购物车
 <img src="images/cart.gif" title="" alt="image" width="351">
-<img src="images/cart.png" title="" alt="image" width="800">
 
-# 我的
+### 我的
 <img src="images/mine.gif" title="" alt="image" width="351">
-<img src="images/mine.png" title="" alt="image" width="800">
 
-# 商品详情
+### 商品详情
 <img src="images/detail.gif" title="" alt="image" width="351">
-<img src="images/detail.png" title="" alt="image" width="800">
 
-# 账户设置(rn页面-拉取远程的bundle)
-<img src="images/setting.gif" title="" alt="image" width="351">
-<img src="images/setting.png" title="" alt="image" width="800">
-
-# 填写订单(flutter模块，混合)
+### 填写订单(flutter模块，混合)
 <img src="images/generateOrder.gif" title="" alt="image" width="351">
+
+### 账户设置(rn页面-拉取远程的bundle)
+<img src="images/setting.gif" title="" alt="image" width="351">
 
 # 第三方库
 | 库                       | 功能                      |
