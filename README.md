@@ -9,9 +9,9 @@
 7. 集成Flutter模块，填写订单页由flutter编写, module_flutter可单独运行
 8. 集成RN热更功能，[rn工程请见](https://github.com/GuoguoDad/mall_page.git)
 
-* ### 高仿京东商城App同款Flutter版本（ https://github.com/GuoguoDad/jd_mall_flutter.git ）
+* ### 同款Flutter版本（ https://github.com/GuoguoDad/jd_mall_flutter.git ）
 
-# **** 运行要求，Android环境，flutter环境， rn为热更，无需rn环境 ****
+###  **** 运行要求，Android环境，flutter环境， rn为热更，无需rn环境 ****
 
 # MVI架构
 <img src="images/framework.png" title="" alt="image" width="800">
