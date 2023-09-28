@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.graphics.Rect
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.airbnb.mvrx.MavericksView
 import com.airbnb.mvrx.activityViewModel
@@ -14,7 +15,7 @@ import com.aries.category.ui.adapter.CategoryListAdapter
 import com.aries.common.base.BaseFragment
 import com.gyf.immersionbar.ImmersionBar
 
-class CategoryFragment: BaseFragment<FragmentMainBinding>(), MavericksView {
+class CategoryFragment : BaseFragment<FragmentMainBinding>(), MavericksView {
     private val leftViewModel: LeftCategoryViewModel by activityViewModel()
     private val rightViewModel: RightCategoryViewModel by activityViewModel()
 

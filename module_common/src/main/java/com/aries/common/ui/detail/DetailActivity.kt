@@ -7,6 +7,7 @@ import android.widget.ImageView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.core.widget.NestedScrollView
+import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -33,7 +34,7 @@ import com.google.android.material.tabs.TabLayout
 import com.gyf.immersionbar.ImmersionBar
 
 @Route(path = RouterPaths.GOODS_DETAIL)
-class DetailActivity: BaseActivity<ActivityDetailBinding>(), MavericksView {
+class DetailActivity : BaseActivity<ActivityDetailBinding>(), MavericksView {
     private val tabs = arrayListOf("商品", "评价", "详情", "推荐")
     private var imageLoader: ImageLoader = CoilUtil.getImageLoader()
     private val loadingDialog: LoadingDialog by lazy { LoadingDialog(this) }

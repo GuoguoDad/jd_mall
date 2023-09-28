@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
+import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.airbnb.mvrx.MavericksView
 import com.airbnb.mvrx.activityViewModel
@@ -23,7 +24,7 @@ import com.aries.mine.databinding.LayoutMineBinding
 import com.aries.mine.ui.view.FiveMenuView
 import com.gyf.immersionbar.ImmersionBar
 
-class MineFragment: BaseFragment<LayoutMineBinding>(), MavericksView {
+class MineFragment : BaseFragment<LayoutMineBinding>(), MavericksView {
     private val viewModel: MineViewModal by activityViewModel()
 
     private val goodsListAdapter by lazy { GoodsListAdapter(arrayListOf()) }
@@ -65,7 +66,8 @@ class MineFragment: BaseFragment<LayoutMineBinding>(), MavericksView {
             ARouter.getInstance().build(RouterPaths.GOODS_DETAIL).navigation()
         }
         binding.backTop.setOnClickListener {
-            binding.consecutiveLayout.scrollToChild(binding.consecutiveLayout.getChildAt(0))
+//            binding.consecutiveLayout.scrollToChild(binding.consecutiveLayout.getChildAt(0))
+            binding.consecutiveLayout.smoothScrollToChild(binding.consecutiveLayout.getChildAt(0))
         }
         binding.includeFloatingHeader.setting.setOnClickListener {
             ARouter.getInstance().build(RouterPaths.RN_PAGE)

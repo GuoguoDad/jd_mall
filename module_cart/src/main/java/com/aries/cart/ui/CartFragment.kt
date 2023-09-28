@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.airbnb.mvrx.MavericksView
@@ -35,7 +36,7 @@ import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.android.FlutterActivityLaunchConfigs
 import java.math.BigDecimal
 
-class CartFragment: BaseFragment<FragmentCartBinding>(), MavericksView {
+class CartFragment : BaseFragment<FragmentCartBinding>(), MavericksView {
     private val viewModel: CartViewModel by activityViewModel()
 
     //购物车中店铺商品列表adapter
@@ -127,7 +128,8 @@ class CartFragment: BaseFragment<FragmentCartBinding>(), MavericksView {
         }
         //返回顶部
          binding.backTop.setOnClickListener {
-             binding.consecutiveScrollerLayout.scrollToChild(binding.consecutiveScrollerLayout.getChildAt(0))
+//             binding.consecutiveScrollerLayout.scrollToChild(binding.consecutiveScrollerLayout.getChildAt(0))
+             binding.consecutiveScrollerLayout.smoothScrollToChild(binding.consecutiveScrollerLayout.getChildAt(0))
         }
         //全选
          binding.includeBtnAll.totalCheckBox.setOnClickListener { checkAll() }

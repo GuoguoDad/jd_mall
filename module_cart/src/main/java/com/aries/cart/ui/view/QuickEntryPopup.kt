@@ -9,6 +9,7 @@ import com.aries.cart.ui.adapter.QuickEntryPopupAdapter
 import com.aries.common.util.DisplayUtil
 import com.aries.common.util.StatusBarUtil
 import com.lxj.xpopup.core.PositionPopupView
+import okhttp3.internal.notifyAll
 
 class QuickEntryPopup(context: Context): PositionPopupView(context) {
     private lateinit var binding: QuickEntryGridvewBinding

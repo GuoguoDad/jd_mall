@@ -99,11 +99,11 @@ class MainActivity: BaseActivity<LayoutMainBinding>() {
         val menuView = binding.navView.getChildAt(0) as BottomNavigationMenuView
         if (viewIndex < menuView.childCount) {
             val itemView: BottomNavigationItemView = menuView.getChildAt(viewIndex) as BottomNavigationItemView
-            var badgeView = LayoutInflater.from(this).inflate(com.aries.common.R.layout.badge_layout, itemView, false)
+            val badgeView = LayoutInflater.from(this).inflate(com.aries.common.R.layout.badge_layout, itemView, false)
 
             UnreadMsgUtil.show(badgeView.findViewById(R.id.badgeNum), showNumber)
 
-            var lp = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT)
+            val lp = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT)
             lp.leftMargin = menuView.itemIconSize
             lp.bottomMargin = menuView.itemIconSize
 

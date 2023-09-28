@@ -1,12 +1,14 @@
 package com.aries.home.ui
 
 import android.annotation.SuppressLint
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RelativeLayout
 import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.airbnb.mvrx.MavericksView
 import com.airbnb.mvrx.activityViewModel
@@ -24,8 +26,10 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.aries.home.ui.view.AdView
 import com.aries.home.ui.view.NineMenuView
 import com.gyf.immersionbar.ImmersionBar
+import com.orhanobut.logger.Logger
+import okhttp3.internal.notifyAll
 
-class HomeFragment: BaseFragment<FragmentHomeBinding>(), MavericksView {
+class HomeFragment : BaseFragment<FragmentHomeBinding>(), MavericksView {
     private val viewModel: HomeViewModel by activityViewModel()
     //loading 对话框
     private val loadingDialog: LoadingDialog by lazy { LoadingDialog(this.requireActivity()) }
@@ -83,7 +87,8 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>(), MavericksView {
             ConsecutiveScrollerLayout.OnScrollChangeListener { _, scrollY, _, _ -> searchHeaderOnScroll(scrollY) }
 
         binding.backTop.setOnClickListener {
-            binding.consecutiveScrollerLayout.scrollToChild(binding.consecutiveScrollerLayout.getChildAt(0))
+//            binding.consecutiveScrollerLayout.scrollToChild(binding.consecutiveScrollerLayout.getChildAt(0))
+            binding.consecutiveScrollerLayout.smoothScrollToChild(binding.consecutiveScrollerLayout.getChildAt(0))
         }
         addStateChangeListener()
     }
@@ -152,7 +157,12 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>(), MavericksView {
         tabViewPagerAdapter = object : FragmentStateAdapter(this){
             override fun getItemCount(): Int = tabList.size
             override fun createFragment(position: Int): Fragment {
-                return GoodsListFragment(tabList[position].code)
+                val goodsListFragment = GoodsListFragment()
+                val bundle = Bundle()
+                bundle.putString("code", tabList[position].code)
+                goodsListFragment.arguments = bundle
+
+                return goodsListFragment
             }
         }
         binding.viewPager.adapter = tabViewPagerAdapter

@@ -13,13 +13,13 @@ import com.chad.library.adapter.base.viewholder.BaseViewHolder
 class ColorThumbListAdapter(@LayoutRes layoutResId: Int, data: MutableList<BannerBean>): BaseQuickAdapter<BannerBean, BaseViewHolder>(layoutResId, data) {
     private var imageLoader = CoilUtil.getImageLoader()
 
-    override fun convert(holder: BaseViewHolder, bean: BannerBean) {
-        holder.getView<ImageView>(R.id.thumbImg).load(bean.thumb, imageLoader ) {
+    override fun convert(holder: BaseViewHolder, item: BannerBean) {
+        holder.getView<ImageView>(R.id.thumbImg).load(item.thumb, imageLoader ) {
             crossfade(true)
             placeholder(R.drawable.default_img)
         }
         holder.getView<LinearLayout>(R.id.colorOptionLayout).run {
-            if (bean.select!!)
+            if (item.select!!)
                 setBackgroundResource(R.drawable.detail_color_thumb_select)
             else
                 setBackgroundResource(R.drawable.detail_color_thumb_unselect)
