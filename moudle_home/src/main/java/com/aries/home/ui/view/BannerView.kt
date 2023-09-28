@@ -48,6 +48,7 @@ class BannerView: FrameLayout {
                 override fun onBindView(holder: BannerImageHolder?, data: BannerBean?, position: Int, size: Int) {
                     holder?.imageView?.load(data?.imgUrl, imageLoader ) {
                         crossfade(true)
+                        error(R.drawable.default_img)
                         placeholder(R.drawable.default_img)
                     }
                 }
