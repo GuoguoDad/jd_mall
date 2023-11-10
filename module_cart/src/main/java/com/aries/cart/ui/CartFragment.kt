@@ -141,7 +141,7 @@ class CartFragment : BaseFragment<FragmentCartBinding>(), MavericksView {
                          if (pageScrollY > 0) {
                              binding.consecutiveScrollerLayout.scrollTo(0, pageScrollY)
                          } else {
-                             binding.consecutiveScrollerLayout.scrollTo(0, 0)
+                             binding.consecutiveScrollerLayout.smoothScrollToChild(binding.consecutiveScrollerLayout.getChildAt(0))
                              timer.cancel()
                          }
                      }

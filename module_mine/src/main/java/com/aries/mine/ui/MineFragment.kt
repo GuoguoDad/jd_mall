@@ -74,11 +74,11 @@ class MineFragment : BaseFragment<LayoutMineBinding>(), MavericksView {
             timer.schedule(object : TimerTask() {
                 override fun run() {
                     activity?.runOnUiThread {
-                        pageScrollY -= 800
+                        pageScrollY -= 500
                         if (pageScrollY > 0) {
                             binding.consecutiveLayout.scrollTo(0, pageScrollY)
                         } else {
-                            binding.consecutiveLayout.scrollTo(0, 0)
+                            binding.consecutiveLayout.smoothScrollToChild(binding.consecutiveLayout.getChildAt(0))
                             timer.cancel()
                         }
                     }
