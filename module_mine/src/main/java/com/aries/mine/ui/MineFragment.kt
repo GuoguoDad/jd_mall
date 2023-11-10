@@ -23,6 +23,8 @@ import com.aries.mine.R
 import com.aries.mine.databinding.LayoutMineBinding
 import com.aries.mine.ui.view.FiveMenuView
 import com.gyf.immersionbar.ImmersionBar
+import java.util.Timer
+import java.util.TimerTask
 
 class MineFragment : BaseFragment<LayoutMineBinding>(), MavericksView {
     private val viewModel: MineViewModal by activityViewModel()
@@ -33,6 +35,8 @@ class MineFragment : BaseFragment<LayoutMineBinding>(), MavericksView {
     }
 
     private val fiveMenuView: FiveMenuView by lazy { FiveMenuView(this.requireContext(), this@MineFragment) }
+
+    private var pageScrollY: Int = 0
 
     override fun getViewBinding(inflater: LayoutInflater, container: ViewGroup?): LayoutMineBinding {
         return LayoutMineBinding.inflate(inflater, container, false)
@@ -66,8 +70,20 @@ class MineFragment : BaseFragment<LayoutMineBinding>(), MavericksView {
             ARouter.getInstance().build(RouterPaths.GOODS_DETAIL).navigation()
         }
         binding.backTop.setOnClickListener {
-//            binding.consecutiveLayout.scrollToChild(binding.consecutiveLayout.getChildAt(0))
-            binding.consecutiveLayout.smoothScrollToChild(binding.consecutiveLayout.getChildAt(0))
+            val timer = Timer()
+            timer.schedule(object : TimerTask() {
+                override fun run() {
+                    activity?.runOnUiThread {
+                        pageScrollY -= 800
+                        if (pageScrollY > 0) {
+                            binding.consecutiveLayout.scrollTo(0, pageScrollY)
+                        } else {
+                            binding.consecutiveLayout.scrollTo(0, 0)
+                            timer.cancel()
+                        }
+                    }
+                }
+            }, 0, 10)
         }
         binding.includeFloatingHeader.setting.setOnClickListener {
             ARouter.getInstance().build(RouterPaths.RN_PAGE)
@@ -135,6 +151,7 @@ class MineFragment : BaseFragment<LayoutMineBinding>(), MavericksView {
     private fun handleScroll(
         scrollY: Int,
     ) {
+        pageScrollY = scrollY
         //处理背景色、用户信息显示与隐藏
         if (scrollY >= StatusBarUtil.getHeight()) {
             binding.includeFloatingHeader.userInfo.visibility = View.GONE

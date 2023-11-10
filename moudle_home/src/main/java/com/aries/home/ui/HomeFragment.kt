@@ -28,6 +28,8 @@ import com.aries.home.ui.view.NineMenuView
 import com.gyf.immersionbar.ImmersionBar
 import com.orhanobut.logger.Logger
 import okhttp3.internal.notifyAll
+import java.util.Timer
+import java.util.TimerTask
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(), MavericksView {
     private val viewModel: HomeViewModel by activityViewModel()
@@ -43,6 +45,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), MavericksView {
     private val adView: AdView by lazy { AdView(this.requireContext()) }
     //顶部九格宫功能菜单
     private val nineMenuView: NineMenuView by lazy { NineMenuView(this.requireContext(), this@HomeFragment) }
+
+    private var pageScrollY: Int = 0
 
     override fun getViewBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentHomeBinding {
         return FragmentHomeBinding.inflate(inflater, container, false)
@@ -87,8 +91,20 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), MavericksView {
             ConsecutiveScrollerLayout.OnScrollChangeListener { _, scrollY, _, _ -> searchHeaderOnScroll(scrollY) }
 
         binding.backTop.setOnClickListener {
-//            binding.consecutiveScrollerLayout.scrollToChild(binding.consecutiveScrollerLayout.getChildAt(0))
-            binding.consecutiveScrollerLayout.smoothScrollToChild(binding.consecutiveScrollerLayout.getChildAt(0))
+            val timer = Timer()
+            timer.schedule(object : TimerTask() {
+                override fun run() {
+                    activity?.runOnUiThread {
+                        pageScrollY -= 800
+                        if (pageScrollY > 0) {
+                            binding.consecutiveScrollerLayout.scrollTo(0, pageScrollY)
+                        } else {
+                            binding.consecutiveScrollerLayout.scrollTo(0, 0)
+                            timer.cancel()
+                        }
+                    }
+                }
+            }, 0, 10)
         }
         addStateChangeListener()
     }
@@ -179,6 +195,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), MavericksView {
     private val searchHeight = PixelUtil.toPixelFromDIP(30f)
 
     private fun searchHeaderOnScroll(scrollY: Int) {
+        pageScrollY = scrollY
         val containerNewHeight = searchHeaderMaxHeight - scrollY * 0.5
         val searchNewMarginTop = searchMaxMarginTop - scrollY * 0.5
         val searchNewMarginLeft = searchMinMargin + scrollY * 1.3

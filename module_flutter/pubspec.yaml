@@ -80,10 +80,7 @@ flutter:
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
   assets:
-    - images/ic_arrow_right_grey.png
-    - images/ic_back_black.png
-    - images/ic_store.png
-    - images/default.png
+    - images/
 
   # This section identifies your Flutter project as a module meant for
   # embedding in a native host app.  These identifiers should _not_ ordinarily

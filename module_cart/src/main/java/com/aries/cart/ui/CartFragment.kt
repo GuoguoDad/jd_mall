@@ -35,6 +35,8 @@ import com.lxj.xpopup.enums.PopupAnimation
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.android.FlutterActivityLaunchConfigs
 import java.math.BigDecimal
+import java.util.Timer
+import java.util.TimerTask
 
 class CartFragment : BaseFragment<FragmentCartBinding>(), MavericksView {
     private val viewModel: CartViewModel by activityViewModel()
@@ -47,6 +49,8 @@ class CartFragment : BaseFragment<FragmentCartBinding>(), MavericksView {
     private val staggeredGridLayoutManager: StaggeredGridLayoutManager by lazy {
         StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
     }
+
+    private var pageScrollY: Int = 0
 
     override fun getViewBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentCartBinding {
         return FragmentCartBinding.inflate(inflater, container, false)
@@ -113,6 +117,7 @@ class CartFragment : BaseFragment<FragmentCartBinding>(), MavericksView {
         //监听页面滚动显示与隐藏backTop按钮
          binding.consecutiveScrollerLayout.onVerticalScrollChangeListener =
             ConsecutiveScrollerLayout.OnScrollChangeListener { _, scrollY, _, _ ->
+                pageScrollY = scrollY
                 if (scrollY >= DisplayUtil.getScreenHeight(requireContext())) {
                     binding.backTop.visibility = View.VISIBLE
                 } else {
@@ -128,8 +133,20 @@ class CartFragment : BaseFragment<FragmentCartBinding>(), MavericksView {
         }
         //返回顶部
          binding.backTop.setOnClickListener {
-//             binding.consecutiveScrollerLayout.scrollToChild(binding.consecutiveScrollerLayout.getChildAt(0))
-             binding.consecutiveScrollerLayout.smoothScrollToChild(binding.consecutiveScrollerLayout.getChildAt(0))
+             val timer = Timer()
+             timer.schedule(object : TimerTask() {
+                 override fun run() {
+                     activity?.runOnUiThread {
+                         pageScrollY -= 800
+                         if (pageScrollY > 0) {
+                             binding.consecutiveScrollerLayout.scrollTo(0, pageScrollY)
+                         } else {
+                             binding.consecutiveScrollerLayout.scrollTo(0, 0)
+                             timer.cancel()
+                         }
+                     }
+                 }
+             }, 0, 10)
         }
         //全选
          binding.includeBtnAll.totalCheckBox.setOnClickListener { checkAll() }
